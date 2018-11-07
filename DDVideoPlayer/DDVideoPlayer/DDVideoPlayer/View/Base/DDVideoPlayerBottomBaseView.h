@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDVideoPlayerBottomBaseView : DDVideoPlayerComponentBaseView
 
+@property(nonatomic, strong) UIButton *playButton;
+@property(nonatomic, strong) UISlider *slider;
+@property(nonatomic, strong) UILabel *timeLabel;
+
+- (void)playButtonClick:(UIButton *)button;
+
 @end
 
 NS_ASSUME_NONNULL_END

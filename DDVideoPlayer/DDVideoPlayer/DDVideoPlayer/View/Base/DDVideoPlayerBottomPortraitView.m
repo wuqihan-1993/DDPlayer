@@ -9,9 +9,6 @@
 #import "DDVideoPlayerBottomPortraitView.h"
 
 @interface DDVideoPlayerBottomPortraitView()
-@property(nonatomic, strong) UIButton *playButton;
-@property(nonatomic, strong) UILabel *timeLabel;
-@property(nonatomic, strong) UISlider *slider;
 @property(nonatomic, strong) UIButton *landscapeButton;
 @end
 
@@ -23,5 +20,9 @@
     }
     return self;
 }
+- (void)initUI {
+    
+}
+
 
 @end
