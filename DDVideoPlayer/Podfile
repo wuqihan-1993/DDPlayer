@@ -1,0 +1,22 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'DDVideoPlayer' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for DDVideoPlayer
+
+  pod 'Masonry'
+
+  target 'DDVideoPlayerTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'DDVideoPlayerUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
