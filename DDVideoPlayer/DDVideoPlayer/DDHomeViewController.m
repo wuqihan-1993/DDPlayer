@@ -1,28 +1,29 @@
 //
-//  ViewController.m
+//  DDHomeViewController.m
 //  DDVideoPlayer
 //
 //  Created by wuqh on 2018/11/7.
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "DDHomeViewController.h"
 #import "DDVideoPlayer.h"
 #import "DDVideoPlayerNormalViewController.h"
 
-@interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
-
+@interface DDHomeViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-
 @end
 
-@implementation ViewController
+@implementation DDHomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"DDVideoPlayer";
     [self.view addSubview:self.tableView];
+}
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 
 - (UITableView *)tableView {
@@ -48,7 +49,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.navigationController pushViewController:[DDVideoPlayerNormalViewController new] animated:YES];
 }
-
 
 
 @end

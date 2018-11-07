@@ -11,8 +11,6 @@
 		AEAC92E02DDF20027FA8541E /* libPods-DDVideoPlayerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F247AAA51DBE78DBEE60170 /* libPods-DDVideoPlayerTests.a */; };
 		C447947EBF73827A40C6879B /* libPods-DDVideoPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E730F257A9CA253B0BE1A056 /* libPods-DDVideoPlayer.a */; };
 		E3729A872192884F00CEECFB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729A862192884F00CEECFB /* AppDelegate.m */; };
-		E3729A8A2192884F00CEECFB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729A892192884F00CEECFB /* ViewController.m */; };
-		E3729A8D2192884F00CEECFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3729A8B2192884F00CEECFB /* Main.storyboard */; };
 		E3729A8F2192885000CEECFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3729A8E2192885000CEECFB /* Assets.xcassets */; };
 		E3729A922192885000CEECFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3729A902192885000CEECFB /* LaunchScreen.storyboard */; };
 		E3729A952192885000CEECFB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729A942192885000CEECFB /* main.m */; };
@@ -20,6 +18,29 @@
 		E3729AAA2192885000CEECFB /* DDVideoPlayerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729AA92192885000CEECFB /* DDVideoPlayerUITests.m */; };
 		E3729ABA2192886D00CEECFB /* DDVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729AB92192886D00CEECFB /* DDVideoPlayer.m */; };
 		E3729AC0219289A700CEECFB /* DDVideoPlayerNormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729ABF219289A700CEECFB /* DDVideoPlayerNormalViewController.m */; };
+		E3729AC32192970A00CEECFB /* DDVideoLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729AC22192970A00CEECFB /* DDVideoLineModel.m */; };
+		E3729AC62192C41500CEECFB /* DDVideoPlayerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729AC52192C41500CEECFB /* DDVideoPlayerContainerView.m */; };
+		E3729AC92192C61700CEECFB /* DDVideoPlayerTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729AC82192C61700CEECFB /* DDVideoPlayerTopView.m */; };
+		E3729B822192CCB000CEECFB /* DDPlayer_Btn_CenterPlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B802192CCB000CEECFB /* DDPlayer_Btn_CenterPlay@2x.png */; };
+		E3729B832192CCB000CEECFB /* DDPlayer_Btn_CenterPlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B812192CCB000CEECFB /* DDPlayer_Btn_CenterPlay@3x.png */; };
+		E3729B862192CCEE00CEECFB /* DDPlayer_Btn_CenterPause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B842192CCEE00CEECFB /* DDPlayer_Btn_CenterPause@2x.png */; };
+		E3729B872192CCEE00CEECFB /* DDPlayer_Btn_CenterPause@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B852192CCEE00CEECFB /* DDPlayer_Btn_CenterPause@3x.png */; };
+		E3729B8A2192CE7900CEECFB /* DDPlayer_Btn_Capture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B882192CE7900CEECFB /* DDPlayer_Btn_Capture@2x.png */; };
+		E3729B8B2192CE7900CEECFB /* DDPlayer_Btn_Capture@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B892192CE7900CEECFB /* DDPlayer_Btn_Capture@3x.png */; };
+		E3729B8E2192CEB700CEECFB /* DDPlayer_Btn_Lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B8C2192CEB700CEECFB /* DDPlayer_Btn_Lock@2x.png */; };
+		E3729B8F2192CEB700CEECFB /* DDPlayer_Btn_Lock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B8D2192CEB700CEECFB /* DDPlayer_Btn_Lock@3x.png */; };
+		E3729B922192CFA000CEECFB /* DDVideoPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729B912192CFA000CEECFB /* DDVideoPlayerTool.m */; };
+		E3729B952192D91500CEECFB /* DDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729B942192D91500CEECFB /* DDNavigationController.m */; };
+		E3729B982192DFA700CEECFB /* DDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729B972192DFA700CEECFB /* DDBaseViewController.m */; };
+		E3729B9B2192DFE300CEECFB /* DDHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729B9A2192DFE300CEECFB /* DDHomeViewController.m */; };
+		E3729B9F2192F68200CEECFB /* DDPlayer_Bg_MaskTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B9D2192F68200CEECFB /* DDPlayer_Bg_MaskTop@2x.png */; };
+		E3729BA02192F68200CEECFB /* DDPlayer_Bg_MaskTop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B9E2192F68200CEECFB /* DDPlayer_Bg_MaskTop@3x.png */; };
+		E3729BA32192F86800CEECFB /* DDPlayer_Btn_Back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729BA12192F86800CEECFB /* DDPlayer_Btn_Back@3x.png */; };
+		E3729BA42192F86800CEECFB /* DDPlayer_Btn_Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729BA22192F86800CEECFB /* DDPlayer_Btn_Back@2x.png */; };
+		E3729BA72192FBFE00CEECFB /* DDVideoPlayerComponentBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729BA62192FBFE00CEECFB /* DDVideoPlayerComponentBaseView.m */; };
+		E3729BAA2193043400CEECFB /* DDVideoPlayerBottomBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729BA92193043400CEECFB /* DDVideoPlayerBottomBaseView.m */; };
+		E3729BAE219304E700CEECFB /* DDVideoPlayerBottomLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729BAD219304E700CEECFB /* DDVideoPlayerBottomLandscapeView.m */; };
+		E3729BB12193050300CEECFB /* DDVideoPlayerBottomPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729BB02193050300CEECFB /* DDVideoPlayerBottomPortraitView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +71,6 @@
 		E3729A822192884F00CEECFB /* DDVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3729A852192884F00CEECFB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E3729A862192884F00CEECFB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E3729A882192884F00CEECFB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E3729A892192884F00CEECFB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		E3729A8C2192884F00CEECFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3729A8E2192885000CEECFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3729A912192885000CEECFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3729A932192885000CEECFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -67,6 +85,40 @@
 		E3729AB92192886D00CEECFB /* DDVideoPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayer.m; sourceTree = "<group>"; };
 		E3729ABE219289A700CEECFB /* DDVideoPlayerNormalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerNormalViewController.h; sourceTree = "<group>"; };
 		E3729ABF219289A700CEECFB /* DDVideoPlayerNormalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerNormalViewController.m; sourceTree = "<group>"; };
+		E3729AC12192970A00CEECFB /* DDVideoLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoLineModel.h; sourceTree = "<group>"; };
+		E3729AC22192970A00CEECFB /* DDVideoLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoLineModel.m; sourceTree = "<group>"; };
+		E3729AC42192C41500CEECFB /* DDVideoPlayerContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerContainerView.h; sourceTree = "<group>"; };
+		E3729AC52192C41500CEECFB /* DDVideoPlayerContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerContainerView.m; sourceTree = "<group>"; };
+		E3729AC72192C61700CEECFB /* DDVideoPlayerTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerTopView.h; sourceTree = "<group>"; };
+		E3729AC82192C61700CEECFB /* DDVideoPlayerTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerTopView.m; sourceTree = "<group>"; };
+		E3729B802192CCB000CEECFB /* DDPlayer_Btn_CenterPlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_CenterPlay@2x.png"; sourceTree = "<group>"; };
+		E3729B812192CCB000CEECFB /* DDPlayer_Btn_CenterPlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_CenterPlay@3x.png"; sourceTree = "<group>"; };
+		E3729B842192CCEE00CEECFB /* DDPlayer_Btn_CenterPause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_CenterPause@2x.png"; sourceTree = "<group>"; };
+		E3729B852192CCEE00CEECFB /* DDPlayer_Btn_CenterPause@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_CenterPause@3x.png"; sourceTree = "<group>"; };
+		E3729B882192CE7900CEECFB /* DDPlayer_Btn_Capture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Capture@2x.png"; sourceTree = "<group>"; };
+		E3729B892192CE7900CEECFB /* DDPlayer_Btn_Capture@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Capture@3x.png"; sourceTree = "<group>"; };
+		E3729B8C2192CEB700CEECFB /* DDPlayer_Btn_Lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Lock@2x.png"; sourceTree = "<group>"; };
+		E3729B8D2192CEB700CEECFB /* DDPlayer_Btn_Lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Lock@3x.png"; sourceTree = "<group>"; };
+		E3729B902192CFA000CEECFB /* DDVideoPlayerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerTool.h; sourceTree = "<group>"; };
+		E3729B912192CFA000CEECFB /* DDVideoPlayerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerTool.m; sourceTree = "<group>"; };
+		E3729B932192D91500CEECFB /* DDNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDNavigationController.h; sourceTree = "<group>"; };
+		E3729B942192D91500CEECFB /* DDNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDNavigationController.m; sourceTree = "<group>"; };
+		E3729B962192DFA700CEECFB /* DDBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDBaseViewController.h; sourceTree = "<group>"; };
+		E3729B972192DFA700CEECFB /* DDBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDBaseViewController.m; sourceTree = "<group>"; };
+		E3729B992192DFE300CEECFB /* DDHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDHomeViewController.h; sourceTree = "<group>"; };
+		E3729B9A2192DFE300CEECFB /* DDHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDHomeViewController.m; sourceTree = "<group>"; };
+		E3729B9D2192F68200CEECFB /* DDPlayer_Bg_MaskTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_MaskTop@2x.png"; sourceTree = "<group>"; };
+		E3729B9E2192F68200CEECFB /* DDPlayer_Bg_MaskTop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_MaskTop@3x.png"; sourceTree = "<group>"; };
+		E3729BA12192F86800CEECFB /* DDPlayer_Btn_Back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Back@3x.png"; sourceTree = "<group>"; };
+		E3729BA22192F86800CEECFB /* DDPlayer_Btn_Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Back@2x.png"; sourceTree = "<group>"; };
+		E3729BA52192FBFE00CEECFB /* DDVideoPlayerComponentBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerComponentBaseView.h; sourceTree = "<group>"; };
+		E3729BA62192FBFE00CEECFB /* DDVideoPlayerComponentBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerComponentBaseView.m; sourceTree = "<group>"; };
+		E3729BA82193043400CEECFB /* DDVideoPlayerBottomBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerBottomBaseView.h; sourceTree = "<group>"; };
+		E3729BA92193043400CEECFB /* DDVideoPlayerBottomBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerBottomBaseView.m; sourceTree = "<group>"; };
+		E3729BAC219304E700CEECFB /* DDVideoPlayerBottomLandscapeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerBottomLandscapeView.h; sourceTree = "<group>"; };
+		E3729BAD219304E700CEECFB /* DDVideoPlayerBottomLandscapeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerBottomLandscapeView.m; sourceTree = "<group>"; };
+		E3729BAF2193050300CEECFB /* DDVideoPlayerBottomPortraitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerBottomPortraitView.h; sourceTree = "<group>"; };
+		E3729BB02193050300CEECFB /* DDVideoPlayerBottomPortraitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerBottomPortraitView.m; sourceTree = "<group>"; };
 		E730F257A9CA253B0BE1A056 /* libPods-DDVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DDVideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF98FFDBDD2C91904CCB7DB6 /* Pods-DDVideoPlayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDVideoPlayerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DDVideoPlayerUITests/Pods-DDVideoPlayerUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,11 +202,7 @@
 				E3729AB72192885A00CEECFB /* DDVideoPlayer */,
 				E3729A852192884F00CEECFB /* AppDelegate.h */,
 				E3729A862192884F00CEECFB /* AppDelegate.m */,
-				E3729A882192884F00CEECFB /* ViewController.h */,
-				E3729A892192884F00CEECFB /* ViewController.m */,
-				E3729ABE219289A700CEECFB /* DDVideoPlayerNormalViewController.h */,
-				E3729ABF219289A700CEECFB /* DDVideoPlayerNormalViewController.m */,
-				E3729A8B2192884F00CEECFB /* Main.storyboard */,
+				E3729B9C2192E27B00CEECFB /* ViewController */,
 				E3729A8E2192885000CEECFB /* Assets.xcassets */,
 				E3729A902192885000CEECFB /* LaunchScreen.storyboard */,
 				E3729A932192885000CEECFB /* Info.plist */,
@@ -184,6 +232,7 @@
 		E3729AB72192885A00CEECFB /* DDVideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				E3729ACD2192C68600CEECFB /* images */,
 				E3729ABD2192888200CEECFB /* Other */,
 				E3729ABC2192887D00CEECFB /* View */,
 				E3729ABB2192887700CEECFB /* Model */,
@@ -196,6 +245,8 @@
 		E3729ABB2192887700CEECFB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E3729AC12192970A00CEECFB /* DDVideoLineModel.h */,
+				E3729AC22192970A00CEECFB /* DDVideoLineModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,6 +254,7 @@
 		E3729ABC2192887D00CEECFB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E3729BAB2193045100CEECFB /* Base */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -210,8 +262,63 @@
 		E3729ABD2192888200CEECFB /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				E3729B902192CFA000CEECFB /* DDVideoPlayerTool.h */,
+				E3729B912192CFA000CEECFB /* DDVideoPlayerTool.m */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		E3729ACD2192C68600CEECFB /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E3729BA22192F86800CEECFB /* DDPlayer_Btn_Back@2x.png */,
+				E3729BA12192F86800CEECFB /* DDPlayer_Btn_Back@3x.png */,
+				E3729B9D2192F68200CEECFB /* DDPlayer_Bg_MaskTop@2x.png */,
+				E3729B9E2192F68200CEECFB /* DDPlayer_Bg_MaskTop@3x.png */,
+				E3729B802192CCB000CEECFB /* DDPlayer_Btn_CenterPlay@2x.png */,
+				E3729B812192CCB000CEECFB /* DDPlayer_Btn_CenterPlay@3x.png */,
+				E3729B842192CCEE00CEECFB /* DDPlayer_Btn_CenterPause@2x.png */,
+				E3729B852192CCEE00CEECFB /* DDPlayer_Btn_CenterPause@3x.png */,
+				E3729B882192CE7900CEECFB /* DDPlayer_Btn_Capture@2x.png */,
+				E3729B892192CE7900CEECFB /* DDPlayer_Btn_Capture@3x.png */,
+				E3729B8C2192CEB700CEECFB /* DDPlayer_Btn_Lock@2x.png */,
+				E3729B8D2192CEB700CEECFB /* DDPlayer_Btn_Lock@3x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		E3729B9C2192E27B00CEECFB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E3729B962192DFA700CEECFB /* DDBaseViewController.h */,
+				E3729B972192DFA700CEECFB /* DDBaseViewController.m */,
+				E3729B932192D91500CEECFB /* DDNavigationController.h */,
+				E3729B942192D91500CEECFB /* DDNavigationController.m */,
+				E3729B992192DFE300CEECFB /* DDHomeViewController.h */,
+				E3729B9A2192DFE300CEECFB /* DDHomeViewController.m */,
+				E3729ABE219289A700CEECFB /* DDVideoPlayerNormalViewController.h */,
+				E3729ABF219289A700CEECFB /* DDVideoPlayerNormalViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		E3729BAB2193045100CEECFB /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E3729BA52192FBFE00CEECFB /* DDVideoPlayerComponentBaseView.h */,
+				E3729BA62192FBFE00CEECFB /* DDVideoPlayerComponentBaseView.m */,
+				E3729AC42192C41500CEECFB /* DDVideoPlayerContainerView.h */,
+				E3729AC52192C41500CEECFB /* DDVideoPlayerContainerView.m */,
+				E3729AC72192C61700CEECFB /* DDVideoPlayerTopView.h */,
+				E3729AC82192C61700CEECFB /* DDVideoPlayerTopView.m */,
+				E3729BA82193043400CEECFB /* DDVideoPlayerBottomBaseView.h */,
+				E3729BA92193043400CEECFB /* DDVideoPlayerBottomBaseView.m */,
+				E3729BAC219304E700CEECFB /* DDVideoPlayerBottomLandscapeView.h */,
+				E3729BAD219304E700CEECFB /* DDVideoPlayerBottomLandscapeView.m */,
+				E3729BAF2193050300CEECFB /* DDVideoPlayerBottomPortraitView.h */,
+				E3729BB02193050300CEECFB /* DDVideoPlayerBottomPortraitView.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,9 +427,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3729B862192CCEE00CEECFB /* DDPlayer_Btn_CenterPause@2x.png in Resources */,
+				E3729B8B2192CE7900CEECFB /* DDPlayer_Btn_Capture@3x.png in Resources */,
+				E3729B832192CCB000CEECFB /* DDPlayer_Btn_CenterPlay@3x.png in Resources */,
+				E3729B872192CCEE00CEECFB /* DDPlayer_Btn_CenterPause@3x.png in Resources */,
+				E3729BA32192F86800CEECFB /* DDPlayer_Btn_Back@3x.png in Resources */,
 				E3729A922192885000CEECFB /* LaunchScreen.storyboard in Resources */,
 				E3729A8F2192885000CEECFB /* Assets.xcassets in Resources */,
-				E3729A8D2192884F00CEECFB /* Main.storyboard in Resources */,
+				E3729B8E2192CEB700CEECFB /* DDPlayer_Btn_Lock@2x.png in Resources */,
+				E3729B9F2192F68200CEECFB /* DDPlayer_Bg_MaskTop@2x.png in Resources */,
+				E3729B822192CCB000CEECFB /* DDPlayer_Btn_CenterPlay@2x.png in Resources */,
+				E3729BA02192F68200CEECFB /* DDPlayer_Bg_MaskTop@3x.png in Resources */,
+				E3729B8A2192CE7900CEECFB /* DDPlayer_Btn_Capture@2x.png in Resources */,
+				E3729BA42192F86800CEECFB /* DDPlayer_Btn_Back@2x.png in Resources */,
+				E3729B8F2192CEB700CEECFB /* DDPlayer_Btn_Lock@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,10 +522,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3729A8A2192884F00CEECFB /* ViewController.m in Sources */,
+				E3729BB12193050300CEECFB /* DDVideoPlayerBottomPortraitView.m in Sources */,
+				E3729AC62192C41500CEECFB /* DDVideoPlayerContainerView.m in Sources */,
+				E3729B982192DFA700CEECFB /* DDBaseViewController.m in Sources */,
+				E3729AC32192970A00CEECFB /* DDVideoLineModel.m in Sources */,
+				E3729B9B2192DFE300CEECFB /* DDHomeViewController.m in Sources */,
+				E3729B952192D91500CEECFB /* DDNavigationController.m in Sources */,
+				E3729B922192CFA000CEECFB /* DDVideoPlayerTool.m in Sources */,
+				E3729AC92192C61700CEECFB /* DDVideoPlayerTopView.m in Sources */,
 				E3729A952192885000CEECFB /* main.m in Sources */,
+				E3729BAE219304E700CEECFB /* DDVideoPlayerBottomLandscapeView.m in Sources */,
 				E3729ABA2192886D00CEECFB /* DDVideoPlayer.m in Sources */,
+				E3729BAA2193043400CEECFB /* DDVideoPlayerBottomBaseView.m in Sources */,
 				E3729AC0219289A700CEECFB /* DDVideoPlayerNormalViewController.m in Sources */,
+				E3729BA72192FBFE00CEECFB /* DDVideoPlayerComponentBaseView.m in Sources */,
 				E3729A872192884F00CEECFB /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,14 +572,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E3729A8B2192884F00CEECFB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E3729A8C2192884F00CEECFB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E3729A902192885000CEECFB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -514,7 +634,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -567,7 +687,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -583,7 +703,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuqh.DDVideoPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -598,7 +722,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuqh.DDVideoPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -613,7 +741,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuqh.DDVideoPlayerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -629,7 +761,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuqh.DDVideoPlayerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -644,7 +780,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuqh.DDVideoPlayerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -659,7 +799,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuqh.DDVideoPlayerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

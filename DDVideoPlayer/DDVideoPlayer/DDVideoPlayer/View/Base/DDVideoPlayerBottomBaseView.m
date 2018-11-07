@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  DDVideoPlayerBottomBaseView.m
 //  DDVideoPlayer
 //
 //  Created by wuqh on 2018/11/7.
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DDVideoPlayerBottomBaseView.h"
 
-@interface ViewController : UIViewController
-
+@implementation DDVideoPlayerBottomBaseView
 
 @end
-
