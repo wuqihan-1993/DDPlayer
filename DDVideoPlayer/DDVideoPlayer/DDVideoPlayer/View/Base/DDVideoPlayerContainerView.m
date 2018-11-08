@@ -22,6 +22,11 @@
 @property(nonatomic, strong) DDVideoPlayerBottomPortraitView *bottomPortraitView;
 @property(nonatomic, strong) DDVideoPlayerBottomLandscapeView *bottomLandscapeView;
 
+/**
+ 是否可见
+ */
+@property(nonatomic, assign) BOOL isVisible;
+
 @end
 
 @implementation DDVideoPlayerContainerView
@@ -32,6 +37,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self initUI];
+        [self initGestures];
     }
     return self;
 }
@@ -51,8 +57,45 @@
         [self.delegate videoPlayerContainerView:self clickCaptureButton:button];
     }
 }
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+    if (self.isVisible) {
+        [self disimiss];
+    }else {
+        [self show];
+    }
+}
+- (BOOL)isVisible {
+    return self.playButton.alpha > 0;
+}
 
 #pragma mark - private method
+- (void)show {
+    NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
+    if (DDVideoPlayerTool.isScreenPortrait) {
+        [views removeObject:self.bottomLandscapeView];
+        [UIView animateWithDuration:0.4 animations:^{
+            for (UIView *subView in views) {
+                subView.alpha = 1;
+            }
+        }];
+        
+    }else {
+        [views removeObject:self.bottomPortraitView];
+        [UIView animateWithDuration:0.4 animations:^{
+            for (UIView *subView in views) {
+                subView.alpha = 1;
+            }
+        }];
+    }
+}
+- (void)disimiss {
+    [UIView animateWithDuration:0.4 animations:^{
+        for (UIView *subView in self.subviews) {
+            subView.alpha = 0;
+        }
+    }];
+    
+}
 - (void)initUI{
     [self addSubview:self.topView];
     [self addSubview:self.playButton];
@@ -93,21 +136,27 @@
     }
     
 }
+
+- (void)initGestures {
+    self.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    [self addGestureRecognizer:tap];
+}
 #pragma mark - override method
 - (void)updateUIWithPortrait {
     self.captureButton.hidden = YES;
     self.lockScreenButton.hidden = YES;
     self.bottomLandscapeView.hidden = YES;
     self.bottomPortraitView.hidden = NO;
-//    [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.height.mas_equalTo(60);
-//    }];
+    [self show];
 }
 - (void)updateUIWithLandscape {
     self.captureButton.hidden = NO;
     self.lockScreenButton.hidden = NO;
     self.bottomLandscapeView.hidden = NO;
     self.bottomPortraitView.hidden = YES;
+    [self show];
 //    [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
 //        make.height.mas_equalTo(64);
 //    }];

@@ -12,11 +12,21 @@
 #import "DDVideoPlayerContainerView.h"
 #import "DDVideoPlayerTool.h"
 
-@class MASConstraintMaker;
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, DDVideoPlayerStatus) {
+    DDVideoPlayerStatusUnkown,
+    DDVideoPlayerStatusBuffering,
+    DDVideoPlayerStatusPlaying,
+    DDVideoPlayerStatusPaused,
+    DDVideoPlayerStatusEnd,
+    DDVideoPlayerStatusError
+};
+
+@class MASConstraintMaker;
 @interface DDVideoPlayer : UIView
 
+@property(nonatomic, assign) DDVideoPlayerStatus status;
 @property(nonatomic, strong) DDVideoPlayerContainerView *componentContainerView;
 
 /**

@@ -30,19 +30,24 @@
         make.centerY.equalTo(self);
     }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.playButton.mas_right).mas_offset(20);
+        make.left.equalTo(self.playButton.mas_right).mas_offset(12);
         make.centerY.equalTo(self);
+        make.width.mas_equalTo(100);
     }];
+    
     [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.timeLabel.mas_right).mas_offset(40);
-        make.right.equalTo(self.landscapeButton.mas_left).mas_offset(-20);
+        make.left.equalTo(self.timeLabel.mas_right).mas_offset(12);
+        make.right.equalTo(self.landscapeButton.mas_left).mas_offset(-12);
         make.centerY.equalTo(self);
+        make.height.mas_equalTo(40);
     }];
     
     [self.landscapeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).mas_offset(-20);
         make.centerY.equalTo(self);
     }];
+    
+    
     
 }
 
