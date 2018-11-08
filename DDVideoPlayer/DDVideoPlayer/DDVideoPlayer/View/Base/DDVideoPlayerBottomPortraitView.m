@@ -7,6 +7,8 @@
 //
 
 #import "DDVideoPlayerBottomPortraitView.h"
+#import "Masonry.h"
+#import "DDVideoPlayerTool.h"
 
 @interface DDVideoPlayerBottomPortraitView()
 @property(nonatomic, strong) UIButton *landscapeButton;
@@ -16,12 +18,46 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        
+        [self updateUI];
     }
     return self;
 }
-- (void)initUI {
+- (void)updateUI {
+    [self addSubview:self.landscapeButton];
     
+    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).mas_offset(20);
+        make.centerY.equalTo(self);
+    }];
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.playButton.mas_right).mas_offset(20);
+        make.centerY.equalTo(self);
+    }];
+    [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.timeLabel.mas_right).mas_offset(40);
+        make.right.equalTo(self.landscapeButton.mas_left).mas_offset(-20);
+        make.centerY.equalTo(self);
+    }];
+    
+    [self.landscapeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).mas_offset(-20);
+        make.centerY.equalTo(self);
+    }];
+    
+}
+
+- (void)landscapeButtonClick:(UIButton *)button {
+    [DDVideoPlayerTool forceRotatingScreen:UIInterfaceOrientationLandscapeLeft];
+}
+
+
+- (UIButton *)landscapeButton {
+    if (!_landscapeButton) {
+        _landscapeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_landscapeButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_ForceOrientatedLandscape"] forState:UIControlStateNormal];
+        [_landscapeButton addTarget:self action:@selector(landscapeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _landscapeButton;
 }
 
 

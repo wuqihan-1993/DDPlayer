@@ -10,6 +10,8 @@
 #import "DDVideoPlayerTool.h"
 #import "Masonry.h"
 #import "DDVideoPlayerTopView.h"
+#import "DDVideoPlayerBottomPortraitView.h"
+#import "DDVideoPlayerBottomLandscapeView.h"
 
 @interface DDVideoPlayerContainerView()
 
@@ -17,6 +19,8 @@
 @property(nonatomic, strong) UIButton *lockScreenButton;
 @property(nonatomic, strong) UIButton *captureButton;
 @property(nonatomic, strong) DDVideoPlayerTopView *topView;
+@property(nonatomic, strong) DDVideoPlayerBottomPortraitView *bottomPortraitView;
+@property(nonatomic, strong) DDVideoPlayerBottomLandscapeView *bottomLandscapeView;
 
 @end
 
@@ -54,6 +58,8 @@
     [self addSubview:self.playButton];
     [self addSubview:self.captureButton];
     [self addSubview:self.lockScreenButton];
+    [self addSubview:self.bottomPortraitView];
+    [self addSubview:self.bottomLandscapeView];
     
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self);
@@ -71,6 +77,14 @@
         make.left.equalTo(self).mas_offset(DDVideoPlayerTool.isiPhoneX ? 20+34 : 20);
         make.centerY.equalTo(self);
     }];
+    [self.bottomPortraitView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.equalTo(self);
+        make.height.mas_equalTo(60);
+    }];
+    [self.bottomLandscapeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.equalTo(self);
+        make.height.mas_equalTo(80);
+    }];
     
     if (UIDevice.currentDevice.orientation == UIDeviceOrientationPortrait) {
         [self updateUIWithPortrait];
@@ -83,6 +97,8 @@
 - (void)updateUIWithPortrait {
     self.captureButton.hidden = YES;
     self.lockScreenButton.hidden = YES;
+    self.bottomLandscapeView.hidden = YES;
+    self.bottomPortraitView.hidden = NO;
 //    [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
 //        make.height.mas_equalTo(60);
 //    }];
@@ -90,6 +106,8 @@
 - (void)updateUIWithLandscape {
     self.captureButton.hidden = NO;
     self.lockScreenButton.hidden = NO;
+    self.bottomLandscapeView.hidden = NO;
+    self.bottomPortraitView.hidden = YES;
 //    [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
 //        make.height.mas_equalTo(64);
 //    }];
@@ -132,5 +150,17 @@
         };
     }
     return _topView;
+}
+- (DDVideoPlayerBottomPortraitView *)bottomPortraitView {
+    if (!_bottomPortraitView) {
+        _bottomPortraitView = [[DDVideoPlayerBottomPortraitView alloc] init];
+    }
+    return _bottomPortraitView;
+}
+- (DDVideoPlayerBottomLandscapeView *)bottomLandscapeView {
+    if (!_bottomLandscapeView) {
+        _bottomLandscapeView = [[DDVideoPlayerBottomLandscapeView alloc] init];
+    }
+    return _bottomLandscapeView;
 }
 @end

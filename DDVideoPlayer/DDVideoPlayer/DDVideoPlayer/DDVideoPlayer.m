@@ -29,7 +29,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = UIColor.blackColor;
         [self initNotificationObserver];
         [self initAVPlayer];
         [self initUI];
