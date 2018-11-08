@@ -55,6 +55,8 @@
 		E3E0A90C2193D0BA002FB606 /* DDPlayer_Icon_ProgressThumb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9082193D0BA002FB606 /* DDPlayer_Icon_ProgressThumb@3x.png */; };
 		E3E0A9132193D24E002FB606 /* DDPlayer_Bg_MaskBottom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9112193D24E002FB606 /* DDPlayer_Bg_MaskBottom@3x.png */; };
 		E3E0A9142193D24E002FB606 /* DDPlayer_Bg_MaskBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9122193D24E002FB606 /* DDPlayer_Bg_MaskBottom@2x.png */; };
+		E3E0A91721940FF2002FB606 /* DDVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A91621940FF2002FB606 /* DDVideoPlayerView.m */; };
+		E3E0A91D21941082002FB606 /* DDPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A91C21941082002FB606 /* DDPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +149,10 @@
 		E3E0A9082193D0BA002FB606 /* DDPlayer_Icon_ProgressThumb@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Icon_ProgressThumb@3x.png"; sourceTree = "<group>"; };
 		E3E0A9112193D24E002FB606 /* DDPlayer_Bg_MaskBottom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_MaskBottom@3x.png"; sourceTree = "<group>"; };
 		E3E0A9122193D24E002FB606 /* DDPlayer_Bg_MaskBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_MaskBottom@2x.png"; sourceTree = "<group>"; };
+		E3E0A91521940FF2002FB606 /* DDVideoPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerView.h; sourceTree = "<group>"; };
+		E3E0A91621940FF2002FB606 /* DDVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerView.m; sourceTree = "<group>"; };
+		E3E0A91B21941081002FB606 /* DDVideoPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDVideoPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
+		E3E0A91C21941082002FB606 /* DDPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDPlayer.swift; sourceTree = "<group>"; };
 		E730F257A9CA253B0BE1A056 /* libPods-DDVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DDVideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF98FFDBDD2C91904CCB7DB6 /* Pods-DDVideoPlayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDVideoPlayerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DDVideoPlayerUITests/Pods-DDVideoPlayerUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,6 +241,7 @@
 				E3729A902192885000CEECFB /* LaunchScreen.storyboard */,
 				E3729A932192885000CEECFB /* Info.plist */,
 				E3729A942192885000CEECFB /* main.m */,
+				E3E0A91B21941081002FB606 /* DDVideoPlayer-Bridging-Header.h */,
 			);
 			path = DDVideoPlayer;
 			sourceTree = "<group>";
@@ -266,6 +273,7 @@
 				E3729ABB2192887700CEECFB /* Model */,
 				E3729AB82192886D00CEECFB /* DDVideoPlayer.h */,
 				E3729AB92192886D00CEECFB /* DDVideoPlayer.m */,
+				E3E0A91C21941082002FB606 /* DDPlayer.swift */,
 			);
 			path = DDVideoPlayer;
 			sourceTree = "<group>";
@@ -282,6 +290,8 @@
 		E3729ABC2192887D00CEECFB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E3E0A91521940FF2002FB606 /* DDVideoPlayerView.h */,
+				E3E0A91621940FF2002FB606 /* DDVideoPlayerView.m */,
 				E3729BAB2193045100CEECFB /* Base */,
 			);
 			path = View;
@@ -433,6 +443,7 @@
 				TargetAttributes = {
 					E3729A812192884F00CEECFB = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					E3729A992192885000CEECFB = {
 						CreatedOnToolsVersion = 10.1;
@@ -583,12 +594,14 @@
 				E3729B982192DFA700CEECFB /* DDBaseViewController.m in Sources */,
 				E3729AC32192970A00CEECFB /* DDVideoLineModel.m in Sources */,
 				E3729B9B2192DFE300CEECFB /* DDHomeViewController.m in Sources */,
+				E3E0A91721940FF2002FB606 /* DDVideoPlayerView.m in Sources */,
 				E3729B952192D91500CEECFB /* DDNavigationController.m in Sources */,
 				E3729B922192CFA000CEECFB /* DDVideoPlayerTool.m in Sources */,
 				E3729AC92192C61700CEECFB /* DDVideoPlayerTopView.m in Sources */,
 				E3729A952192885000CEECFB /* main.m in Sources */,
 				E3729BAE219304E700CEECFB /* DDVideoPlayerBottomLandscapeView.m in Sources */,
 				E3729ABA2192886D00CEECFB /* DDVideoPlayer.m in Sources */,
+				E3E0A91D21941082002FB606 /* DDPlayer.swift in Sources */,
 				E3729BAA2193043400CEECFB /* DDVideoPlayerBottomBaseView.m in Sources */,
 				E3729AC0219289A700CEECFB /* DDVideoPlayerNormalViewController.m in Sources */,
 				E3729BA72192FBFE00CEECFB /* DDVideoPlayerComponentBaseView.m in Sources */,
@@ -756,6 +769,7 @@
 			baseConfigurationReference = 2A00C76DA1A44A15D48AC4C7 /* Pods-DDVideoPlayer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayer/Info.plist;
@@ -766,6 +780,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuqh.DDVideoPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DDVideoPlayer/DDVideoPlayer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -775,6 +792,7 @@
 			baseConfigurationReference = 55E4969DA39E2CE3ED84ECAE /* Pods-DDVideoPlayer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayer/Info.plist;
@@ -785,6 +803,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuqh.DDVideoPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DDVideoPlayer/DDVideoPlayer-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -793,6 +813,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7CC371643E1D6ADE457A6710 /* Pods-DDVideoPlayerTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
@@ -813,6 +834,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ADD61ED272D13E4A3FB1E0EA /* Pods-DDVideoPlayerTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
@@ -833,6 +855,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1C4DABA95331C0059C058D4B /* Pods-DDVideoPlayerUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayerUITests/Info.plist;
@@ -852,6 +875,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF98FFDBDD2C91904CCB7DB6 /* Pods-DDVideoPlayerUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayerUITests/Info.plist;
