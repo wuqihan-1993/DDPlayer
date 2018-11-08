@@ -7,6 +7,9 @@
 //
 
 #import "DDVideoPlayerComponentBaseView.h"
+#import "DDVideoPlayerBottomPortraitView.h"
+#import "DDVideoPlayerBottomLandscapeView.h"
+
 @class DDVideoPlayerContainerView;
 
 @protocol DDVideoPlayerContainerViewDelegate <NSObject>
@@ -48,6 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DDVideoPlayerContainerView : DDVideoPlayerComponentBaseView
 
 @property (nonatomic, weak) id<DDVideoPlayerContainerViewDelegate> delegate;
+
+@property(nonatomic, strong) DDVideoPlayerBottomPortraitView *bottomPortraitView;
+@property(nonatomic, strong) DDVideoPlayerBottomLandscapeView *bottomLandscapeView;
 
 @end
 

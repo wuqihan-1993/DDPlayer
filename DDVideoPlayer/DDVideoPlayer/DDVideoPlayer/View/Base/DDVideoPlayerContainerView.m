@@ -10,8 +10,7 @@
 #import "DDVideoPlayerTool.h"
 #import "Masonry.h"
 #import "DDVideoPlayerTopView.h"
-#import "DDVideoPlayerBottomPortraitView.h"
-#import "DDVideoPlayerBottomLandscapeView.h"
+
 
 @interface DDVideoPlayerContainerView()
 
@@ -19,8 +18,7 @@
 @property(nonatomic, strong) UIButton *lockScreenButton;
 @property(nonatomic, strong) UIButton *captureButton;
 @property(nonatomic, strong) DDVideoPlayerTopView *topView;
-@property(nonatomic, strong) DDVideoPlayerBottomPortraitView *bottomPortraitView;
-@property(nonatomic, strong) DDVideoPlayerBottomLandscapeView *bottomLandscapeView;
+
 
 /**
  是否可见

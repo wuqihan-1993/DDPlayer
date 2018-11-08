@@ -1,0 +1,6 @@
+module Pods_DDVideoPlayer {
+  umbrella header "Pods-DDVideoPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}

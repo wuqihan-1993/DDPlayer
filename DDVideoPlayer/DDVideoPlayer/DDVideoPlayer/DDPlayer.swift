@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 
 class DDPlayer: NSObject {
+    
     enum Status {
         case unknown
         case buffering
@@ -19,18 +20,17 @@ class DDPlayer: NSObject {
         case error
     }
     
-    var statusDidChangeHandler: ((Status) -> Void)?
-    var playedDurationDidChangeHandler: ((TimeInterval, TimeInterval) -> Void)?
-    var currentItem: AVPlayerItem?
+    weak var delegate: DDPlayerDelegate?
     
-    private let player = AVPlayer()
-    private var duration: TimeInterval = 0
-    private var playedDuration: TimeInterval = 0 {
+    var statusDidChangeHandler: ((Status) -> Void)?
+    var currentItem: AVPlayerItem?
+    var duration: TimeInterval = 0
+    var currentTime: TimeInterval = 0 {
         didSet {
-            
+            self.delegate?.playerTimeChanged(currentTime)
         }
     }
-    private var status = Status.unknown {
+    var status = Status.unknown {
         didSet {
             guard status != oldValue else {
                 return
@@ -38,24 +38,27 @@ class DDPlayer: NSObject {
             statusDidChangeHandler?(status)
         }
     }
+    
+    private let player = AVPlayer()
     private var observerContext = "DDPlayer.KVO.Context"
     private var timeObserver: Any?
-    
-    
-    
+
     deinit {
-        
+        removeNotifications()
+        removeItemObservers()
+        removePlayerObservers()
     }
     
     override init() {
         super.init()
-        
+        addNotifications()
+        addPlayerObservers()
     }
 }
 
 // MARK: - public method
 extension DDPlayer {
-    func replace(with url: URL) {
+    @objc func replace(with url: URL) {
         currentItem = AVPlayerItem(url: url)
         addItemObservers()
         player.replaceCurrentItem(with: currentItem)
@@ -67,7 +70,7 @@ extension DDPlayer {
         
         status = .unknown
     }
-    func play() {
+    @objc func play() {
         player.play()
     }
     func pause() {
@@ -153,7 +156,7 @@ extension DDPlayer {
                 return
             }
             self.duration = total
-            self.playedDuration = time.seconds
+            self.currentTime = time.seconds
         })
         player.addObserver(self, forKeyPath: "rate", options: [.new], context: &observerContext)
         player.addObserver(self, forKeyPath: "status", options: [.new], context: &observerContext)

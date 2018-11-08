@@ -9,9 +9,11 @@
 #import "DDVideoPlayerNormalViewController.h"
 #import "DDVideoPlayer.h"
 #import "Masonry.h"
-@interface DDVideoPlayerNormalViewController ()<UITableViewDataSource,UITableViewDelegate,DDVideoPlayerContainerViewDelegate>
+#import "DDVideoPlayer-Swift.h"
+@interface DDVideoPlayerNormalViewController ()<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong) DDVideoPlayer *videoPlayer;
+@property(nonatomic, strong) DDPlayerView *playerView;
+
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
 
@@ -26,6 +28,8 @@
     [self initDataArray];
     [self initPlayer];
     [self initUI];
+    // 屏幕旋转
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenRotation:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -37,28 +41,52 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
+- (void)screenRotation:(NSNotification *)nf {
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    switch (orientation) {
+        case UIDeviceOrientationLandscapeLeft:
+        {
+            [self.playerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];
+        }
+            break;
+        case UIDeviceOrientationLandscapeRight:
+        {
+            [self.playerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];
+        }
+            break;
+        case UIDeviceOrientationPortrait:
+        {
+            [self.playerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self.view);
+                make.top.equalTo(self.view).mas_offset(DDVideoPlayerTool.isiPhoneX ? 34 : 0);
+                make.height.mas_equalTo(DDVideoPlayerTool.screenWidth * 9 /16);
+            }];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark - private method
 - (void)initPlayer {
-    self.videoPlayer = [[DDVideoPlayer alloc] init];
-    self.videoPlayer.componentContainerView.delegate = self;
-    __weak typeof(self) weakSelf = self;
-    self.videoPlayer.portraitUI = ^(MASConstraintMaker * _Nonnull make) {
-        make.left.right.equalTo(weakSelf.view);
-        make.top.equalTo(weakSelf.view).offset(34);
-        make.height.mas_equalTo(DDVideoPlayerTool.screenWidth * 9 / 16);
-    };
-    self.videoPlayer.landscapeUI = ^(MASConstraintMaker * _Nonnull make) {
-        make.left.right.equalTo(weakSelf.view);
-        make.top.equalTo(weakSelf.view);
-        make.height.mas_equalTo(DDVideoPlayerTool.screenWidth);
-    };
-    [self.view addSubview:self.videoPlayer];
-    [self.videoPlayer mas_makeConstraints:self.videoPlayer.portraitUI];
+  
+    self.playerView = [[DDPlayerView alloc] init];
+    [self.view addSubview:self.playerView];
+    [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.view).mas_offset(DDVideoPlayerTool.isiPhoneX ? 34 : 0);
+        make.height.mas_equalTo(DDVideoPlayerTool.screenWidth * 9 /16);
+    }];
 }
 - (void)initUI {
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.videoPlayer.mas_bottom);
+        make.top.equalTo(self.playerView.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
 }
@@ -101,12 +129,14 @@
 }
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *url = self.dataArray[indexPath.row][@"url"];
     DDVideoLineModel *lineModel = [DDVideoLineModel new];
     lineModel.lineUrl = url;
     
-    [self.videoPlayer playVideoLines:@[lineModel].mutableCopy];
+    [self.playerView.player replaceWith:[NSURL URLWithString:url]];
+    [self.playerView.player play];
 }
 
 #pragma mark data

@@ -45,6 +45,7 @@
 		E3729BB72193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729BB32193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@3x.png */; };
 		E3729BB82193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPause@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729BB42193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPause@3x.png */; };
 		E3729BB92193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729BB52193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@2x.png */; };
+		E3C11A072194328A001B1B19 /* DDPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C11A062194328A001B1B19 /* DDPlayerDelegate.swift */; };
 		E3E0A8FF2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A8FD2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@2x.png */; };
 		E3E0A9002193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A8FE2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@3x.png */; };
 		E3E0A9032193C1D7002FB606 /* DDPlayer_Btn_Forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9012193C1D7002FB606 /* DDPlayer_Btn_Forward@2x.png */; };
@@ -55,8 +56,8 @@
 		E3E0A90C2193D0BA002FB606 /* DDPlayer_Icon_ProgressThumb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9082193D0BA002FB606 /* DDPlayer_Icon_ProgressThumb@3x.png */; };
 		E3E0A9132193D24E002FB606 /* DDPlayer_Bg_MaskBottom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9112193D24E002FB606 /* DDPlayer_Bg_MaskBottom@3x.png */; };
 		E3E0A9142193D24E002FB606 /* DDPlayer_Bg_MaskBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9122193D24E002FB606 /* DDPlayer_Bg_MaskBottom@2x.png */; };
-		E3E0A91721940FF2002FB606 /* DDVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A91621940FF2002FB606 /* DDVideoPlayerView.m */; };
 		E3E0A91D21941082002FB606 /* DDPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A91C21941082002FB606 /* DDPlayer.swift */; };
+		E3E0A91F21941624002FB606 /* DDPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A91E21941624002FB606 /* DDPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		E3729BB32193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_BottomPortraitPlay@3x.png"; sourceTree = "<group>"; };
 		E3729BB42193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPause@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_BottomPortraitPause@3x.png"; sourceTree = "<group>"; };
 		E3729BB52193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_BottomPortraitPlay@2x.png"; sourceTree = "<group>"; };
+		E3C11A062194328A001B1B19 /* DDPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDPlayerDelegate.swift; sourceTree = "<group>"; };
 		E3E0A8FD2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_ForceOrientatedLandscape@2x.png"; sourceTree = "<group>"; };
 		E3E0A8FE2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_ForceOrientatedLandscape@3x.png"; sourceTree = "<group>"; };
 		E3E0A9012193C1D7002FB606 /* DDPlayer_Btn_Forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Forward@2x.png"; sourceTree = "<group>"; };
@@ -149,10 +151,9 @@
 		E3E0A9082193D0BA002FB606 /* DDPlayer_Icon_ProgressThumb@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Icon_ProgressThumb@3x.png"; sourceTree = "<group>"; };
 		E3E0A9112193D24E002FB606 /* DDPlayer_Bg_MaskBottom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_MaskBottom@3x.png"; sourceTree = "<group>"; };
 		E3E0A9122193D24E002FB606 /* DDPlayer_Bg_MaskBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_MaskBottom@2x.png"; sourceTree = "<group>"; };
-		E3E0A91521940FF2002FB606 /* DDVideoPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerView.h; sourceTree = "<group>"; };
-		E3E0A91621940FF2002FB606 /* DDVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerView.m; sourceTree = "<group>"; };
 		E3E0A91B21941081002FB606 /* DDVideoPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDVideoPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		E3E0A91C21941082002FB606 /* DDPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDPlayer.swift; sourceTree = "<group>"; };
+		E3E0A91E21941624002FB606 /* DDPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDPlayerView.swift; sourceTree = "<group>"; };
 		E730F257A9CA253B0BE1A056 /* libPods-DDVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DDVideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF98FFDBDD2C91904CCB7DB6 /* Pods-DDVideoPlayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDVideoPlayerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DDVideoPlayerUITests/Pods-DDVideoPlayerUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,6 +275,8 @@
 				E3729AB82192886D00CEECFB /* DDVideoPlayer.h */,
 				E3729AB92192886D00CEECFB /* DDVideoPlayer.m */,
 				E3E0A91C21941082002FB606 /* DDPlayer.swift */,
+				E3C11A062194328A001B1B19 /* DDPlayerDelegate.swift */,
+				E3E0A91E21941624002FB606 /* DDPlayerView.swift */,
 			);
 			path = DDVideoPlayer;
 			sourceTree = "<group>";
@@ -290,8 +293,6 @@
 		E3729ABC2192887D00CEECFB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E3E0A91521940FF2002FB606 /* DDVideoPlayerView.h */,
-				E3E0A91621940FF2002FB606 /* DDVideoPlayerView.m */,
 				E3729BAB2193045100CEECFB /* Base */,
 			);
 			path = View;
@@ -594,7 +595,8 @@
 				E3729B982192DFA700CEECFB /* DDBaseViewController.m in Sources */,
 				E3729AC32192970A00CEECFB /* DDVideoLineModel.m in Sources */,
 				E3729B9B2192DFE300CEECFB /* DDHomeViewController.m in Sources */,
-				E3E0A91721940FF2002FB606 /* DDVideoPlayerView.m in Sources */,
+				E3C11A072194328A001B1B19 /* DDPlayerDelegate.swift in Sources */,
+				E3E0A91F21941624002FB606 /* DDPlayerView.swift in Sources */,
 				E3729B952192D91500CEECFB /* DDNavigationController.m in Sources */,
 				E3729B922192CFA000CEECFB /* DDVideoPlayerTool.m in Sources */,
 				E3729AC92192C61700CEECFB /* DDVideoPlayerTopView.m in Sources */,
