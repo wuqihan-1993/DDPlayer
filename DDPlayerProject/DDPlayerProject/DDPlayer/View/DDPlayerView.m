@@ -19,6 +19,9 @@
 
 @implementation DDPlayerView
 
+- (void)dealloc {
+    NSLog(@"%s",__FUNCTION__);
+}
 
 #pragma mark - init
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -67,6 +70,7 @@
     self.playerControlView.bottomPortraitView.slider.value = currentTime / self.player.duration;
 }
 - (void)playerStatusChanged:(DDPlayerStatus)status {
+    NSLog(@"%ld",(long)status);
     switch (status) {
         case DDPlayerStatusPlaying:
         {
@@ -89,6 +93,20 @@
             break;
         default:
             break;
+    }
+}
+
+#pragma mark - DDPlayerControlViewDelegate
+- (void)videoPlayerContainerView:(DDPlayerControlView *)containerView clickBackTitleButton:(UIButton *)button {
+    if ([self.delegate respondsToSelector:@selector(playerViewClickBackTitleButton:)]) {
+        [self.delegate playerViewClickBackTitleButton:button];
+    }
+}
+- (void)videoPlayerContainerView:(DDPlayerControlView *)containerView clickPlayButton:(UIButton *)button {
+    if (button.isSelected) {
+        [self.player pause];
+    }else {
+        [self.player play];
     }
 }
 

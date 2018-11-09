@@ -57,6 +57,7 @@
 		E3AB599821955F3300CAEF38 /* DDPlayer_Btn_CenterPause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3AB597E21955F3200CAEF38 /* DDPlayer_Btn_CenterPause@2x.png */; };
 		E3AB599921955F3300CAEF38 /* DDPlayer_Icon_ProgressThumb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3AB597F21955F3300CAEF38 /* DDPlayer_Icon_ProgressThumb@3x.png */; };
 		E3AB599A21955F3300CAEF38 /* DDPlayer_Icon_ProgressThumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3AB598021955F3300CAEF38 /* DDPlayer_Icon_ProgressThumb@2x.png */; };
+		E3AB599D2195731D00CAEF38 /* DDPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB599C2195731D00CAEF38 /* DDPlayerManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,9 @@
 		E3AB597E21955F3200CAEF38 /* DDPlayer_Btn_CenterPause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_CenterPause@2x.png"; sourceTree = "<group>"; };
 		E3AB597F21955F3300CAEF38 /* DDPlayer_Icon_ProgressThumb@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Icon_ProgressThumb@3x.png"; sourceTree = "<group>"; };
 		E3AB598021955F3300CAEF38 /* DDPlayer_Icon_ProgressThumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Icon_ProgressThumb@2x.png"; sourceTree = "<group>"; };
+		E3AB599B2195731D00CAEF38 /* DDPlayerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerManager.h; sourceTree = "<group>"; };
+		E3AB599C2195731D00CAEF38 /* DDPlayerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerManager.m; sourceTree = "<group>"; };
+		E3AB599E2195754600CAEF38 /* DDPlayerViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerViewDelegate.h; sourceTree = "<group>"; };
 		F8E8F90204FFA6ED33907852 /* Pods-DDPlayerProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDPlayerProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DDPlayerProjectTests/Pods-DDPlayerProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -270,6 +274,8 @@
 			children = (
 				E3AB5931219559FF00CAEF38 /* DDPlayer.h */,
 				E3AB5932219559FF00CAEF38 /* DDPlayer.m */,
+				E3AB599B2195731D00CAEF38 /* DDPlayerManager.h */,
+				E3AB599C2195731D00CAEF38 /* DDPlayerManager.m */,
 				E3AB592F219559DB00CAEF38 /* Other */,
 				E3AB592E219559D700CAEF38 /* Model */,
 				E3AB592D219559D100CAEF38 /* View */,
@@ -301,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				E3AB594621955C8D00CAEF38 /* DDPlayerStatus.h */,
+				E3AB599E2195754600CAEF38 /* DDPlayerViewDelegate.h */,
 				E3AB594D21955D0800CAEF38 /* DDPlayerDelegate.h */,
 				E3AB594E21955D3900CAEF38 /* DDPlayerTool.h */,
 				E3AB594F21955D3900CAEF38 /* DDPlayerTool.m */,
@@ -612,6 +619,7 @@
 				E3AB596021955DA100CAEF38 /* DDVideoPlayerComponentBaseView.m in Sources */,
 				E3AB595F21955DA100CAEF38 /* DDPlayerControlTopView.m in Sources */,
 				E3AB593B21955AA100CAEF38 /* DDNavigationController.m in Sources */,
+				E3AB599D2195731D00CAEF38 /* DDPlayerManager.m in Sources */,
 				E3AB593E21955AC100CAEF38 /* DDBaseViewController.m in Sources */,
 				E3AB595021955D3900CAEF38 /* DDPlayerTool.m in Sources */,
 				E3AB58FC2195596200CAEF38 /* AppDelegate.m in Sources */,

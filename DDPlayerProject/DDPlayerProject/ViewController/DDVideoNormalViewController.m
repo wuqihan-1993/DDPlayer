@@ -10,7 +10,7 @@
 #import "DDPlayerView.h"
 #import "Masonry.h"
 
-@interface DDVideoNormalViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface DDVideoNormalViewController ()<UITableViewDataSource,UITableViewDelegate,DDPlayerViewDelegate>
 
 @property(nonatomic, strong) DDPlayerView *playerView;
 @property (nonatomic, strong) UITableView *tableView;
@@ -20,6 +20,10 @@
 
 
 @implementation DDVideoNormalViewController
+
+- (void)dealloc {
+    NSLog(@"%s",__FUNCTION__);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,8 +78,8 @@
 
 #pragma mark - private method
 - (void)initPlayer {
-    
     self.playerView = [[DDPlayerView alloc] init];
+    self.playerView.delegate = self;
     [self.view addSubview:self.playerView];
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -141,6 +145,11 @@
                        @{@"url":@"http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh.yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4",@"videoName":@"ONE"},
                        @{@"url":@"http://221.228.226.5/15/t/s/h/v/tshvhsxwkbjlipfohhamjkraxuknsc/sh.yinyuetai.com/88DC015DB03C829C2126EEBBB5A887CB.mp4",@"videoName":@"三生三世十里桃花"},
                        @{@"url":@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",@"videoName":@"Big Buck"}];
+}
+
+#pragma mark - DDPlayerViewDelegate
+- (void)playerViewClickBackTitleButton:(UIButton *)button {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -17,13 +17,14 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 @property(nonatomic, assign) DDPlayerStatus status;
 
 @property(nonatomic, strong) AVPlayer *player;
-@property(nonatomic, weak) id timeObserver;
+@property(nonatomic, strong) id timeObserver;
 
 @end
 
 @implementation DDPlayer
 
 - (void)dealloc {
+    NSLog(@"%s",__FUNCTION__);
     [self removeItemObservers];
     [self removePlayerObservers];
     [self removeNotifications];
@@ -94,6 +95,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
             self.status = DDPlayerStatusError;
             return;
         }
+        
         if (@available(iOS 10, *)) {
             switch (self.player.timeControlStatus) {
                 case AVPlayerTimeControlStatusPlaying:
@@ -144,10 +146,10 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     
 }
 - (void)addPlayerObservers {
-    __weak typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;//下面会造成循环引用
     self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, NSEC_PER_SEC) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
         [weakSelf updateStatus];
-        if (CMTimeGetSeconds(self.currentItem.duration) <= 0) {
+        if (CMTimeGetSeconds(weakSelf.currentItem.duration) <= 0) {
             return ;
         }
         weakSelf.duration = CMTimeGetSeconds(weakSelf.currentItem.duration);
@@ -174,6 +176,17 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == &observerContext) {
+        
+        if (self.currentItem == object && [keyPath isEqualToString:@"status"] && self.currentItem.status == AVPlayerItemStatusReadyToPlay) {
+            NSLog(@"AVPlayerItemStatusReadyToPlay");
+            if (@available(iOS 10.0, *)) {
+                [self.player playImmediatelyAtRate:1.0];
+            } else {
+                // Fallback on earlier versions
+            }
+            return;
+        }
+        
         [self updateStatus];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

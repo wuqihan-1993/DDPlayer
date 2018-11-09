@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "DDPlayer.h"
 #import "DDPlayerTool.h"
-
+#import "DDPlayerViewDelegate.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPlayerView : UIView
-@property (nonatomic, strong) DDPlayer *player;
+@property(nonatomic, strong) DDPlayer *player;
+@property(nonatomic, weak) id<DDPlayerViewDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

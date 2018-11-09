@@ -22,6 +22,7 @@
     self.window.backgroundColor = UIColor.whiteColor;
     self.window.rootViewController = [[DDTabBarController alloc] init];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
