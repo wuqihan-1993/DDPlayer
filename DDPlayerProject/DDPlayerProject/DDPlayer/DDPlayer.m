@@ -51,8 +51,8 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 - (void)stop {
     [self removeItemObservers];
-    self.currentItem = nil;
-    self.currentAsset = nil;
+//    self.currentItem = nil;
+//    self.currentAsset = nil;
     [self.player replaceCurrentItemWithPlayerItem:nil];
     self.status = DDPlayerStatusUnknown;
 }

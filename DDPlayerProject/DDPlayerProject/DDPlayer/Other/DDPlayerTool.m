@@ -43,4 +43,21 @@
 + (BOOL)isScreenPortrait {
     return ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown);
 }
++(NSString *)translateTimeToString:(CGFloat )time{
+    if (time > 359999) {
+        time = 359999;
+    }
+    NSString *currentTimeStr;
+    
+    NSString *currentSecStr = [NSString stringWithFormat:@"%02zd",((NSInteger)time)%60];
+    NSInteger currentTemp = ((NSInteger)time)/60;
+    NSString *currentMinStr;
+    if (time > 3600) {
+        currentMinStr = [NSString stringWithFormat:@"%zd",currentTemp];
+    }else{
+        currentMinStr = [NSString stringWithFormat:@"%02zd",currentTemp];
+    }
+    currentTimeStr = [NSString stringWithFormat:@"%@:%@",currentMinStr,currentSecStr];
+    return currentTimeStr;
+}
 @end

@@ -66,8 +66,16 @@
 
 #pragma mark - DDPlayerDelegate
 - (void)playerTimeChanged:(double)currentTime {
-    self.playerControlView.bottomLandscapeView.slider.value = currentTime / self.player.duration;
-    self.playerControlView.bottomPortraitView.slider.value = currentTime / self.player.duration;
+    
+    CGFloat progressValue = currentTime / self.player.duration;
+    self.playerControlView.bottomLandscapeView.slider.value = progressValue;
+    self.playerControlView.bottomPortraitView.slider.value = progressValue;
+    
+    NSString *timeStr = [NSString stringWithFormat:@"%@:%@",[DDPlayerTool translateTimeToString:currentTime],[DDPlayerTool translateTimeToString:self.player.duration]];
+    self.playerControlView.bottomLandscapeView.timeLabel.text = timeStr;
+    self.playerControlView.bottomPortraitView.timeLabel.text = timeStr;
+    
+    
 }
 - (void)playerStatusChanged:(DDPlayerStatus)status {
     NSLog(@"%ld",(long)status);

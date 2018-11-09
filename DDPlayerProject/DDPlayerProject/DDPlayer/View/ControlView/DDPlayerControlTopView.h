@@ -6,11 +6,11 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDVideoPlayerComponentBaseView.h"
+#import "DDPlayerComponentBaseView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDPlayerControlTopView : DDVideoPlayerComponentBaseView
+@interface DDPlayerControlTopView : DDPlayerComponentBaseView
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) void (^backTitleButtonClickBlock)(UIButton *);

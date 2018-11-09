@@ -6,11 +6,11 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDVideoPlayerComponentBaseView.h"
+#import "DDPlayerComponentBaseView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDPlayerControlBottomBaseView : DDVideoPlayerComponentBaseView
+@interface DDPlayerControlBottomBaseView : DDPlayerComponentBaseView
 
 @property(nonatomic, strong) UIImageView *maskView;
 @property(nonatomic, strong) UIButton *playButton;

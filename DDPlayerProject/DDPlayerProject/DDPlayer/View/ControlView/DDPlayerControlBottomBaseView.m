@@ -57,7 +57,7 @@
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.textColor = [UIColor whiteColor];
         _timeLabel.font = [UIFont systemFontOfSize:14];
-        _timeLabel.text = @"00:00/02:22";
+        _timeLabel.text = @"00:00/00:00";
     }
     return _timeLabel;
 }

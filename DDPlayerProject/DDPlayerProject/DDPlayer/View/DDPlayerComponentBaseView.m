@@ -6,9 +6,9 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDVideoPlayerComponentBaseView.h"
+#import "DDPlayerComponentBaseView.h"
 
-@implementation DDVideoPlayerComponentBaseView
+@implementation DDPlayerComponentBaseView
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

@@ -6,7 +6,7 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDVideoPlayerComponentBaseView.h"
+#import "DDPlayerComponentBaseView.h"
 #import "DDPlayerControlBottomPortraitView.h"
 #import "DDPlayerControlBottomLandscapeView.h"
 
@@ -49,7 +49,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDPlayerControlView : DDVideoPlayerComponentBaseView
+@interface DDPlayerControlView : DDPlayerComponentBaseView
 
 @property (nonatomic, weak) id<DDPlayerControlViewDelegate> delegate;
 @property(nonatomic, strong) UIButton *playButton;

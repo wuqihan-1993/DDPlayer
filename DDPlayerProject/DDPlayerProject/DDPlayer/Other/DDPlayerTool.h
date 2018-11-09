@@ -28,7 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(void)forceRotatingScreen:(UIInterfaceOrientation)orientation;
 
+/**
+ 将时间转换为字符串
 
+ @param time 时间 秒
+ @return 00:00
+ */
++(NSString *)translateTimeToString:(CGFloat )time;
 @end
 
 NS_ASSUME_NONNULL_END
