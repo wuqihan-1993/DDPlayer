@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DDPlayerStatus.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-#import "DDPlayer.h"
 
 @protocol DDPlayerDelegate <NSObject>
 

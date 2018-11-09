@@ -8,7 +8,6 @@ target 'DDVideoPlayer' do
   # Pods for DDVideoPlayer
 
   pod 'Masonry'
-  pod 'SnapKit'
 
   target 'DDVideoPlayerTests' do
     inherit! :search_paths

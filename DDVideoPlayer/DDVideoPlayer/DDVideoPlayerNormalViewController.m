@@ -7,13 +7,12 @@
 //
 
 #import "DDVideoPlayerNormalViewController.h"
-#import "DDVideoPlayer.h"
 #import "Masonry.h"
-#import "DDVideoPlayer-Swift.h"
+#import "DDPlayerView.h"
+
 @interface DDVideoPlayerNormalViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic, strong) DDPlayerView *playerView;
-
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
 
@@ -62,8 +61,8 @@
         {
             [self.playerView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.equalTo(self.view);
-                make.top.equalTo(self.view).mas_offset(DDVideoPlayerTool.isiPhoneX ? 34 : 0);
-                make.height.mas_equalTo(DDVideoPlayerTool.screenWidth * 9 /16);
+                make.top.equalTo(self.view).mas_offset(DDPlayerTool.isiPhoneX ? 34 : 0);
+                make.height.mas_equalTo(DDPlayerTool.screenWidth * 9 /16);
             }];
         }
             break;
@@ -79,8 +78,8 @@
     [self.view addSubview:self.playerView];
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view).mas_offset(DDVideoPlayerTool.isiPhoneX ? 34 : 0);
-        make.height.mas_equalTo(DDVideoPlayerTool.screenWidth * 9 /16);
+        make.top.equalTo(self.view).mas_offset(DDPlayerTool.isiPhoneX ? 34 : 0);
+        make.height.mas_equalTo(DDPlayerTool.screenWidth * 9 /16);
     }];
 }
 - (void)initUI {
@@ -113,11 +112,6 @@
     return _tableView;
 }
 
-#pragma mark - DDVideoPlayerContainerViewDelegate
-- (void)videoPlayerContainerView:(DDVideoPlayerContainerView *)containerView clickBackTitleButton:(UIButton *)button {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
@@ -132,10 +126,10 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *url = self.dataArray[indexPath.row][@"url"];
-    DDVideoLineModel *lineModel = [DDVideoLineModel new];
-    lineModel.lineUrl = url;
-    
-    [self.playerView.player replaceWith:[NSURL URLWithString:url]];
+//    DDVideoLineModel *lineModel = [DDVideoLineModel new];
+//    lineModel.lineUrl = url;
+   
+    [self.playerView.player replaceWithUrl:[NSURL URLWithString:url]];
     [self.playerView.player play];
 }
 

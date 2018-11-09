@@ -29,7 +29,7 @@
 		E3729B8B2192CE7900CEECFB /* DDPlayer_Btn_Capture@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B892192CE7900CEECFB /* DDPlayer_Btn_Capture@3x.png */; };
 		E3729B8E2192CEB700CEECFB /* DDPlayer_Btn_Lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B8C2192CEB700CEECFB /* DDPlayer_Btn_Lock@2x.png */; };
 		E3729B8F2192CEB700CEECFB /* DDPlayer_Btn_Lock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729B8D2192CEB700CEECFB /* DDPlayer_Btn_Lock@3x.png */; };
-		E3729B922192CFA000CEECFB /* DDVideoPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729B912192CFA000CEECFB /* DDVideoPlayerTool.m */; };
+		E3729B922192CFA000CEECFB /* DDPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729B912192CFA000CEECFB /* DDPlayerTool.m */; };
 		E3729B952192D91500CEECFB /* DDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729B942192D91500CEECFB /* DDNavigationController.m */; };
 		E3729B982192DFA700CEECFB /* DDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729B972192DFA700CEECFB /* DDBaseViewController.m */; };
 		E3729B9B2192DFE300CEECFB /* DDHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729B9A2192DFE300CEECFB /* DDHomeViewController.m */; };
@@ -115,8 +115,8 @@
 		E3729B892192CE7900CEECFB /* DDPlayer_Btn_Capture@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Capture@3x.png"; sourceTree = "<group>"; };
 		E3729B8C2192CEB700CEECFB /* DDPlayer_Btn_Lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Lock@2x.png"; sourceTree = "<group>"; };
 		E3729B8D2192CEB700CEECFB /* DDPlayer_Btn_Lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Lock@3x.png"; sourceTree = "<group>"; };
-		E3729B902192CFA000CEECFB /* DDVideoPlayerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerTool.h; sourceTree = "<group>"; };
-		E3729B912192CFA000CEECFB /* DDVideoPlayerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerTool.m; sourceTree = "<group>"; };
+		E3729B902192CFA000CEECFB /* DDPlayerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerTool.h; sourceTree = "<group>"; };
+		E3729B912192CFA000CEECFB /* DDPlayerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerTool.m; sourceTree = "<group>"; };
 		E3729B932192D91500CEECFB /* DDNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDNavigationController.h; sourceTree = "<group>"; };
 		E3729B942192D91500CEECFB /* DDNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDNavigationController.m; sourceTree = "<group>"; };
 		E3729B962192DFA700CEECFB /* DDBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDBaseViewController.h; sourceTree = "<group>"; };
@@ -144,6 +144,7 @@
 		E39366F8219515E100B7BF32 /* DDPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerView.h; sourceTree = "<group>"; };
 		E39366F9219515E100B7BF32 /* DDPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerView.m; sourceTree = "<group>"; };
 		E39366FB2195166200B7BF32 /* DDPlayerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDelegate.h; sourceTree = "<group>"; };
+		E3AB58EC2195578200CAEF38 /* DDPlayerStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerStatus.h; sourceTree = "<group>"; };
 		E3E0A8FD2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_ForceOrientatedLandscape@2x.png"; sourceTree = "<group>"; };
 		E3E0A8FE2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_ForceOrientatedLandscape@3x.png"; sourceTree = "<group>"; };
 		E3E0A9012193C1D7002FB606 /* DDPlayer_Btn_Forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Forward@2x.png"; sourceTree = "<group>"; };
@@ -154,7 +155,6 @@
 		E3E0A9082193D0BA002FB606 /* DDPlayer_Icon_ProgressThumb@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Icon_ProgressThumb@3x.png"; sourceTree = "<group>"; };
 		E3E0A9112193D24E002FB606 /* DDPlayer_Bg_MaskBottom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_MaskBottom@3x.png"; sourceTree = "<group>"; };
 		E3E0A9122193D24E002FB606 /* DDPlayer_Bg_MaskBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_MaskBottom@2x.png"; sourceTree = "<group>"; };
-		E3E0A91B21941081002FB606 /* DDVideoPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDVideoPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		E730F257A9CA253B0BE1A056 /* libPods-DDVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DDVideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF98FFDBDD2C91904CCB7DB6 /* Pods-DDVideoPlayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDVideoPlayerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DDVideoPlayerUITests/Pods-DDVideoPlayerUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -243,7 +243,6 @@
 				E3729A902192885000CEECFB /* LaunchScreen.storyboard */,
 				E3729A932192885000CEECFB /* Info.plist */,
 				E3729A942192885000CEECFB /* main.m */,
-				E3E0A91B21941081002FB606 /* DDVideoPlayer-Bridging-Header.h */,
 			);
 			path = DDVideoPlayer;
 			sourceTree = "<group>";
@@ -269,17 +268,17 @@
 		E3729AB72192885A00CEECFB /* DDVideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				E3AB58ED219557D000CAEF38 /* 暂时没用的 */,
 				E3729ACD2192C68600CEECFB /* images */,
 				E3729ABD2192888200CEECFB /* Other */,
 				E3729ABC2192887D00CEECFB /* View */,
 				E3729ABB2192887700CEECFB /* Model */,
-				E3729AB82192886D00CEECFB /* DDVideoPlayer.h */,
-				E3729AB92192886D00CEECFB /* DDVideoPlayer.m */,
 				E39366FB2195166200B7BF32 /* DDPlayerDelegate.h */,
-				E39366F5219515CB00B7BF32 /* DDPlayer.h */,
-				E39366F6219515CB00B7BF32 /* DDPlayer.m */,
+				E3AB58EC2195578200CAEF38 /* DDPlayerStatus.h */,
 				E39366F8219515E100B7BF32 /* DDPlayerView.h */,
 				E39366F9219515E100B7BF32 /* DDPlayerView.m */,
+				E39366F5219515CB00B7BF32 /* DDPlayer.h */,
+				E39366F6219515CB00B7BF32 /* DDPlayer.m */,
 			);
 			path = DDVideoPlayer;
 			sourceTree = "<group>";
@@ -304,8 +303,8 @@
 		E3729ABD2192888200CEECFB /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				E3729B902192CFA000CEECFB /* DDVideoPlayerTool.h */,
-				E3729B912192CFA000CEECFB /* DDVideoPlayerTool.m */,
+				E3729B902192CFA000CEECFB /* DDPlayerTool.h */,
+				E3729B912192CFA000CEECFB /* DDPlayerTool.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -375,6 +374,15 @@
 				E3729BB02193050300CEECFB /* DDVideoPlayerBottomPortraitView.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		E3AB58ED219557D000CAEF38 /* 暂时没用的 */ = {
+			isa = PBXGroup;
+			children = (
+				E3729AB82192886D00CEECFB /* DDVideoPlayer.h */,
+				E3729AB92192886D00CEECFB /* DDVideoPlayer.m */,
+			);
+			path = "暂时没用的";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -600,7 +608,7 @@
 				E3729AC32192970A00CEECFB /* DDVideoLineModel.m in Sources */,
 				E3729B9B2192DFE300CEECFB /* DDHomeViewController.m in Sources */,
 				E3729B952192D91500CEECFB /* DDNavigationController.m in Sources */,
-				E3729B922192CFA000CEECFB /* DDVideoPlayerTool.m in Sources */,
+				E3729B922192CFA000CEECFB /* DDPlayerTool.m in Sources */,
 				E3729AC92192C61700CEECFB /* DDVideoPlayerTopView.m in Sources */,
 				E39366F7219515CB00B7BF32 /* DDPlayer.m in Sources */,
 				E3729A952192885000CEECFB /* main.m in Sources */,
