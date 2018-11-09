@@ -92,15 +92,16 @@
 }
 
 #pragma mark - override method
+#pragma mark 控制屏幕旋转方法
 - (BOOL)shouldAutorotate {
     return YES;
 }
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
 }
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationLandscapeLeft;
-}
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+//    return UIInterfaceOrientationLandscapeLeft;
+//}
 
 #pragma mark - getter
 - (UITableView *)tableView {

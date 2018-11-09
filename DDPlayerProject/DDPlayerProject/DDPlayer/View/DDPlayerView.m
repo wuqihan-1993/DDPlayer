@@ -65,7 +65,7 @@
 - (void)playerTimeChanged:(double)currentTime {
     
 }
-- (void)playerStatusChanged:(id)status {
+- (void)playerStatusChanged:(DDPlayerStatus)status {
     
 }
 

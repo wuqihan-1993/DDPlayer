@@ -36,6 +36,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     return self;
 }
 - (void)initialize {
+    self.player = [[AVPlayer alloc] init];
     [self addPlayerObservers];
     [self addNotifications];
 }
