@@ -6,15 +6,15 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDVideoPlayerBottomPortraitView.h"
+#import "DDPlayerControlBottomPortraitView.h"
 #import "Masonry.h"
 #import "DDPlayerTool.h"
 
-@interface DDVideoPlayerBottomPortraitView()
+@interface DDPlayerControlBottomPortraitView()
 @property(nonatomic, strong) UIButton *landscapeButton;
 @end
 
-@implementation DDVideoPlayerBottomPortraitView
+@implementation DDPlayerControlBottomPortraitView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

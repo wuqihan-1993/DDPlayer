@@ -6,10 +6,10 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDVideoPlayerBottomLandscapeView.h"
+#import "DDPlayerControlBottomLandscapeView.h"
 #import "Masonry.h"
 
-@interface DDVideoPlayerBottomLandscapeView()
+@interface DDPlayerControlBottomLandscapeView()
 
 @property(nonatomic, strong) UIButton *forwardButton;
 @property(nonatomic, strong) UIButton *rateButton;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation DDVideoPlayerBottomLandscapeView
+@implementation DDPlayerControlBottomLandscapeView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

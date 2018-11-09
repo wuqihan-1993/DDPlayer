@@ -6,13 +6,13 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDVideoPlayerBottomBaseView.h"
+#import "DDPlayerControlBottomBaseView.h"
 #import "Masonry.h"
-@interface DDVideoPlayerBottomBaseView()
+@interface DDPlayerControlBottomBaseView()
 
 @end
 
-@implementation DDVideoPlayerBottomBaseView
+@implementation DDPlayerControlBottomBaseView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

@@ -6,18 +6,18 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDVideoPlayerContainerView.h"
+#import "DDPlayerControlView.h"
 #import "DDPlayerTool.h"
 #import "Masonry.h"
-#import "DDVideoPlayerTopView.h"
+#import "DDPlayerControlTopView.h"
 
 
-@interface DDVideoPlayerContainerView()
+@interface DDPlayerControlView()
 
 
 @property(nonatomic, strong) UIButton *lockScreenButton;
 @property(nonatomic, strong) UIButton *captureButton;
-@property(nonatomic, strong) DDVideoPlayerTopView *topView;
+@property(nonatomic, strong) DDPlayerControlTopView *topView;
 
 
 /**
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation DDVideoPlayerContainerView
+@implementation DDPlayerControlView
 
 - (void)dealloc {
 }
@@ -186,9 +186,9 @@
     }
     return _captureButton;
 }
-- (DDVideoPlayerTopView *)topView {
+- (DDPlayerControlTopView *)topView {
     if (!_topView) {
-        _topView = [[DDVideoPlayerTopView alloc] init];
+        _topView = [[DDPlayerControlTopView alloc] init];
         __weak typeof(self) weakSelf = self;
         _topView.backTitleButtonClickBlock = ^(UIButton * _Nonnull button) {
             if ([weakSelf.delegate respondsToSelector:@selector(videoPlayerContainerView:clickBackTitleButton:)]) {
@@ -198,15 +198,15 @@
     }
     return _topView;
 }
-- (DDVideoPlayerBottomPortraitView *)bottomPortraitView {
+- (DDPlayerControlBottomPortraitView *)bottomPortraitView {
     if (!_bottomPortraitView) {
-        _bottomPortraitView = [[DDVideoPlayerBottomPortraitView alloc] init];
+        _bottomPortraitView = [[DDPlayerControlBottomPortraitView alloc] init];
     }
     return _bottomPortraitView;
 }
-- (DDVideoPlayerBottomLandscapeView *)bottomLandscapeView {
+- (DDPlayerControlBottomLandscapeView *)bottomLandscapeView {
     if (!_bottomLandscapeView) {
-        _bottomLandscapeView = [[DDVideoPlayerBottomLandscapeView alloc] init];
+        _bottomLandscapeView = [[DDPlayerControlBottomLandscapeView alloc] init];
     }
     return _bottomLandscapeView;
 }

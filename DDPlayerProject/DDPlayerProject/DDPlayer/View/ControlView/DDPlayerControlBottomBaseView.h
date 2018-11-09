@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDVideoPlayerBottomBaseView : DDVideoPlayerComponentBaseView
+@interface DDPlayerControlBottomBaseView : DDVideoPlayerComponentBaseView
 
 @property(nonatomic, strong) UIImageView *maskView;
 @property(nonatomic, strong) UIButton *playButton;

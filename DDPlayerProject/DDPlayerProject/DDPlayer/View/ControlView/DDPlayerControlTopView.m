@@ -6,18 +6,18 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDVideoPlayerTopView.h"
+#import "DDPlayerControlTopView.h"
 #import "Masonry.h"
 #import "DDPlayerTool.h"
 
-@interface DDVideoPlayerTopView()
+@interface DDPlayerControlTopView()
 
 @property(nonatomic, strong) UIImageView *maskView;
 @property(nonatomic, strong) UIButton *backTitleButton;
 
 @end
 
-@implementation DDVideoPlayerTopView
+@implementation DDPlayerControlTopView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

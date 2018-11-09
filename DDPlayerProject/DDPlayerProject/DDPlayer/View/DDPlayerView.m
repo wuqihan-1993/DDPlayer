@@ -8,12 +8,12 @@
 
 #import "DDPlayerView.h"
 #import "DDPlayer.h"
-#import "DDVideoPlayerContainerView.h"
+#import "DDPlayerControlView.h"
 #import "Masonry.h"
-@interface DDPlayerView()<DDPlayerDelegate,DDVideoPlayerContainerViewDelegate>
+@interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
 
-@property (nonatomic, strong) DDVideoPlayerContainerView *playerControlView;
+@property (nonatomic, strong) DDPlayerControlView *playerControlView;
 
 @end
 
@@ -53,9 +53,9 @@
     }
     return _player;
 }
-- (DDVideoPlayerContainerView *)playerControlView {
+- (DDPlayerControlView *)playerControlView {
     if (!_playerControlView) {
-        _playerControlView = [[DDVideoPlayerContainerView alloc] init];
+        _playerControlView = [[DDPlayerControlView alloc] init];
         _playerControlView.delegate = self;
     }
     return _playerControlView;
@@ -63,10 +63,33 @@
 
 #pragma mark - DDPlayerDelegate
 - (void)playerTimeChanged:(double)currentTime {
-    
+    self.playerControlView.bottomLandscapeView.slider.value = currentTime / self.player.duration;
+    self.playerControlView.bottomPortraitView.slider.value = currentTime / self.player.duration;
 }
 - (void)playerStatusChanged:(DDPlayerStatus)status {
-    
+    switch (status) {
+        case DDPlayerStatusPlaying:
+        {
+            self.playerControlView.playButton.selected = YES;
+            self.playerControlView.bottomPortraitView.playButton.selected = YES;
+            self.playerControlView.bottomLandscapeView.playButton.selected = YES;
+        }
+            break;
+        case DDPlayerStatusPaused:
+        {
+            self.playerControlView.playButton.selected = NO;
+            self.playerControlView.bottomPortraitView.playButton.selected = NO;
+            self.playerControlView.bottomLandscapeView.playButton.selected = NO;
+        }
+            break;
+        case DDPlayerStatusBuffering:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 @end

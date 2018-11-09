@@ -24,12 +24,12 @@
 		E3AB594921955C8E00CAEF38 /* DDPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB594721955C8D00CAEF38 /* DDPlayerView.m */; };
 		E3AB594C21955CB900CAEF38 /* DDPlayerLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB594B21955CB900CAEF38 /* DDPlayerLineModel.m */; };
 		E3AB595021955D3900CAEF38 /* DDPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB594F21955D3900CAEF38 /* DDPlayerTool.m */; };
-		E3AB595D21955DA100CAEF38 /* DDVideoPlayerBottomBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595121955DA100CAEF38 /* DDVideoPlayerBottomBaseView.m */; };
-		E3AB595E21955DA100CAEF38 /* DDVideoPlayerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595321955DA100CAEF38 /* DDVideoPlayerContainerView.m */; };
-		E3AB595F21955DA100CAEF38 /* DDVideoPlayerTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595421955DA100CAEF38 /* DDVideoPlayerTopView.m */; };
+		E3AB595D21955DA100CAEF38 /* DDPlayerControlBottomBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595121955DA100CAEF38 /* DDPlayerControlBottomBaseView.m */; };
+		E3AB595E21955DA100CAEF38 /* DDPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595321955DA100CAEF38 /* DDPlayerControlView.m */; };
+		E3AB595F21955DA100CAEF38 /* DDPlayerControlTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595421955DA100CAEF38 /* DDPlayerControlTopView.m */; };
 		E3AB596021955DA100CAEF38 /* DDVideoPlayerComponentBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595721955DA100CAEF38 /* DDVideoPlayerComponentBaseView.m */; };
-		E3AB596121955DA100CAEF38 /* DDVideoPlayerBottomPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595921955DA100CAEF38 /* DDVideoPlayerBottomPortraitView.m */; };
-		E3AB596221955DA100CAEF38 /* DDVideoPlayerBottomLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595A21955DA100CAEF38 /* DDVideoPlayerBottomLandscapeView.m */; };
+		E3AB596121955DA100CAEF38 /* DDPlayerControlBottomPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595921955DA100CAEF38 /* DDPlayerControlBottomPortraitView.m */; };
+		E3AB596221955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB595A21955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.m */; };
 		E3AB596621955DF000CAEF38 /* DDVideoNormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AB596521955DF000CAEF38 /* DDVideoNormalViewController.m */; };
 		E3AB598121955F3300CAEF38 /* DDPlayer_Btn_Capture@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3AB596721955F3100CAEF38 /* DDPlayer_Btn_Capture@3x.png */; };
 		E3AB598221955F3300CAEF38 /* DDPlayer_Btn_BottomPortraitPlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3AB596821955F3100CAEF38 /* DDPlayer_Btn_BottomPortraitPlay@2x.png */; };
@@ -116,18 +116,18 @@
 		E3AB594D21955D0800CAEF38 /* DDPlayerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDelegate.h; sourceTree = "<group>"; };
 		E3AB594E21955D3900CAEF38 /* DDPlayerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerTool.h; sourceTree = "<group>"; };
 		E3AB594F21955D3900CAEF38 /* DDPlayerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerTool.m; sourceTree = "<group>"; };
-		E3AB595121955DA100CAEF38 /* DDVideoPlayerBottomBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerBottomBaseView.m; sourceTree = "<group>"; };
-		E3AB595221955DA100CAEF38 /* DDVideoPlayerContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerContainerView.h; sourceTree = "<group>"; };
-		E3AB595321955DA100CAEF38 /* DDVideoPlayerContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerContainerView.m; sourceTree = "<group>"; };
-		E3AB595421955DA100CAEF38 /* DDVideoPlayerTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerTopView.m; sourceTree = "<group>"; };
-		E3AB595521955DA100CAEF38 /* DDVideoPlayerTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerTopView.h; sourceTree = "<group>"; };
-		E3AB595621955DA100CAEF38 /* DDVideoPlayerBottomBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerBottomBaseView.h; sourceTree = "<group>"; };
+		E3AB595121955DA100CAEF38 /* DDPlayerControlBottomBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPlayerControlBottomBaseView.m; sourceTree = "<group>"; };
+		E3AB595221955DA100CAEF38 /* DDPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPlayerControlView.h; sourceTree = "<group>"; };
+		E3AB595321955DA100CAEF38 /* DDPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPlayerControlView.m; sourceTree = "<group>"; };
+		E3AB595421955DA100CAEF38 /* DDPlayerControlTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPlayerControlTopView.m; sourceTree = "<group>"; };
+		E3AB595521955DA100CAEF38 /* DDPlayerControlTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPlayerControlTopView.h; sourceTree = "<group>"; };
+		E3AB595621955DA100CAEF38 /* DDPlayerControlBottomBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPlayerControlBottomBaseView.h; sourceTree = "<group>"; };
 		E3AB595721955DA100CAEF38 /* DDVideoPlayerComponentBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerComponentBaseView.m; sourceTree = "<group>"; };
 		E3AB595821955DA100CAEF38 /* DDVideoPlayerComponentBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerComponentBaseView.h; sourceTree = "<group>"; };
-		E3AB595921955DA100CAEF38 /* DDVideoPlayerBottomPortraitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerBottomPortraitView.m; sourceTree = "<group>"; };
-		E3AB595A21955DA100CAEF38 /* DDVideoPlayerBottomLandscapeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerBottomLandscapeView.m; sourceTree = "<group>"; };
-		E3AB595B21955DA100CAEF38 /* DDVideoPlayerBottomPortraitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerBottomPortraitView.h; sourceTree = "<group>"; };
-		E3AB595C21955DA100CAEF38 /* DDVideoPlayerBottomLandscapeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDVideoPlayerBottomLandscapeView.h; sourceTree = "<group>"; };
+		E3AB595921955DA100CAEF38 /* DDPlayerControlBottomPortraitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPlayerControlBottomPortraitView.m; sourceTree = "<group>"; };
+		E3AB595A21955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPlayerControlBottomLandscapeView.m; sourceTree = "<group>"; };
+		E3AB595B21955DA100CAEF38 /* DDPlayerControlBottomPortraitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPlayerControlBottomPortraitView.h; sourceTree = "<group>"; };
+		E3AB595C21955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPlayerControlBottomLandscapeView.h; sourceTree = "<group>"; };
 		E3AB596421955DF000CAEF38 /* DDVideoNormalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDVideoNormalViewController.h; sourceTree = "<group>"; };
 		E3AB596521955DF000CAEF38 /* DDVideoNormalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDVideoNormalViewController.m; sourceTree = "<group>"; };
 		E3AB596721955F3100CAEF38 /* DDPlayer_Btn_Capture@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Capture@3x.png"; sourceTree = "<group>"; };
@@ -369,18 +369,18 @@
 		E3AB596321955DAC00CAEF38 /* ControlView */ = {
 			isa = PBXGroup;
 			children = (
-				E3AB595221955DA100CAEF38 /* DDVideoPlayerContainerView.h */,
-				E3AB595321955DA100CAEF38 /* DDVideoPlayerContainerView.m */,
-				E3AB595621955DA100CAEF38 /* DDVideoPlayerBottomBaseView.h */,
-				E3AB595121955DA100CAEF38 /* DDVideoPlayerBottomBaseView.m */,
-				E3AB595C21955DA100CAEF38 /* DDVideoPlayerBottomLandscapeView.h */,
-				E3AB595A21955DA100CAEF38 /* DDVideoPlayerBottomLandscapeView.m */,
-				E3AB595B21955DA100CAEF38 /* DDVideoPlayerBottomPortraitView.h */,
-				E3AB595921955DA100CAEF38 /* DDVideoPlayerBottomPortraitView.m */,
+				E3AB595221955DA100CAEF38 /* DDPlayerControlView.h */,
+				E3AB595321955DA100CAEF38 /* DDPlayerControlView.m */,
 				E3AB595821955DA100CAEF38 /* DDVideoPlayerComponentBaseView.h */,
 				E3AB595721955DA100CAEF38 /* DDVideoPlayerComponentBaseView.m */,
-				E3AB595521955DA100CAEF38 /* DDVideoPlayerTopView.h */,
-				E3AB595421955DA100CAEF38 /* DDVideoPlayerTopView.m */,
+				E3AB595621955DA100CAEF38 /* DDPlayerControlBottomBaseView.h */,
+				E3AB595121955DA100CAEF38 /* DDPlayerControlBottomBaseView.m */,
+				E3AB595C21955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.h */,
+				E3AB595A21955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.m */,
+				E3AB595B21955DA100CAEF38 /* DDPlayerControlBottomPortraitView.h */,
+				E3AB595921955DA100CAEF38 /* DDPlayerControlBottomPortraitView.m */,
+				E3AB595521955DA100CAEF38 /* DDPlayerControlTopView.h */,
+				E3AB595421955DA100CAEF38 /* DDPlayerControlTopView.m */,
 			);
 			path = ControlView;
 			sourceTree = "<group>";
@@ -600,17 +600,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3AB596121955DA100CAEF38 /* DDVideoPlayerBottomPortraitView.m in Sources */,
+				E3AB596121955DA100CAEF38 /* DDPlayerControlBottomPortraitView.m in Sources */,
 				E3AB594121955AD400CAEF38 /* DDVideoViewController.m in Sources */,
 				E3AB596621955DF000CAEF38 /* DDVideoNormalViewController.m in Sources */,
 				E3AB594921955C8E00CAEF38 /* DDPlayerView.m in Sources */,
 				E3AB590A2195596400CAEF38 /* main.m in Sources */,
-				E3AB596221955DA100CAEF38 /* DDVideoPlayerBottomLandscapeView.m in Sources */,
+				E3AB596221955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.m in Sources */,
 				E3AB5933219559FF00CAEF38 /* DDPlayer.m in Sources */,
-				E3AB595D21955DA100CAEF38 /* DDVideoPlayerBottomBaseView.m in Sources */,
-				E3AB595E21955DA100CAEF38 /* DDVideoPlayerContainerView.m in Sources */,
+				E3AB595D21955DA100CAEF38 /* DDPlayerControlBottomBaseView.m in Sources */,
+				E3AB595E21955DA100CAEF38 /* DDPlayerControlView.m in Sources */,
 				E3AB596021955DA100CAEF38 /* DDVideoPlayerComponentBaseView.m in Sources */,
-				E3AB595F21955DA100CAEF38 /* DDVideoPlayerTopView.m in Sources */,
+				E3AB595F21955DA100CAEF38 /* DDPlayerControlTopView.m in Sources */,
 				E3AB593B21955AA100CAEF38 /* DDNavigationController.m in Sources */,
 				E3AB593E21955AC100CAEF38 /* DDBaseViewController.m in Sources */,
 				E3AB595021955D3900CAEF38 /* DDPlayerTool.m in Sources */,

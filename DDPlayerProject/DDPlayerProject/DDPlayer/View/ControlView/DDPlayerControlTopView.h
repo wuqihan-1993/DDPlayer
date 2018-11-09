@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDVideoPlayerTopView : DDVideoPlayerComponentBaseView
+@interface DDPlayerControlTopView : DDVideoPlayerComponentBaseView
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) void (^backTitleButtonClickBlock)(UIButton *);

@@ -6,11 +6,11 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDVideoPlayerBottomBaseView.h"
+#import "DDPlayerControlBottomBaseView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDVideoPlayerBottomPortraitView : DDVideoPlayerBottomBaseView
+@interface DDPlayerControlBottomPortraitView : DDPlayerControlBottomBaseView
 
 @end
 
