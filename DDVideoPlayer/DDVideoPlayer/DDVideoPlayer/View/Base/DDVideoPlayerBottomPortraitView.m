@@ -46,9 +46,6 @@
         make.right.equalTo(self).mas_offset(-20);
         make.centerY.equalTo(self);
     }];
-    
-    
-    
 }
 
 - (void)landscapeButtonClick:(UIButton *)button {

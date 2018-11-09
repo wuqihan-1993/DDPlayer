@@ -14,6 +14,7 @@
 
 @protocol DDVideoPlayerContainerViewDelegate <NSObject>
 
+@optional
 /**
  点击返回按钮
 
@@ -51,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DDVideoPlayerContainerView : DDVideoPlayerComponentBaseView
 
 @property (nonatomic, weak) id<DDVideoPlayerContainerViewDelegate> delegate;
-
+@property(nonatomic, strong) UIButton *playButton;
 @property(nonatomic, strong) DDVideoPlayerBottomPortraitView *bottomPortraitView;
 @property(nonatomic, strong) DDVideoPlayerBottomLandscapeView *bottomLandscapeView;
 

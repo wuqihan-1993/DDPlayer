@@ -45,7 +45,8 @@
 		E3729BB72193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729BB32193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@3x.png */; };
 		E3729BB82193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPause@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729BB42193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPause@3x.png */; };
 		E3729BB92193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3729BB52193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@2x.png */; };
-		E3C11A072194328A001B1B19 /* DDPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C11A062194328A001B1B19 /* DDPlayerDelegate.swift */; };
+		E39366F7219515CB00B7BF32 /* DDPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39366F6219515CB00B7BF32 /* DDPlayer.m */; };
+		E39366FA219515E100B7BF32 /* DDPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39366F9219515E100B7BF32 /* DDPlayerView.m */; };
 		E3E0A8FF2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A8FD2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@2x.png */; };
 		E3E0A9002193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A8FE2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@3x.png */; };
 		E3E0A9032193C1D7002FB606 /* DDPlayer_Btn_Forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9012193C1D7002FB606 /* DDPlayer_Btn_Forward@2x.png */; };
@@ -56,8 +57,6 @@
 		E3E0A90C2193D0BA002FB606 /* DDPlayer_Icon_ProgressThumb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9082193D0BA002FB606 /* DDPlayer_Icon_ProgressThumb@3x.png */; };
 		E3E0A9132193D24E002FB606 /* DDPlayer_Bg_MaskBottom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9112193D24E002FB606 /* DDPlayer_Bg_MaskBottom@3x.png */; };
 		E3E0A9142193D24E002FB606 /* DDPlayer_Bg_MaskBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E0A9122193D24E002FB606 /* DDPlayer_Bg_MaskBottom@2x.png */; };
-		E3E0A91D21941082002FB606 /* DDPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A91C21941082002FB606 /* DDPlayer.swift */; };
-		E3E0A91F21941624002FB606 /* DDPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A91E21941624002FB606 /* DDPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,7 +139,11 @@
 		E3729BB32193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_BottomPortraitPlay@3x.png"; sourceTree = "<group>"; };
 		E3729BB42193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPause@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_BottomPortraitPause@3x.png"; sourceTree = "<group>"; };
 		E3729BB52193079C00CEECFB /* DDPlayer_Btn_BottomPortraitPlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_BottomPortraitPlay@2x.png"; sourceTree = "<group>"; };
-		E3C11A062194328A001B1B19 /* DDPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDPlayerDelegate.swift; sourceTree = "<group>"; };
+		E39366F5219515CB00B7BF32 /* DDPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayer.h; sourceTree = "<group>"; };
+		E39366F6219515CB00B7BF32 /* DDPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayer.m; sourceTree = "<group>"; };
+		E39366F8219515E100B7BF32 /* DDPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerView.h; sourceTree = "<group>"; };
+		E39366F9219515E100B7BF32 /* DDPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerView.m; sourceTree = "<group>"; };
+		E39366FB2195166200B7BF32 /* DDPlayerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDelegate.h; sourceTree = "<group>"; };
 		E3E0A8FD2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_ForceOrientatedLandscape@2x.png"; sourceTree = "<group>"; };
 		E3E0A8FE2193BFDB002FB606 /* DDPlayer_Btn_ForceOrientatedLandscape@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_ForceOrientatedLandscape@3x.png"; sourceTree = "<group>"; };
 		E3E0A9012193C1D7002FB606 /* DDPlayer_Btn_Forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_Forward@2x.png"; sourceTree = "<group>"; };
@@ -152,8 +155,6 @@
 		E3E0A9112193D24E002FB606 /* DDPlayer_Bg_MaskBottom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_MaskBottom@3x.png"; sourceTree = "<group>"; };
 		E3E0A9122193D24E002FB606 /* DDPlayer_Bg_MaskBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_MaskBottom@2x.png"; sourceTree = "<group>"; };
 		E3E0A91B21941081002FB606 /* DDVideoPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDVideoPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
-		E3E0A91C21941082002FB606 /* DDPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDPlayer.swift; sourceTree = "<group>"; };
-		E3E0A91E21941624002FB606 /* DDPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDPlayerView.swift; sourceTree = "<group>"; };
 		E730F257A9CA253B0BE1A056 /* libPods-DDVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DDVideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF98FFDBDD2C91904CCB7DB6 /* Pods-DDVideoPlayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDVideoPlayerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DDVideoPlayerUITests/Pods-DDVideoPlayerUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,9 +275,11 @@
 				E3729ABB2192887700CEECFB /* Model */,
 				E3729AB82192886D00CEECFB /* DDVideoPlayer.h */,
 				E3729AB92192886D00CEECFB /* DDVideoPlayer.m */,
-				E3E0A91C21941082002FB606 /* DDPlayer.swift */,
-				E3C11A062194328A001B1B19 /* DDPlayerDelegate.swift */,
-				E3E0A91E21941624002FB606 /* DDPlayerView.swift */,
+				E39366FB2195166200B7BF32 /* DDPlayerDelegate.h */,
+				E39366F5219515CB00B7BF32 /* DDPlayer.h */,
+				E39366F6219515CB00B7BF32 /* DDPlayer.m */,
+				E39366F8219515E100B7BF32 /* DDPlayerView.h */,
+				E39366F9219515E100B7BF32 /* DDPlayerView.m */,
 			);
 			path = DDVideoPlayer;
 			sourceTree = "<group>";
@@ -591,19 +594,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3729BB12193050300CEECFB /* DDVideoPlayerBottomPortraitView.m in Sources */,
+				E39366FA219515E100B7BF32 /* DDPlayerView.m in Sources */,
 				E3729AC62192C41500CEECFB /* DDVideoPlayerContainerView.m in Sources */,
 				E3729B982192DFA700CEECFB /* DDBaseViewController.m in Sources */,
 				E3729AC32192970A00CEECFB /* DDVideoLineModel.m in Sources */,
 				E3729B9B2192DFE300CEECFB /* DDHomeViewController.m in Sources */,
-				E3C11A072194328A001B1B19 /* DDPlayerDelegate.swift in Sources */,
-				E3E0A91F21941624002FB606 /* DDPlayerView.swift in Sources */,
 				E3729B952192D91500CEECFB /* DDNavigationController.m in Sources */,
 				E3729B922192CFA000CEECFB /* DDVideoPlayerTool.m in Sources */,
 				E3729AC92192C61700CEECFB /* DDVideoPlayerTopView.m in Sources */,
+				E39366F7219515CB00B7BF32 /* DDPlayer.m in Sources */,
 				E3729A952192885000CEECFB /* main.m in Sources */,
 				E3729BAE219304E700CEECFB /* DDVideoPlayerBottomLandscapeView.m in Sources */,
 				E3729ABA2192886D00CEECFB /* DDVideoPlayer.m in Sources */,
-				E3E0A91D21941082002FB606 /* DDPlayer.swift in Sources */,
 				E3729BAA2193043400CEECFB /* DDVideoPlayerBottomBaseView.m in Sources */,
 				E3729AC0219289A700CEECFB /* DDVideoPlayerNormalViewController.m in Sources */,
 				E3729BA72192FBFE00CEECFB /* DDVideoPlayerComponentBaseView.m in Sources */,
@@ -815,7 +817,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7CC371643E1D6ADE457A6710 /* Pods-DDVideoPlayerTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
@@ -836,7 +837,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ADD61ED272D13E4A3FB1E0EA /* Pods-DDVideoPlayerTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
@@ -857,7 +857,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1C4DABA95331C0059C058D4B /* Pods-DDVideoPlayerUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayerUITests/Info.plist;
@@ -877,7 +876,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF98FFDBDD2C91904CCB7DB6 /* Pods-DDVideoPlayerUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				INFOPLIST_FILE = DDVideoPlayerUITests/Info.plist;

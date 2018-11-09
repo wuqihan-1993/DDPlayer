@@ -14,7 +14,7 @@
 
 @interface DDVideoPlayerContainerView()
 
-@property(nonatomic, strong) UIButton *playButton;
+
 @property(nonatomic, strong) UIButton *lockScreenButton;
 @property(nonatomic, strong) UIButton *captureButton;
 @property(nonatomic, strong) DDVideoPlayerTopView *topView;
