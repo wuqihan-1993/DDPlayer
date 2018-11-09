@@ -7,14 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVKit/AVKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class DDPlayer;
+
 @interface DDPlayerManager : NSObject
 
-+ (instancetype)sharedManager;
 
-@property (nonatomic, weak) DDPlayer *player;
+/**
+ 视频截图
+
+ @param asset asset
+ @param currentTime CMTime
+ @return UIImage
+ */
++ (UIImage *)thumbnailImageWithAsset:(AVAsset*)asset currentTime:(CMTime)currentTime;
+
 
 @end
 

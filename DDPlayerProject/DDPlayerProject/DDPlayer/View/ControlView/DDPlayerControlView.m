@@ -62,6 +62,11 @@
         [self show];
     }
 }
+- (void)panAction:(UIPanGestureRecognizer *)pan {
+    
+    NSLog(@"%@",NSStringFromCGPoint([pan locationInView:self]));
+    
+}
 - (BOOL)isVisible {
     return self.playButton.alpha > 0;
 }
@@ -140,6 +145,10 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [self addGestureRecognizer:tap];
+    
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+    pan.delegate = self;
+    [self addGestureRecognizer:pan];
 }
 #pragma mark - override method
 - (void)updateUIWithPortrait {

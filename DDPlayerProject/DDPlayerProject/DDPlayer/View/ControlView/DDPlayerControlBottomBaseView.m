@@ -8,6 +8,7 @@
 
 #import "DDPlayerControlBottomBaseView.h"
 #import "Masonry.h"
+#import "DDPlayerTool.h"
 @interface DDPlayerControlBottomBaseView()
 
 @end
@@ -66,8 +67,8 @@
         _slider = [[UISlider alloc] init];
         [_slider setThumbImage:[UIImage imageNamed:@"DDPlayer_Icon_ProgressThumb"] forState:UIControlStateNormal];
         [_slider setThumbImage:[UIImage imageNamed:@"DDPlayer_Icon_ProgressThumb_sel"] forState:UIControlStateHighlighted];
-        [_slider setMinimumTrackTintColor:[UIColor whiteColor]];
-        [_slider setMaximumTrackTintColor:[UIColor colorWithWhite:1 alpha:0.3]];
+        [_slider setMaximumTrackTintColor:[UIColor whiteColor]];
+        [_slider setMinimumTrackTintColor:[DDPlayerTool colorWithRGBHex:0x61d8bb]];
     }
     return _slider;
 }
