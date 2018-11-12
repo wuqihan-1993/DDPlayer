@@ -10,15 +10,39 @@
 #import "DDPlayerTool.h"
 #import "Masonry.h"
 #import "DDPlayerControlTopView.h"
+#import "DDBrightView.h"
+#import <MediaPlayer/MPVolumeView.h>
 
 
-@interface DDPlayerControlView()
+typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
+    DDPlayerGestureTypeNone,
+    DDPlayerGestureTypeBright,
+    DDPlayerGestureTypeVolume,
+    DDPlayerGestureTypeProgress
+};
 
+
+@interface DDPlayerControlView()<UIGestureRecognizerDelegate>
+{
+    CGFloat _currentLight;//当前亮度
+    CGFloat _currentVolume;//当前音量
+    CGPoint _panBeginPoint;
+    DDPlayerGestureType _gestureType;
+}
 
 @property(nonatomic, strong) UIButton *lockScreenButton;
 @property(nonatomic, strong) UIButton *captureButton;
 @property(nonatomic, strong) DDPlayerControlTopView *topView;
 
+/**
+ 亮度调节视图
+ */
+@property(nonatomic, strong) DDBrightView *brightView;
+
+/**
+ 音量调节视图
+ */
+@property(nonatomic,strong)UISlider *volumeViewSlider;
 
 /**
  是否可见
@@ -30,29 +54,43 @@
 @implementation DDPlayerControlView
 
 - (void)dealloc {
+    if (self.brightView && [[UIApplication sharedApplication].keyWindow.subviews containsObject:self.brightView]) {
+        [self.brightView removeFromSuperview];
+    }
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self initUI];
         [self initGestures];
+        MPVolumeView *volumeView = [[MPVolumeView alloc] init];
+        //初始化一次音量，否则第一次取到会变成0.0
+        for (UIView *view in volumeView.subviews){
+            if (_volumeViewSlider) {
+                break;
+            }
+            if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+                _volumeViewSlider = (UISlider*)view;
+                break;
+            }
+        }
     }
     return self;
 }
 #pragma mark - action
 - (void)playButtonClick:(UIButton *)button {
-    if ([self.delegate respondsToSelector:@selector(videoPlayerContainerView:clickPlayButton:)]) {
-        [self.delegate videoPlayerContainerView:self clickPlayButton:button];
+    if ([self.delegate respondsToSelector:@selector(playerControlView:clickPlayButton:)]) {
+        [self.delegate playerControlView:self clickPlayButton:button];
     }
 }
 - (void)lockScreenButtonClick:(UIButton *)button {
-    if ([self.delegate respondsToSelector:@selector(videoPlayerContainerView:clicklockScreenButton:)]) {
-        [self.delegate videoPlayerContainerView:self clicklockScreenButton:button];
+    if ([self.delegate respondsToSelector:@selector(playerControlView:clickCaptureButton:)]) {
+        [self.delegate playerControlView:self clicklockScreenButton:button];
     }
 }
 - (void)captureButtonClick:(UIButton *)button {
-    if ([self.delegate respondsToSelector:@selector(videoPlayerContainerView:clickCaptureButton:)]) {
-        [self.delegate videoPlayerContainerView:self clickCaptureButton:button];
+    if ([self.delegate respondsToSelector:@selector(playerControlView:clickCaptureButton:)]) {
+        [self.delegate playerControlView:self clickCaptureButton:button];
     }
 }
 - (void)tapAction:(UITapGestureRecognizer *)tap {
@@ -64,12 +102,113 @@
 }
 - (void)panAction:(UIPanGestureRecognizer *)pan {
     
-    NSLog(@"%@",NSStringFromCGPoint([pan locationInView:self]));
+    if (pan.state == UIGestureRecognizerStatePossible || pan.state == UIGestureRecognizerStateBegan) {
+        _panBeginPoint = [pan locationInView:self];
+        
+        [self lightNeedChangedWithGesture:pan];
+        [self volumeNeedChangedWithGesture:pan];
+        
+    }else if(pan.state == UIGestureRecognizerStateChanged){
+        CGPoint changePoint = [pan locationInView:self];
+        
+        if (_gestureType != DDPlayerGestureTypeNone) {
+            
+            switch (_gestureType) {
+                case DDPlayerGestureTypeBright:
+                {
+                    [self lightNeedChangedWithGesture:pan];
+                }
+                    break;
+                case DDPlayerGestureTypeVolume:
+                {
+                    [self volumeNeedChangedWithGesture:pan];
+                }
+                    break;
+                case DDPlayerGestureTypeProgress:
+                {
+                    
+                }
+                    break;
+                default:
+                    break;
+            }
+            
+        }else {
+            if (ABS(changePoint.x - _panBeginPoint.x) < ABS(changePoint.y - _panBeginPoint.y)) {//x > y ,改变亮度或者是音量
+                
+                if (_panBeginPoint.x < self.bounds.size.width * 0.5) {
+                    _gestureType = DDPlayerGestureTypeBright;
+                }else {
+                    _gestureType = DDPlayerGestureTypeVolume;
+                }
+                
+            }else {// y > x 代表进度
+                _gestureType = DDPlayerGestureTypeProgress;
+            }
+        }
+    }else {
+        _gestureType = DDPlayerGestureTypeNone;
+    }
     
 }
 - (BOOL)isVisible {
     return self.playButton.alpha > 0;
 }
+#pragma mark - GestureRecognizer
+//手势改变亮度事件
+-(void)lightNeedChangedWithGesture:(UIPanGestureRecognizer *)press{
+    if (press.state == UIGestureRecognizerStateBegan || UIGestureRecognizerStatePossible) {
+        if (!self.brightView) {
+            self.brightView = [[DDBrightView alloc]init];
+        }
+        _currentLight = [UIScreen mainScreen].brightness;
+    }else if (press.state == UIGestureRecognizerStateChanged){
+        if([press locationInView:self].y > self.frame.size.height)return;
+        CGFloat percent = [self coverPercentWithPoint:[press translationInView:press.view]];
+        CGFloat newPercent;
+        newPercent = _currentLight - percent > 1 ? 1 : _currentLight - percent;
+        newPercent = _currentLight - percent < 0 ? 0 : _currentLight - percent;
+        [[UIScreen mainScreen] setBrightness:newPercent];
+        self.brightView.bright = newPercent;
+    }
+}
+//手势改变音量事件
+-(void)volumeNeedChangedWithGesture:(UIPanGestureRecognizer *)press{
+    if (press.state == UIGestureRecognizerStateBegan || UIGestureRecognizerStatePossible) {
+        MPVolumeView *volumeView = [[MPVolumeView alloc] init];
+        for (UIView *view in volumeView.subviews){
+            if (_volumeViewSlider) {
+                break;
+            }
+            if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+                _volumeViewSlider = (UISlider*)view;
+                break;
+            }
+        }
+        _currentVolume = _volumeViewSlider.value;
+    }else if (press.state == UIGestureRecognizerStateChanged){
+        if([press locationInView:self].y > self.frame.size.height)return;
+        CGFloat percent = [self coverPercentWithPoint:[press translationInView:press.view]];
+        CGFloat newPercent;
+        if (_currentVolume - percent > 1) {
+            newPercent = 1;
+        }else if (_currentVolume - percent < 0){
+            newPercent = 0;
+        }else{
+            newPercent = _currentVolume - percent;
+        }
+        newPercent = _currentVolume - percent > 1 ? 1 : _currentVolume - percent;
+        newPercent = _currentVolume - percent < 0 ? 0 : _currentVolume - percent;
+        _volumeViewSlider.value = newPercent;
+        if ([self.delegate respondsToSelector:@selector(playerControlView:chagedVolume:)]) {
+            [self.delegate playerControlView:self chagedVolume:newPercent];
+        }
+    }
+}
+-(CGFloat)coverPercentWithPoint:(CGPoint )point{
+    return point.y / self.frame.size.height;
+}
+
 
 #pragma mark - private method
 - (void)show {
@@ -147,6 +286,7 @@
     [self addGestureRecognizer:tap];
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+    pan.maximumNumberOfTouches = 1;
     pan.delegate = self;
     [self addGestureRecognizer:pan];
 }
@@ -168,6 +308,8 @@
 //        make.height.mas_equalTo(64);
 //    }];
 }
+
+
 
 #pragma mark - getter
 - (UIButton *)playButton {
@@ -200,8 +342,8 @@
         _topView = [[DDPlayerControlTopView alloc] init];
         __weak typeof(self) weakSelf = self;
         _topView.backTitleButtonClickBlock = ^(UIButton * _Nonnull button) {
-            if ([weakSelf.delegate respondsToSelector:@selector(videoPlayerContainerView:clickBackTitleButton:)]) {
-                [weakSelf.delegate videoPlayerContainerView:weakSelf clickBackTitleButton:button];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlViewplayerControlView:clickBackTitleButton:)]) {
+                [weakSelf.delegate playerControlView:weakSelf clickBackTitleButton:button];
             }
         };
     }

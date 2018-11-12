@@ -84,6 +84,10 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
         [self.delegate playerTimeChanged:currentTime];
     }
 }
+- (void)setVolume:(CGFloat)volume {
+    _volume = volume;
+    self.player.volume = volume;
+}
 #pragma mark - private
 - (void)updateStatus {
     dispatch_async(dispatch_get_main_queue(), ^{

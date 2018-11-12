@@ -105,7 +105,7 @@
 }
 
 #pragma mark - DDPlayerControlViewDelegate
-- (void)videoPlayerContainerView:(DDPlayerControlView *)containerView clickBackTitleButton:(UIButton *)button {
+- (void)playerControlView:(DDPlayerControlView *)containerView clickBackTitleButton:(UIButton *)button {
     if ([self.delegate respondsToSelector:@selector(playerViewClickBackTitleButton:)]) {
         [self.delegate playerViewClickBackTitleButton:button];
     }
@@ -116,6 +116,9 @@
     }else {
         [self.player play];
     }
+}
+- (void)videoPlayerContainerView:(DDPlayerControlView *)containerView chagedVolume:(CGFloat)volume {
+    self.player.volume = volume;
 }
 
 @end

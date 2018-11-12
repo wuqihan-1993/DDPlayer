@@ -18,32 +18,41 @@
 /**
  点击返回按钮
 
- @param containerView self
+ @param controlView self
  @param button 返回按钮
  */
-- (void)videoPlayerContainerView:(DDPlayerControlView*)containerView clickBackTitleButton:(UIButton*)button;
+- (void)playerControlView:(DDPlayerControlView*)controlView clickBackTitleButton:(UIButton*)button;
 /**
  点击播放按钮
 
- @param containerView self
+ @param controlView self
  @param button 播放按钮
  */
-- (void)videoPlayerContainerView:(DDPlayerControlView*)containerView clickPlayButton:(UIButton*)button;
+- (void)playerControlView:(DDPlayerControlView*)controlView clickPlayButton:(UIButton*)button;
 /**
  点击锁屏按钮
 
- @param containerView self
+ @param controlView self
  @param button 锁屏按钮
  */
-- (void)videoPlayerContainerView:(DDPlayerControlView*)containerView clicklockScreenButton:(UIButton*)button;
+- (void)playerControlView:(DDPlayerControlView*)controlView clicklockScreenButton:(UIButton*)button;
 
 /**
  点击截取按钮
 
- @param containerView self
+ @param controlView self
  @param button 截取按钮
  */
-- (void)videoPlayerContainerView:(DDPlayerControlView*)containerView clickCaptureButton:(UIButton*)button;
+- (void)playerControlView:(DDPlayerControlView*)controlView clickCaptureButton:(UIButton*)button;
+
+
+/**
+ 手势改变音量
+
+ @param controlView self
+ @param volume CGFloat
+ */
+- (void)playerControlView:(DDPlayerControlView*)controlView chagedVolume:(CGFloat)volume;
 
 @end
 
