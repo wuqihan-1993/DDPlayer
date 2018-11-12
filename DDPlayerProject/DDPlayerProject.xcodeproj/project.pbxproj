@@ -98,6 +98,7 @@
 		E38A464A2199129300944AC9 /* DDPlayer_Img_Bright@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Img_Bright@3x.png"; sourceTree = "<group>"; };
 		E38A464D219913B400944AC9 /* DDPlayer_Bg_Bright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_Bright@2x.png"; sourceTree = "<group>"; };
 		E38A464E219913B400944AC9 /* DDPlayer_Bg_Bright@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Bg_Bright@3x.png"; sourceTree = "<group>"; };
+		E38A46552199760B00944AC9 /* NSTimer+Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
 		E3AB58F72195596200CAEF38 /* DDPlayerProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDPlayerProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3AB58FA2195596200CAEF38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E3AB58FB2195596200CAEF38 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -297,6 +298,7 @@
 			children = (
 				E3AB5931219559FF00CAEF38 /* DDPlayer.h */,
 				E3AB5932219559FF00CAEF38 /* DDPlayer.m */,
+				E3AB594D21955D0800CAEF38 /* DDPlayerDelegate.h */,
 				E3AB599B2195731D00CAEF38 /* DDPlayerManager.h */,
 				E3AB599C2195731D00CAEF38 /* DDPlayerManager.m */,
 				E3AB592F219559DB00CAEF38 /* Other */,
@@ -335,9 +337,9 @@
 			children = (
 				E3AB594621955C8D00CAEF38 /* DDPlayerStatus.h */,
 				E3AB599E2195754600CAEF38 /* DDPlayerViewDelegate.h */,
-				E3AB594D21955D0800CAEF38 /* DDPlayerDelegate.h */,
 				E3AB594E21955D3900CAEF38 /* DDPlayerTool.h */,
 				E3AB594F21955D3900CAEF38 /* DDPlayerTool.m */,
+				E38A46552199760B00944AC9 /* NSTimer+Block.h */,
 			);
 			path = Other;
 			sourceTree = "<group>";

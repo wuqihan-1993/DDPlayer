@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPlayerControlBottomLandscapeView : DDPlayerControlBottomBaseView
 
+@property(nonatomic, copy) void(^forwardButtonClickBlock)(UIButton *);
+
+
 @end
 
 NS_ASSUME_NONNULL_END

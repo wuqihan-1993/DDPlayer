@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPlayerControlBottomBaseView : DDPlayerComponentBaseView
 
+@property(nonatomic, copy) void(^playButtonClickBlock)(UIButton *);
+
 @property(nonatomic, strong) UIImageView *maskView;
 @property(nonatomic, strong) UIButton *playButton;
 @property(nonatomic, strong) UISlider *slider;
 @property(nonatomic, strong) UILabel *timeLabel;
-
-- (void)playButtonClick:(UIButton *)button;
 
 @end
 

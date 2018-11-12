@@ -65,7 +65,9 @@
 }
 
 - (void)forwardButtonClick:(UIButton *)button {
-    
+    if (self.forwardButtonClickBlock) {
+        self.forwardButtonClickBlock(button);
+    }
 }
 - (void)rateButtonClick:(UIButton *)button {
     

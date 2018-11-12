@@ -152,10 +152,16 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 - (void)addPlayerObservers {
     __weak typeof(self) weakSelf = self;//下面会造成循环引用
     self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, NSEC_PER_SEC) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+        
         [weakSelf updateStatus];
+        
+        if (weakSelf.currentItem == nil) {
+            return ;
+        }
         if (CMTimeGetSeconds(weakSelf.currentItem.duration) <= 0) {
             return ;
         }
+        NSLog(@"%lf &*&*& %lf",CMTimeGetSeconds(time),CMTimeGetSeconds(weakSelf.currentItem.duration));
         weakSelf.duration = CMTimeGetSeconds(weakSelf.currentItem.duration);
         weakSelf.currentTime = CMTimeGetSeconds(time);
     }];

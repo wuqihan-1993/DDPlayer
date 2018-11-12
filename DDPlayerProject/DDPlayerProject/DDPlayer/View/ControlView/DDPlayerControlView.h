@@ -47,6 +47,14 @@
 
 
 /**
+ 点击下一首按钮
+
+ @param controlView self
+ @param button 下一首按钮
+ */
+- (void)playerControlView:(DDPlayerControlView*)controlView clickForwardButton:(UIButton*)button;
+
+/**
  手势改变音量
 
  @param controlView self

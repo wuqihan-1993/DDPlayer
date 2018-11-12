@@ -9,6 +9,7 @@
 #import "DDPlayerControlBottomBaseView.h"
 #import "Masonry.h"
 #import "DDPlayerTool.h"
+
 @interface DDPlayerControlBottomBaseView()
 
 @end
@@ -30,12 +31,17 @@
     [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
+
 }
 
 #pragma mark - action
 - (void)playButtonClick:(UIButton *)button {
-    
+    if (self.playButtonClickBlock) {
+        self.playButtonClickBlock(button);
+    }
 }
+
+#pragma mark - override method
 
 #pragma mark - getter
 - (UIImageView *)maskView {

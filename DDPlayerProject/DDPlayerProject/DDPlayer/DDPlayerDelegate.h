@@ -14,7 +14,19 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol DDPlayerDelegate <NSObject>
 
 @optional
+
+/**
+ 当前播放时间发生变化
+
+ @param currentTime 当前时间s
+ */
 - (void)playerTimeChanged:(double)currentTime;
+
+/**
+ 播放器状态发生变化
+
+ @param status DDPlayerStatus
+ */
 - (void)playerStatusChanged:(DDPlayerStatus)status;
 
 @end

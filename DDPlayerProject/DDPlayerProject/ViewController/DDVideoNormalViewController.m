@@ -151,5 +151,19 @@
 - (void)playerViewClickBackTitleButton:(UIButton *)button {
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (void)playerViewClickForwardButton:(UIButton *)button {
+    
+}
+- (void)playerViewClickLockScreenButton:(UIButton *)button {
+    
+}
+- (void)playerViewClickCaptureImageButton:(UIButton *)button {
+    
+}
+- (void)playerViewClickCaptureVideoButton:(UIButton *)button {
+    
+}
+
+#pragma mark - DDPlayerDelegate
 
 @end

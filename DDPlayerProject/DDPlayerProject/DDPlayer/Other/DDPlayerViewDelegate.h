@@ -12,7 +12,51 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol DDPlayerViewDelegate <NSObject>
 @optional
+
+/**
+ 返回按钮点击
+
+ @param button 返回按钮
+ */
 - (void)playerViewClickBackTitleButton:(UIButton *)button;
+
+
+/**
+ 下一节按钮点击
+
+ @param button 下一节按钮
+ */
+- (void)playerViewClickForwardButton:(UIButton *)button;
+
+/**
+ 截取视频按钮点击
+
+ @param button 截取视频按钮
+ */
+- (void)playerViewClickCaptureVideoButton:(UIButton *)button;
+
+/**
+ 截取图像按钮点击
+
+ @param button 截取图像按钮
+ */
+- (void)playerViewClickCaptureImageButton:(UIButton *)button;
+
+/**
+ 锁屏按钮点击
+
+ @param button 锁屏按钮
+ */
+- (void)playerViewClickLockScreenButton:(UIButton *)button;
+
+/**
+ 清晰度按钮点击
+
+ @param button 清晰度按钮
+ */
+- (void)playerViewClickClarityButton:(UIButton *)button;
+
+
 
 @end
 

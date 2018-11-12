@@ -12,6 +12,7 @@
 #import "DDPlayerControlTopView.h"
 #import "DDBrightView.h"
 #import <MediaPlayer/MPVolumeView.h>
+#import "NSTimer+Block.h"
 
 
 typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
@@ -21,6 +22,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     DDPlayerGestureTypeProgress
 };
 
+#define DD_CONTROLVIEW_SHOWTIME (5) //控制view显示多久会自动隐藏
 
 @interface DDPlayerControlView()<UIGestureRecognizerDelegate>
 {
@@ -33,6 +35,12 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 @property(nonatomic, strong) UIButton *lockScreenButton;
 @property(nonatomic, strong) UIButton *captureButton;
 @property(nonatomic, strong) DDPlayerControlTopView *topView;
+
+
+/**
+ 控制 view 显示隐藏的 计时器
+ */
+@property(nonatomic, strong) NSTimer *visibelTimer;
 
 /**
  亮度调节视图
@@ -54,6 +62,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 @implementation DDPlayerControlView
 
 - (void)dealloc {
+    [self closeVisibleTimer];
     if (self.brightView && [[UIApplication sharedApplication].keyWindow.subviews containsObject:self.brightView]) {
         [self.brightView removeFromSuperview];
     }
@@ -63,17 +72,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     if (self = [super initWithFrame:frame]) {
         [self initUI];
         [self initGestures];
-        MPVolumeView *volumeView = [[MPVolumeView alloc] init];
-        //初始化一次音量，否则第一次取到会变成0.0
-        for (UIView *view in volumeView.subviews){
-            if (_volumeViewSlider) {
-                break;
-            }
-            if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
-                _volumeViewSlider = (UISlider*)view;
-                break;
-            }
-        }
     }
     return self;
 }
@@ -98,6 +96,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         [self disimiss];
     }else {
         [self show];
+    
     }
 }
 - (void)panAction:(UIPanGestureRecognizer *)pan {
@@ -209,7 +208,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     return point.y / self.frame.size.height;
 }
 
-
 #pragma mark - private method
 - (void)show {
     NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
@@ -229,15 +227,52 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
             }
         }];
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self addVisibleTimer];
+    });
+    
 }
 - (void)disimiss {
     [UIView animateWithDuration:0.4 animations:^{
         for (UIView *subView in self.subviews) {
             subView.alpha = 0;
         }
+    } completion:^(BOOL finished) {
+        [self closeVisibleTimer];
     }];
     
 }
+#pragma mark timer
+- (void)addVisibleTimer {
+    
+    if (self.visibelTimer) {
+        [self.visibelTimer invalidate];
+        self.visibelTimer = nil;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    self.visibelTimer = [NSTimer dd_scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
+        [weakSelf doVisibleTimer];
+    }];
+
+    [[NSRunLoop currentRunLoop] addTimer:self.visibelTimer forMode:NSRunLoopCommonModes];
+
+}
+- (void)closeVisibleTimer {
+    if (self.visibelTimer != nil) {
+        [self.visibelTimer invalidate];
+        self.visibelTimer = nil;
+    }
+}
+- (void)doVisibleTimer {
+    NSLog(@"%s",__FUNCTION__);
+    if (self.isVisible) {
+        [self disimiss];
+    }
+}
+
+#pragma mark ui
 - (void)initUI{
     [self addSubview:self.topView];
     [self addSubview:self.playButton];
@@ -264,11 +299,11 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }];
     [self.bottomPortraitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);
-        make.height.mas_equalTo(60);
+        make.height.mas_equalTo(40);
     }];
     [self.bottomLandscapeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);
-        make.height.mas_equalTo(80);
+        make.height.mas_equalTo(70);
     }];
     
     if (UIDevice.currentDevice.orientation == UIDeviceOrientationPortrait) {
@@ -289,6 +324,18 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     pan.maximumNumberOfTouches = 1;
     pan.delegate = self;
     [self addGestureRecognizer:pan];
+    
+    //初始化一次音量，否则第一次取到会变成0.0
+    MPVolumeView *volumeView = [[MPVolumeView alloc] init];
+    for (UIView *view in volumeView.subviews){
+        if (_volumeViewSlider) {
+            break;
+        }
+        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+            _volumeViewSlider = (UISlider*)view;
+            break;
+        }
+    }
 }
 #pragma mark - override method
 - (void)updateUIWithPortrait {
@@ -304,9 +351,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     self.bottomLandscapeView.hidden = NO;
     self.bottomPortraitView.hidden = YES;
     [self show];
-//    [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.height.mas_equalTo(64);
-//    }];
 }
 
 
@@ -342,7 +386,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         _topView = [[DDPlayerControlTopView alloc] init];
         __weak typeof(self) weakSelf = self;
         _topView.backTitleButtonClickBlock = ^(UIButton * _Nonnull button) {
-            if ([weakSelf.delegate respondsToSelector:@selector(playerControlViewplayerControlView:clickBackTitleButton:)]) {
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickBackTitleButton:)]) {
                 [weakSelf.delegate playerControlView:weakSelf clickBackTitleButton:button];
             }
         };
@@ -352,12 +396,29 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 - (DDPlayerControlBottomPortraitView *)bottomPortraitView {
     if (!_bottomPortraitView) {
         _bottomPortraitView = [[DDPlayerControlBottomPortraitView alloc] init];
+        __weak typeof(self) weakSelf = self;
+        _bottomPortraitView.playButtonClickBlock = ^(UIButton * _Nonnull button) {
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickPlayButton:)]) {
+                [weakSelf.delegate playerControlView:weakSelf clickPlayButton:button];
+            }
+        };
     }
     return _bottomPortraitView;
 }
 - (DDPlayerControlBottomLandscapeView *)bottomLandscapeView {
     if (!_bottomLandscapeView) {
         _bottomLandscapeView = [[DDPlayerControlBottomLandscapeView alloc] init];
+        __weak typeof(self) weakSelf = self;
+        _bottomLandscapeView.playButtonClickBlock = ^(UIButton * _Nonnull button){
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickPlayButton:)]) {
+                [weakSelf.delegate playerControlView:weakSelf clickPlayButton:button];
+            }
+        };
+        _bottomLandscapeView.forwardButtonClickBlock = ^(UIButton * _Nonnull button) {
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickForwardButton:)]) {
+                [weakSelf.delegate playerControlView:weakSelf clickForwardButton:button];
+            }
+        };
     }
     return _bottomLandscapeView;
 }

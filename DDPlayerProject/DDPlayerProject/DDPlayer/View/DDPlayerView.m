@@ -67,6 +67,7 @@
 #pragma mark - DDPlayerDelegate
 - (void)playerTimeChanged:(double)currentTime {
     
+//    NSLog(@"%lf ***** %lf",currentTime,self.player.duration);
     CGFloat progressValue = currentTime / self.player.duration;
     self.playerControlView.bottomLandscapeView.slider.value = progressValue;
     self.playerControlView.bottomPortraitView.slider.value = progressValue;
@@ -110,15 +111,27 @@
         [self.delegate playerViewClickBackTitleButton:button];
     }
 }
-- (void)videoPlayerContainerView:(DDPlayerControlView *)containerView clickPlayButton:(UIButton *)button {
+- (void)playerControlView:(DDPlayerControlView *)containerView clickPlayButton:(UIButton *)button {
     if (button.isSelected) {
         [self.player pause];
     }else {
         [self.player play];
     }
 }
-- (void)videoPlayerContainerView:(DDPlayerControlView *)containerView chagedVolume:(CGFloat)volume {
+- (void)playerControlView:(DDPlayerControlView *)controlView clickForwardButton:(UIButton *)button {
+    if ([self.delegate respondsToSelector:@selector(playerViewClickForwardButton:)]) {
+        [self.delegate playerViewClickForwardButton:button];
+    }
+}
+- (void)playerControlView:(DDPlayerControlView *)controlView clicklockScreenButton:(UIButton *)button {
+    if ([self.delegate respondsToSelector:@selector(playerViewClickLockScreenButton:)]) {
+        [self.delegate playerViewClickLockScreenButton:button];
+    }
+}
+
+- (void)playerControlView:(DDPlayerControlView *)containerView chagedVolume:(CGFloat)volume {
     self.player.volume = volume;
 }
+
 
 @end
