@@ -10,7 +10,7 @@
 #import "DDPlayerView.h"
 #import "Masonry.h"
 
-@interface DDVideoNormalViewController ()<UITableViewDataSource,UITableViewDelegate,DDPlayerViewDelegate>
+@interface DDVideoNormalViewController ()<UITableViewDataSource,UITableViewDelegate,DDPlayerViewDelegate,DDPlayerDelegate>
 
 @property(nonatomic, strong) DDPlayerView *playerView;
 @property (nonatomic, strong) UITableView *tableView;
@@ -165,5 +165,8 @@
 }
 
 #pragma mark - DDPlayerDelegate
+- (void)playerPlayFinish {
+    
+}
 
 @end

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DDPlayer : NSObject
 
 @property(nonatomic, weak) id<DDPlayerDelegate> delegate;
+@property(nonatomic, weak) id<DDPlayerDelegate> delegateController;
 @property(nonatomic, strong) AVAsset *currentAsset;
 @property(nonatomic, strong) AVPlayerItem *currentItem;
 @property(nonatomic, assign, readonly) NSTimeInterval duration;

@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)playerStatusChanged:(DDPlayerStatus)status;
 
+
+/**
+ 播放器播放结束
+ */
+- (void)playerPlayFinish;
+
 @end
 
 NS_ASSUME_NONNULL_END

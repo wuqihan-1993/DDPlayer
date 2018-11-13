@@ -19,6 +19,8 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 @property(nonatomic, strong) AVPlayer *player;
 @property(nonatomic, strong) id timeObserver;
 
+@property(nonatomic, strong) NSMutableArray<DDPlayerDelegate> *delegates;
+
 @end
 
 @implementation DDPlayer
@@ -213,6 +215,9 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 - (void)playerItemDidPlayToEndTime:(NSNotification *)notification {
     if (self.currentItem != nil && notification.object == self.currentItem ) {
         self.status = DDPlayerStatusEnd;
+        if ([self.delegateController respondsToSelector:@selector(playerPlayFinish)]) {
+            [self.delegateController playerPlayFinish];
+        }
     }
 }
 

@@ -76,6 +76,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }
     return self;
 }
+
 #pragma mark - action
 - (void)playButtonClick:(UIButton *)button {
     if ([self.delegate respondsToSelector:@selector(playerControlView:clickPlayButton:)]) {
@@ -106,6 +107,9 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         [self show];
     
     }
+}
+- (void)tapDoubleAction:(UITapGestureRecognizer *)tap {
+    [self playButtonClick:self.playButton];
 }
 - (void)panAction:(UIPanGestureRecognizer *)pan {
     
@@ -160,63 +164,24 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }
     
 }
-- (BOOL)isVisible {
-    return self.lockScreenButton.alpha > 0;
+
+#pragma mark - override method
+- (void)updateUIWithPortrait {
+    self.captureButton.hidden = YES;
+    self.lockScreenButton.hidden = YES;
+    self.bottomLandscapeView.hidden = YES;
+    self.bottomPortraitView.hidden = NO;
+    [self show];
 }
-#pragma mark - GestureRecognizer
-//手势改变亮度事件
--(void)lightNeedChangedWithGesture:(UIPanGestureRecognizer *)press{
-    if (press.state == UIGestureRecognizerStateBegan || UIGestureRecognizerStatePossible) {
-        if (!self.brightView) {
-            self.brightView = [[DDBrightView alloc]init];
-        }
-        _currentLight = [UIScreen mainScreen].brightness;
-    }else if (press.state == UIGestureRecognizerStateChanged){
-        if([press locationInView:self].y > self.frame.size.height)return;
-        CGFloat percent = [self coverPercentWithPoint:[press translationInView:press.view]];
-        CGFloat newPercent;
-        newPercent = _currentLight - percent > 1 ? 1 : _currentLight - percent;
-        newPercent = _currentLight - percent < 0 ? 0 : _currentLight - percent;
-        [[UIScreen mainScreen] setBrightness:newPercent];
-        self.brightView.bright = newPercent;
-    }
+- (void)updateUIWithLandscape {
+    self.captureButton.hidden = NO;
+    self.lockScreenButton.hidden = NO;
+    self.bottomLandscapeView.hidden = NO;
+    self.bottomPortraitView.hidden = YES;
+    [self show];
 }
-//手势改变音量事件
--(void)volumeNeedChangedWithGesture:(UIPanGestureRecognizer *)press{
-    if (press.state == UIGestureRecognizerStateBegan || UIGestureRecognizerStatePossible) {
-        MPVolumeView *volumeView = [[MPVolumeView alloc] init];
-        for (UIView *view in volumeView.subviews){
-            if (_volumeViewSlider) {
-                break;
-            }
-            if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
-                _volumeViewSlider = (UISlider*)view;
-                break;
-            }
-        }
-        _currentVolume = _volumeViewSlider.value;
-    }else if (press.state == UIGestureRecognizerStateChanged){
-        if([press locationInView:self].y > self.frame.size.height)return;
-        CGFloat percent = [self coverPercentWithPoint:[press translationInView:press.view]];
-        CGFloat newPercent;
-        if (_currentVolume - percent > 1) {
-            newPercent = 1;
-        }else if (_currentVolume - percent < 0){
-            newPercent = 0;
-        }else{
-            newPercent = _currentVolume - percent;
-        }
-        newPercent = _currentVolume - percent > 1 ? 1 : _currentVolume - percent;
-        newPercent = _currentVolume - percent < 0 ? 0 : _currentVolume - percent;
-        _volumeViewSlider.value = newPercent;
-        if ([self.delegate respondsToSelector:@selector(playerControlView:chagedVolume:)]) {
-            [self.delegate playerControlView:self chagedVolume:newPercent];
-        }
-    }
-}
--(CGFloat)coverPercentWithPoint:(CGPoint )point{
-    return point.y / self.frame.size.height;
-}
+
+
 
 #pragma mark - private method
 - (void)show {
@@ -353,8 +318,17 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 - (void)initGestures {
     self.userInteractionEnabled = YES;
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-    [self addGestureRecognizer:tap];
+    UITapGestureRecognizer *tapSingle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    tapSingle.numberOfTapsRequired = 1;
+    tapSingle.numberOfTouchesRequired = 1;
+    [self addGestureRecognizer:tapSingle];
+    
+    UITapGestureRecognizer *tapDouble = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDoubleAction:)];
+    tapDouble.numberOfTapsRequired = 2;
+    tapDouble.numberOfTouchesRequired = 1;
+    [self addGestureRecognizer:tapDouble];
+    
+    [tapSingle requireGestureRecognizerToFail:tapDouble];
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
     pan.maximumNumberOfTouches = 1;
@@ -373,25 +347,68 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         }
     }
 }
-#pragma mark - override method
-- (void)updateUIWithPortrait {
-    self.captureButton.hidden = YES;
-    self.lockScreenButton.hidden = YES;
-    self.bottomLandscapeView.hidden = YES;
-    self.bottomPortraitView.hidden = NO;
-    [self show];
-}
-- (void)updateUIWithLandscape {
-    self.captureButton.hidden = NO;
-    self.lockScreenButton.hidden = NO;
-    self.bottomLandscapeView.hidden = NO;
-    self.bottomPortraitView.hidden = YES;
-    [self show];
-}
 
+#pragma mark - GestureRecognizer
+//手势改变亮度事件
+-(void)lightNeedChangedWithGesture:(UIPanGestureRecognizer *)press{
+    if (press.state == UIGestureRecognizerStateBegan || UIGestureRecognizerStatePossible) {
+        if (!self.brightView) {
+            self.brightView = [[DDBrightView alloc]init];
+        }
+        _currentLight = [UIScreen mainScreen].brightness;
+    }else if (press.state == UIGestureRecognizerStateChanged){
+        if([press locationInView:self].y > self.frame.size.height)return;
+        CGFloat percent = [self coverPercentWithPoint:[press translationInView:press.view]];
+        CGFloat newPercent;
+        newPercent = _currentLight - percent > 1 ? 1 : _currentLight - percent;
+        newPercent = _currentLight - percent < 0 ? 0 : _currentLight - percent;
+        [[UIScreen mainScreen] setBrightness:newPercent];
+        self.brightView.bright = newPercent;
+    }
+}
+//手势改变音量事件
+-(void)volumeNeedChangedWithGesture:(UIPanGestureRecognizer *)press{
+    if (press.state == UIGestureRecognizerStateBegan || UIGestureRecognizerStatePossible) {
+        MPVolumeView *volumeView = [[MPVolumeView alloc] init];
+        for (UIView *view in volumeView.subviews){
+            if (_volumeViewSlider) {
+                break;
+            }
+            if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+                _volumeViewSlider = (UISlider*)view;
+                break;
+            }
+        }
+        _currentVolume = _volumeViewSlider.value;
+    }else if (press.state == UIGestureRecognizerStateChanged){
+        if([press locationInView:self].y > self.frame.size.height)return;
+        CGFloat percent = [self coverPercentWithPoint:[press translationInView:press.view]];
+        CGFloat newPercent;
+        if (_currentVolume - percent > 1) {
+            newPercent = 1;
+        }else if (_currentVolume - percent < 0){
+            newPercent = 0;
+        }else{
+            newPercent = _currentVolume - percent;
+        }
+        newPercent = _currentVolume - percent > 1 ? 1 : _currentVolume - percent;
+        newPercent = _currentVolume - percent < 0 ? 0 : _currentVolume - percent;
+        _volumeViewSlider.value = newPercent;
+        if ([self.delegate respondsToSelector:@selector(playerControlView:chagedVolume:)]) {
+            [self.delegate playerControlView:self chagedVolume:newPercent];
+        }
+    }
+}
+-(CGFloat)coverPercentWithPoint:(CGPoint )point{
+    return point.y / self.frame.size.height;
+}
 
 
 #pragma mark - getter
+- (BOOL)isVisible {
+    return self.lockScreenButton.alpha > 0;
+}
+
 - (UIButton *)playButton {
     if (!_playButton) {
         _playButton = [UIButton buttonWithType:UIButtonTypeCustom];
