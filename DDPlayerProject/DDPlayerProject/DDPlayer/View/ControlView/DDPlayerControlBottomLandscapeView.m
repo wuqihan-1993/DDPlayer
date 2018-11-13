@@ -16,15 +16,22 @@
 @property(nonatomic, strong) UIButton *clarityButton;
 @property(nonatomic, strong) UIButton *chapterButton;
 
+@property(nonatomic, strong) NSArray *rates;
+
 @end
 
 @implementation DDPlayerControlBottomLandscapeView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self updateUI];
+        [self initialize];
     }
     return self;
+}
+
+- (void)initialize {
+    self.rates = @[@"1.0X",@"1.25X",@"1.5X"];
+    [self updateUI];
 }
 - (void)updateUI {
     
@@ -70,7 +77,15 @@
     }
 }
 - (void)rateButtonClick:(UIButton *)button {
-    
+    NSInteger index = [self.rates indexOfObject:button.titleLabel.text];
+    if (index + 1 >= self.rates.count) {
+        [button setTitle:self.rates.firstObject forState:UIControlStateNormal];
+    }else {
+        [button setTitle:self.rates[index + 1] forState:UIControlStateNormal];
+    }
+    if (self.rateButtonClickBlock) {
+        self.rateButtonClickBlock(button);
+    }
 }
 - (void)clarityButtonClick:(UIButton *)button {
     
@@ -92,7 +107,7 @@
 - (UIButton *)rateButton {
     if (!_rateButton) {
         _rateButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_rateButton setTitle:@"1.0X" forState:UIControlStateNormal];
+        [_rateButton setTitle:self.rates.firstObject forState:UIControlStateNormal];
         [_rateButton addTarget:self action:@selector(rateButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rateButton;

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy) void(^forwardButtonClickBlock)(UIButton *);
 @property(nonatomic, copy) void(^chapterButtonClickBlock)(UIButton *);
+@property(nonatomic, copy) void(^rateButtonClickBlock)(UIButton *);
 
 
 @end

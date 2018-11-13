@@ -184,6 +184,11 @@
         [self.delegate playerViewClickChapterButton:button];
     }
 }
+- (void)playerControlView:(DDPlayerControlView *)controlView clickRateButton:(UIButton *)button {
+    NSMutableString *buttonTitle = button.titleLabel.text.mutableCopy;
+    [buttonTitle deleteCharactersInRange:NSMakeRange(buttonTitle.length-1, 1)];
+    [self.player playImmediatelyAtRate:buttonTitle.floatValue];
+}
 
 - (void)playerControlView:(DDPlayerControlView *)containerView chagedVolume:(CGFloat)volume {
     self.player.volume = volume;

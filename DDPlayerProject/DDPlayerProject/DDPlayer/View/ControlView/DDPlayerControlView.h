@@ -64,6 +64,14 @@
 - (void)playerControlView:(DDPlayerControlView*)controlView clickChapterButton:(UIButton*)button;
 
 /**
+ 点击速率按钮
+
+ @param controlView self
+ @param button 速率按钮
+ */
+- (void)playerControlView:(DDPlayerControlView*)controlView clickRateButton:(UIButton*)button;
+
+/**
  手势改变音量
 
  @param controlView self

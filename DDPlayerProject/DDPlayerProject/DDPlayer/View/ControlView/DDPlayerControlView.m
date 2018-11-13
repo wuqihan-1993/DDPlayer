@@ -80,11 +80,13 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 
 #pragma mark - action
 - (void)playButtonClick:(UIButton *)button {
+    [self addVisibleTimer];
     if ([self.delegate respondsToSelector:@selector(playerControlView:clickPlayButton:)]) {
         [self.delegate playerControlView:self clickPlayButton:button];
     }
 }
 - (void)lockScreenButtonClick:(UIButton *)button {
+     [self addVisibleTimer];
     button.selected = !button.isSelected;
     self.isLockScreen = button.selected;
     if (self.isLockScreen) {
@@ -97,10 +99,10 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }
 }
 - (void)captureVideoButtonClick:(UIButton *)button {
-    
+     [self addVisibleTimer];
 }
 - (void)captureImageButtonClick:(UIButton *)button {
-    
+     [self addVisibleTimer];
 }
 - (void)tapAction:(UITapGestureRecognizer *)tap {
     if (self.isVisible) {
@@ -506,6 +508,11 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         _bottomLandscapeView.chapterButtonClickBlock = ^(UIButton * _Nonnull button) {
             if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickChapterButton:)]) {
                 [weakSelf.delegate playerControlView:weakSelf clickChapterButton:button];
+            }
+        };
+        _bottomLandscapeView.rateButtonClickBlock = ^(UIButton * _Nonnull button) {
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickRateButton:)]) {
+                [weakSelf.delegate playerControlView:weakSelf clickRateButton:button];
             }
         };
     }

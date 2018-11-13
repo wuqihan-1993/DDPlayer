@@ -61,6 +61,14 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 - (void)play {
     [self.player play];
 }
+- (void)playImmediatelyAtRate:(CGFloat)rate {
+    if (@available(iOS 10.0, *)) {
+        [self.player playImmediatelyAtRate:rate];
+    } else {
+        // Fallback on earlier versions
+        self.player.rate= rate;
+    }
+}
 - (void)pause {
     [self.player pause];
 }

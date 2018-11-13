@@ -29,8 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)replaceWithUrl:(NSURL*)url;
 - (void)stop;
 - (void)play;
+- (void)playImmediatelyAtRate:(CGFloat)rate;
 - (void)pause;
 - (void)seekToTime:(NSTimeInterval)time completionHandler:(void(^)(BOOL))completionHandler;
+
 
 @end
 
