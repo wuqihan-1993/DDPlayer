@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DDPlayerView : UIView
 
 @property(nonatomic, strong) DDPlayer *player;
-@property(nonatomic, weak) id<DDPlayerViewDelegate> delegate;
+@property(nonatomic, weak)   id<DDPlayerViewDelegate> delegate;
+@property(nonatomic, copy)   NSString *title;
 
 /**
  是否锁屏

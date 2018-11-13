@@ -193,7 +193,7 @@
  播放器准备好即将播放
  */
 - (void)playerReadyToPlay {
-    
+    self.playerView.title = @"DDPlayerProject";
 }
 /**
  播放器播放结束

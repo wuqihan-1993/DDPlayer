@@ -66,7 +66,7 @@
 #pragma mark - setter
 - (void)setTitle:(NSString *)title {
     _title = title;
-    [self.backTitleButton setTitle:title forState:UIControlStateNormal];
+    [self.backTitleButton setTitle:[NSString stringWithFormat:@"   %@",title] forState:UIControlStateNormal];
 }
 
 #pragma mark - getter
@@ -79,7 +79,9 @@
 - (UIButton *)backTitleButton {
     if (!_backTitleButton) {
         _backTitleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backTitleButton setTitle:@"\t\t" forState:UIControlStateNormal];
         [_backTitleButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Back"] forState:UIControlStateNormal];
+        [_backTitleButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Back"] forState:UIControlStateHighlighted];
         [_backTitleButton addTarget:self action:@selector(backTitleButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backTitleButton;

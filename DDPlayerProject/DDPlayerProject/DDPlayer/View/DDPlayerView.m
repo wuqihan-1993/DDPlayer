@@ -75,6 +75,9 @@
     [self.playerControlView dismiss];
     [containerView show];
 }
+- (void)setTitle:(NSString *)title {
+    self.playerControlView.topView.title = title;
+}
 
 #pragma mark - getter
 - (DDPlayer *)player {

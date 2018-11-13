@@ -9,7 +9,6 @@
 #import "DDPlayerControlView.h"
 #import "DDPlayerTool.h"
 #import "Masonry.h"
-#import "DDPlayerControlTopView.h"
 #import "DDBrightView.h"
 #import <MediaPlayer/MPVolumeView.h>
 #import "NSTimer+Block.h"
@@ -35,7 +34,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 @property(nonatomic, strong) UIButton *lockScreenButton;
 @property(nonatomic, strong) UIButton *captureImageButton;
 @property(nonatomic, strong) UIButton *captureVideoButton;
-@property(nonatomic, strong) DDPlayerControlTopView *topView;
 @property(nonatomic, assign) BOOL isLockScreen;
 
 
@@ -483,6 +481,8 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         _bottomPortraitView = [[DDPlayerControlBottomPortraitView alloc] init];
         __weak typeof(self) weakSelf = self;
         _bottomPortraitView.playButtonClickBlock = ^(UIButton * _Nonnull button) {
+            [weakSelf addVisibleTimer];
+            
             if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickPlayButton:)]) {
                 [weakSelf.delegate playerControlView:weakSelf clickPlayButton:button];
             }
@@ -495,23 +495,32 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         _bottomLandscapeView = [[DDPlayerControlBottomLandscapeView alloc] init];
         __weak typeof(self) weakSelf = self;
         _bottomLandscapeView.playButtonClickBlock = ^(UIButton * _Nonnull button){
+            [weakSelf addVisibleTimer];
+            
             if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickPlayButton:)]) {
                 [weakSelf.delegate playerControlView:weakSelf clickPlayButton:button];
             }
         };
         _bottomLandscapeView.forwardButtonClickBlock = ^(UIButton * _Nonnull button) {
+            [weakSelf addVisibleTimer];
+            
             if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickForwardButton:)]) {
                 [weakSelf.delegate playerControlView:weakSelf clickForwardButton:button];
             }
         };
         _bottomLandscapeView.chapterButtonClickBlock = ^(UIButton * _Nonnull button) {
+            [weakSelf addVisibleTimer];
+            
             if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickChapterButton:)]) {
                 [weakSelf.delegate playerControlView:weakSelf clickChapterButton:button];
             }
         };
         _bottomLandscapeView.rateButtonClickBlock = ^(UIButton * _Nonnull button) {
+            [weakSelf addVisibleTimer];
+            
             if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickRateButton:)]) {
                 [weakSelf.delegate playerControlView:weakSelf clickRateButton:button];
+                
             }
         };
     }

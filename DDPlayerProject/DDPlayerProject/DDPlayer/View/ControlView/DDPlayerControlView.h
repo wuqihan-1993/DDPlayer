@@ -9,6 +9,7 @@
 #import "DDPlayerComponentBaseView.h"
 #import "DDPlayerControlBottomPortraitView.h"
 #import "DDPlayerControlBottomLandscapeView.h"
+#import "DDPlayerControlTopView.h"
 
 @class DDPlayerControlView;
 
@@ -89,6 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIButton *playButton;
 @property(nonatomic, strong) DDPlayerControlBottomPortraitView *bottomPortraitView;
 @property(nonatomic, strong) DDPlayerControlBottomLandscapeView *bottomLandscapeView;
+@property(nonatomic, strong) DDPlayerControlTopView *topView;
 @property(nonatomic, assign, readonly) BOOL isLockScreen;
 
 - (void)show;
