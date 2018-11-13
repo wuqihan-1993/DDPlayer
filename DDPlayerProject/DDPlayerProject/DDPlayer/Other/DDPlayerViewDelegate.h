@@ -57,6 +57,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)playerViewClickClarityButton:(UIButton *)button;
 
 
+/**
+ 章节列表按钮点击
+
+ @param button 章节列表按钮
+ */
+- (void)playerViewClickChapterButton:(UIButton *)button;
+
+
 
 @end
 

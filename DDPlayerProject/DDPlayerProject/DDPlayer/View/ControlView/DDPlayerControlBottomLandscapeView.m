@@ -76,7 +76,9 @@
     
 }
 - (void)chapterButtonClick:(UIButton *)button {
-    
+    if (self.chapterButtonClickBlock) {
+        self.chapterButtonClickBlock(button);
+    }
 }
 
 - (UIButton *)forwardButton {

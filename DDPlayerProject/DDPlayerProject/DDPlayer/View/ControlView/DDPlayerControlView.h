@@ -54,6 +54,15 @@
  */
 - (void)playerControlView:(DDPlayerControlView*)controlView clickForwardButton:(UIButton*)button;
 
+
+/**
+ 点击章节列表按钮
+
+ @param controlView self
+ @param button 章节列表按钮
+ */
+- (void)playerControlView:(DDPlayerControlView*)controlView clickChapterButton:(UIButton*)button;
+
 /**
  手势改变音量
 
@@ -73,6 +82,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) DDPlayerControlBottomPortraitView *bottomPortraitView;
 @property(nonatomic, strong) DDPlayerControlBottomLandscapeView *bottomLandscapeView;
 @property(nonatomic, assign, readonly) BOOL isLockScreen;
+
+- (void)show;
+- (void)dismiss;
 
 @end
 

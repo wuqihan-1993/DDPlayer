@@ -104,7 +104,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 }
 - (void)tapAction:(UITapGestureRecognizer *)tap {
     if (self.isVisible) {
-        [self disimiss];
+        [self dismiss];
     }else {
         [self show];
     
@@ -223,7 +223,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     
 }
 
-- (void)disimiss {
+- (void)dismiss {
     NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
     [UIView animateWithDuration:0.4 animations:^{
         for (UIView *subView in views) {
@@ -274,7 +274,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 - (void)doVisibleTimer {
     NSLog(@"%s",__FUNCTION__);
     if (self.isVisible) {
-        [self disimiss];
+        [self dismiss];
     }
 }
 
@@ -501,6 +501,11 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         _bottomLandscapeView.forwardButtonClickBlock = ^(UIButton * _Nonnull button) {
             if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickForwardButton:)]) {
                 [weakSelf.delegate playerControlView:weakSelf clickForwardButton:button];
+            }
+        };
+        _bottomLandscapeView.chapterButtonClickBlock = ^(UIButton * _Nonnull button) {
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickChapterButton:)]) {
+                [weakSelf.delegate playerControlView:weakSelf clickChapterButton:button];
             }
         };
     }

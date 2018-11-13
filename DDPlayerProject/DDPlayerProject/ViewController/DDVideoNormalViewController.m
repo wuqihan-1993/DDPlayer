@@ -13,8 +13,9 @@
 @interface DDVideoNormalViewController ()<UITableViewDataSource,UITableViewDelegate,DDPlayerViewDelegate,DDPlayerDelegate>
 
 @property(nonatomic, strong) DDPlayerView *playerView;
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray *dataArray;
+@property(nonatomic, strong) UITableView *tableView;
+@property(nonatomic, strong) NSArray *dataArray;
+@property(nonnull, strong) UITableView *chapterView;
 
 @end
 
@@ -118,6 +119,15 @@
     }
     return _tableView;
 }
+- (UITableView *)chapterView {
+    if (!_chapterView) {
+        _chapterView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        [_chapterView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellId"];
+        _chapterView.dataSource = self;
+        _chapterView.delegate = self;
+    }
+    return _chapterView;
+}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -163,6 +173,9 @@
 }
 - (void)playerViewClickCaptureVideoButton:(UIButton *)button {
     
+}
+- (void)playerViewClickChapterButton:(UIButton *)button {
+    [self.playerView showSubViewFromRight:self.chapterView];
 }
 
 #pragma mark - DDPlayerDelegate

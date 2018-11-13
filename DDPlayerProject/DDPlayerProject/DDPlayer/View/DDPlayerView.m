@@ -9,11 +9,15 @@
 #import "DDPlayerView.h"
 #import "DDPlayer.h"
 #import "DDPlayerControlView.h"
-#import "Masonry.h"
+#import <Masonry.h>
+#import "UIImage+GIF.h"
+#import "DDPlayerContainerView.h"
+
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
 
 @property (nonatomic, strong) DDPlayerControlView *playerControlView;
+@property (nonatomic, strong) UIImageView *loadingView;
 
 @end
 
@@ -37,15 +41,39 @@
 }
 - (void)initUI {
     self.backgroundColor = UIColor.blackColor;
+    
     [self addSubview:self.playerControlView];
+    [self addSubview:self.loadingView];
+    
+    self.loadingView.hidden = YES;
+    
     [self.playerControlView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
+    }];
+    [self.loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.width.mas_equalTo(125);
+        make.height.mas_equalTo(20);
     }];
 }
 
 #pragma mark - override system method
 + (Class)layerClass {
     return AVPlayerLayer.class;
+}
+
+#pragma mark - public method
+- (void)showSubViewFromRight:(UIView *)subView {
+    
+    DDPlayerContainerView *containerView = [[DDPlayerContainerView alloc] initWithContentView:subView alignment:DDPlayerContainerAlignmentRight];
+    containerView.frame = CGRectMake(0, 0, DDPlayerTool.screenHeight, DDPlayerTool.screenWidth);
+    containerView.dismissBlock = ^{
+        [self.playerControlView show];
+    };
+    [self addSubview:containerView];
+    [self layoutIfNeeded];
+    [self.playerControlView dismiss];
+    [containerView show];
 }
 
 #pragma mark - getter
@@ -62,6 +90,16 @@
         _playerControlView.delegate = self;
     }
     return _playerControlView;
+}
+
+- (UIImageView *)loadingView {
+    if (!_loadingView) {
+        _loadingView = [[UIImageView alloc] init];
+        NSString *gifPath = [[NSBundle mainBundle] pathForResource:@"DDPlayer_Gif_Loading@2x" ofType:@"gif"];
+        NSData *gifData = [NSData dataWithContentsOfFile:gifPath];
+        _loadingView.image = [UIImage sd_imageWithGIFData:gifData];
+    }
+    return _loadingView;
 }
 - (BOOL)isLockScreen {
     return self.playerControlView.isLockScreen;
@@ -83,12 +121,17 @@
 }
 - (void)playerStatusChanged:(DDPlayerStatus)status {
     NSLog(@"%ld",(long)status);
+    
+    self.loadingView.hidden = (status != DDPlayerStatusBuffering);
+    
     switch (status) {
         case DDPlayerStatusPlaying:
         {
             self.playerControlView.playButton.selected = YES;
             self.playerControlView.bottomPortraitView.playButton.selected = YES;
             self.playerControlView.bottomLandscapeView.playButton.selected = YES;
+            
+          
         }
             break;
         case DDPlayerStatusPaused:
@@ -96,13 +139,18 @@
             self.playerControlView.playButton.selected = NO;
             self.playerControlView.bottomPortraitView.playButton.selected = NO;
             self.playerControlView.bottomLandscapeView.playButton.selected = NO;
+          
         }
             break;
         case DDPlayerStatusBuffering:
         {
-            
+     
         }
             break;
+        case DDPlayerStatusEnd:
+        {
+            
+        }
         default:
             break;
     }
@@ -129,6 +177,11 @@
 - (void)playerControlView:(DDPlayerControlView *)controlView clicklockScreenButton:(UIButton *)button {
     if ([self.delegate respondsToSelector:@selector(playerViewClickLockScreenButton:)]) {
         [self.delegate playerViewClickLockScreenButton:button];
+    }
+}
+- (void)playerControlView:(DDPlayerControlView *)controlView clickChapterButton:(UIButton *)button {
+    if ([self.delegate respondsToSelector:@selector(playerViewClickChapterButton:)]) {
+        [self.delegate playerViewClickChapterButton:button];
     }
 }
 
