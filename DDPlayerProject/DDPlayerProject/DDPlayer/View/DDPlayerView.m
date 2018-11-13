@@ -10,7 +10,7 @@
 #import "DDPlayer.h"
 #import "DDPlayerControlView.h"
 #import <Masonry.h>
-#import "UIImage+GIF.h"
+#import <SDWebImage/UIImage+GIF.h>
 #import "DDPlayerContainerView.h"
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
@@ -100,7 +100,7 @@
         _loadingView = [[UIImageView alloc] init];
         NSString *gifPath = [[NSBundle mainBundle] pathForResource:@"DDPlayer_Gif_Loading@2x" ofType:@"gif"];
         NSData *gifData = [NSData dataWithContentsOfFile:gifPath];
-        _loadingView.image = [UIImage sd_imageWithGIFData:gifData];
+        _loadingView.image = [UIImage sd_animatedGIFWithData:gifData];
     }
     return _loadingView;
 }

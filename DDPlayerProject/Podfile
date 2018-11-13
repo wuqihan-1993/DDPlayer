@@ -10,7 +10,7 @@ target 'DDPlayerProject' do
   # Pods for DDPlayerProject
 
   pod 'Masonry'
-#  pod 'SDWebImage'
+  pod 'SDWebImage'
 
   target 'DDPlayerProjectTests' do
     inherit! :search_paths
