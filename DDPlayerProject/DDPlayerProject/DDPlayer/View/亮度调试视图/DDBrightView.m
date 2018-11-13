@@ -92,7 +92,7 @@
     [self updateBrightnessLevel:self.bright];
 }
 - (void)updateBrightnessLevel:(CGFloat)brightnessLevel {
-    NSLog(@"%.6lf",brightnessLevel);
+//    NSLog(@"%.6lf",brightnessLevel);
     CGFloat stage = 1 / 15.0;
     NSInteger level = brightnessLevel / stage;
     for (int i = 0; i < self.tipArray.count; i++) {

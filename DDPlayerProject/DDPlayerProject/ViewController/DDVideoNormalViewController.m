@@ -80,6 +80,7 @@
 - (void)initPlayer {
     self.playerView = [[DDPlayerView alloc] init];
     self.playerView.delegate = self;
+    self.playerView.player.delegateController = self;
     [self.view addSubview:self.playerView];
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -165,8 +166,28 @@
 }
 
 #pragma mark - DDPlayerDelegate
+
+/**
+ 播放器时间发生变化
+
+ @param currentTime 当前时间(s)
+ */
+- (void)playerTimeChanged:(double)currentTime {
+    NSLog(@"%lf",currentTime);
+}
+
+/**
+ 播放器准备好即将播放
+ */
+- (void)playerReadyToPlay {
+    
+}
+/**
+ 播放器播放结束
+ */
 - (void)playerPlayFinish {
     
 }
+
 
 @end

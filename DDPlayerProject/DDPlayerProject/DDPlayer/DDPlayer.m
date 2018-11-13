@@ -85,6 +85,9 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     if ([self.delegate respondsToSelector:@selector(playerTimeChanged:)]) {
         [self.delegate playerTimeChanged:currentTime];
     }
+    if ([self.delegateController respondsToSelector:@selector(playerTimeChanged:)]) {
+        [self.delegateController playerTimeChanged:currentTime];
+    }
 }
 - (void)setVolume:(CGFloat)volume {
     _volume = volume;
@@ -163,7 +166,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
         if (CMTimeGetSeconds(weakSelf.currentItem.duration) <= 0) {
             return ;
         }
-        NSLog(@"%lf &*&*& %lf",CMTimeGetSeconds(time),CMTimeGetSeconds(weakSelf.currentItem.duration));
+//        NSLog(@"%lf &*&*& %lf",CMTimeGetSeconds(time),CMTimeGetSeconds(weakSelf.currentItem.duration));
         weakSelf.duration = CMTimeGetSeconds(weakSelf.currentItem.duration);
         weakSelf.currentTime = CMTimeGetSeconds(time);
     }];
@@ -190,7 +193,14 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     if (context == &observerContext) {
         
         if (self.currentItem == object && [keyPath isEqualToString:@"status"] && self.currentItem.status == AVPlayerItemStatusReadyToPlay) {
+            
             NSLog(@"AVPlayerItemStatusReadyToPlay");
+            if ([self.delegateController respondsToSelector:@selector(playerReadyToPlay)]) {
+                [self.delegateController playerReadyToPlay];
+            }
+            if ([self.delegate respondsToSelector:@selector(playerReadyToPlay)]) {
+                [self.delegate playerReadyToPlay];
+            }
             if (@available(iOS 10.0, *)) {
                 [self.player playImmediatelyAtRate:1.0];
             } else {

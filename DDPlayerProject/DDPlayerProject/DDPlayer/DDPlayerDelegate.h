@@ -29,7 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)playerStatusChanged:(DDPlayerStatus)status;
 
-
+/**
+ 播放器已经准备好播放，即将播放
+ */
+- (void)playerReadyToPlay;
 /**
  播放器播放结束
  */
