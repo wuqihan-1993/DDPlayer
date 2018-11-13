@@ -113,7 +113,7 @@
     self.playerControlView.bottomLandscapeView.slider.value = progressValue;
     self.playerControlView.bottomPortraitView.slider.value = progressValue;
     
-    NSString *timeStr = [NSString stringWithFormat:@"%@:%@",[DDPlayerTool translateTimeToString:currentTime],[DDPlayerTool translateTimeToString:self.player.duration]];
+    NSString *timeStr = [NSString stringWithFormat:@"%@/%@",[DDPlayerTool translateTimeToString:currentTime],[DDPlayerTool translateTimeToString:self.player.duration]];
     self.playerControlView.bottomLandscapeView.timeLabel.text = timeStr;
     self.playerControlView.bottomPortraitView.timeLabel.text = timeStr;
     
@@ -121,9 +121,9 @@
 }
 - (void)playerStatusChanged:(DDPlayerStatus)status {
     NSLog(@"%ld",(long)status);
-    
+
     self.loadingView.hidden = (status != DDPlayerStatusBuffering);
-    
+
     switch (status) {
         case DDPlayerStatusPlaying:
         {
@@ -144,7 +144,7 @@
             break;
         case DDPlayerStatusBuffering:
         {
-     
+            self.playerControlView.playButton.alpha = 0;
         }
             break;
         case DDPlayerStatusEnd:

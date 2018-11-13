@@ -318,8 +318,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         make.bottom.left.right.equalTo(self);
         make.height.mas_equalTo(70);
     }];
-    
-    if (UIDevice.currentDevice.orientation == UIDeviceOrientationPortrait) {
+    if (DDPlayerTool.isScreenPortrait) {
         [self updateUIWithPortrait];
     }else {
         [self updateUIWithLandscape];
