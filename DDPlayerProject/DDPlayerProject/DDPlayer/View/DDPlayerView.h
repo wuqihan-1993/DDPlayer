@@ -13,8 +13,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPlayerView : UIView
+
 @property(nonatomic, strong) DDPlayer *player;
 @property(nonatomic, weak) id<DDPlayerViewDelegate> delegate;
+
+/**
+ 是否锁屏
+ */
+@property(nonatomic, assign, readonly) BOOL isLockScreen;
 
 @end
 

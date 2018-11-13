@@ -35,6 +35,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 @property(nonatomic, strong) UIButton *lockScreenButton;
 @property(nonatomic, strong) UIButton *captureButton;
 @property(nonatomic, strong) DDPlayerControlTopView *topView;
+@property(nonatomic, assign) BOOL isLockScreen;
 
 
 /**
@@ -82,7 +83,14 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }
 }
 - (void)lockScreenButtonClick:(UIButton *)button {
-    if ([self.delegate respondsToSelector:@selector(playerControlView:clickCaptureButton:)]) {
+    button.selected = !button.isSelected;
+    self.isLockScreen = button.selected;
+    if (self.isLockScreen) {
+        [self dismissWithoutLockScreenButton];
+    }else {
+        [self show];
+    }
+    if ([self.delegate respondsToSelector:@selector(playerControlView:clicklockScreenButton:)]) {
         [self.delegate playerControlView:self clicklockScreenButton:button];
     }
 }
@@ -100,6 +108,8 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }
 }
 - (void)panAction:(UIPanGestureRecognizer *)pan {
+    
+    if (self.isLockScreen) return;
     
     if (pan.state == UIGestureRecognizerStatePossible || pan.state == UIGestureRecognizerStateBegan) {
         _panBeginPoint = [pan locationInView:self];
@@ -151,7 +161,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     
 }
 - (BOOL)isVisible {
-    return self.playButton.alpha > 0;
+    return self.lockScreenButton.alpha > 0;
 }
 #pragma mark - GestureRecognizer
 //手势改变亮度事件
@@ -211,7 +221,16 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 #pragma mark - private method
 - (void)show {
     NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
+    
+    if (self.isLockScreen) {
+        [views removeObject:self.captureButton];
+        [views removeObject:self.topView];
+        [views removeObject:self.bottomLandscapeView];
+        [views removeObject:self.playButton];
+    }
+    
     if (DDPlayerTool.isScreenPortrait) {
+        
         [views removeObject:self.bottomLandscapeView];
         [UIView animateWithDuration:0.4 animations:^{
             for (UIView *subView in views) {
@@ -233,15 +252,32 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     });
     
 }
+
 - (void)disimiss {
+    NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
     [UIView animateWithDuration:0.4 animations:^{
-        for (UIView *subView in self.subviews) {
+        for (UIView *subView in views) {
             subView.alpha = 0;
         }
     } completion:^(BOOL finished) {
         [self closeVisibleTimer];
     }];
     
+}
+
+/**
+ 点击锁屏按钮时调用。隐藏除了锁屏按钮之外的其他view
+ */
+- (void)dismissWithoutLockScreenButton {
+    NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
+    [views removeObject:self.lockScreenButton];
+    [UIView animateWithDuration:0.4 animations:^{
+        for (UIView *subView in views) {
+            subView.alpha = 0;
+        }
+    } completion:^(BOOL finished) {
+        [self addVisibleTimer];
+    }];
 }
 #pragma mark timer
 - (void)addVisibleTimer {
@@ -368,7 +404,8 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 - (UIButton *)lockScreenButton {
     if (!_lockScreenButton) {
         _lockScreenButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_lockScreenButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Lock"] forState:UIControlStateNormal];
+        [_lockScreenButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Lock"] forState:UIControlStateSelected];
+        [_lockScreenButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Unlock"] forState:UIControlStateNormal];
         [_lockScreenButton addTarget:self action:@selector(lockScreenButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _lockScreenButton;

@@ -63,6 +63,9 @@
     }
     return _playerControlView;
 }
+- (BOOL)isLockScreen {
+    return self.playerControlView.isLockScreen;
+}
 
 #pragma mark - DDPlayerDelegate
 - (void)playerTimeChanged:(double)currentTime {

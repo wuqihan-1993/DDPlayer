@@ -72,6 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIButton *playButton;
 @property(nonatomic, strong) DDPlayerControlBottomPortraitView *bottomPortraitView;
 @property(nonatomic, strong) DDPlayerControlBottomLandscapeView *bottomLandscapeView;
+@property(nonatomic, assign, readonly) BOOL isLockScreen;
 
 @end
 
