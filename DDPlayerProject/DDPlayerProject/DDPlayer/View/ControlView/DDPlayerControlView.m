@@ -33,7 +33,8 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 }
 
 @property(nonatomic, strong) UIButton *lockScreenButton;
-@property(nonatomic, strong) UIButton *captureButton;
+@property(nonatomic, strong) UIButton *captureImageButton;
+@property(nonatomic, strong) UIButton *captureVideoButton;
 @property(nonatomic, strong) DDPlayerControlTopView *topView;
 @property(nonatomic, assign) BOOL isLockScreen;
 
@@ -95,10 +96,11 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         [self.delegate playerControlView:self clicklockScreenButton:button];
     }
 }
-- (void)captureButtonClick:(UIButton *)button {
-    if ([self.delegate respondsToSelector:@selector(playerControlView:clickCaptureButton:)]) {
-        [self.delegate playerControlView:self clickCaptureButton:button];
-    }
+- (void)captureVideoButtonClick:(UIButton *)button {
+    
+}
+- (void)captureImageButtonClick:(UIButton *)button {
+    
 }
 - (void)tapAction:(UITapGestureRecognizer *)tap {
     if (self.isVisible) {
@@ -167,14 +169,16 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 
 #pragma mark - override method
 - (void)updateUIWithPortrait {
-    self.captureButton.hidden = YES;
+    self.captureVideoButton.hidden = YES;
+    self.captureImageButton.hidden = YES;
     self.lockScreenButton.hidden = YES;
     self.bottomLandscapeView.hidden = YES;
     self.bottomPortraitView.hidden = NO;
     [self show];
 }
 - (void)updateUIWithLandscape {
-    self.captureButton.hidden = NO;
+    self.captureVideoButton.hidden = NO;
+    self.captureImageButton.hidden = NO;
     self.lockScreenButton.hidden = NO;
     self.bottomLandscapeView.hidden = NO;
     self.bottomPortraitView.hidden = YES;
@@ -188,7 +192,8 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
     
     if (self.isLockScreen) {
-        [views removeObject:self.captureButton];
+        [views removeObject:self.captureVideoButton];
+        [views removeObject:self.captureImageButton];
         [views removeObject:self.topView];
         [views removeObject:self.bottomLandscapeView];
         [views removeObject:self.playButton];
@@ -277,7 +282,8 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 - (void)initUI{
     [self addSubview:self.topView];
     [self addSubview:self.playButton];
-    [self addSubview:self.captureButton];
+    [self addSubview:self.captureVideoButton];
+    [self addSubview:self.captureImageButton];
     [self addSubview:self.lockScreenButton];
     [self addSubview:self.bottomPortraitView];
     [self addSubview:self.bottomLandscapeView];
@@ -290,9 +296,13 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
     }];
-    [self.captureButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.captureImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? -20-34 : -20);
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self).mas_offset(-28);
+    }];
+    [self.captureVideoButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? -20-34 : -20);
+        make.centerY.equalTo(self).mas_offset(28);
     }];
     [self.lockScreenButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? 20+34 : 20);
@@ -321,13 +331,15 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     UITapGestureRecognizer *tapSingle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     tapSingle.numberOfTapsRequired = 1;
     tapSingle.numberOfTouchesRequired = 1;
+    tapSingle.delegate = self;
     [self addGestureRecognizer:tapSingle];
     
     UITapGestureRecognizer *tapDouble = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDoubleAction:)];
     tapDouble.numberOfTapsRequired = 2;
     tapDouble.numberOfTouchesRequired = 1;
+    tapDouble.delegate = self;
     [self addGestureRecognizer:tapDouble];
-    
+
     [tapSingle requireGestureRecognizerToFail:tapDouble];
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
@@ -402,6 +414,15 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 -(CGFloat)coverPercentWithPoint:(CGPoint )point{
     return point.y / self.frame.size.height;
 }
+#pragma mark UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    if (touch.view == self) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 
 
 #pragma mark - getter
@@ -427,14 +448,23 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }
     return _lockScreenButton;
 }
-- (UIButton *)captureButton {
-    if (!_captureButton) {
-        _captureButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_captureButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Capture"] forState:UIControlStateNormal];
-        [_captureButton addTarget:self action:@selector(captureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+- (UIButton *)captureImageButton {
+    if (!_captureImageButton) {
+        _captureImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_captureImageButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_captureImage"] forState:UIControlStateNormal];
+        [_captureImageButton addTarget:self action:@selector(captureImageButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _captureButton;
+    return _captureImageButton;
 }
+- (UIButton *)captureVideoButton {
+    if (!_captureVideoButton) {
+        _captureVideoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_captureVideoButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_captureVideo"] forState:UIControlStateNormal];
+        [_captureVideoButton addTarget:self action:@selector(captureVideoButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _captureVideoButton;
+}
+
 - (DDPlayerControlTopView *)topView {
     if (!_topView) {
         _topView = [[DDPlayerControlTopView alloc] init];

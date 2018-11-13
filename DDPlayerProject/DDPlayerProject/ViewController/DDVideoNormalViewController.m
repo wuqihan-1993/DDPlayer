@@ -173,7 +173,7 @@
  @param currentTime 当前时间(s)
  */
 - (void)playerTimeChanged:(double)currentTime {
-    NSLog(@"%lf",currentTime);
+//    NSLog(@"%lf",currentTime);
 }
 
 /**
