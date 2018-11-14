@@ -121,9 +121,7 @@
 #pragma mark - DDPlayerDelegate
 - (void)playerTimeChanged:(double)currentTime {
     
-//    NSLog(@"%lf ***** %lf",currentTime,self.player.duration);
-    
-    if (self.playerControlView.isDragingSlider) {
+    if (self.playerControlView.isDragingSlider || self.player.isSeekingToTime) {
         return;
     }else {
         CGFloat progressValue = currentTime / self.player.duration;

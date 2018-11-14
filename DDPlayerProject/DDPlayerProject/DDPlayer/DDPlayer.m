@@ -15,6 +15,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 @property(nonatomic, assign) NSTimeInterval duration;
 @property(nonatomic, assign) NSTimeInterval currentTime;
 @property(nonatomic, assign) DDPlayerStatus status;
+@property(nonatomic, assign) BOOL isSeekingToTime;
 
 @property(nonatomic, strong) AVPlayer *player;
 @property(nonatomic, strong) id timeObserver;
@@ -73,9 +74,17 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     [self.player pause];
 }
 - (void)seekToTime:(NSTimeInterval)time completionHandler:(void (^)(BOOL))completionHandler {
+    
+    self.isSeekingToTime = YES;
+    
     BOOL beforeIsPause = (self.status == DDPlayerStatusPaused);
     [self pause];
-    [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC) completionHandler:completionHandler];
+    [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
+        self.isSeekingToTime = NO;
+        if (completionHandler) {
+            completionHandler(finished);
+        }
+    }];
     if (!beforeIsPause) {
         [self play];
     }
