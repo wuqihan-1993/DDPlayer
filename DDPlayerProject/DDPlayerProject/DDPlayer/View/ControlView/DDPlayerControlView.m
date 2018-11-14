@@ -260,7 +260,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }
     
     __weak typeof(self) weakSelf = self;
-    self.visibelTimer = [NSTimer dd_scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
+    self.visibelTimer = [NSTimer dd_scheduledTimerWithTimeInterval:DD_CONTROLVIEW_SHOWTIME repeats:NO block:^(NSTimer * _Nonnull timer) {
         [weakSelf doVisibleTimer];
     }];
 
@@ -426,7 +426,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     return self.lockScreenButton.alpha > 0;
 }
 - (BOOL)isDragingSlider {
-    return self.bottomPortraitView.isDraging;
+    return self.bottomPortraitView.isDraging || self.bottomLandscapeView.isDraging;
 }
 
 - (UIButton *)lockScreenButton {

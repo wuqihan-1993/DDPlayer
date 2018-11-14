@@ -27,6 +27,7 @@
     }
     
     UIImage *image = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
     return image;
 }
 

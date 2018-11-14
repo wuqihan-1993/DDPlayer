@@ -13,6 +13,7 @@
 #import <SDWebImage/UIImage+GIF.h>
 #import "DDPlayerContainerView.h"
 #import "DDPlayerDragProgressPortraitView.h"
+#import "DDPlayerDragProgressLandscapeView.h"
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) DDPlayerControlView *playerControlView;
 @property (nonatomic, strong) UIImageView *loadingView;
 @property (nonatomic, strong) DDPlayerDragProgressPortraitView *dragProgressPortraitView;
+@property (nonatomic, strong) DDPlayerDragProgressLandscapeView *dragProgressLandscapeView;
 
 @end
 
@@ -113,6 +115,12 @@
     }
     return _dragProgressPortraitView;
 }
+- (DDPlayerDragProgressLandscapeView *)dragProgressLandscapeView {
+    if (!_dragProgressLandscapeView) {
+        _dragProgressLandscapeView = [[DDPlayerDragProgressLandscapeView alloc] init];
+    }
+    return _dragProgressLandscapeView;
+}
 
 - (BOOL)isLockScreen {
     return self.playerControlView.isLockScreen;
@@ -120,6 +128,7 @@
 
 #pragma mark - DDPlayerDelegate
 - (void)playerTimeChanged:(double)currentTime {
+    
     
     if (self.playerControlView.isDragingSlider || self.player.isSeekingToTime) {
         return;
@@ -210,11 +219,18 @@
 }
 
 - (void)playerControlView:(DDPlayerControlView *)controlView beginDragSlider:(UISlider *)slider {
-    NSLog(@"%s",__FUNCTION__);
     
-    [self addSubview:self.dragProgressPortraitView];
-    [self insertSubview:self.dragProgressPortraitView belowSubview:self.playerControlView];
-    [self.dragProgressPortraitView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *dragProgressView;
+    if (DDPlayerTool.isScreenPortrait) {
+        dragProgressView = self.dragProgressPortraitView;
+    }else {
+        self.dragProgressLandscapeView.asset = self.player.currentAsset;
+        dragProgressView = self.dragProgressLandscapeView;
+    }
+    
+    [self addSubview:dragProgressView];
+    [self insertSubview:dragProgressView belowSubview:self.playerControlView];
+    [dragProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
     [self layoutIfNeeded];
@@ -222,12 +238,19 @@
     
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView DragingSlider:(UISlider *)slider {
+    
     [self.dragProgressPortraitView setProgress:slider.value duration:self.player.duration];
+    [self.dragProgressLandscapeView setProgress:slider.value duration:self.player.duration];
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView endDragSlider:(UISlider *)slider {
-    NSLog(@"%s",__FUNCTION__);
-    [self.dragProgressPortraitView removeFromSuperview];
-    [self.player seekToTime:self.player.duration * slider.value completionHandler:nil];
+
+    if (DDPlayerTool.isScreenPortrait) {
+        [self.dragProgressPortraitView removeFromSuperview];
+       
+    }else {
+        [self.dragProgressLandscapeView removeFromSuperview];
+    }
+     [self.player seekToTime:self.player.duration * slider.value completionHandler:nil];
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView tapSlider:(UISlider *)slider {
     [self.player seekToTime:(self.player.duration * slider.value) completionHandler:nil];

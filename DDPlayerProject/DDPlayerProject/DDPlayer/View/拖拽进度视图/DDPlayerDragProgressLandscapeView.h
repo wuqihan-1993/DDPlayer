@@ -8,9 +8,14 @@
 
 #import "DDPlayerDragProgressBaseView.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
 
+@class AVAsset;
+
 @interface DDPlayerDragProgressLandscapeView : DDPlayerDragProgressBaseView
+
+@property (nonatomic, strong) AVAsset *asset;
 
 @end
 

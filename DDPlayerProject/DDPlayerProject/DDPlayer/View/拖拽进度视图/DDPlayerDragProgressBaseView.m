@@ -32,6 +32,10 @@
     
 }
 
+- (void)setProgress:(CGFloat)progress duration:(CGFloat)duration {
+    
+}
+
 - (UILabel *)timeLabel {
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc] init];

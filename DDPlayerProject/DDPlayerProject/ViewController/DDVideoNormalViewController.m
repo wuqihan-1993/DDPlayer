@@ -142,12 +142,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    //网络视频
     NSString *url = self.dataArray[indexPath.row][@"url"];
     //    DDVideoLineModel *lineModel = [DDVideoLineModel new];
     //    lineModel.lineUrl = url;
-    
+
     [self.playerView.player replaceWithUrl:[NSURL URLWithString:url]];
     [self.playerView.player play];
+    
+    //播放本地视频
+//    [self.playerView.player replaceWithUrl:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:@"play.mp4" ofType:nil]]];
 }
 
 #pragma mark data

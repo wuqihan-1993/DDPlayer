@@ -13,6 +13,7 @@
 		E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */; };
 		E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AD219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m */; };
 		E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */; };
+		E35817B4219BF62C00BD3282 /* play.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E35817B3219BF62C00BD3282 /* play.mp4 */; };
 		E38A46482199120A00944AC9 /* DDBrightView.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A46472199120A00944AC9 /* DDBrightView.m */; };
 		E38A464B2199129300944AC9 /* DDPlayer_Img_Bright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38A46492199129300944AC9 /* DDPlayer_Img_Bright@2x.png */; };
 		E38A464C2199129300944AC9 /* DDPlayer_Img_Bright@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38A464A2199129300944AC9 /* DDPlayer_Img_Bright@3x.png */; };
@@ -109,6 +110,7 @@
 		E35817AD219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerDragProgressPortraitView.m; sourceTree = "<group>"; };
 		E35817AF219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressLandscapeView.h; sourceTree = "<group>"; };
 		E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerDragProgressLandscapeView.m; sourceTree = "<group>"; };
+		E35817B3219BF62C00BD3282 /* play.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = play.mp4; sourceTree = "<group>"; };
 		E38A46462199120A00944AC9 /* DDBrightView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDBrightView.h; sourceTree = "<group>"; };
 		E38A46472199120A00944AC9 /* DDBrightView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDBrightView.m; sourceTree = "<group>"; };
 		E38A46492199129300944AC9 /* DDPlayer_Img_Bright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Img_Bright@2x.png"; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 		E3AB58F92195596200CAEF38 /* DDPlayerProject */ = {
 			isa = PBXGroup;
 			children = (
+				E35817B3219BF62C00BD3282 /* play.mp4 */,
 				E3AB592C219559C700CAEF38 /* DDPlayer */,
 				E3AB593421955A6800CAEF38 /* ViewController */,
 				E3AB58FA2195596200CAEF38 /* AppDelegate.h */,
@@ -608,6 +611,7 @@
 				E3B5D8BA219A95F900F9FC1D /* DDPlayer_Btn_Unlock@3x.png in Resources */,
 				E3AB598921955F3300CAEF38 /* DDPlayer_Btn_Capture@2x.png in Resources */,
 				E3AB599621955F3300CAEF38 /* DDPlayer_Icon_ProgressThumb_sel@3x.png in Resources */,
+				E35817B4219BF62C00BD3282 /* play.mp4 in Resources */,
 				E3AB59072195596400CAEF38 /* LaunchScreen.storyboard in Resources */,
 				E3AB598221955F3300CAEF38 /* DDPlayer_Btn_BottomPortraitPlay@2x.png in Resources */,
 				E3AB599421955F3300CAEF38 /* DDPlayer_Btn_CenterPlay@3x.png in Resources */,
