@@ -80,7 +80,7 @@
         [_slider setMinimumTrackTintColor:[DDPlayerTool colorWithRGBHex:0x61d8bb]];
         [_slider addTarget:self action:@selector(sliderBeginDraging:) forControlEvents:UIControlEventTouchDown];
         [_slider addTarget:self action:@selector(sliderDraging:) forControlEvents:UIControlEventValueChanged];
-        [_slider addTarget:self action:@selector(sliderEndDraging:) forControlEvents:UIControlEventTouchUpInside];
+        [_slider addTarget:self action:@selector(sliderEndDraging:) forControlEvents:UIControlEventTouchCancel | UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
         _slider.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sliderTap:)];
         [_slider addGestureRecognizer:tap];
@@ -95,6 +95,8 @@
  @param tap tap
  */
 - (void)sliderTap:(UITapGestureRecognizer*)tap {
+    
+    if (self.isDraging ) return;
    
     CGPoint tapPoint = [tap locationInView:tap.view];
     CGFloat percent = tapPoint.x / tap.view.bounds.size.width;

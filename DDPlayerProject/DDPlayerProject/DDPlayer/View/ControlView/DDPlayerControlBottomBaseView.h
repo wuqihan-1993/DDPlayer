@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UISlider *slider;
 @property(nonatomic, strong) UILabel *timeLabel;
 
+@property(nonatomic, assign, readonly) BOOL isBeiginDraging;
+@property(nonatomic, assign, readonly) BOOL isDraging;
+
 @end
 
 NS_ASSUME_NONNULL_END

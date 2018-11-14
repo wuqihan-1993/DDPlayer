@@ -12,12 +12,14 @@
 #import <Masonry.h>
 #import <SDWebImage/UIImage+GIF.h>
 #import "DDPlayerContainerView.h"
+#import "DDPlayerDragProgressPortraitView.h"
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
 
 @property (nonatomic, strong) DDPlayerControlView *playerControlView;
 @property (nonatomic, strong) UIImageView *loadingView;
+@property (nonatomic, strong) DDPlayerDragProgressPortraitView *dragProgressPortraitView;
 
 @end
 
@@ -104,6 +106,14 @@
     }
     return _loadingView;
 }
+
+- (DDPlayerDragProgressPortraitView *)dragProgressPortraitView {
+    if (!_dragProgressPortraitView) {
+        _dragProgressPortraitView = [[DDPlayerDragProgressPortraitView alloc] init];
+    }
+    return _dragProgressPortraitView;
+}
+
 - (BOOL)isLockScreen {
     return self.playerControlView.isLockScreen;
 }
@@ -112,9 +122,16 @@
 - (void)playerTimeChanged:(double)currentTime {
     
 //    NSLog(@"%lf ***** %lf",currentTime,self.player.duration);
-    CGFloat progressValue = currentTime / self.player.duration;
-    self.playerControlView.bottomLandscapeView.slider.value = progressValue;
-    self.playerControlView.bottomPortraitView.slider.value = progressValue;
+    
+    if (self.playerControlView.isDragingSlider) {
+        return;
+    }else {
+        CGFloat progressValue = currentTime / self.player.duration;
+        self.playerControlView.bottomLandscapeView.slider.value = progressValue;
+        self.playerControlView.bottomPortraitView.slider.value = progressValue;
+    }
+    
+    
     
     NSString *timeStr = [NSString stringWithFormat:@"%@/%@",[DDPlayerTool translateTimeToString:currentTime],[DDPlayerTool translateTimeToString:self.player.duration]];
     self.playerControlView.bottomLandscapeView.timeLabel.text = timeStr;
@@ -196,15 +213,26 @@
 
 - (void)playerControlView:(DDPlayerControlView *)controlView beginDragSlider:(UISlider *)slider {
     NSLog(@"%s",__FUNCTION__);
+    
+    [self addSubview:self.dragProgressPortraitView];
+    [self insertSubview:self.dragProgressPortraitView belowSubview:self.playerControlView];
+    [self.dragProgressPortraitView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
+    [self layoutIfNeeded];
+    
+    
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView DragingSlider:(UISlider *)slider {
-    NSLog(@"%s",__FUNCTION__);
+    [self.dragProgressPortraitView setProgress:slider.value duration:self.player.duration];
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView endDragSlider:(UISlider *)slider {
     NSLog(@"%s",__FUNCTION__);
+    [self.dragProgressPortraitView removeFromSuperview];
+    [self.player seekToTime:self.player.duration * slider.value completionHandler:nil];
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView tapSlider:(UISlider *)slider {
-    NSLog(@"%s",__FUNCTION__);
+    [self.player seekToTime:(self.player.duration * slider.value) completionHandler:nil];
 }
 
 

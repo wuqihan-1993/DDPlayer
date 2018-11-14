@@ -95,9 +95,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) DDPlayerControlBottomPortraitView *bottomPortraitView;
 @property(nonatomic, strong) DDPlayerControlBottomLandscapeView *bottomLandscapeView;
 @property(nonatomic, strong) DDPlayerControlTopView *topView;
+/**
+ 是否锁屏
+ */
 @property(nonatomic, assign, readonly) BOOL isLockScreen;
 
+/**
+ 是否正在拖拽进度
+ */
+@property(nonatomic, assign, readonly) BOOL isDragingSlider;
+
+
+/**
+ 显示控制视图
+ */
 - (void)show;
+
+/**
+ 隐藏控制视图
+ */
 - (void)dismiss;
 
 @end

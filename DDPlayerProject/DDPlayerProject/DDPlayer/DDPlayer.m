@@ -73,7 +73,12 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     [self.player pause];
 }
 - (void)seekToTime:(NSTimeInterval)time completionHandler:(void (^)(BOOL))completionHandler {
+    BOOL beforeIsPause = (self.status == DDPlayerStatusPaused);
+    [self pause];
     [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC) completionHandler:completionHandler];
+    if (!beforeIsPause) {
+        [self play];
+    }
 }
 
 - (void)bindToPlayerLayer:(AVPlayerLayer *)layer {
