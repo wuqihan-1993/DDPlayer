@@ -111,7 +111,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }
 }
 - (void)tapDoubleAction:(UITapGestureRecognizer *)tap {
-    [self playButtonClick:self.playButton];
+   
 }
 - (void)panAction:(UIPanGestureRecognizer *)pan {
     
@@ -196,7 +196,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         [views removeObject:self.captureImageButton];
         [views removeObject:self.topView];
         [views removeObject:self.bottomLandscapeView];
-        [views removeObject:self.playButton];
+  
     }
     
     if (DDPlayerTool.isScreenPortrait) {
@@ -281,7 +281,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 #pragma mark ui
 - (void)initUI{
     [self addSubview:self.topView];
-    [self addSubview:self.playButton];
     [self addSubview:self.captureVideoButton];
     [self addSubview:self.captureImageButton];
     [self addSubview:self.lockScreenButton];
@@ -291,10 +290,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self);
         make.height.mas_equalTo(60);
-    }];
-    
-    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
     }];
     [self.captureImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? -20-34 : -20);
@@ -429,15 +424,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     return self.lockScreenButton.alpha > 0;
 }
 
-- (UIButton *)playButton {
-    if (!_playButton) {
-        _playButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_CenterPlay"] forState:UIControlStateNormal];
-        [_playButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_CenterPause"] forState:UIControlStateSelected];
-        [_playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _playButton;
-}
 - (UIButton *)lockScreenButton {
     if (!_lockScreenButton) {
         _lockScreenButton = [UIButton buttonWithType:UIButtonTypeCustom];

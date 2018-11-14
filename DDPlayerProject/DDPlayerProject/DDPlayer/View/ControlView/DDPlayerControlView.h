@@ -87,7 +87,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DDPlayerControlView : DDPlayerComponentBaseView
 
 @property (nonatomic, weak) id<DDPlayerControlViewDelegate> delegate;
-@property(nonatomic, strong) UIButton *playButton;
 @property(nonatomic, strong) DDPlayerControlBottomPortraitView *bottomPortraitView;
 @property(nonatomic, strong) DDPlayerControlBottomLandscapeView *bottomLandscapeView;
 @property(nonatomic, strong) DDPlayerControlTopView *topView;

@@ -329,14 +329,14 @@
 		E3AB592D219559D100CAEF38 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E38A4645219911FA00944AC9 /* 亮度调试视图 */,
+				E3AB594821955C8D00CAEF38 /* DDPlayerView.h */,
+				E3AB594721955C8D00CAEF38 /* DDPlayerView.m */,
 				E3AB595821955DA100CAEF38 /* DDPlayerComponentBaseView.h */,
 				E3AB595721955DA100CAEF38 /* DDPlayerComponentBaseView.m */,
 				E3AB596321955DAC00CAEF38 /* ControlView */,
-				E3AB599F21957A2400CAEF38 /* 封面 */,
-				E3AB594821955C8D00CAEF38 /* DDPlayerView.h */,
-				E3AB594721955C8D00CAEF38 /* DDPlayerView.m */,
 				E3B5D95F219AC8A700F9FC1D /* ContentView */,
+				E38A4645219911FA00944AC9 /* 亮度调试视图 */,
+				E3AB599F21957A2400CAEF38 /* 封面 */,
 			);
 			path = View;
 			sourceTree = "<group>";

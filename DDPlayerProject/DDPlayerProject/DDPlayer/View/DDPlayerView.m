@@ -130,7 +130,6 @@
     switch (status) {
         case DDPlayerStatusPlaying:
         {
-            self.playerControlView.playButton.selected = YES;
             self.playerControlView.bottomPortraitView.playButton.selected = YES;
             self.playerControlView.bottomLandscapeView.playButton.selected = YES;
             
@@ -139,7 +138,6 @@
             break;
         case DDPlayerStatusPaused:
         {
-            self.playerControlView.playButton.selected = NO;
             self.playerControlView.bottomPortraitView.playButton.selected = NO;
             self.playerControlView.bottomLandscapeView.playButton.selected = NO;
           
@@ -147,7 +145,6 @@
             break;
         case DDPlayerStatusBuffering:
         {
-            self.playerControlView.playButton.alpha = 0;
         }
             break;
         case DDPlayerStatusEnd:
