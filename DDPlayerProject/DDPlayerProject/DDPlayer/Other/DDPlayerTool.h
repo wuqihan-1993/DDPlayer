@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
  @return 00:00
  */
 +(NSString *)translateTimeToString:(CGFloat )time;
+
++(BOOL)isLocationPath:(NSString *)path;
 @end
 
 NS_ASSUME_NONNULL_END

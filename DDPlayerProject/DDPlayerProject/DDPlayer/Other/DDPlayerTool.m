@@ -60,4 +60,8 @@
     currentTimeStr = [NSString stringWithFormat:@"%@:%@",currentMinStr,currentSecStr];
     return currentTimeStr;
 }
+
++ (BOOL)isLocationPath:(NSString *)path {
+    return !([path hasPrefix:@"http://"] || [path hasPrefix:@"https://"]);
+}
 @end

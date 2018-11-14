@@ -7,6 +7,7 @@
 //
 
 #import "DDPlayer.h"
+#import "DDPlayerTool.h"
 
 static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 
@@ -46,8 +47,14 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 
 #pragma mark - public
-- (void)replaceWithUrl:(NSURL *)url {
-    self.currentAsset = [AVAsset assetWithURL:url];
+- (void)replaceWithUrl:(NSString *)url {
+    NSURL *URL;
+    if ([DDPlayerTool isLocationPath:url]) {
+        URL = [NSURL fileURLWithPath:url];
+    }else {
+        URL = [NSURL URLWithString:url];
+    }
+    self.currentAsset = [AVAsset assetWithURL:URL];
     self.currentItem = [AVPlayerItem playerItemWithAsset:self.currentAsset];
     [self addItemObservers];
     [self.player replaceCurrentItemWithPlayerItem:self.currentItem];

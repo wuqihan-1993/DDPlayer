@@ -146,8 +146,11 @@
     NSString *url = self.dataArray[indexPath.row][@"url"];
     //    DDVideoLineModel *lineModel = [DDVideoLineModel new];
     //    lineModel.lineUrl = url;
-
-    [self.playerView.player replaceWithUrl:[NSURL URLWithString:url]];
+    if ([self.dataArray[indexPath.row][@"videoName"] isEqualToString:@"本地视频"]) {
+        url = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
+    }
+    
+    [self.playerView.player replaceWithUrl:url];
     [self.playerView.player play];
     
     //播放本地视频
@@ -157,6 +160,8 @@
 #pragma mark data
 - (void)initDataArray {
     self.dataArray = @[@{@"url":@"http://221.228.226.23/11/t/j/v/b/tjvbwspwhqdmgouolposcsfafpedmb/sh.yinyuetai.com/691201536EE4912BF7E4F1E2C67B8119.mp4",@"videoName":@"喜欢你"},
+                       @{@"url":@"http://alivideo.g2s.cn/zhs_yanfa_150820/createcourse/demo/201804/5a165205fb924d709e7a6449653bb63f_512.mp4",@"videoName":@"管理课"},
+                       @{@"url":@"/Users/wuqihan/Library/Developer/CoreSimulator/Devices/B748B1EC-D97C-45F9-A85B-40E0644FA996/data/Containers/Bundle/Application/792ED4DF-CF0E-477B-B41B-DFECEEDF1A18/DDPlayerProject.app/test.mp4",@"videoName":@"本地视频"},
                        @{@"url":@"http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh.yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4",@"videoName":@"ONE"},
                        @{@"url":@"http://221.228.226.5/15/t/s/h/v/tshvhsxwkbjlipfohhamjkraxuknsc/sh.yinyuetai.com/88DC015DB03C829C2126EEBBB5A887CB.mp4",@"videoName":@"三生三世十里桃花"},
                        @{@"url":@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",@"videoName":@"Big Buck"}];

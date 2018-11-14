@@ -13,8 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DDPlayerDragProgressBaseView : UIView
 
 @property(nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) UISlider *slider;
 
 - (void)setProgress:(CGFloat)progress duration:(CGFloat)duration;
+
 
 @end
 

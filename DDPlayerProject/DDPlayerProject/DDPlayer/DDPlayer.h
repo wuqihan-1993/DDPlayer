@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)bindToPlayerLayer:(AVPlayerLayer *)layer;
 
-- (void)replaceWithUrl:(NSURL*)url;
+- (void)replaceWithUrl:(NSString*)url;
 - (void)stop;
 - (void)play;
 - (void)playImmediatelyAtRate:(CGFloat)rate;
