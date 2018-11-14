@@ -473,6 +473,31 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
                 [weakSelf.delegate playerControlView:weakSelf clickPlayButton:button];
             }
         };
+        
+        _bottomPortraitView.sliderBeginDragingBlock = ^(UISlider * _Nonnull slider) {
+            [weakSelf addVisibleTimer];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:beginDragSlider:)]) {
+                [weakSelf.delegate playerControlView:weakSelf beginDragSlider:slider];
+            }
+        };
+        _bottomPortraitView.sliderDragingBlock = ^(UISlider * _Nonnull slider) {
+            [weakSelf addVisibleTimer];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:DragingSlider:)]) {
+                [weakSelf.delegate playerControlView:weakSelf DragingSlider:slider];
+            }
+        };
+        _bottomPortraitView.sliderEndDragingBlock = ^(UISlider * _Nonnull slider) {
+            [weakSelf addVisibleTimer];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:endDragSlider:)]) {
+                [weakSelf.delegate playerControlView:weakSelf endDragSlider:slider];
+            }
+        };
+        _bottomPortraitView.sliderTapBlock = ^(UISlider * _Nonnull slider) {
+            [weakSelf addVisibleTimer];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:tapSlider:)]) {
+                [weakSelf.delegate playerControlView:weakSelf tapSlider:slider];
+            }
+        };
     }
     return _bottomPortraitView;
 }
@@ -507,6 +532,30 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
             if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickRateButton:)]) {
                 [weakSelf.delegate playerControlView:weakSelf clickRateButton:button];
                 
+            }
+        };
+        _bottomLandscapeView.sliderBeginDragingBlock = ^(UISlider * _Nonnull slider) {
+            [weakSelf addVisibleTimer];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:beginDragSlider:)]) {
+                [weakSelf.delegate playerControlView:weakSelf beginDragSlider:slider];
+            }
+        };
+        _bottomLandscapeView.sliderDragingBlock = ^(UISlider * _Nonnull slider) {
+            [weakSelf addVisibleTimer];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:DragingSlider:)]) {
+                [weakSelf.delegate playerControlView:weakSelf DragingSlider:slider];
+            }
+        };
+        _bottomLandscapeView.sliderEndDragingBlock = ^(UISlider * _Nonnull slider) {
+            [weakSelf addVisibleTimer];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:endDragSlider:)]) {
+                [weakSelf.delegate playerControlView:weakSelf endDragSlider:slider];
+            }
+        };
+        _bottomLandscapeView.sliderTapBlock = ^(UISlider * _Nonnull slider) {
+            [weakSelf addVisibleTimer];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:tapSlider:)]) {
+                [weakSelf.delegate playerControlView:weakSelf tapSlider:slider];
             }
         };
     }

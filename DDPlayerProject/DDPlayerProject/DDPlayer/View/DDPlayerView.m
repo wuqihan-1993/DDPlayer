@@ -194,5 +194,18 @@
     self.player.volume = volume;
 }
 
+- (void)playerControlView:(DDPlayerControlView *)controlView beginDragSlider:(UISlider *)slider {
+    NSLog(@"%s",__FUNCTION__);
+}
+- (void)playerControlView:(DDPlayerControlView *)controlView DragingSlider:(UISlider *)slider {
+    NSLog(@"%s",__FUNCTION__);
+}
+- (void)playerControlView:(DDPlayerControlView *)controlView endDragSlider:(UISlider *)slider {
+    NSLog(@"%s",__FUNCTION__);
+}
+- (void)playerControlView:(DDPlayerControlView *)controlView tapSlider:(UISlider *)slider {
+    NSLog(@"%s",__FUNCTION__);
+}
+
 
 @end

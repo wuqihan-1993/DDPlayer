@@ -14,6 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy) void(^playButtonClickBlock)(UIButton *);
 
+@property(nonatomic, copy) void(^sliderBeginDragingBlock)(UISlider *);
+@property(nonatomic, copy) void(^sliderDragingBlock)(UISlider *);
+@property(nonatomic, copy) void(^sliderEndDragingBlock)(UISlider *);
+@property(nonatomic, copy) void(^sliderTapBlock)(UISlider *);
+
 @property(nonatomic, strong) UIImageView *maskView;
 @property(nonatomic, strong) UIButton *playButton;
 @property(nonatomic, strong) UISlider *slider;

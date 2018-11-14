@@ -80,6 +80,11 @@
  */
 - (void)playerControlView:(DDPlayerControlView*)controlView chagedVolume:(CGFloat)volume;
 
+- (void)playerControlView:(DDPlayerControlView *)controlView beginDragSlider:(UISlider *)slider;
+- (void)playerControlView:(DDPlayerControlView *)controlView DragingSlider:(UISlider *)slider;
+- (void)playerControlView:(DDPlayerControlView *)controlView endDragSlider:(UISlider *)slider;
+- (void)playerControlView:(DDPlayerControlView *)controlView tapSlider:(UISlider *)slider;
+
 @end
 
 NS_ASSUME_NONNULL_BEGIN

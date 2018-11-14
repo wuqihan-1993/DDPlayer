@@ -12,6 +12,9 @@
 
 @interface DDPlayerControlBottomBaseView()
 
+@property(nonatomic, assign) BOOL isBeiginDraging;
+@property(nonatomic, assign) BOOL isDraging;
+
 @end
 
 @implementation DDPlayerControlBottomBaseView
@@ -75,8 +78,76 @@
         [_slider setThumbImage:[UIImage imageNamed:@"DDPlayer_Icon_ProgressThumb_sel"] forState:UIControlStateHighlighted];
         [_slider setMaximumTrackTintColor:[UIColor whiteColor]];
         [_slider setMinimumTrackTintColor:[DDPlayerTool colorWithRGBHex:0x61d8bb]];
+        [_slider addTarget:self action:@selector(sliderBeginDraging:) forControlEvents:UIControlEventTouchDown];
+        [_slider addTarget:self action:@selector(sliderDraging:) forControlEvents:UIControlEventValueChanged];
+        [_slider addTarget:self action:@selector(sliderEndDraging:) forControlEvents:UIControlEventTouchUpInside];
+        _slider.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sliderTap:)];
+        [_slider addGestureRecognizer:tap];
     }
     return _slider;
+}
+
+
+/**
+ 点击slider
+
+ @param tap tap
+ */
+- (void)sliderTap:(UITapGestureRecognizer*)tap {
+   
+    CGPoint tapPoint = [tap locationInView:tap.view];
+    CGFloat percent = tapPoint.x / tap.view.bounds.size.width;
+    UISlider *slider = (UISlider*)tap.view;
+    slider.value = percent * slider.maximumValue;
+    
+    if (self.sliderTapBlock) {
+        self.sliderTapBlock(slider);
+    }
+}
+
+
+/**
+ 开始拖动slider 只会执行一次
+
+ @param slider slider
+ */
+- (void)sliderBeginDraging:(UISlider *)slider {
+    self.isBeiginDraging = YES;
+    if (self.sliderBeginDragingBlock) {
+        self.sliderBeginDragingBlock(slider);
+    }
+}
+
+/**
+ 正在拖动slider
+
+ @param slider slider
+ */
+- (void)sliderDraging:(UISlider*)slider {
+    
+    if (self.isBeiginDraging == NO) return;
+    
+    self.isDraging = YES;
+
+    if (self.sliderDragingBlock) {
+        self.sliderDragingBlock(slider);
+    }
+}
+
+/**
+ 拖动slider结束
+
+ @param slider slider
+ */
+- (void)sliderEndDraging:(UISlider*)slider {
+    
+    self.isBeiginDraging = NO;
+    self.isDraging = NO;
+    
+    if (self.sliderEndDragingBlock) {
+        self.sliderEndDragingBlock(slider);
+    }
 }
 
 
