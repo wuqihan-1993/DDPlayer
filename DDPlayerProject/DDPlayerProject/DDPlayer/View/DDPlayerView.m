@@ -202,6 +202,7 @@
     if ([self.delegate respondsToSelector:@selector(playerViewClickLockScreenButton:)]) {
         [self.delegate playerViewClickLockScreenButton:button];
     }
+    UIView *
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView clickChapterButton:(UIButton *)button {
     if ([self.delegate respondsToSelector:@selector(playerViewClickChapterButton:)]) {

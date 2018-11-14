@@ -12,7 +12,7 @@
 
 @interface DDPlayerDragProgressPortraitView()
 
-
+@property (nonatomic, strong) UISlider *slider;
 
 @end
 
@@ -28,6 +28,7 @@
 - (void)initUI {
     
     self.timeLabel.text = @"00:00";
+    [self addSubview:self.slider];
     
     [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
@@ -46,7 +47,24 @@
 }
 
 
-
+- (UISlider *)slider {
+    if (!_slider) {
+        
+        _slider = [[UISlider alloc] init];
+        _slider.userInteractionEnabled = NO;
+        _slider.tintColor = [DDPlayerTool colorWithRGBHex:0x61d8bb];
+        
+        //隐藏滑块
+        CGSize s=CGSizeMake(0.1, 0.1);
+        UIGraphicsBeginImageContextWithOptions(s, 0, [UIScreen mainScreen].scale);
+        UIRectFill(CGRectMake(0, 0, 0.1, 0.1));
+        UIImage *img=UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        [_slider setThumbImage:img forState:UIControlStateNormal];
+        
+    }
+    return _slider;
+}
 
 
 @end

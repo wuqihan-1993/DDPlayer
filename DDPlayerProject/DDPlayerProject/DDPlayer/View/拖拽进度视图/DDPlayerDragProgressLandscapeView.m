@@ -42,13 +42,11 @@
 - (void)clear {
     self.timeLabel.text = @"";
     self.currentImageView.image = nil;
-    self.slider.value = 0;
 }
 
 - (void)setProgress:(CGFloat)progress duration:(CGFloat)duration {
     self.timeLabel.text = [DDPlayerTool translateTimeToString:duration*progress];
-    self.slider.value = progress;
-    
+    self.timeLabel.textColor = [DDPlayerTool colorWithRGBHex:0x61d8bb];
     NSInteger seconds = progress*duration;
     if (ABS(seconds-_lastSecond) < 1) {
         return;
@@ -87,6 +85,9 @@
 }
 
 - (void)initUI {
+    
+    self.timeLabel.font = [UIFont boldSystemFontOfSize:32];
+    
     [self addSubview:self.currentImageView];
     [self.currentImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
@@ -94,14 +95,8 @@
         make.height.mas_equalTo(200*9/16);
     }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.currentImageView.mas_top).mas_offset(-8);
+        make.bottom.equalTo(self.currentImageView.mas_top);
         make.centerX.equalTo(self);
-    }];
-    [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.currentImageView.mas_bottom);
-        make.centerX.equalTo(self.currentImageView);
-        make.left.equalTo(self.currentImageView.mas_left).mas_offset(2);
-        make.right.equalTo(self.currentImageView.mas_right).mas_offset(-2);
     }];
 }
 
