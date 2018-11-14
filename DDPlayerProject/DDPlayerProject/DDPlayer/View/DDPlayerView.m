@@ -225,6 +225,7 @@
         dragProgressView = self.dragProgressPortraitView;
     }else {
         self.dragProgressLandscapeView.asset = self.player.currentAsset;
+        [self.dragProgressLandscapeView clear];
         dragProgressView = self.dragProgressLandscapeView;
     }
     

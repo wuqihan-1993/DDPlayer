@@ -39,6 +39,12 @@
     self.imageGenerator.appliesPreferredTrackTransform = YES;
 }
 
+- (void)clear {
+    self.timeLabel.text = @"";
+    self.currentImageView.image = nil;
+    self.slider.value = 0;
+}
+
 - (void)setProgress:(CGFloat)progress duration:(CGFloat)duration {
     self.timeLabel.text = [DDPlayerTool translateTimeToString:duration*progress];
     self.slider.value = progress;
@@ -51,7 +57,18 @@
     }
     _lastSecond = seconds;
     
-    self.imageGenerator.maximumSize = CGSizeMake(100, 100*9/16);
+    if (self.asset) {
+        AVURLAsset *urlAsset = (AVURLAsset *)self.asset;
+        if ([DDPlayerTool isLocationPath:urlAsset.URL.absoluteString]) {
+            self.imageGenerator.maximumSize = CGSizeMake(DDPlayerTool.screenHeight*0.4, DDPlayerTool.screenHeight*0.4*9/16);
+        }else {
+            self.imageGenerator.maximumSize = CGSizeMake(100, 100*9/16);
+        }
+    }else {
+        return;
+    }
+    
+    
     
     CMTime time = CMTimeMakeWithSeconds(seconds, 600);
     __weak typeof(self) weakSelf = self;
@@ -91,7 +108,6 @@
 - (UIImageView *)currentImageView {
     if (!_currentImageView) {
         _currentImageView = [[UIImageView alloc] init];
-        _currentImageView.backgroundColor = [UIColor greenColor];
         _currentImageView.layer.cornerRadius = 5;
         _currentImageView.layer.masksToBounds = YES;
     }

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) AVAsset *asset;
 
+- (void)clear;
+
 @end
 
 NS_ASSUME_NONNULL_END
