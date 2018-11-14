@@ -14,6 +14,9 @@
 		E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AD219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m */; };
 		E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */; };
 		E35817B7219C061800BD3282 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E35817B6219C061800BD3282 /* test.mp4 */; };
+		E35817BB219C194100BD3282 /* DDCaptureImageShareSmallView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817BA219C194100BD3282 /* DDCaptureImageShareSmallView.m */; };
+		E35817BE219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E35817BC219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@2x.png */; };
+		E35817BF219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E35817BD219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@3x.png */; };
 		E38A46482199120A00944AC9 /* DDBrightView.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A46472199120A00944AC9 /* DDBrightView.m */; };
 		E38A464B2199129300944AC9 /* DDPlayer_Img_Bright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38A46492199129300944AC9 /* DDPlayer_Img_Bright@2x.png */; };
 		E38A464C2199129300944AC9 /* DDPlayer_Img_Bright@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38A464A2199129300944AC9 /* DDPlayer_Img_Bright@3x.png */; };
@@ -111,6 +114,10 @@
 		E35817AF219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressLandscapeView.h; sourceTree = "<group>"; };
 		E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerDragProgressLandscapeView.m; sourceTree = "<group>"; };
 		E35817B6219C061800BD3282 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
+		E35817B9219C194100BD3282 /* DDCaptureImageShareSmallView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DDCaptureImageShareSmallView.h; path = DDPlayerProject/DDPlayer/View/DDCaptureImageShareSmallView.h; sourceTree = SOURCE_ROOT; };
+		E35817BA219C194100BD3282 /* DDCaptureImageShareSmallView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DDCaptureImageShareSmallView.m; path = DDPlayerProject/DDPlayer/View/DDCaptureImageShareSmallView.m; sourceTree = SOURCE_ROOT; };
+		E35817BC219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_CaptureShare@2x.png"; sourceTree = "<group>"; };
+		E35817BD219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_CaptureShare@3x.png"; sourceTree = "<group>"; };
 		E38A46462199120A00944AC9 /* DDBrightView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDBrightView.h; sourceTree = "<group>"; };
 		E38A46472199120A00944AC9 /* DDBrightView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDBrightView.m; sourceTree = "<group>"; };
 		E38A46492199129300944AC9 /* DDPlayer_Img_Bright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Img_Bright@2x.png"; sourceTree = "<group>"; };
@@ -270,6 +277,15 @@
 			path = "拖拽进度视图";
 			sourceTree = "<group>";
 		};
+		E35817B8219C18F000BD3282 /* 截取图片分享 */ = {
+			isa = PBXGroup;
+			children = (
+				E35817B9219C194100BD3282 /* DDCaptureImageShareSmallView.h */,
+				E35817BA219C194100BD3282 /* DDCaptureImageShareSmallView.m */,
+			);
+			path = "截取图片分享";
+			sourceTree = "<group>";
+		};
 		E38A4645219911FA00944AC9 /* 亮度调试视图 */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +370,7 @@
 		E3AB592D219559D100CAEF38 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E35817B8219C18F000BD3282 /* 截取图片分享 */,
 				E3AB594821955C8D00CAEF38 /* DDPlayerView.h */,
 				E3AB594721955C8D00CAEF38 /* DDPlayerView.m */,
 				E3AB595821955DA100CAEF38 /* DDPlayerComponentBaseView.h */,
@@ -391,6 +408,8 @@
 		E3AB5930219559E100CAEF38 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E35817BC219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@2x.png */,
+				E35817BD219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@3x.png */,
 				E3B5D8C3219AB75D00F9FC1D /* DDPlayer_Gif_Loading@2x.gif */,
 				E3B5D8BE219AAF1C00F9FC1D /* DDPlayer_Btn_captureVideo@2x.png */,
 				E3B5D8BD219AAF1C00F9FC1D /* DDPlayer_Btn_captureVideo@3x.png */,
@@ -615,11 +634,13 @@
 				E3AB59072195596400CAEF38 /* LaunchScreen.storyboard in Resources */,
 				E3AB598221955F3300CAEF38 /* DDPlayer_Btn_BottomPortraitPlay@2x.png in Resources */,
 				E3AB599421955F3300CAEF38 /* DDPlayer_Btn_CenterPlay@3x.png in Resources */,
+				E35817BF219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@3x.png in Resources */,
 				E3AB598821955F3300CAEF38 /* DDPlayer_Btn_ForceOrientatedLandscape@3x.png in Resources */,
 				E3AB598621955F3300CAEF38 /* DDPlayer_Btn_BottomPortraitPause@3x.png in Resources */,
 				E3AB598521955F3300CAEF38 /* DDPlayer_Btn_CenterPause@3x.png in Resources */,
 				E3AB599921955F3300CAEF38 /* DDPlayer_Icon_ProgressThumb@3x.png in Resources */,
 				E3AB598321955F3300CAEF38 /* DDPlayer_Icon_ProgressThumb_sel@2x.png in Resources */,
+				E35817BE219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@2x.png in Resources */,
 				E3AB599021955F3300CAEF38 /* DDPlayer_Btn_Lock@3x.png in Resources */,
 				E38A464F219913B400944AC9 /* DDPlayer_Bg_Bright@2x.png in Resources */,
 				E3AB598A21955F3300CAEF38 /* DDPlayer_Btn_Lock@2x.png in Resources */,
@@ -733,6 +754,7 @@
 				E3AB596021955DA100CAEF38 /* DDPlayerComponentBaseView.m in Sources */,
 				E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */,
 				E3AB595F21955DA100CAEF38 /* DDPlayerControlTopView.m in Sources */,
+				E35817BB219C194100BD3282 /* DDCaptureImageShareSmallView.m in Sources */,
 				E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */,
 				E38A46482199120A00944AC9 /* DDBrightView.m in Sources */,
 				E3AB593B21955AA100CAEF38 /* DDNavigationController.m in Sources */,

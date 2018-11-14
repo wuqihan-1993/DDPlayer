@@ -100,16 +100,22 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 }
 - (void)captureVideoButtonClick:(UIButton *)button {
      [self addVisibleTimer];
+    if ([self.delegate respondsToSelector:@selector(playerControlView:clickCaptureVideoButton:)]) {
+        [self.delegate playerControlView:self clickCaptureVideoButton:button];
+    }
+    
 }
 - (void)captureImageButtonClick:(UIButton *)button {
      [self addVisibleTimer];
+    if ([self.delegate respondsToSelector:@selector(playerControlView:clickCaptureImageButton:)]) {
+        [self.delegate playerControlView:self clickCaptureImageButton:button];
+    }
 }
 - (void)tapAction:(UITapGestureRecognizer *)tap {
     if (self.isVisible) {
         [self dismiss];
     }else {
         [self show];
-    
     }
 }
 - (void)tapDoubleAction:(UITapGestureRecognizer *)tap {
@@ -191,6 +197,12 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 
 #pragma mark - private method
 - (void)show {
+    
+    if ([self.delegate respondsToSelector:@selector(playerControViewWillShow:)]) {
+        [self.delegate playerControViewWillShow:self];
+    }
+    
+    
     NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
     
     if (self.isLockScreen) {
@@ -226,6 +238,11 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 }
 
 - (void)dismiss {
+    
+    if ([self.delegate respondsToSelector:@selector(playerControViewWillDismiss:)]) {
+        [self.delegate playerControViewWillDismiss:self];
+    }
+    
     NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
     [UIView animateWithDuration:0.4 animations:^{
         for (UIView *subView in views) {

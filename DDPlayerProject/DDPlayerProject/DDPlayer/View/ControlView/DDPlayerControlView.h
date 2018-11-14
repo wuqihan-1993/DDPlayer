@@ -39,12 +39,21 @@
 - (void)playerControlView:(DDPlayerControlView*)controlView clicklockScreenButton:(UIButton*)button;
 
 /**
- 点击截取按钮
+ 点击截取视频按钮
 
  @param controlView self
  @param button 截取按钮
  */
-- (void)playerControlView:(DDPlayerControlView*)controlView clickCaptureButton:(UIButton*)button;
+- (void)playerControlView:(DDPlayerControlView*)controlView clickCaptureVideoButton:(UIButton*)button;
+
+
+/**
+ 点击截取图像按钮
+
+ @param controlView self
+ @param button 截取按钮
+ */
+- (void)playerControlView:(DDPlayerControlView*)controlView clickCaptureImageButton:(UIButton*)button;
 
 
 /**
@@ -84,6 +93,9 @@
 - (void)playerControlView:(DDPlayerControlView *)controlView DragingSlider:(UISlider *)slider;
 - (void)playerControlView:(DDPlayerControlView *)controlView endDragSlider:(UISlider *)slider;
 - (void)playerControlView:(DDPlayerControlView *)controlView tapSlider:(UISlider *)slider;
+
+- (void)playerControViewWillShow:(DDPlayerControlView *)controlView;
+- (void)playerControViewWillDismiss:(DDPlayerControlView *)controlView;
 
 @end
 
