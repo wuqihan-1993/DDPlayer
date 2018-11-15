@@ -32,8 +32,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 }
 
 @property(nonatomic, strong) UIButton *lockScreenButton;
-@property(nonatomic, strong) UIButton *captureImageButton;
-@property(nonatomic, strong) UIButton *captureVideoButton;
 
 @property(nonatomic, assign) BOOL isLockScreen;
 

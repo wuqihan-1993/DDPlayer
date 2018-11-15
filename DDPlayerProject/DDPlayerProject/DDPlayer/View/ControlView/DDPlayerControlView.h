@@ -107,6 +107,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) DDPlayerControlBottomPortraitView *bottomPortraitView;
 @property(nonatomic, strong) DDPlayerControlBottomLandscapeView *bottomLandscapeView;
 @property(nonatomic, strong) DDPlayerControlTopView *topView;
+@property(nonatomic, strong) UIButton *captureImageButton;
+@property(nonatomic, strong) UIButton *captureVideoButton;
 /**
  是否锁屏
  */

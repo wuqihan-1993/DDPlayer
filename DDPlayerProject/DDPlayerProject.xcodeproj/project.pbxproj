@@ -79,6 +79,7 @@
 		E3B5D8C2219AAF1C00F9FC1D /* DDPlayer_Btn_captureVideo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3B5D8BE219AAF1C00F9FC1D /* DDPlayer_Btn_captureVideo@2x.png */; };
 		E3B5D8C4219AB75D00F9FC1D /* DDPlayer_Gif_Loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3B5D8C3219AB75D00F9FC1D /* DDPlayer_Gif_Loading@2x.gif */; };
 		E3B5D962219AC90000F9FC1D /* DDPlayerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B5D961219AC90000F9FC1D /* DDPlayerContainerView.m */; };
+		E3DE4C06219D04DA0073C733 /* DDCaptureImageShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DE4C05219D04DA0073C733 /* DDCaptureImageShareView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,8 @@
 		E3B5D8C3219AB75D00F9FC1D /* DDPlayer_Gif_Loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "DDPlayer_Gif_Loading@2x.gif"; sourceTree = "<group>"; };
 		E3B5D960219AC90000F9FC1D /* DDPlayerContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerContainerView.h; sourceTree = "<group>"; };
 		E3B5D961219AC90000F9FC1D /* DDPlayerContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerContainerView.m; sourceTree = "<group>"; };
+		E3DE4C04219D04DA0073C733 /* DDCaptureImageShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDCaptureImageShareView.h; sourceTree = "<group>"; };
+		E3DE4C05219D04DA0073C733 /* DDCaptureImageShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDCaptureImageShareView.m; sourceTree = "<group>"; };
 		F8E8F90204FFA6ED33907852 /* Pods-DDPlayerProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDPlayerProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DDPlayerProjectTests/Pods-DDPlayerProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,6 +285,8 @@
 			children = (
 				E35817B9219C194100BD3282 /* DDCaptureImageShareSmallView.h */,
 				E35817BA219C194100BD3282 /* DDCaptureImageShareSmallView.m */,
+				E3DE4C04219D04DA0073C733 /* DDCaptureImageShareView.h */,
+				E3DE4C05219D04DA0073C733 /* DDCaptureImageShareView.m */,
 			);
 			path = "截取图片分享";
 			sourceTree = "<group>";
@@ -765,6 +770,7 @@
 				E3AB58FC2195596200CAEF38 /* AppDelegate.m in Sources */,
 				E3AB594C21955CB900CAEF38 /* DDPlayerLineModel.m in Sources */,
 				E3AB593721955A8900CAEF38 /* DDTabBarController.m in Sources */,
+				E3DE4C06219D04DA0073C733 /* DDCaptureImageShareView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

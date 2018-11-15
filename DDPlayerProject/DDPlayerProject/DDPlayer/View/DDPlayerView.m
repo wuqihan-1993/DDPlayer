@@ -16,6 +16,7 @@
 #import "DDPlayerDragProgressLandscapeView.h"
 #import "DDPlayerManager.h"
 #import "DDCaptureImageShareSmallView.h"
+#import "DDCaptureImageShareView.h"
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
@@ -238,11 +239,28 @@
         [UIView animateWithDuration:0.5 animations:^{
             [self layoutIfNeeded];
         } completion:^(BOOL finished) {
+            [self.playerControlView show];
             if (self.captureImageShareSmallView != nil) {
                 [self.captureImageShareSmallView removeFromSuperview];
                 self.captureImageShareSmallView = nil;
             }
             self.captureImageShareSmallView = [[DDCaptureImageShareSmallView alloc] initWithImage:currentImage];
+            __weak typeof(self) weakSelf = self;
+            self.captureImageShareSmallView.toShareBlock = ^(UIImage * _Nonnull image) {
+                NSLog(@"去分享页面");
+                
+                if (image) {
+                    
+                    [weakSelf.player pause];
+                    [weakSelf.playerControlView dismiss];
+                    
+                    DDCaptureImageShareView *imageShareView = [[DDCaptureImageShareView alloc] initWithImage:image];
+                    [weakSelf addSubview:imageShareView];
+                    [imageShareView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.edges.equalTo(weakSelf);
+                    }];
+                }
+            };
             [self addSubview:self.captureImageShareSmallView];
             [self.captureImageShareSmallView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(button.mas_left).mas_offset(-20);
@@ -313,14 +331,20 @@
 }
 - (void)playerControViewWillDismiss:(DDPlayerControlView *)controlView {
     if (self.captureImageShareSmallView) {
+        
+        [self.captureImageShareSmallView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.playerControlView.captureImageButton.mas_left).mas_offset(250);
+        }];
+        
         [UIView animateWithDuration:0.4 animations:^{
-            CGRect frame = self.captureImageShareSmallView.frame;
-            frame.origin.x += 200;
-            self.captureImageShareSmallView.frame = frame;
+            
+            [self layoutIfNeeded];
+            
         } completion:^(BOOL finished) {
             [self.captureImageShareSmallView removeFromSuperview];
             self.captureImageShareSmallView = nil;
         }];
+    
     }
 }
 

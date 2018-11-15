@@ -56,7 +56,18 @@
         make.height.mas_equalTo(30);
         make.bottom.equalTo(self);
     }];
+    
+    self.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [self addGestureRecognizer:tap];
 }
+
+- (void)tap:(UITapGestureRecognizer *)tap {
+    if (self.toShareBlock) {
+        self.toShareBlock(self.imageView.image);
+    }
+}
+
 - (UIImageView *)imageView {
     if (!_imageView) {
         _imageView = [[UIImageView alloc] init];
@@ -66,7 +77,7 @@
 - (UIButton *)shareButton {
     if (!_shareButton) {
         _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_shareButton setTitle:@"点击分享" forState:UIControlStateNormal];
+        [_shareButton setTitle:@" 点击分享" forState:UIControlStateNormal];
         _shareButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [_shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_shareButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_CaptureShare"] forState:UIControlStateNormal];

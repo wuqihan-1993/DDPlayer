@@ -62,7 +62,7 @@
         _lastSecond = seconds;
     }
     
-    self.imageGenerator.maximumSize = CGSizeMake(100, 100*9/16);
+    self.imageGenerator.maximumSize = CGSizeMake(80, 80*9/16);
     
     CMTime time = CMTimeMakeWithSeconds(seconds, 600);
     
@@ -100,8 +100,8 @@
     [self addSubview:self.currentImageView];
     [self.currentImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
-        make.width.mas_equalTo(200);
-        make.height.mas_equalTo(200*9/16);
+        make.width.mas_equalTo(150);
+        make.height.mas_equalTo(150*9/16);
     }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.currentImageView.mas_top);
