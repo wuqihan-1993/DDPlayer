@@ -45,6 +45,11 @@
 }
 
 - (void)setProgress:(CGFloat)progress duration:(CGFloat)duration {
+    
+    if (self.asset == nil) {
+        return;
+    }
+    
     self.timeLabel.text = [DDPlayerTool translateTimeToString:duration*progress];
     self.timeLabel.textColor = [DDPlayerTool colorWithRGBHex:0x61d8bb];
     NSInteger seconds = progress*duration;
@@ -55,15 +60,11 @@
     }
     _lastSecond = seconds;
     
-    if (self.asset) {
-        AVURLAsset *urlAsset = (AVURLAsset *)self.asset;
-        if ([DDPlayerTool isLocationPath:urlAsset.URL.absoluteString]) {
-            self.imageGenerator.maximumSize = CGSizeMake(DDPlayerTool.screenHeight*0.4, DDPlayerTool.screenHeight*0.4*9/16);
-        }else {
-            self.imageGenerator.maximumSize = CGSizeMake(100, 100*9/16);
-        }
+    AVURLAsset *urlAsset = (AVURLAsset *)self.asset;
+    if ([DDPlayerTool isLocationPath:urlAsset.URL.absoluteString]) {
+        self.imageGenerator.maximumSize = CGSizeMake(DDPlayerTool.screenHeight*0.4, DDPlayerTool.screenHeight*0.4*9/16);
     }else {
-        return;
+        self.imageGenerator.maximumSize = CGSizeMake(100, 100*9/16);
     }
     
     
