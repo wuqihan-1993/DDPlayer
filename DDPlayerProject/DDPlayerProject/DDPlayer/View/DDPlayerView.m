@@ -19,6 +19,7 @@
 #import "DDCaptureImageShareView.h"
 #import "DDPlayerCoverView.h"
 #import "DDNetworkWWANWarnView.h"
+#import "DDNetworkErrorView.h"
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
@@ -29,7 +30,8 @@
 @property(nonatomic, strong) DDPlayerDragProgressLandscapeView *dragProgressLandscapeView;
 @property(nonatomic, strong) DDCaptureImageShareSmallView *captureImageShareSmallView;
 @property(nonatomic, strong) DDPlayerCoverView *coverView;//封面图
-@property(nonatomic, strong) DDNetworkWWANWarnView *WWANWarnView;
+@property(nonatomic, strong) DDNetworkWWANWarnView *WWANWarnView;//流量警告视图
+@property(nonatomic, strong) DDNetworkErrorView *networkErrorView;//无网警告视图
 
 @end
 
@@ -130,10 +132,6 @@
     return _dragProgressLandscapeView;
 }
 
-- (BOOL)isLockScreen {
-    return self.playerControlView.isLockScreen;
-}
-
 - (DDPlayerCoverView *)coverView {
     if (!_coverView) {
         _coverView = [[DDPlayerCoverView alloc] init];
@@ -152,6 +150,17 @@
         _WWANWarnView = [[DDNetworkWWANWarnView alloc] init];
     }
     return _WWANWarnView;
+}
+
+- (DDNetworkErrorView *)networkErrorView {
+    if (!_networkErrorView) {
+        _networkErrorView = [[DDNetworkErrorView alloc] init];
+    }
+    return _networkErrorView;
+}
+
+- (BOOL)isLockScreen {
+    return self.playerControlView.isLockScreen;
 }
 
 #pragma mark - DDPlayerDelegate
@@ -212,6 +221,12 @@
     switch (networkStatus) {
         case NotReachable:
         {
+            [self.player pause];
+            [self addSubview:self.networkErrorView];
+            [self.networkErrorView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+            [self bringSubviewToFront:self.networkErrorView];
             
         }
             break;

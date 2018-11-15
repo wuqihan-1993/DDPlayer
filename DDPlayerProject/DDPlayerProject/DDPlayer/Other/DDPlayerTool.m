@@ -64,4 +64,13 @@
 + (BOOL)isLocationPath:(NSString *)path {
     return !([path hasPrefix:@"http://"] || [path hasPrefix:@"https://"]);
 }
+
++(UIFont *)PingFangSCRegularAndSize:(CGFloat)size{
+    return [UIFont fontWithName:@"PingFangSC-Regular" size:size];
+}
+
++(UIFont *)pingfangSCSemiboldAndSize:(CGFloat)size{
+    return [UIFont fontWithName:@"PingFangSC-Semibold" size:size];
+}
+
 @end

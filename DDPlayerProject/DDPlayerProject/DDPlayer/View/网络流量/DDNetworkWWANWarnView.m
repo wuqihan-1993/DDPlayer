@@ -28,7 +28,7 @@
 
 - (void)initialize {
     
-    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
     
     [self addSubview:self.backButton];
     [self addSubview:self.promptLabel];

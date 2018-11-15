@@ -26,6 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(UIColor *)colorWithRGBHex:(UInt32)hex;
 
+
+/**
+ 强制转屏
+
+ @param orientation UIInterfaceOrientation
+ */
 +(void)forceRotatingScreen:(UIInterfaceOrientation)orientation;
 
 /**
@@ -36,7 +42,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(NSString *)translateTimeToString:(CGFloat )time;
 
+
+/**
+ 判断播放地址是网络还是本地
+
+ @param path NSString
+ @return BOOL
+ */
 +(BOOL)isLocationPath:(NSString *)path;
+
++(UIFont *)PingFangSCRegularAndSize:(CGFloat)size;
++(UIFont *)pingfangSCSemiboldAndSize:(CGFloat)size;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
