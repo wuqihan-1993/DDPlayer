@@ -60,29 +60,43 @@
     }
     _lastSecond = seconds;
     
-    AVURLAsset *urlAsset = (AVURLAsset *)self.asset;
-    if ([DDPlayerTool isLocationPath:urlAsset.URL.absoluteString]) {
-        self.imageGenerator.maximumSize = CGSizeMake(DDPlayerTool.screenHeight*0.4, DDPlayerTool.screenHeight*0.4*9/16);
-    }else {
-        self.imageGenerator.maximumSize = CGSizeMake(100, 100*9/16);
-    }
+//    AVURLAsset *urlAsset = (AVURLAsset *)self.asset;
+//    if ([DDPlayerTool isLocationPath:urlAsset.URL.absoluteString]) {
+//        self.imageGenerator.maximumSize = CGSizeMake(DDPlayerTool.screenHeight*0.4, DDPlayerTool.screenHeight*0.4*9/16);
+//    }else {
+//        self.imageGenerator.maximumSize = CGSizeMake(100, 100*9/16);
+//    }
     
+    self.imageGenerator.maximumSize = CGSizeMake(100, 100*9/16);
     
     
     CMTime time = CMTimeMakeWithSeconds(seconds, 600);
+    
+    NSString *timeStr = self.timeLabel.text;
+    NSLog(@"开始下载图片%@",timeStr);
+//    [self.imageGenerator generateCGImagesAsynchronouslyForTimes:@[[NSValue valueWithCMTime:time]] completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) {
+//        if (result == AVAssetImageGeneratorSucceeded) {
+//            UIImage *cImage = [UIImage imageWithCGImage:image scale:1 orientation:UIImageOrientationUp];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                if (weakSelf != nil && weakSelf.currentImageView != nil) {
+//                    NSLog(@"AVAssetImageGeneratorSucceeded :%@",self.timeLabel.text);
+//                    weakSelf.currentImageView.image = cImage;
+//                }
+//            });
+//        }
+//    }];
     __weak typeof(self) weakSelf = self;
-    NSLog(@"开始下载图片%@",self.timeLabel.text);
     [self.imageGenerator generateCGImagesAsynchronouslyForTimes:@[[NSValue valueWithCMTime:time]] completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) {
         if (result == AVAssetImageGeneratorSucceeded) {
-            UIImage *cImage = [UIImage imageWithCGImage:image scale:1 orientation:UIImageOrientationUp];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (weakSelf != nil && weakSelf.currentImageView != nil) {
-                    NSLog(@"AVAssetImageGeneratorSucceeded :%@",self.timeLabel.text);
-                    weakSelf.currentImageView.image = cImage;
-                }
-            });
+            NSLog(@"下载完成：%@",timeStr);
+            UIImage *thumbImg = [UIImage imageWithCGImage:image];
+            [weakSelf performSelectorOnMainThread:@selector(movieImage:) withObject:thumbImg waitUntilDone:YES];
         }
     }];
+}
+
+- (void)movieImage:(UIImage *)image {
+    self.currentImageView.image = image;
 }
 
 - (void)initUI {
