@@ -12,6 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPlayerCoverView : DDPlayerComponentBaseView
 
+@property(nonatomic, copy) void(^backButtonClickBlock)(void);
+@property(nonatomic, copy) void(^playButtonClickBlock)(void);
+@property(nonatomic, strong) UIImage *coverImage;
+- (instancetype)initWitCoverImage:(UIImage *)image;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

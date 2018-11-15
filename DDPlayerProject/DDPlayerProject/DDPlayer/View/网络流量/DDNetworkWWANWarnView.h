@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDNetworkWarnView : UIView
+@interface DDNetworkWWANWarnView : UIView
 @property (nonatomic, copy) void (^backButtonClickBlock)(UIButton *);
 @property (nonatomic, copy) void (^playButtonClickBlock)(UIButton *);
 @end

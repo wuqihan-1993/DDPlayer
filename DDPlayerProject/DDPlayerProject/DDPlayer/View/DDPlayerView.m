@@ -17,15 +17,19 @@
 #import "DDPlayerManager.h"
 #import "DDCaptureImageShareSmallView.h"
 #import "DDCaptureImageShareView.h"
+#import "DDPlayerCoverView.h"
+#import "DDNetworkWWANWarnView.h"
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
 
-@property (nonatomic, strong) DDPlayerControlView *playerControlView;
-@property (nonatomic, strong) UIImageView *loadingView;
-@property (nonatomic, strong) DDPlayerDragProgressPortraitView *dragProgressPortraitView;
-@property (nonatomic, strong) DDPlayerDragProgressLandscapeView *dragProgressLandscapeView;
-@property (nonatomic, strong) DDCaptureImageShareSmallView *captureImageShareSmallView;
+@property(nonatomic, strong) DDPlayerControlView *playerControlView;
+@property(nonatomic, strong) UIImageView *loadingView;
+@property(nonatomic, strong) DDPlayerDragProgressPortraitView *dragProgressPortraitView;
+@property(nonatomic, strong) DDPlayerDragProgressLandscapeView *dragProgressLandscapeView;
+@property(nonatomic, strong) DDCaptureImageShareSmallView *captureImageShareSmallView;
+@property(nonatomic, strong) DDPlayerCoverView *coverView;//封面图
+@property(nonatomic, strong) DDNetworkWWANWarnView *WWANWarnView;
 
 @end
 
@@ -130,6 +134,26 @@
     return self.playerControlView.isLockScreen;
 }
 
+- (DDPlayerCoverView *)coverView {
+    if (!_coverView) {
+        _coverView = [[DDPlayerCoverView alloc] init];
+        _coverView.playButtonClickBlock = ^{
+            
+        };
+        _coverView.backButtonClickBlock = ^{
+            
+        };
+    }
+    return _coverView;
+}
+
+- (DDNetworkWWANWarnView *)WWANWarnView {
+    if (!_WWANWarnView) {
+        _WWANWarnView = [[DDNetworkWWANWarnView alloc] init];
+    }
+    return _WWANWarnView;
+}
+
 #pragma mark - DDPlayerDelegate
 - (void)playerTimeChanged:(double)currentTime {
     
@@ -179,6 +203,34 @@
         {
             
         }
+        default:
+            break;
+    }
+}
+
+- (void)playerNetworkStatusChanged:(NetworkStatus)networkStatus {
+    switch (networkStatus) {
+        case NotReachable:
+        {
+            
+        }
+            break;
+        case ReachableViaWWAN:
+        {
+            [self.player pause];
+            [self addSubview:self.WWANWarnView];
+            [self.WWANWarnView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+            [self bringSubviewToFront:self.WWANWarnView];
+            
+        }
+            break;
+        case ReachableViaWiFi:
+        {
+            
+        }
+            break;
         default:
             break;
     }

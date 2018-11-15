@@ -8,6 +8,7 @@
 
 #import "DDPlayer.h"
 #import "DDPlayerTool.h"
+#import <Reachability.h>
 
 static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 
@@ -21,7 +22,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 @property(nonatomic, strong) AVPlayer *player;
 @property(nonatomic, strong) id timeObserver;
 
-@property(nonatomic, strong) NSMutableArray<DDPlayerDelegate> *delegates;
+@property(nonatomic, strong) Reachability *reachability;//网络检测器
 
 @end
 
@@ -29,6 +30,8 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 
 - (void)dealloc {
     NSLog(@"%s",__FUNCTION__);
+    
+    [self deleteReachability];
     [self removeItemObservers];
     [self removePlayerObservers];
     [self removeNotifications];
@@ -42,12 +45,18 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 - (void)initialize {
     self.player = [[AVPlayer alloc] init];
+    [self addReachability];
     [self addPlayerObservers];
     [self addNotifications];
 }
 
 #pragma mark - public
 - (void)replaceWithUrl:(NSString *)url {
+    
+    if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
+        return;
+    }
+    
     NSURL *URL;
     if ([DDPlayerTool isLocationPath:url]) {
         URL = [NSURL fileURLWithPath:url];
@@ -58,6 +67,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     self.currentItem = [AVPlayerItem playerItemWithAsset:self.currentAsset];
     [self addItemObservers];
     [self.player replaceCurrentItemWithPlayerItem:self.currentItem];
+    
 }
 - (void)stop {
     [self removeItemObservers];
@@ -67,6 +77,9 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     self.status = DDPlayerStatusUnknown;
 }
 - (void)play {
+    if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
+        return;
+    }
     [self.player play];
 }
 - (void)playImmediatelyAtRate:(CGFloat)rate {
@@ -251,6 +264,8 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 
 #pragma mark - notification
 - (void)addNotifications {
+    
+    // 监听播放完成
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(playerItemDidPlayToEndTime:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
 }
 - (void)removeNotifications {
@@ -265,6 +280,27 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     }
 }
 
+
+#pragma mark - 网络监测
+- (void)addReachability {
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [self.reachability startNotifier];
+    // 监听网络状态
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netStatusChange:) name:kReachabilityChangedNotification object:nil];
+}
+
+- (void)netStatusChange:(NSNotification *)notification {
+    
+    Reachability *reach = notification.object;
+    if ([self.delegate respondsToSelector:@selector(playerNetworkStatusChanged:)]) {
+        [self.delegate playerNetworkStatusChanged:reach.currentReachabilityStatus];
+    }
+
+}
+
+- (void)deleteReachability {
+    [self.reachability stopNotifier];
+}
 
 @end
 

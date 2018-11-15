@@ -151,7 +151,7 @@
     }
     
     [self.playerView.player replaceWithUrl:url];
-    [self.playerView.player play];
+//    [self.playerView.player play];
     
     //播放本地视频
 //    [self.playerView.player replaceWithUrl:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:@"play.mp4" ofType:nil]]];

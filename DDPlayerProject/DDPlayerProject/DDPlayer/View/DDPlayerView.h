@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy)   NSString *title;
 
 /**
+ 封面图
+ */
+@property(nonatomic, copy) NSString *coverImage;
+
+/**
  是否锁屏
  */
 @property(nonatomic, assign, readonly) BOOL isLockScreen;

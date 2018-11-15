@@ -6,10 +6,10 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDNetworkWarnView.h"
+#import "DDNetworkWWANWarnView.h"
 #import <Masonry.h>
 
-@interface DDNetworkWarnView()
+@interface DDNetworkWWANWarnView()
 
 @property(nonatomic, strong) UIButton *backButton;
 @property(nonatomic, strong) UILabel *promptLabel;
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation DDNetworkWarnView
+@implementation DDNetworkWWANWarnView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -27,6 +27,9 @@
 }
 
 - (void)initialize {
+    
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
+    
     [self addSubview:self.backButton];
     [self addSubview:self.promptLabel];
     [self addSubview:self.playButton];
@@ -35,10 +38,12 @@
         make.left.top.mas_equalTo(20);
     }];
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
+        make.centerX.equalTo(self);
+        make.centerY.equalTo(self).mas_offset(20);
     }];
     [self.promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.playButton.mas_top).mas_offset(-24);
+        make.centerX.equalTo(self);
     }];
     
 }

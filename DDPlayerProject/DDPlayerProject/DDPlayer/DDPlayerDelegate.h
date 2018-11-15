@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "DDPlayerStatus.h"
+#import <Reachability.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
 
 @protocol DDPlayerDelegate <NSObject>
 
@@ -37,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
  播放器播放结束
  */
 - (void)playerPlayFinish;
+
+#pragma mark 监听网络状态相关
+- (void)playerNetworkStatusChanged:(NetworkStatus)networkStatus;
 
 @end
 
