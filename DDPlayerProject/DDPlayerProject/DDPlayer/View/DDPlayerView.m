@@ -245,6 +245,9 @@
                 self.captureImageShareSmallView = nil;
             }
             self.captureImageShareSmallView = [[DDCaptureImageShareSmallView alloc] initWithImage:currentImage];
+            
+            BOOL lastStausIsPause = self.player.isPause;
+            
             __weak typeof(self) weakSelf = self;
             self.captureImageShareSmallView.toShareBlock = ^(UIImage * _Nonnull image) {
                 NSLog(@"去分享页面");
@@ -255,6 +258,11 @@
                     [weakSelf.playerControlView dismiss];
                     
                     DDCaptureImageShareView *imageShareView = [[DDCaptureImageShareView alloc] initWithImage:image];
+                    imageShareView.dismissBlock = ^{
+                        if (!lastStausIsPause) {
+                            [weakSelf.player play];
+                        }
+                    };
                     [weakSelf addSubview:imageShareView];
                     [imageShareView mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.edges.equalTo(weakSelf);

@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign, readonly) NSTimeInterval currentTime;
 @property(nonatomic, assign, readonly) DDPlayerStatus status;
 @property(nonatomic, assign) BOOL isBackgroudPlay;
+@property(nonatomic, assign, readonly) BOOL isPause;
 
 /**
  播放器是否正在跳转到指定时间。NO代表跳转完成，YES代表正在跳转

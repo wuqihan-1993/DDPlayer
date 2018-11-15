@@ -71,6 +71,9 @@
 }
 #pragma mark - action
 - (void)backButtonClick:(UIButton *)button {
+    if (self.dismissBlock) {
+        self.dismissBlock();
+    }
     [self removeFromSuperview];
 }
 

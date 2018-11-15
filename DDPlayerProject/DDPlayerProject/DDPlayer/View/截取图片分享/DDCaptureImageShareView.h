@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DDCaptureImageShareView : UIView
+@property(nonatomic, copy) void(^dismissBlock)(void) ;
 - (instancetype)initWithImage:(UIImage *)image;
 @end
 

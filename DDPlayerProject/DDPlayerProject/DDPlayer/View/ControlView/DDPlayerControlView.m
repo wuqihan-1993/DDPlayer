@@ -117,7 +117,9 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }
 }
 - (void)tapDoubleAction:(UITapGestureRecognizer *)tap {
-   
+    if ([self.delegate respondsToSelector:@selector(playerControlView:clickPlayButton:)]) {
+        [self.delegate playerControlView:self clickPlayButton:self.bottomPortraitView.playButton];
+    }
 }
 - (void)panAction:(UIPanGestureRecognizer *)pan {
     

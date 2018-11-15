@@ -80,6 +80,11 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 - (void)pause {
     [self.player pause];
 }
+
+- (BOOL)isPause {
+    return (self.player.rate == 0 && self.status == DDPlayerStatusPaused);
+}
+
 - (void)seekToTime:(NSTimeInterval)time completionHandler:(void (^)(BOOL))completionHandler {
     
     self.isSeekingToTime = YES;

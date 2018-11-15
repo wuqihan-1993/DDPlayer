@@ -49,7 +49,7 @@
 }
 
 - (void)landscapeButtonClick:(UIButton *)button {
-    [DDPlayerTool forceRotatingScreen:UIInterfaceOrientationLandscapeLeft];
+    [DDPlayerTool forceRotatingScreen:UIInterfaceOrientationLandscapeRight];
 }
 
 

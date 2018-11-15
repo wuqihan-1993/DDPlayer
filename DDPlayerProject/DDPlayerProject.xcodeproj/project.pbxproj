@@ -80,6 +80,9 @@
 		E3B5D8C4219AB75D00F9FC1D /* DDPlayer_Gif_Loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3B5D8C3219AB75D00F9FC1D /* DDPlayer_Gif_Loading@2x.gif */; };
 		E3B5D962219AC90000F9FC1D /* DDPlayerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B5D961219AC90000F9FC1D /* DDPlayerContainerView.m */; };
 		E3DE4C06219D04DA0073C733 /* DDCaptureImageShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DE4C05219D04DA0073C733 /* DDCaptureImageShareView.m */; };
+		E3DE4C0D219D1F490073C733 /* DDNetworkWarnView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DE4C0C219D1F490073C733 /* DDNetworkWarnView.m */; };
+		E3DE4C10219D21620073C733 /* DDPlayer_Btn_flowAlert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3DE4C0E219D21620073C733 /* DDPlayer_Btn_flowAlert@2x.png */; };
+		E3DE4C11219D21620073C733 /* DDPlayer_Btn_flowAlert@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3DE4C0F219D21620073C733 /* DDPlayer_Btn_flowAlert@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +216,10 @@
 		E3B5D961219AC90000F9FC1D /* DDPlayerContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerContainerView.m; sourceTree = "<group>"; };
 		E3DE4C04219D04DA0073C733 /* DDCaptureImageShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDCaptureImageShareView.h; sourceTree = "<group>"; };
 		E3DE4C05219D04DA0073C733 /* DDCaptureImageShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDCaptureImageShareView.m; sourceTree = "<group>"; };
+		E3DE4C0B219D1F490073C733 /* DDNetworkWarnView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDNetworkWarnView.h; sourceTree = "<group>"; };
+		E3DE4C0C219D1F490073C733 /* DDNetworkWarnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDNetworkWarnView.m; sourceTree = "<group>"; };
+		E3DE4C0E219D21620073C733 /* DDPlayer_Btn_flowAlert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_flowAlert@2x.png"; sourceTree = "<group>"; };
+		E3DE4C0F219D21620073C733 /* DDPlayer_Btn_flowAlert@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_flowAlert@3x.png"; sourceTree = "<group>"; };
 		F8E8F90204FFA6ED33907852 /* Pods-DDPlayerProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDPlayerProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DDPlayerProjectTests/Pods-DDPlayerProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -375,11 +382,12 @@
 		E3AB592D219559D100CAEF38 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E35817B8219C18F000BD3282 /* 截取图片分享 */,
 				E3AB594821955C8D00CAEF38 /* DDPlayerView.h */,
 				E3AB594721955C8D00CAEF38 /* DDPlayerView.m */,
 				E3AB595821955DA100CAEF38 /* DDPlayerComponentBaseView.h */,
 				E3AB595721955DA100CAEF38 /* DDPlayerComponentBaseView.m */,
+				E3DE4C0A219D1EF10073C733 /* 网络流量 */,
+				E35817B8219C18F000BD3282 /* 截取图片分享 */,
 				E3AB596321955DAC00CAEF38 /* ControlView */,
 				E3B5D95F219AC8A700F9FC1D /* ContentView */,
 				E35817A8219BB98400BD3282 /* 拖拽进度视图 */,
@@ -413,6 +421,8 @@
 		E3AB5930219559E100CAEF38 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E3DE4C0E219D21620073C733 /* DDPlayer_Btn_flowAlert@2x.png */,
+				E3DE4C0F219D21620073C733 /* DDPlayer_Btn_flowAlert@3x.png */,
 				E35817BC219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@2x.png */,
 				E35817BD219C1AA900BD3282 /* DDPlayer_Btn_CaptureShare@3x.png */,
 				E3B5D8C3219AB75D00F9FC1D /* DDPlayer_Gif_Loading@2x.gif */,
@@ -514,6 +524,15 @@
 				E3B5D961219AC90000F9FC1D /* DDPlayerContainerView.m */,
 			);
 			path = ContentView;
+			sourceTree = "<group>";
+		};
+		E3DE4C0A219D1EF10073C733 /* 网络流量 */ = {
+			isa = PBXGroup;
+			children = (
+				E3DE4C0B219D1F490073C733 /* DDNetworkWarnView.h */,
+				E3DE4C0C219D1F490073C733 /* DDNetworkWarnView.m */,
+			);
+			path = "网络流量";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -631,9 +650,11 @@
 				E35817B7219C061800BD3282 /* test.mp4 in Resources */,
 				E3AB598B21955F3300CAEF38 /* DDPlayer_Btn_BottomPortraitPlay@3x.png in Resources */,
 				E3AB598E21955F3300CAEF38 /* DDPlayer_Btn_BottomPortraitPause@2x.png in Resources */,
+				E3DE4C11219D21620073C733 /* DDPlayer_Btn_flowAlert@3x.png in Resources */,
 				E3AB598D21955F3300CAEF38 /* DDPlayer_Bg_MaskTop@2x.png in Resources */,
 				E3B5D8BF219AAF1C00F9FC1D /* DDPlayer_Btn_captureImage@2x.png in Resources */,
 				E3B5D8BA219A95F900F9FC1D /* DDPlayer_Btn_Unlock@3x.png in Resources */,
+				E3DE4C10219D21620073C733 /* DDPlayer_Btn_flowAlert@2x.png in Resources */,
 				E3AB598921955F3300CAEF38 /* DDPlayer_Btn_Capture@2x.png in Resources */,
 				E3AB599621955F3300CAEF38 /* DDPlayer_Icon_ProgressThumb_sel@3x.png in Resources */,
 				E3AB59072195596400CAEF38 /* LaunchScreen.storyboard in Resources */,
@@ -755,6 +776,7 @@
 				E3AB596221955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.m in Sources */,
 				E3AB5933219559FF00CAEF38 /* DDPlayer.m in Sources */,
 				E3AB595D21955DA100CAEF38 /* DDPlayerControlBottomBaseView.m in Sources */,
+				E3DE4C0D219D1F490073C733 /* DDNetworkWarnView.m in Sources */,
 				E3AB595E21955DA100CAEF38 /* DDPlayerControlView.m in Sources */,
 				E3AB596021955DA100CAEF38 /* DDPlayerComponentBaseView.m in Sources */,
 				E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */,
