@@ -10,6 +10,9 @@
 		2EEDBD62F2036376DF2E0DE0 /* libPods-DDPlayerProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C8FC439C810D419B5FF428 /* libPods-DDPlayerProject.a */; };
 		A44E587EF3596EADA61B5E9A /* libPods-DDPlayerProjectUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8FD5353F2C86624CC2E8724 /* libPods-DDPlayerProjectUITests.a */; };
 		B076360561E3700318AE489B /* libPods-DDPlayerProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D75E5B168621045C77DA34 /* libPods-DDPlayerProjectTests.a */; };
+		E316C4FE219D68CF0098194A /* DDPlayerView+ShowSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C4FD219D68CF0098194A /* DDPlayerView+ShowSubView.m */; };
+		E316C501219D69BD0098194A /* DDPlayerView+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C500219D69BD0098194A /* DDPlayerView+Private.m */; };
+		E316C504219D6F250098194A /* DDPlayerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C503219D6F250098194A /* DDPlayerContentView.m */; };
 		E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */; };
 		E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AD219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m */; };
 		E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */; };
@@ -118,6 +121,12 @@
 		B138672EA12CC87AE428959E /* Pods-DDPlayerProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDPlayerProjectUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DDPlayerProjectUITests/Pods-DDPlayerProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B8FD5353F2C86624CC2E8724 /* libPods-DDPlayerProjectUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DDPlayerProjectUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C8FC439C810D419B5FF428 /* libPods-DDPlayerProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DDPlayerProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E316C4FC219D68CF0098194A /* DDPlayerView+ShowSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDPlayerView+ShowSubView.h"; sourceTree = "<group>"; };
+		E316C4FD219D68CF0098194A /* DDPlayerView+ShowSubView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DDPlayerView+ShowSubView.m"; sourceTree = "<group>"; };
+		E316C4FF219D69BD0098194A /* DDPlayerView+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDPlayerView+Private.h"; sourceTree = "<group>"; };
+		E316C500219D69BD0098194A /* DDPlayerView+Private.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DDPlayerView+Private.m"; sourceTree = "<group>"; };
+		E316C502219D6F250098194A /* DDPlayerContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerContentView.h; sourceTree = "<group>"; };
+		E316C503219D6F250098194A /* DDPlayerContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerContentView.m; sourceTree = "<group>"; };
 		E35817A9219BB9D000BD3282 /* DDPlayerDragProgressBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressBaseView.h; sourceTree = "<group>"; };
 		E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerDragProgressBaseView.m; sourceTree = "<group>"; };
 		E35817AC219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressPortraitView.h; sourceTree = "<group>"; };
@@ -399,8 +408,12 @@
 			children = (
 				E3AB594821955C8D00CAEF38 /* DDPlayerView.h */,
 				E3AB594721955C8D00CAEF38 /* DDPlayerView.m */,
-				E3AB595821955DA100CAEF38 /* DDPlayerComponentBaseView.h */,
-				E3AB595721955DA100CAEF38 /* DDPlayerComponentBaseView.m */,
+				E316C4FF219D69BD0098194A /* DDPlayerView+Private.h */,
+				E316C500219D69BD0098194A /* DDPlayerView+Private.m */,
+				E316C4FC219D68CF0098194A /* DDPlayerView+ShowSubView.h */,
+				E316C4FD219D68CF0098194A /* DDPlayerView+ShowSubView.m */,
+				E316C502219D6F250098194A /* DDPlayerContentView.h */,
+				E316C503219D6F250098194A /* DDPlayerContentView.m */,
 				E3DE4C0A219D1EF10073C733 /* 网络流量 */,
 				E35817B8219C18F000BD3282 /* 截取图片分享 */,
 				E3AB596321955DAC00CAEF38 /* ControlView */,
@@ -517,6 +530,8 @@
 			children = (
 				E3AB595221955DA100CAEF38 /* DDPlayerControlView.h */,
 				E3AB595321955DA100CAEF38 /* DDPlayerControlView.m */,
+				E3AB595821955DA100CAEF38 /* DDPlayerComponentBaseView.h */,
+				E3AB595721955DA100CAEF38 /* DDPlayerComponentBaseView.m */,
 				E3AB595621955DA100CAEF38 /* DDPlayerControlBottomBaseView.h */,
 				E3AB595121955DA100CAEF38 /* DDPlayerControlBottomBaseView.m */,
 				E3AB595C21955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.h */,
@@ -797,6 +812,7 @@
 			files = (
 				E3AB596121955DA100CAEF38 /* DDPlayerControlBottomPortraitView.m in Sources */,
 				E3B5D962219AC90000F9FC1D /* DDPlayerContainerView.m in Sources */,
+				E316C504219D6F250098194A /* DDPlayerContentView.m in Sources */,
 				E3AB594121955AD400CAEF38 /* DDVideoViewController.m in Sources */,
 				E3AB596621955DF000CAEF38 /* DDVideoNormalViewController.m in Sources */,
 				E3AB59A221957A3700CAEF38 /* DDPlayerCoverView.m in Sources */,
@@ -815,8 +831,10 @@
 				E38A46482199120A00944AC9 /* DDBrightView.m in Sources */,
 				E3AB593B21955AA100CAEF38 /* DDNavigationController.m in Sources */,
 				E3AB599D2195731D00CAEF38 /* DDPlayerManager.m in Sources */,
+				E316C4FE219D68CF0098194A /* DDPlayerView+ShowSubView.m in Sources */,
 				E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */,
 				E3AB593E21955AC100CAEF38 /* DDBaseViewController.m in Sources */,
+				E316C501219D69BD0098194A /* DDPlayerView+Private.m in Sources */,
 				E3AB595021955D3900CAEF38 /* DDPlayerTool.m in Sources */,
 				E3AB58FC2195596200CAEF38 /* AppDelegate.m in Sources */,
 				E3AB594C21955CB900CAEF38 /* DDPlayerLineModel.m in Sources */,

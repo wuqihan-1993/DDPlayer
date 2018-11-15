@@ -6,11 +6,11 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DDPlayerContentView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDNetworkWWANWarnView : UIView
+@interface DDNetworkWWANWarnView : DDPlayerContentView
 @property (nonatomic, copy) void (^backButtonClickBlock)(UIButton *);
 @property (nonatomic, copy) void (^playButtonClickBlock)(UIButton *);
 @end

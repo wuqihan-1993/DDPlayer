@@ -20,6 +20,7 @@
 #import "DDPlayerCoverView.h"
 #import "DDNetworkWWANWarnView.h"
 #import "DDNetworkErrorView.h"
+#import "DDPlayerView+ShowSubView.h"
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
@@ -221,23 +222,16 @@
     switch (networkStatus) {
         case NotReachable:
         {
-            [self.player pause];
-            [self addSubview:self.networkErrorView];
-            [self.networkErrorView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
+            [self show:self.networkErrorView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
+                
             }];
-            [self bringSubviewToFront:self.networkErrorView];
-            
         }
             break;
         case ReachableViaWWAN:
         {
-            [self.player pause];
-            [self addSubview:self.WWANWarnView];
-            [self.WWANWarnView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
+            [self show:self.WWANWarnView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
+                
             }];
-            [self bringSubviewToFront:self.WWANWarnView];
             
         }
             break;
@@ -267,6 +261,12 @@
 - (void)playerControlView:(DDPlayerControlView *)controlView clickForwardButton:(UIButton *)button {
     if ([self.delegate respondsToSelector:@selector(playerViewClickForwardButton:)]) {
         [self.delegate playerViewClickForwardButton:button];
+    }
+}
+
+- (void)playerControlView:(DDPlayerControlView *)controlView clickChapterButton:(UIButton *)button {
+    if ([self.delegate respondsToSelector:@selector(playerViewClickChapterButton:)]) {
+        [self.delegate playerViewClickChapterButton:button];
     }
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView clicklockScreenButton:(UIButton *)button {

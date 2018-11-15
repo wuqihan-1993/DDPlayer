@@ -8,8 +8,9 @@
 
 #import "DDVideoNormalViewController.h"
 #import "DDPlayerView.h"
+#import "DDPlayerView+ShowSubView.h"
 #import "Masonry.h"
-
+#import "DDPlayerContainerView.h"
 @interface DDVideoNormalViewController ()<UITableViewDataSource,UITableViewDelegate,DDPlayerViewDelegate,DDPlayerDelegate>
 
 @property(nonatomic, strong) DDPlayerView *playerView;
@@ -184,7 +185,8 @@
     
 }
 - (void)playerViewClickChapterButton:(UIButton *)button {
-    [self.playerView showSubViewFromRight:self.chapterView];
+    
+    [self.playerView show:self.chapterView origin:DDPlayerShowOriginRight isDismissControl:YES isPause:NO];
 }
 
 #pragma mark - DDPlayerDelegate

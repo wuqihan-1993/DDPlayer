@@ -1,0 +1,58 @@
+//
+//  DDPlayerView+ShowSubView.m
+//  DDPlayerProject
+//
+//  Created by wuqh on 2018/11/15.
+//  Copyright © 2018 wuqh. All rights reserved.
+//
+
+#import "DDPlayerView+ShowSubView.h"
+#import "DDPlayerView+Private.h"
+
+#import "DDPlayerContainerView.h"
+#import "DDPlayerControlView.h"
+#import "DDPlayerContentView.h"
+#import <Masonry.h>
+
+@implementation DDPlayerView (ShowSubView)
+
+- (void)show:(UIView *)view origin:(DDPlayerShowOrigin)origin isDismissControl:(BOOL)isDismissControl isPause:(BOOL)isPause dismissCompletion:(nonnull void (^)(void))dismiss{
+    
+    if (isDismissControl) {
+        [self._getPlayerControlView dismiss];
+    }
+    if (isPause) {
+        [self._getPlayer pause];
+    }
+    
+    
+    if (origin == DDPlayerShowOriginRight) {
+        
+        DDPlayerContainerView *containerView = [[DDPlayerContainerView alloc] initWithContentView:view alignment:DDPlayerContainerAlignmentRight];
+        containerView.frame = CGRectMake(0, 0, DDPlayerTool.screenHeight, DDPlayerTool.screenWidth);
+        containerView.dismissBlock = ^{
+            
+            [self._getPlayerControlView show];
+            dismiss();
+        };
+        [self addSubview:containerView];
+        [self layoutIfNeeded];
+        [containerView show];
+        
+    }else if (origin == DDPlayerShowOriginCenter) {
+        
+        if ([view isKindOfClass:[DDPlayerContentView class]]) {
+            DDPlayerContentView *contentView = (DDPlayerContentView*)view;
+            contentView.dismissBlock = dismiss;
+        }
+
+        [self addSubview:view];
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+        [self layoutIfNeeded];
+        
+    }
+}
+
+@end

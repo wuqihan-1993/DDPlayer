@@ -6,11 +6,11 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DDPlayerContentView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDNetworkErrorView : UIView
+@interface DDNetworkErrorView : DDPlayerContentView
 
 @property(nonatomic, copy) void(^retryBlock)(void);
 

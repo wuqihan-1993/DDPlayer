@@ -10,6 +10,7 @@
 #import "DDPlayer.h"
 #import "DDPlayerTool.h"
 #import "DDPlayerViewDelegate.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPlayerView : UIView
@@ -28,7 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, assign, readonly) BOOL isLockScreen;
 
-- (void)showSubViewFromRight:(UIView *)subView;
 
 @end
 
