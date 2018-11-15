@@ -53,22 +53,16 @@
     self.timeLabel.text = [DDPlayerTool translateTimeToString:duration*progress];
     self.timeLabel.textColor = [DDPlayerTool colorWithRGBHex:0x61d8bb];
     NSInteger seconds = progress*duration;
+    //这里做个优化。 因为时间不是精确到秒，所以同一秒钟 比如12.1 12.2 12.3 秒 都会下载。
     if (ABS(seconds-_lastSecond) < 1) {
+        _lastSecond = seconds;
         return;
     }else {
         [self.imageGenerator cancelAllCGImageGeneration];
+        _lastSecond = seconds;
     }
-    _lastSecond = seconds;
-    
-//    AVURLAsset *urlAsset = (AVURLAsset *)self.asset;
-//    if ([DDPlayerTool isLocationPath:urlAsset.URL.absoluteString]) {
-//        self.imageGenerator.maximumSize = CGSizeMake(DDPlayerTool.screenHeight*0.4, DDPlayerTool.screenHeight*0.4*9/16);
-//    }else {
-//        self.imageGenerator.maximumSize = CGSizeMake(100, 100*9/16);
-//    }
     
     self.imageGenerator.maximumSize = CGSizeMake(100, 100*9/16);
-    
     
     CMTime time = CMTimeMakeWithSeconds(seconds, 600);
     
