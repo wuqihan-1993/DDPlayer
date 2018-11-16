@@ -186,7 +186,7 @@
 }
 - (void)playerViewClickChapterButton:(UIButton *)button {
     
-    [self.playerView show:self.chapterView origin:DDPlayerShowOriginRight isDismissControl:YES isPause:NO];
+    [self.playerView show:self.chapterView origin:DDPlayerShowOriginRight isDismissControl:YES isPause:NO dismissCompletion:nil];
 }
 
 #pragma mark - DDPlayerDelegate

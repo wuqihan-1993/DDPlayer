@@ -406,14 +406,7 @@
 		E3AB592D219559D100CAEF38 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E3AB594821955C8D00CAEF38 /* DDPlayerView.h */,
-				E3AB594721955C8D00CAEF38 /* DDPlayerView.m */,
-				E316C4FF219D69BD0098194A /* DDPlayerView+Private.h */,
-				E316C500219D69BD0098194A /* DDPlayerView+Private.m */,
-				E316C4FC219D68CF0098194A /* DDPlayerView+ShowSubView.h */,
-				E316C4FD219D68CF0098194A /* DDPlayerView+ShowSubView.m */,
-				E316C502219D6F250098194A /* DDPlayerContentView.h */,
-				E316C503219D6F250098194A /* DDPlayerContentView.m */,
+				E3BCD010219E4FB000455201 /* DDPlayerView */,
 				E3DE4C0A219D1EF10073C733 /* 网络流量 */,
 				E35817B8219C18F000BD3282 /* 截取图片分享 */,
 				E3AB596321955DAC00CAEF38 /* ControlView */,
@@ -560,6 +553,21 @@
 				E3B5D961219AC90000F9FC1D /* DDPlayerContainerView.m */,
 			);
 			path = ContentView;
+			sourceTree = "<group>";
+		};
+		E3BCD010219E4FB000455201 /* DDPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				E3AB594821955C8D00CAEF38 /* DDPlayerView.h */,
+				E3AB594721955C8D00CAEF38 /* DDPlayerView.m */,
+				E316C4FF219D69BD0098194A /* DDPlayerView+Private.h */,
+				E316C500219D69BD0098194A /* DDPlayerView+Private.m */,
+				E316C4FC219D68CF0098194A /* DDPlayerView+ShowSubView.h */,
+				E316C4FD219D68CF0098194A /* DDPlayerView+ShowSubView.m */,
+				E316C502219D6F250098194A /* DDPlayerContentView.h */,
+				E316C503219D6F250098194A /* DDPlayerContentView.m */,
+			);
+			path = DDPlayerView;
 			sourceTree = "<group>";
 		};
 		E3DE4C0A219D1EF10073C733 /* 网络流量 */ = {

@@ -31,11 +31,13 @@
         DDPlayerContainerView *containerView = [[DDPlayerContainerView alloc] initWithContentView:view alignment:DDPlayerContainerAlignmentRight];
         containerView.frame = CGRectMake(0, 0, DDPlayerTool.screenHeight, DDPlayerTool.screenWidth);
         containerView.dismissBlock = ^{
-            
             [self._getPlayerControlView show];
-            dismiss();
+            if (dismiss) {
+                dismiss();
+            }
         };
         [self addSubview:containerView];
+        [self bringSubviewToFront:containerView];
         [self layoutIfNeeded];
         [containerView show];
         
@@ -47,6 +49,7 @@
         }
 
         [self addSubview:view];
+        [self bringSubviewToFront:view];
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
