@@ -70,6 +70,7 @@
 }
 - (UILabel *)promptLabel {
     if (!_promptLabel) {
+        _promptLabel = [[UILabel alloc] init];
         _promptLabel.text = @"您当前正在使用流量播放视频，是否继续观看？";
         _promptLabel.textAlignment = NSTextAlignmentCenter;
         _promptLabel.textColor = UIColor.whiteColor;

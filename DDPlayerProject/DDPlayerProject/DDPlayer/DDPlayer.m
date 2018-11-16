@@ -9,11 +9,14 @@
 #import "DDPlayer.h"
 #import "DDPlayerTool.h"
 #import <Reachability.h>
+#import "DDKVOManager.h"
 
 static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 
 @interface DDPlayer()
-
+{
+    DDKVOManager* _playerItemKVO;
+}
 @property(nonatomic, assign) NSTimeInterval duration;
 @property(nonatomic, assign) NSTimeInterval currentTime;
 @property(nonatomic, assign) DDPlayerStatus status;
@@ -53,8 +56,13 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 #pragma mark - public
 - (void)replaceWithUrl:(NSString *)url {
     
-    if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
-        return;
+    
+    if (![DDPlayerTool isLocationPath:url]) {
+        //不是本地视频。。网络是3g 不能立即播放
+        if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
+            [self stop];
+            return;
+        }
     }
     
     NSURL *URL;
@@ -63,9 +71,13 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     }else {
         URL = [NSURL URLWithString:url];
     }
-    self.currentAsset = [AVAsset assetWithURL:URL];
+    
+    self.currentAsset = [AVURLAsset assetWithURL:URL];
+    
+    [self removeItemObservers];
     self.currentItem = [AVPlayerItem playerItemWithAsset:self.currentAsset];
     [self addItemObservers];
+    
     [self.player replaceCurrentItemWithPlayerItem:self.currentItem];
     
 }
@@ -77,8 +89,11 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     self.status = DDPlayerStatusUnknown;
 }
 - (void)play {
-    if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
-        return;
+    if (![DDPlayerTool isLocationPath:self.currentAsset.URL.absoluteString]) {
+        //不是本地视频。。网络是3g 不能立即播放
+        if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
+            return;
+        }
     }
     [self.player play];
 }
@@ -183,33 +198,54 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 
 #pragma mark - kvo
 - (void)addItemObservers {
-    if (self.currentItem == nil) {
-        return;
-    }
-    [self.currentItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:&observerContext];
-    [self.currentItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:&observerContext];
-    [self.currentItem addObserver:self forKeyPath:@"isPlaybackBufferEmpty" options:NSKeyValueObservingOptionNew context:&observerContext];
-    [self.currentItem addObserver:self forKeyPath:@"isPlaybackBufferFull" options:NSKeyValueObservingOptionNew context:&observerContext];
+    
+    [_playerItemKVO safelyRemoveAllObservers];
+    
+    _playerItemKVO = [[DDKVOManager alloc] initWithTarget:self.currentItem];
+    
+    [_playerItemKVO safelyAddObserver:self
+                           forKeyPath:@"status"
+                              options:NSKeyValueObservingOptionNew
+                              context:&observerContext];
+    [_playerItemKVO safelyAddObserver:self
+                           forKeyPath:@"playbackLikelyToKeepUp"
+                              options:NSKeyValueObservingOptionNew
+                              context:&observerContext];
+    [_playerItemKVO safelyAddObserver:self
+                           forKeyPath:@"playbackBufferEmpty"
+                              options:NSKeyValueObservingOptionNew
+                              context:&observerContext];
+    [_playerItemKVO safelyAddObserver:self
+                           forKeyPath:@"isPlaybackBufferFull"
+                              options:NSKeyValueObservingOptionNew
+                              context:&observerContext];
+    
+    
 }
 - (void)removeItemObservers {
-    if (self.currentItem == nil) {
-        return;
-    }
-    [self.currentItem removeObserver:self forKeyPath:@"status" context:&observerContext];
-    [self.currentItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp" context:&observerContext];
-    [self.currentItem removeObserver:self forKeyPath:@"isPlaybackBufferEmpty" context:&observerContext];
-    [self.currentItem removeObserver:self forKeyPath:@"isPlaybackBufferFull" context:&observerContext];
+    [_playerItemKVO safelyRemoveAllObservers];
+//    if (self.currentItem == nil) {
+//        return;
+//    }
+//    [self.currentItem removeObserver:self forKeyPath:@"status" context:&observerContext];
+//    [self.currentItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp" context:&observerContext];
+//    [self.currentItem removeObserver:self forKeyPath:@"isPlaybackBufferEmpty" context:&observerContext];
+//    [self.currentItem removeObserver:self forKeyPath:@"isPlaybackBufferFull" context:&observerContext];
     
 }
 - (void)addPlayerObservers {
     __weak typeof(self) weakSelf = self;//下面会造成循环引用
     self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, NSEC_PER_SEC) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
         
-        [weakSelf updateStatus];
-        
+
+        DLog(@"%s",__FUNCTION__);
         if (weakSelf.currentItem == nil) {
             return ;
         }
+        DLog(@"item不为空 %s",__FUNCTION__);
+        [weakSelf updateStatus];
+        
+        
         if (CMTimeGetSeconds(weakSelf.currentItem.duration) <= 0) {
             return ;
         }
@@ -290,6 +326,11 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 
 - (void)netStatusChange:(NSNotification *)notification {
+    
+    //如果是播放本地视频的时候。不需要知道网络状态的变化。
+    if ([DDPlayerTool isLocationPath:self.currentAsset.URL.absoluteString]) {
+        return;
+    }
     
     Reachability *reach = notification.object;
     if ([self.delegate respondsToSelector:@selector(playerNetworkStatusChanged:)]) {

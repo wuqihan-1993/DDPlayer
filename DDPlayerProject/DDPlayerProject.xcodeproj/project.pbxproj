@@ -82,6 +82,7 @@
 		E3B5D8C2219AAF1C00F9FC1D /* DDPlayer_Btn_captureVideo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3B5D8BE219AAF1C00F9FC1D /* DDPlayer_Btn_captureVideo@2x.png */; };
 		E3B5D8C4219AB75D00F9FC1D /* DDPlayer_Gif_Loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3B5D8C3219AB75D00F9FC1D /* DDPlayer_Gif_Loading@2x.gif */; };
 		E3B5D962219AC90000F9FC1D /* DDPlayerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B5D961219AC90000F9FC1D /* DDPlayerContainerView.m */; };
+		E3BCD014219E5A1A00455201 /* DDKVOManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BCD013219E5A1A00455201 /* DDKVOManager.m */; };
 		E3DE4C06219D04DA0073C733 /* DDCaptureImageShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DE4C05219D04DA0073C733 /* DDCaptureImageShareView.m */; };
 		E3DE4C0D219D1F490073C733 /* DDNetworkWWANWarnView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DE4C0C219D1F490073C733 /* DDNetworkWWANWarnView.m */; };
 		E3DE4C10219D21620073C733 /* DDPlayer_Btn_flowAlert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3DE4C0E219D21620073C733 /* DDPlayer_Btn_flowAlert@2x.png */; };
@@ -230,6 +231,9 @@
 		E3B5D8C3219AB75D00F9FC1D /* DDPlayer_Gif_Loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "DDPlayer_Gif_Loading@2x.gif"; sourceTree = "<group>"; };
 		E3B5D960219AC90000F9FC1D /* DDPlayerContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerContainerView.h; sourceTree = "<group>"; };
 		E3B5D961219AC90000F9FC1D /* DDPlayerContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerContainerView.m; sourceTree = "<group>"; };
+		E3BCD011219E528700455201 /* DDPlayerProject_PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerProject_PrefixHeader.pch; sourceTree = "<group>"; };
+		E3BCD012219E5A1A00455201 /* DDKVOManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDKVOManager.h; sourceTree = "<group>"; };
+		E3BCD013219E5A1A00455201 /* DDKVOManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDKVOManager.m; sourceTree = "<group>"; };
 		E3DE4C04219D04DA0073C733 /* DDCaptureImageShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDCaptureImageShareView.h; sourceTree = "<group>"; };
 		E3DE4C05219D04DA0073C733 /* DDCaptureImageShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDCaptureImageShareView.m; sourceTree = "<group>"; };
 		E3DE4C0B219D1F490073C733 /* DDNetworkWWANWarnView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDNetworkWWANWarnView.h; sourceTree = "<group>"; };
@@ -361,6 +365,7 @@
 				E3AB593421955A6800CAEF38 /* ViewController */,
 				E3AB58FA2195596200CAEF38 /* AppDelegate.h */,
 				E3AB58FB2195596200CAEF38 /* AppDelegate.m */,
+				E3BCD011219E528700455201 /* DDPlayerProject_PrefixHeader.pch */,
 				E3AB59032195596400CAEF38 /* Assets.xcassets */,
 				E3AB59052195596400CAEF38 /* LaunchScreen.storyboard */,
 				E3AB59082195596400CAEF38 /* Info.plist */,
@@ -407,7 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				E3BCD010219E4FB000455201 /* DDPlayerView */,
-				E3DE4C0A219D1EF10073C733 /* 网络流量 */,
+				E3DE4C0A219D1EF10073C733 /* 网络监控提示图 */,
 				E35817B8219C18F000BD3282 /* 截取图片分享 */,
 				E3AB596321955DAC00CAEF38 /* ControlView */,
 				E3B5D95F219AC8A700F9FC1D /* ContentView */,
@@ -435,6 +440,8 @@
 				E3AB594E21955D3900CAEF38 /* DDPlayerTool.h */,
 				E3AB594F21955D3900CAEF38 /* DDPlayerTool.m */,
 				E38A46552199760B00944AC9 /* NSTimer+Block.h */,
+				E3BCD012219E5A1A00455201 /* DDKVOManager.h */,
+				E3BCD013219E5A1A00455201 /* DDKVOManager.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -570,7 +577,7 @@
 			path = DDPlayerView;
 			sourceTree = "<group>";
 		};
-		E3DE4C0A219D1EF10073C733 /* 网络流量 */ = {
+		E3DE4C0A219D1EF10073C733 /* 网络监控提示图 */ = {
 			isa = PBXGroup;
 			children = (
 				E3DE4C0B219D1F490073C733 /* DDNetworkWWANWarnView.h */,
@@ -578,7 +585,7 @@
 				E3DE4C16219D5B180073C733 /* DDNetworkErrorView.h */,
 				E3DE4C17219D5B180073C733 /* DDNetworkErrorView.m */,
 			);
-			path = "网络流量";
+			path = "网络监控提示图";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -846,6 +853,7 @@
 				E3AB595021955D3900CAEF38 /* DDPlayerTool.m in Sources */,
 				E3AB58FC2195596200CAEF38 /* AppDelegate.m in Sources */,
 				E3AB594C21955CB900CAEF38 /* DDPlayerLineModel.m in Sources */,
+				E3BCD014219E5A1A00455201 /* DDKVOManager.m in Sources */,
 				E3AB593721955A8900CAEF38 /* DDTabBarController.m in Sources */,
 				E3DE4C18219D5B180073C733 /* DDNetworkErrorView.m in Sources */,
 				E3DE4C06219D04DA0073C733 /* DDCaptureImageShareView.m in Sources */,
@@ -1012,8 +1020,11 @@
 			baseConfigurationReference = 7BF951BC267A60F2A473254E /* Pods-DDPlayerProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = DDPlayerProject/DDPlayerProject_PrefixHeader.pch;
 				INFOPLIST_FILE = DDPlayerProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1022,6 +1033,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuqh.DDPlayerProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1031,8 +1043,10 @@
 			baseConfigurationReference = 848DBCAE4367F9EC0A98D045 /* Pods-DDPlayerProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = DDPlayerProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1041,6 +1055,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuqh.DDPlayerProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

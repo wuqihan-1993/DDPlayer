@@ -149,6 +149,10 @@
 - (DDNetworkWWANWarnView *)WWANWarnView {
     if (!_WWANWarnView) {
         _WWANWarnView = [[DDNetworkWWANWarnView alloc] init];
+        __weak typeof(self) weakSelf = self;
+        _WWANWarnView.playButtonClickBlock = ^(UIButton * _Nonnull button) {
+            weakSelf.player.isCanPlayOnWWAN = YES;
+        };
     }
     return _WWANWarnView;
 }
@@ -237,7 +241,13 @@
             break;
         case ReachableViaWiFi:
         {
-            
+            if (self.networkErrorView.superview) {
+                [self.networkErrorView removeFromSuperview];
+            }
+            if (self.WWANWarnView.superview) {
+                [self.WWANWarnView removeFromSuperview];
+            }
+            [self.player play];
         }
             break;
         default:

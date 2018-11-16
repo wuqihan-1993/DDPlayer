@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, weak) id<DDPlayerDelegate> delegate;
 @property(nonatomic, weak) id<DDPlayerDelegate> delegateController;
-@property(nonatomic, strong) AVAsset *currentAsset;
+@property(nonatomic, strong) AVURLAsset *currentAsset;
 @property(nonatomic, strong) AVPlayerItem *currentItem;
 /**
  播放该视频总时长
