@@ -14,6 +14,7 @@
 
 @property(nonatomic, strong) UIImageView *maskView;
 @property(nonatomic, strong) UIButton *backTitleButton;
+@property(nonatomic, strong) UIButton *shareButton;
 
 @end
 
@@ -29,14 +30,20 @@
 - (void)initUI {
     [self addSubview:self.maskView];
     [self addSubview:self.backTitleButton];
+    [self addSubview:self.shareButton];
     
     [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
     [self.backTitleButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).mas_offset(20);
-        make.top.equalTo(self).mas_equalTo(20);
+        make.top.equalTo(self).mas_offset(20);
     }];
+    [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).mas_offset(20);
+        make.right.equalTo(self).mas_offset(-20);
+    }];
+    
 }
 
 #pragma mark - override method
@@ -44,10 +51,17 @@
     [self.backTitleButton mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).mas_offset(20);
     }];
+    [self.shareButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).mas_offset(-20);
+    }];
 }
 - (void)updateUIWithLandscape {
     [self.backTitleButton mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).mas_equalTo(40);
+        make.left.equalTo(self).mas_equalTo(44);
+        
+    }];
+    [self.shareButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).mas_offset(-44);
     }];
 }
 
@@ -60,6 +74,11 @@
         if (self.backTitleButtonClickBlock) {
             self.backTitleButtonClickBlock(button);
         }
+    }
+}
+- (void)shareButtonClick:(UIButton *)button {
+    if (self.shareButtonClickBlock) {
+        self.shareButtonClickBlock(button);
     }
 }
 
@@ -86,6 +105,14 @@
         _backTitleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     return _backTitleButton;
+}
+- (UIButton *)shareButton {
+    if (!_shareButton) {
+        _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_shareButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_LandShare"] forState:UIControlStateNormal];
+        [_shareButton addTarget:self action:@selector(shareButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _shareButton;
 }
 
 

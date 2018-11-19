@@ -92,8 +92,21 @@
     [self.playerControlView dismiss];
     [containerView show];
 }
+#pragma mark - setter
 - (void)setTitle:(NSString *)title {
     self.playerControlView.topView.title = title;
+}
+- (void)setIsHiddenCapture:(BOOL)isHiddenCapture {
+    _isHiddenCapture = isHiddenCapture;
+    self.playerControlView.captureImageButton.hidden = isHiddenCapture;
+    self.playerControlView.captureVideoButton.hidden = isHiddenCapture;
+}
+- (void)setIsHiddenShare:(BOOL)isHiddenShare {
+    _isHiddenShare = isHiddenShare;
+    [(UIButton *)[self.playerControlView.topView valueForKey:@"shareButton"] setHidden:isHiddenShare];
+}
+- (void)setClarityNameArray:(NSArray *)clarityNameArray {
+    _clarityNameArray = clarityNameArray;
 }
 
 #pragma mark - getter

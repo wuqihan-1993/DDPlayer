@@ -17,12 +17,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) DDPlayer *player;
 @property(nonatomic, weak)   id<DDPlayerViewDelegate> delegate;
-@property(nonatomic, copy)   NSString *title;
 
+/**
+ 设置清晰度名称
+ */
+@property(nonatomic, strong) NSArray *clarityNameArray;
+
+/**
+ 视频标题
+ */
+@property(nonatomic, copy)   NSString *title;
 /**
  封面图
  */
 @property(nonatomic, copy) NSString *coverImage;
+/**
+ 是否隐藏截取功能
+ */
+@property(nonatomic, assign) BOOL isHiddenCapture;
+
+/**
+ 是否隐藏分享按钮
+ */
+@property(nonatomic, assign) BOOL isHiddenShare;
+
 
 /**
  是否锁屏

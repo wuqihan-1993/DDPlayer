@@ -12,8 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPlayerControlTopView : DDPlayerComponentBaseView
 
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) void (^backTitleButtonClickBlock)(UIButton *);
+@property(nonatomic, copy) NSString *title;
+@property(nonatomic, copy) void (^backTitleButtonClickBlock)(UIButton *);
+@property(nonatomic, copy) void (^shareButtonClickBlock)(UIButton *);
 
 @end
 
