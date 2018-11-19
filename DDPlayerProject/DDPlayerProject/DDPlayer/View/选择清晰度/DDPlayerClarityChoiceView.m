@@ -12,6 +12,7 @@
 @interface DDPlayerClarityChoiceView()
 
 @property(nonatomic, strong) UIStackView *stackView;
+@property(nonatomic, strong) NSDictionary *clarityDict;
 
 @end
 
@@ -54,17 +55,19 @@
         make.center.equalTo(self);
     }];
     
+    self.clarityDict = @{@"标准":@(DDPlayerClarityDefault),@"流畅":@(DDPlayerClarityFluency)};
+    self.clarityArray = self.clarityDict.allKeys;
+    
+    _clarity = DDPlayerClarityDefault;
     
 }
 
-- (void)setClarityArray:(NSMutableArray *)clarityArray {
-    _clarityArray = clarityArray;
+- (void)setClarityArray:(NSArray *)clarityArray {
     
     if (self.stackView.subviews.count > 0) {
         [self.stackView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
     
-
     for (NSInteger i = 0; i < clarityArray.count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setTitle:clarityArray[i] forState:UIControlStateNormal];
@@ -72,13 +75,24 @@
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button.titleLabel setFont:[DDPlayerTool PingFangSCRegularAndSize:15]];
         [button addTarget:self action:@selector(clarityButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = 1000+i;
         if (i == 0) {
             button.selected = YES;
         }
         [self.stackView addArrangedSubview:button];
     }
     
-    
+}
+
+- (void)setClarity:(DDPlayerClarity)clarity {
+    _clarity = clarity;
+    for (UIButton *button in self.stackView.arrangedSubviews) {
+        if (button.tag + 1000 == clarity) {
+            button.selected = YES;
+        }else {
+            button.selected = NO;
+        }
+    }
 }
 
 - (UIStackView *)stackView {
@@ -93,7 +107,9 @@
 
 #pragma mark - action
 - (void)clarityButtonClick:(UIButton *)button {
-    
+    if (self.clarityButtonClickBlock) {
+        self.clarityButtonClickBlock(button.tag-1000,button);
+    }
 }
 
 @end

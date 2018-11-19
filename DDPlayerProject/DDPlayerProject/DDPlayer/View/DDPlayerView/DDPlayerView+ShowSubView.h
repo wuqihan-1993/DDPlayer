@@ -8,17 +8,18 @@
 
 #import "DDPlayerView.h"
 
-NS_ASSUME_NONNULL_BEGIN
+
 
 typedef NS_ENUM(NSInteger,DDPlayerShowOrigin) {
     DDPlayerShowOriginCenter,
-    DDPlayerShowOriginRight
+    DDPlayerShowOriginRight,
+    DDPlayerShowOriginTop
 };
 
 @interface DDPlayerView (ShowSubView)
 
-- (void)show:(UIView*)view origin:(DDPlayerShowOrigin)origin isDismissControl:(BOOL)isDismissControl isPause:(BOOL)isPause dismissCompletion:(void(^)(void))dismiss;
+- (void)show:(UIView*)view origin:(DDPlayerShowOrigin)origin isDismissControl:(BOOL)isDismissControl isPause:(BOOL)isPause dismissCompletion:(void(^ __nullable)(void))dismiss;
 
 @end
 
-NS_ASSUME_NONNULL_END
+

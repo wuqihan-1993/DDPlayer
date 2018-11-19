@@ -19,11 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, weak)   id<DDPlayerViewDelegate> delegate;
 
 /**
- 设置清晰度名称
- */
-@property(nonatomic, strong) NSArray *clarityNameArray;
-
-/**
  视频标题
  */
 @property(nonatomic, copy)   NSString *title;
@@ -43,9 +38,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
+ 是否隐藏清晰度按钮
+ */
+@property(nonatomic, assign) BOOL isHiddenClarity;
+
+
+/**
  是否锁屏
  */
 @property(nonatomic, assign, readonly) BOOL isLockScreen;
+
+
 
 
 @end

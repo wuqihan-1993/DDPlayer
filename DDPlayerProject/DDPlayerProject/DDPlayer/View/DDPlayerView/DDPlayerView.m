@@ -22,6 +22,7 @@
 #import "DDNetworkErrorView.h"
 #import "DDPlayerView+ShowSubView.h"
 #import "DDPlayerClarityChoiceView.h"
+#import "DDPlayerClarityPromptLabel.h"
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
@@ -35,6 +36,7 @@
 @property(nonatomic, strong) DDNetworkWWANWarnView *WWANWarnView;//流量警告视图
 @property(nonatomic, strong) DDNetworkErrorView *networkErrorView;//无网警告视图
 @property(nonatomic, strong) DDPlayerClarityChoiceView *clarityChoiceView;//清晰度选择视图
+@property(nonatomic, strong) DDPlayerClarityPromptLabel *clarityPromptLabel;
 
 @end
 
@@ -80,18 +82,7 @@
 }
 
 #pragma mark - public method
-- (void)showSubViewFromRight:(UIView *)subView {
-    
-    DDPlayerContainerView *containerView = [[DDPlayerContainerView alloc] initWithContentView:subView alignment:DDPlayerContainerAlignmentRight];
-    containerView.frame = CGRectMake(0, 0, DDPlayerTool.screenHeight, DDPlayerTool.screenWidth);
-    containerView.dismissBlock = ^{
-        [self.playerControlView show];
-    };
-    [self addSubview:containerView];
-    [self layoutIfNeeded];
-    [self.playerControlView dismiss];
-    [containerView show];
-}
+
 #pragma mark - setter
 - (void)setTitle:(NSString *)title {
     self.playerControlView.topView.title = title;
@@ -103,10 +94,11 @@
 }
 - (void)setIsHiddenShare:(BOOL)isHiddenShare {
     _isHiddenShare = isHiddenShare;
-    [(UIButton *)[self.playerControlView.topView valueForKey:@"shareButton"] setHidden:isHiddenShare];
+    [[self.playerControlView.topView valueForKey:@"shareButton"] setHidden:isHiddenShare];
 }
-- (void)setClarityNameArray:(NSArray *)clarityNameArray {
-    _clarityNameArray = clarityNameArray;
+- (void)setIsHiddenClarity:(BOOL)isHiddenClarity {
+    _isHiddenClarity = isHiddenClarity;
+    [[self.playerControlView.bottomLandscapeView valueForKey:@"clarityButton"] setHidden:isHiddenClarity];
 }
 
 #pragma mark - getter
@@ -185,8 +177,58 @@
 - (DDPlayerClarityChoiceView *)clarityChoiceView {
     if (!_clarityChoiceView) {
         _clarityChoiceView = [[DDPlayerClarityChoiceView alloc] init];
+        __weak typeof(self) weakSelf = self;
+        _clarityChoiceView.clarityButtonClickBlock = ^(DDPlayerClarity clarity, UIButton *button) {
+            
+            //切流操作
+            
+            if (weakSelf.clarityChoiceView.clarity == clarity) {
+                //如果点击s的是同样的清晰度。则直接返回
+                [(DDPlayerContainerView*)weakSelf.clarityChoiceView.superview dismiss];
+                return ;
+            }
+            //1.保存当前时间
+            NSTimeInterval lastTime = weakSelf.player.currentTime;
+            
+            //2.截取当前时间图片
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[DDPlayerManager thumbnailImageWithAsset:weakSelf.player.currentAsset currentTime:weakSelf.player.currentItem.currentTime]];
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            [weakSelf show:imageView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:NO dismissCompletion:nil];
+            [weakSelf insertSubview:imageView belowSubview:weakSelf.playerControlView];
+            
+            //3.截取汇总
+            [weakSelf.clarityPromptLabel choose:clarity];
+            [weakSelf show:weakSelf.clarityPromptLabel origin:DDPlayerShowOriginTop isDismissControl:YES isPause:NO dismissCompletion:nil];
+            
+            if ([weakSelf.delegate respondsToSelector:@selector(playerViewChooseClarity:success:failure:)]) {
+                
+                //截取完成
+                [(DDPlayerContainerView*)weakSelf.clarityChoiceView.superview dismiss];
+            
+                [weakSelf.delegate playerViewChooseClarity:clarity success:^(NSString * _Nonnull url) {
+                    //4.截取成功
+                    [weakSelf.player replaceWithUrl:url];
+                    [weakSelf.player seekToTime:lastTime completionHandler:^(BOOL isComplete) {
+                        button.selected = YES;
+                        [weakSelf.clarityPromptLabel performSelector:@selector(chooseSuccess) withObject:nil afterDelay:1];
+                        [imageView removeFromSuperview];
+                    }];
+                    [(UIButton*)[weakSelf.playerControlView.bottomLandscapeView valueForKey:@"clarityButton"] setTitle:button.titleLabel.text forState:UIControlStateNormal];
+                    weakSelf.clarityChoiceView.clarity = clarity;
+                } failure:^{
+                    [imageView removeFromSuperview];
+                }];
+            }
+        };
     }
     return _clarityChoiceView;
+}
+
+- (DDPlayerClarityPromptLabel *)clarityPromptLabel {
+    if (!_clarityPromptLabel) {
+        _clarityPromptLabel = [[DDPlayerClarityPromptLabel alloc] init];
+    }
+    return _clarityPromptLabel;
 }
 
 - (BOOL)isLockScreen {
@@ -316,7 +358,7 @@
 //    if ([self.delegate respondsToSelector:@selector(playerViewClickClarityButton:)]) {
 //        [self.delegate playerViewClickClarityButton:button];
 //    }
-    self.clarityChoiceView.clarityArray = @[@"标准",@"流畅"].mutableCopy;
+
     [self show:self.clarityChoiceView origin:DDPlayerShowOriginRight isDismissControl:YES isPause:NO dismissCompletion:^{
         
     }];

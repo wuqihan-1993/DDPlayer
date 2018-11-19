@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DDPlayerStatus.h"
+#import "DDPlayerClarity.h"
 NS_ASSUME_NONNULL_BEGIN
+
 
 @interface DDPlayerClarityChoiceView : UIView
 
-@property (nonatomic, strong) NSMutableArray *clarityArray;
+@property(nonatomic, copy) void(^clarityButtonClickBlock)(DDPlayerClarity,UIButton*);
+
+@property(nonatomic, assign) DDPlayerClarity clarity;
 
 @end
 

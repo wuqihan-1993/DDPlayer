@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger,DDPlayerContainerAlignment) {
 
 - (instancetype)initWithContentView:(UIView *)view alignment:(DDPlayerContainerAlignment)alignment;
 - (void)show;
+- (void)dismiss;
 
 @end
 

@@ -16,7 +16,7 @@
 
 @implementation DDPlayerView (ShowSubView)
 
-- (void)show:(UIView *)view origin:(DDPlayerShowOrigin)origin isDismissControl:(BOOL)isDismissControl isPause:(BOOL)isPause dismissCompletion:(nonnull void (^)(void))dismiss{
+- (void)show:(UIView *)view origin:(DDPlayerShowOrigin)origin isDismissControl:(BOOL)isDismissControl isPause:(BOOL)isPause dismissCompletion:(void (^ __nullable)(void))dismiss{
     
     if (isDismissControl) {
         [self._getPlayerControlView dismiss];
@@ -55,6 +55,14 @@
         }];
         [self layoutIfNeeded];
         
+    }else if (origin == DDPlayerShowOriginTop) {
+        [self addSubview:view];
+        [self bringSubviewToFront:view];
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).mas_offset(20);
+            make.centerX.equalTo(self);
+        }];
+        [self layoutIfNeeded];
     }
 }
 

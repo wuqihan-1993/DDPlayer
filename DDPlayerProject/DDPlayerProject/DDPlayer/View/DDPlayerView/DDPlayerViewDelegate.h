@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DDPlayerClarity.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -63,6 +64,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param button 章节列表按钮
  */
 - (void)playerViewClickChapterButton:(UIButton *)button;
+
+
+/**
+ 切换清晰度
+
+ @param clarity DDPlayerClarity
+ */
+- (void)playerViewChooseClarity:(DDPlayerClarity)clarity success:(void(^)(NSString*))success failure:(void(^)(void))failure;
 
 
 

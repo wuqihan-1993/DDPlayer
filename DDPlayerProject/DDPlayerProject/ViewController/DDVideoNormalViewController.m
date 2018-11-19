@@ -16,7 +16,7 @@
 @property(nonatomic, strong) DDPlayerView *playerView;
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) NSArray *dataArray;
-@property(nonnull, strong) UITableView *chapterView;
+@property(nonatomic, nonnull, strong) UITableView *chapterView;
 
 @end
 
@@ -84,6 +84,7 @@
     self.playerView = [[DDPlayerView alloc] init];
     self.playerView.delegate = self;
     self.playerView.player.delegateController = self;
+    self.playerView.isHiddenClarity = NO;
     [self.view addSubview:self.playerView];
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -189,6 +190,9 @@
 - (void)playerViewClickChapterButton:(UIButton *)button {
     
     [self.playerView show:self.chapterView origin:DDPlayerShowOriginRight isDismissControl:YES isPause:NO dismissCompletion:nil];
+}
+- (void)playerViewChooseClarity:(DDPlayerClarity)clarity success:(void (^)(NSString * _Nonnull))success failure:(void (^)(void))failure {
+    success(@"http://221.228.226.23/11/t/j/v/b/tjvbwspwhqdmgouolposcsfafpedmb/sh.yinyuetai.com/691201536EE4912BF7E4F1E2C67B8119.mp4");
 }
 
 #pragma mark - DDPlayerDelegate

@@ -29,6 +29,7 @@
 		E36F3BD321A2971600DE5F38 /* DDPlayer_Btn_LandSBottPause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E36F3BD121A2971600DE5F38 /* DDPlayer_Btn_LandSBottPause@2x.png */; };
 		E36F3BE321A2AF5600DE5F38 /* DDPlayer_Btn_LandShare@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E36F3BE121A2AF5600DE5F38 /* DDPlayer_Btn_LandShare@3x.png */; };
 		E36F3BE421A2AF5600DE5F38 /* DDPlayer_Btn_LandShare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E36F3BE221A2AF5600DE5F38 /* DDPlayer_Btn_LandShare@2x.png */; };
+		E36F3BE821A2C88300DE5F38 /* DDPlayerClarityPromptLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E36F3BE721A2C88300DE5F38 /* DDPlayerClarityPromptLabel.m */; };
 		E38A46482199120A00944AC9 /* DDBrightView.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A46472199120A00944AC9 /* DDBrightView.m */; };
 		E38A464B2199129300944AC9 /* DDPlayer_Img_Bright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38A46492199129300944AC9 /* DDPlayer_Img_Bright@2x.png */; };
 		E38A464C2199129300944AC9 /* DDPlayer_Img_Bright@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38A464A2199129300944AC9 /* DDPlayer_Img_Bright@3x.png */; };
@@ -158,6 +159,9 @@
 		E36F3BD121A2971600DE5F38 /* DDPlayer_Btn_LandSBottPause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_LandSBottPause@2x.png"; sourceTree = "<group>"; };
 		E36F3BE121A2AF5600DE5F38 /* DDPlayer_Btn_LandShare@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_LandShare@3x.png"; sourceTree = "<group>"; };
 		E36F3BE221A2AF5600DE5F38 /* DDPlayer_Btn_LandShare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Btn_LandShare@2x.png"; sourceTree = "<group>"; };
+		E36F3BE521A2C64000DE5F38 /* DDPlayerClarity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerClarity.h; sourceTree = "<group>"; };
+		E36F3BE621A2C88300DE5F38 /* DDPlayerClarityPromptLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerClarityPromptLabel.h; sourceTree = "<group>"; };
+		E36F3BE721A2C88300DE5F38 /* DDPlayerClarityPromptLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerClarityPromptLabel.m; sourceTree = "<group>"; };
 		E38A46462199120A00944AC9 /* DDBrightView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDBrightView.h; sourceTree = "<group>"; };
 		E38A46472199120A00944AC9 /* DDBrightView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDBrightView.m; sourceTree = "<group>"; };
 		E38A46492199129300944AC9 /* DDPlayer_Img_Bright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlayer_Img_Bright@2x.png"; sourceTree = "<group>"; };
@@ -348,8 +352,11 @@
 		E36F3AFF21A24D0000DE5F38 /* 选择清晰度 */ = {
 			isa = PBXGroup;
 			children = (
+				E36F3BE521A2C64000DE5F38 /* DDPlayerClarity.h */,
 				E36F3B0021A24EB800DE5F38 /* DDPlayerClarityChoiceView.h */,
 				E36F3B0121A24EB800DE5F38 /* DDPlayerClarityChoiceView.m */,
+				E36F3BE621A2C88300DE5F38 /* DDPlayerClarityPromptLabel.h */,
+				E36F3BE721A2C88300DE5F38 /* DDPlayerClarityPromptLabel.m */,
 			);
 			path = "选择清晰度";
 			sourceTree = "<group>";
@@ -465,7 +472,6 @@
 		E3AB592F219559DB00CAEF38 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				E3AB599E2195754600CAEF38 /* DDPlayerViewDelegate.h */,
 				E3AB594E21955D3900CAEF38 /* DDPlayerTool.h */,
 				E3AB594F21955D3900CAEF38 /* DDPlayerTool.m */,
 				E38A46552199760B00944AC9 /* NSTimer+Block.h */,
@@ -604,6 +610,7 @@
 			children = (
 				E3AB594821955C8D00CAEF38 /* DDPlayerView.h */,
 				E3AB594721955C8D00CAEF38 /* DDPlayerView.m */,
+				E3AB599E2195754600CAEF38 /* DDPlayerViewDelegate.h */,
 				E316C4FF219D69BD0098194A /* DDPlayerView+Private.h */,
 				E316C500219D69BD0098194A /* DDPlayerView+Private.m */,
 				E316C4FC219D68CF0098194A /* DDPlayerView+ShowSubView.h */,
@@ -886,6 +893,7 @@
 				E3AB596021955DA100CAEF38 /* DDPlayerComponentBaseView.m in Sources */,
 				E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */,
 				E3AB595F21955DA100CAEF38 /* DDPlayerControlTopView.m in Sources */,
+				E36F3BE821A2C88300DE5F38 /* DDPlayerClarityPromptLabel.m in Sources */,
 				E35817BB219C194100BD3282 /* DDCaptureImageShareSmallView.m in Sources */,
 				E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */,
 				E38A46482199120A00944AC9 /* DDBrightView.m in Sources */,

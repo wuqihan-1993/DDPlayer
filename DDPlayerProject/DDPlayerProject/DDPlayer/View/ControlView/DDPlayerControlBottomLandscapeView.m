@@ -19,6 +19,8 @@
 
 @property(nonatomic, strong) NSArray *rates;
 
+@property(nonatomic, strong) UIStackView *stackView;
+
 @end
 
 @implementation DDPlayerControlBottomLandscapeView
@@ -40,9 +42,11 @@
 - (void)updateUI {
     
     [self addSubview:self.forwardButton];
-    [self addSubview:self.rateButton];
-    [self addSubview:self.clarityButton];
-    [self addSubview:self.chapterButton];
+    [self addSubview:self.stackView];
+    
+    [self.stackView addArrangedSubview:self.rateButton];
+    [self.stackView addArrangedSubview:self.clarityButton];
+    [self.stackView addArrangedSubview:self.chapterButton];
     
     [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
@@ -63,21 +67,33 @@
         make.left.equalTo(self.forwardButton.mas_right).mas_offset(4);
         make.centerY.equalTo(self.playButton);
     }];
-    [self.chapterButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? -44 : -20);
+    
+    [self.stackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.playButton);
+        make.right.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? -44 : -20);
+    }];
+    
+    
+    
+    [self.chapterButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(60);
     }];
     [self.clarityButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.chapterButton.mas_left).mas_offset(-4);
-        make.centerY.equalTo(self.playButton);
         make.width.mas_equalTo(60);
     }];
     [self.rateButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.clarityButton.mas_left).mas_offset(-4);
-        make.centerY.equalTo(self.playButton);
+  
         make.width.mas_equalTo(60);
     }];
+}
+
+- (UIStackView *)stackView {
+    if (!_stackView) {
+        _stackView = [[UIStackView alloc] init];
+        _stackView.axis = UILayoutConstraintAxisHorizontal;
+        _stackView.spacing = 4;
+    }
+    return _stackView;
 }
 
 - (void)forwardButtonClick:(UIButton *)button {
@@ -134,6 +150,7 @@
         _clarityButton.titleLabel.font = [DDPlayerTool pingfangSCSemiboldAndSize:15];
         [_clarityButton addTarget:self action:@selector(clarityButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _clarityButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        _clarityButton.hidden = YES;
     }
     return _clarityButton;
 }
