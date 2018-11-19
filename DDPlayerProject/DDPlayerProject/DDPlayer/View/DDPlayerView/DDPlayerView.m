@@ -217,6 +217,13 @@
         {
             
         }
+            break;
+        case DDPlayerStatusUnknown:
+        {
+            // [DDPlayer stop]
+            [self playerTimeChanged:0];
+        }
+            break;
         default:
             break;
     }

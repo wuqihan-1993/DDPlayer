@@ -60,6 +60,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     if (![DDPlayerTool isLocationPath:url]) {
         //不是本地视频。。网络是3g 不能立即播放
         if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
+            NSLog(@"stopstopstop");
             [self stop];
             return;
         }
@@ -83,8 +84,8 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 - (void)stop {
     [self removeItemObservers];
-//    self.currentItem = nil;
-//    self.currentAsset = nil;
+    self.currentItem = nil;
+    self.currentAsset = nil;
     [self.player replaceCurrentItemWithPlayerItem:nil];
     self.status = DDPlayerStatusUnknown;
 }
@@ -157,6 +158,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 #pragma mark - private
 - (void)updateStatus {
+    NSLog(@"%s",__FUNCTION__);
     dispatch_async(dispatch_get_main_queue(), ^{
         
         if (self.currentItem == nil) {
@@ -242,7 +244,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
         if (weakSelf.currentItem == nil) {
             return ;
         }
-        DLog(@"item不为空 %s",__FUNCTION__);
+        DLog(@"item不为空 %@",weakSelf.currentItem);
         [weakSelf updateStatus];
         
         
@@ -292,6 +294,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
             return;
         }
         
+        NSLog(@"%@",keyPath);
         [self updateStatus];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
