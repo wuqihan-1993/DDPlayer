@@ -10,7 +10,7 @@
 #import "Masonry.h"
 #import "DDPlayerTool.h"
 
-@interface DDPlayerContainerView()
+@interface DDPlayerContainerView()<UIGestureRecognizerDelegate>
 
 @property(nonatomic, weak) UIView *contentView;
 @property(nonatomic, assign) DDPlayerContainerAlignment alignment;
@@ -43,6 +43,7 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     self.userInteractionEnabled = YES;
+    tap.delegate = self;
     [self addGestureRecognizer:tap];
 }
 - (void)tapAction:(UITapGestureRecognizer *)tap {
@@ -69,7 +70,15 @@
         }
     }];
 }
-
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    CGPoint point = [touch locationInView:self.contentView];
+    if (point.x < 0 || point.y < 0) {
+        return YES;
+    }else {
+        return NO;
+    }
+    return true;
+}
 
 
 @end

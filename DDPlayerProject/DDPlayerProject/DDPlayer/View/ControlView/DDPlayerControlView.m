@@ -328,7 +328,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }];
     [self.bottomLandscapeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);
-        make.height.mas_equalTo(70);
+        make.height.mas_equalTo(88);
     }];
     if (DDPlayerTool.isScreenPortrait) {
         [self updateUIWithPortrait];
@@ -539,6 +539,11 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
             
             if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickForwardButton:)]) {
                 [weakSelf.delegate playerControlView:weakSelf clickForwardButton:button];
+            }
+        };
+        _bottomLandscapeView.clarityButtonClickBlock = ^(UIButton * _Nonnull button) {
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:clickClarityButton:)]) {
+                [weakSelf.delegate playerControlView:weakSelf clickClarityButton:button];
             }
         };
         _bottomLandscapeView.chapterButtonClickBlock = ^(UIButton * _Nonnull button) {

@@ -59,6 +59,7 @@
         [_playButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_BottomPortraitPlay"] forState:UIControlStateNormal];
         [_playButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_BottomPortraitPause"] forState:UIControlStateSelected];
         [_playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        _playButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     return _playButton;
 }

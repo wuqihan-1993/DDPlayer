@@ -40,6 +40,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)playerPlayFinish;
 
+
+/**
+ 播放器将以流量播放网络视频
+ */
+- (void)playerWillPlayWithWWAN;
+
 #pragma mark 监听网络状态相关
 - (void)playerNetworkStatusChanged:(NetworkStatus)networkStatus;
 

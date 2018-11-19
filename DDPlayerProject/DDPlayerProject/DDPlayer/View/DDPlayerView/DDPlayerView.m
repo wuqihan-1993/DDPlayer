@@ -21,6 +21,7 @@
 #import "DDNetworkWWANWarnView.h"
 #import "DDNetworkErrorView.h"
 #import "DDPlayerView+ShowSubView.h"
+#import "DDPlayerClarityChoiceView.h"
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
@@ -33,6 +34,7 @@
 @property(nonatomic, strong) DDPlayerCoverView *coverView;//封面图
 @property(nonatomic, strong) DDNetworkWWANWarnView *WWANWarnView;//流量警告视图
 @property(nonatomic, strong) DDNetworkErrorView *networkErrorView;//无网警告视图
+@property(nonatomic, strong) DDPlayerClarityChoiceView *clarityChoiceView;//清晰度选择视图
 
 @end
 
@@ -150,8 +152,11 @@
     if (!_WWANWarnView) {
         _WWANWarnView = [[DDNetworkWWANWarnView alloc] init];
         __weak typeof(self) weakSelf = self;
+        
         _WWANWarnView.playButtonClickBlock = ^(UIButton * _Nonnull button) {
+            //设置为流量可播放
             weakSelf.player.isCanPlayOnWWAN = YES;
+            [weakSelf.WWANWarnView removeFromSuperview];
         };
     }
     return _WWANWarnView;
@@ -162,6 +167,13 @@
         _networkErrorView = [[DDNetworkErrorView alloc] init];
     }
     return _networkErrorView;
+}
+
+- (DDPlayerClarityChoiceView *)clarityChoiceView {
+    if (!_clarityChoiceView) {
+        _clarityChoiceView = [[DDPlayerClarityChoiceView alloc] init];
+    }
+    return _clarityChoiceView;
 }
 
 - (BOOL)isLockScreen {
@@ -262,6 +274,13 @@
     }
 }
 
+- (void)playerWillPlayWithWWAN {
+    [self.player stop];
+    [self show:self.WWANWarnView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
+        
+    }];
+}
+
 #pragma mark - DDPlayerControlViewDelegate
 - (void)playerControlView:(DDPlayerControlView *)containerView clickBackTitleButton:(UIButton *)button {
     if ([self.delegate respondsToSelector:@selector(playerViewClickBackTitleButton:)]) {
@@ -280,7 +299,15 @@
         [self.delegate playerViewClickForwardButton:button];
     }
 }
-
+- (void)playerControlView:(DDPlayerControlView *)controlView clickClarityButton:(UIButton *)button {
+//    if ([self.delegate respondsToSelector:@selector(playerViewClickClarityButton:)]) {
+//        [self.delegate playerViewClickClarityButton:button];
+//    }
+    self.clarityChoiceView.clarityArray = @[@"标准",@"流畅"].mutableCopy;
+    [self show:self.clarityChoiceView origin:DDPlayerShowOriginRight isDismissControl:YES isPause:NO dismissCompletion:^{
+        
+    }];
+}
 - (void)playerControlView:(DDPlayerControlView *)controlView clickChapterButton:(UIButton *)button {
     if ([self.delegate respondsToSelector:@selector(playerViewClickChapterButton:)]) {
         [self.delegate playerViewClickChapterButton:button];

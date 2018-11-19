@@ -51,6 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, assign, readonly) BOOL isSeekingToTime;
 
+
 @property(nonatomic, assign) CGFloat volume;
 
 - (void)bindToPlayerLayer:(AVPlayerLayer *)layer;

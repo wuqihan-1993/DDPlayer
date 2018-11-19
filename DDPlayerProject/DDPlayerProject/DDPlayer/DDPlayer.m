@@ -16,6 +16,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 @interface DDPlayer()
 {
     DDKVOManager* _playerItemKVO;
+    NSString *_willPlayUrlString;
 }
 @property(nonatomic, assign) NSTimeInterval duration;
 @property(nonatomic, assign) NSTimeInterval currentTime;
@@ -47,6 +48,11 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     return self;
 }
 - (void)initialize {
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setActive:YES error:nil];
+//    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
     self.player = [[AVPlayer alloc] init];
     [self addReachability];
     [self addPlayerObservers];
@@ -56,12 +62,15 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 #pragma mark - public
 - (void)replaceWithUrl:(NSString *)url {
     
-    
+    _willPlayUrlString = url;
+
     if (![DDPlayerTool isLocationPath:url]) {
         //不是本地视频。。网络是3g 不能立即播放
         if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
-            NSLog(@"stopstopstop");
-            [self stop];
+            
+            if ([self.delegate respondsToSelector:@selector(playerWillPlayWithWWAN)]) {
+                [self.delegate playerWillPlayWithWWAN];
+            }
             return;
         }
     }
@@ -155,6 +164,23 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 - (void)setVolume:(CGFloat)volume {
     _volume = volume;
     self.player.volume = volume;
+}
+
+- (void)setIsCanPlayOnWWAN:(BOOL)isCanPlayOnWWAN {
+    
+    if (_isCanPlayOnWWAN == isCanPlayOnWWAN) {
+        return;
+    }
+    
+    _isCanPlayOnWWAN = isCanPlayOnWWAN;
+    if (_isCanPlayOnWWAN == YES) {
+        if (self.status == DDPlayerStatusUnknown) {
+            [self replaceWithUrl:_willPlayUrlString];
+        }else {
+            [self play];
+        }
+    }
+
 }
 #pragma mark - private
 - (void)updateStatus {

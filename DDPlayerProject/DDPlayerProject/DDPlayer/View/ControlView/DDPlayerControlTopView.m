@@ -35,7 +35,7 @@
     }];
     [self.backTitleButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).mas_offset(20);
-        make.centerY.equalTo(self);
+        make.top.equalTo(self).mas_equalTo(20);
     }];
 }
 
@@ -83,6 +83,7 @@
         [_backTitleButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Back"] forState:UIControlStateNormal];
         [_backTitleButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Back"] forState:UIControlStateHighlighted];
         [_backTitleButton addTarget:self action:@selector(backTitleButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        _backTitleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     return _backTitleButton;
 }

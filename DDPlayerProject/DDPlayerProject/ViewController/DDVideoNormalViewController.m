@@ -45,6 +45,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
+    [self.playerView.player stop];
 }
 
 - (void)screenRotation:(NSNotification *)nf {

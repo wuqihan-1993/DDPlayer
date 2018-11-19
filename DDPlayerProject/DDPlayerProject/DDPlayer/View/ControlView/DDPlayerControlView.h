@@ -66,6 +66,14 @@
 
 
 /**
+ 点击清晰度按钮
+
+ @param controlView self
+ @param button 清晰度按钮
+ */
+- (void)playerControlView:(DDPlayerControlView*)controlView clickClarityButton:(UIButton*)button;
+
+/**
  点击章节列表按钮
 
  @param controlView self
