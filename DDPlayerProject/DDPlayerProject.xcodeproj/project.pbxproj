@@ -421,6 +421,7 @@
 			children = (
 				E3AB5931219559FF00CAEF38 /* DDPlayer.h */,
 				E3AB5932219559FF00CAEF38 /* DDPlayer.m */,
+				E3AB594621955C8D00CAEF38 /* DDPlayerStatus.h */,
 				E3AB594D21955D0800CAEF38 /* DDPlayerDelegate.h */,
 				E3AB599B2195731D00CAEF38 /* DDPlayerManager.h */,
 				E3AB599C2195731D00CAEF38 /* DDPlayerManager.m */,
@@ -460,7 +461,6 @@
 		E3AB592F219559DB00CAEF38 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				E3AB594621955C8D00CAEF38 /* DDPlayerStatus.h */,
 				E3AB599E2195754600CAEF38 /* DDPlayerViewDelegate.h */,
 				E3AB594E21955D3900CAEF38 /* DDPlayerTool.h */,
 				E3AB594F21955D3900CAEF38 /* DDPlayerTool.m */,

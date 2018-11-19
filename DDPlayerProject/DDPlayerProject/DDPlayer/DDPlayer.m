@@ -184,13 +184,13 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 #pragma mark - private
 - (void)updateStatus {
-    NSLog(@"%s",__FUNCTION__);
+ 
     dispatch_async(dispatch_get_main_queue(), ^{
         
         if (self.currentItem == nil) {
             return ;
         }
-        if (self.player.error != nil && self.currentItem.error != nil) {
+        if (self.player.error != nil || self.currentItem.error != nil) {
             self.status = DDPlayerStatusError;
             return;
         }
@@ -252,25 +252,16 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 - (void)removeItemObservers {
     [_playerItemKVO safelyRemoveAllObservers];
-//    if (self.currentItem == nil) {
-//        return;
-//    }
-//    [self.currentItem removeObserver:self forKeyPath:@"status" context:&observerContext];
-//    [self.currentItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp" context:&observerContext];
-//    [self.currentItem removeObserver:self forKeyPath:@"isPlaybackBufferEmpty" context:&observerContext];
-//    [self.currentItem removeObserver:self forKeyPath:@"isPlaybackBufferFull" context:&observerContext];
     
 }
 - (void)addPlayerObservers {
     __weak typeof(self) weakSelf = self;//下面会造成循环引用
     self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, NSEC_PER_SEC) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
         
-
-        DLog(@"%s",__FUNCTION__);
         if (weakSelf.currentItem == nil) {
             return ;
         }
-        DLog(@"item不为空 %@",weakSelf.currentItem);
+
         [weakSelf updateStatus];
         
         

@@ -120,7 +120,7 @@
     if (!_rateButton) {
         _rateButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_rateButton setTitle:self.rates.firstObject forState:UIControlStateNormal];
-        _rateButton.titleLabel.font = [DDPlayerTool PingFangSCRegularAndSize:15];
+        _rateButton.titleLabel.font = [DDPlayerTool pingfangSCSemiboldAndSize:15];
         [_rateButton addTarget:self action:@selector(rateButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _rateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     }
@@ -131,7 +131,7 @@
         _clarityButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _clarityButton.titleLabel.textAlignment = NSTextAlignmentRight;
         [_clarityButton setTitle:@"标准" forState:UIControlStateNormal];
-        _clarityButton.titleLabel.font = [DDPlayerTool PingFangSCRegularAndSize:15];
+        _clarityButton.titleLabel.font = [DDPlayerTool pingfangSCSemiboldAndSize:15];
         [_clarityButton addTarget:self action:@selector(clarityButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _clarityButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     }
@@ -142,7 +142,7 @@
         _chapterButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _chapterButton.titleLabel.textAlignment = NSTextAlignmentRight;
         [_chapterButton setTitle:@"章节" forState:UIControlStateNormal];
-        _chapterButton.titleLabel.font = [DDPlayerTool PingFangSCRegularAndSize:15];
+        _chapterButton.titleLabel.font = [DDPlayerTool pingfangSCSemiboldAndSize:15];
         [_chapterButton addTarget:self action:@selector(chapterButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _chapterButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     }

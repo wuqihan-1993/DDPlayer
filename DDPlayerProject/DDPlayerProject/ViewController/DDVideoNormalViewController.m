@@ -166,7 +166,8 @@
                        @{@"url":@"/Users/wuqihan/Library/Developer/CoreSimulator/Devices/B748B1EC-D97C-45F9-A85B-40E0644FA996/data/Containers/Bundle/Application/792ED4DF-CF0E-477B-B41B-DFECEEDF1A18/DDPlayerProject.app/test.mp4",@"videoName":@"本地视频"},
                        @{@"url":@"http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh.yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4",@"videoName":@"ONE"},
                        @{@"url":@"http://221.228.226.5/15/t/s/h/v/tshvhsxwkbjlipfohhamjkraxuknsc/sh.yinyuetai.com/88DC015DB03C829C2126EEBBB5A887CB.mp4",@"videoName":@"三生三世十里桃花"},
-                       @{@"url":@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",@"videoName":@"Big Buck"}];
+                       @{@"url":@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",@"videoName":@"Big Buck"},
+                       @{@"url":@"http://clips.vorwaerts-gmbh.de/big_buck_bunny11.mp4",@"videoName":@"网络错误视频"}];
 }
 
 #pragma mark - DDPlayerViewDelegate
