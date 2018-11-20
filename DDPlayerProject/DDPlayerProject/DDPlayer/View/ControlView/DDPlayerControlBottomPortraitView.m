@@ -27,17 +27,19 @@
     
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).mas_offset(20);
+        make.width.mas_equalTo(40);
+        make.height.mas_equalTo(40);
         make.centerY.equalTo(self);
     }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.playButton.mas_right).mas_offset(12);
+        make.left.equalTo(self.playButton.mas_right).mas_offset(4);
         make.centerY.equalTo(self);
-        make.width.mas_equalTo(100);
+        make.width.mas_equalTo(90);
     }];
     
     [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.timeLabel.mas_right).mas_offset(12);
-        make.right.equalTo(self.landscapeButton.mas_left).mas_offset(-12);
+        make.left.equalTo(self.timeLabel.mas_right).mas_offset(0);
+        make.right.equalTo(self.landscapeButton.mas_left).mas_offset(0);
         make.centerY.equalTo(self);
         make.height.mas_equalTo(40);
     }];
@@ -45,6 +47,7 @@
     [self.landscapeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).mas_offset(-20);
         make.centerY.equalTo(self);
+        make.width.height.mas_equalTo(40);
     }];
 }
 
@@ -58,6 +61,7 @@
         _landscapeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_landscapeButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_ForceOrientatedLandscape"] forState:UIControlStateNormal];
         [_landscapeButton addTarget:self action:@selector(landscapeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        _landscapeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     }
     return _landscapeButton;
 }
