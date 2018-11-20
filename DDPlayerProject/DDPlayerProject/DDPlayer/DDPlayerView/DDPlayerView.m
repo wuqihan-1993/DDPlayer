@@ -113,6 +113,7 @@
     if (!_playerControlView) {
         _playerControlView = [[DDPlayerControlView alloc] init];
         _playerControlView.delegate = self;
+        _playerControlView.hidden = YES;
     }
     return _playerControlView;
 }
@@ -294,6 +295,13 @@
         default:
             break;
     }
+}
+
+- (void)playerReadyToPlay {
+    if (self.playerControlView.hidden) {
+        self.playerControlView.hidden = NO;
+    }
+    [self.playerControlView show];
 }
 
 - (void)playerNetworkStatusChanged:(NetworkStatus)networkStatus {
