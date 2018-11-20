@@ -350,13 +350,13 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
         return;
     }
     if (self.status == DDPlayerStatusPaused) {
-        [self.player play];
+        [self play];
     }
 }
 - (void)applicationWillResignActive {
     _willResignActiveStatus = self.status;
     if (_willResignActiveStatus == DDPlayerStatusPlaying) {
-        [self.player pause];
+        [self pause];
     }
 }
 
