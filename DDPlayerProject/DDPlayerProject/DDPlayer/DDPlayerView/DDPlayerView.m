@@ -257,7 +257,7 @@
     
 }
 - (void)playerStatusChanged:(DDPlayerStatus)status {
-    NSLog(@"%ld",(long)status);
+    NSLog(@"status: - %ld",(long)status);
 
     self.loadingView.hidden = (status != DDPlayerStatusBuffering);
 

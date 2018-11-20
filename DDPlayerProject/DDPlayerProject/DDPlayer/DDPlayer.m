@@ -51,7 +51,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 - (void)initialize {
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setActive:YES error:nil];
-//    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     
     self.player = [[AVPlayer alloc] init];
@@ -89,7 +89,10 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     self.currentItem = [AVPlayerItem playerItemWithAsset:self.currentAsset];
     [self addItemObservers];
     
+    //这个会暂停 不会立马播放
     [self.player replaceCurrentItemWithPlayerItem:self.currentItem];
+    //
+    [self play];
     
 }
 - (void)stop {
@@ -311,15 +314,10 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
             if ([self.delegate respondsToSelector:@selector(playerReadyToPlay)]) {
                 [self.delegate playerReadyToPlay];
             }
-            if (@available(iOS 10.0, *)) {
-                [self.player playImmediatelyAtRate:1.0];
-            } else {
-                // Fallback on earlier versions
-            }
             return;
         }
         
-        NSLog(@"%@",keyPath);
+        NSLog(@"keypath:%@",keyPath);
         [self updateStatus];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
