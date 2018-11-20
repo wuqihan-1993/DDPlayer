@@ -40,16 +40,16 @@
         make.top.equalTo(self).mas_offset(20);
     }];
     [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).mas_offset(20);
         make.right.equalTo(self).mas_offset(-20);
+        make.centerY.equalTo(self.backTitleButton);
     }];
-    
 }
 
 #pragma mark - override method
 - (void)updateUIWithPortrait {
     [self.backTitleButton mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).mas_offset(20);
+        make.top.equalTo(self).mas_offset(20);
     }];
     [self.shareButton mas_updateConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).mas_offset(-20);
@@ -57,11 +57,11 @@
 }
 - (void)updateUIWithLandscape {
     [self.backTitleButton mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).mas_equalTo(44);
-        
+        make.left.equalTo(self).mas_equalTo(DDPlayerTool.isiPhoneX ? 44 : 20);
+        make.top.equalTo(self).mas_offset(33);
     }];
     [self.shareButton mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).mas_offset(-44);
+        make.right.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? -44 : -20);
     }];
 }
 

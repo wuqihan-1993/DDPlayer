@@ -17,6 +17,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 {
     DDKVOManager* _playerItemKVO;
     NSString *_willPlayUrlString;
+    DDPlayerStatus _willResignActiveStatus;//辞去活跃状态前 播放器的状态
 }
 @property(nonatomic, assign) NSTimeInterval duration;
 @property(nonatomic, assign) NSTimeInterval currentTime;
@@ -105,7 +106,14 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
             return;
         }
     }
-    [self.player play];
+    if (self.isBackgroundPlay == NO) {
+        if (UIApplication.sharedApplication.applicationState == UIApplicationStateActive) {
+            [self.player play];
+        }
+    }else {
+        [self.player play];
+    }
+
 }
 - (void)playImmediatelyAtRate:(CGFloat)rate {
     if (@available(iOS 10.0, *)) {
@@ -323,6 +331,10 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     
     // 监听播放完成
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(playerItemDidPlayToEndTime:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    // app进入活跃状态
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    // app辞去活跃状态
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive) name: UIApplicationWillResignActiveNotification object:nil];
 }
 - (void)removeNotifications {
     [NSNotificationCenter.defaultCenter removeObserver:self];
@@ -333,6 +345,20 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
         if ([self.delegateController respondsToSelector:@selector(playerPlayFinish)]) {
             [self.delegateController playerPlayFinish];
         }
+    }
+}
+- (void)applicationBecomeActive {
+    if (_willResignActiveStatus == DDPlayerStatusPaused) {
+        return;
+    }
+    if (self.status == DDPlayerStatusPaused) {
+        [self.player play];
+    }
+}
+- (void)applicationWillResignActive {
+    _willResignActiveStatus = self.status;
+    if (_willResignActiveStatus == DDPlayerStatusPlaying) {
+        [self.player pause];
     }
 }
 

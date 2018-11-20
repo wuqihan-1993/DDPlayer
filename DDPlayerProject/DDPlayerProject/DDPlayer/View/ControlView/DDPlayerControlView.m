@@ -177,6 +177,9 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 
 #pragma mark - override method
 - (void)updateUIWithPortrait {
+    [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(60);
+    }];
     self.captureVideoButton.hidden = YES;
     self.captureImageButton.hidden = YES;
     self.lockScreenButton.hidden = YES;
@@ -185,6 +188,9 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     [self show];
 }
 - (void)updateUIWithLandscape {
+    [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(88);
+    }];
     self.captureVideoButton.hidden = NO;
     self.captureImageButton.hidden = NO;
     self.lockScreenButton.hidden = NO;
@@ -324,7 +330,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }];
     [self.bottomPortraitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);
-        make.height.mas_equalTo(40);
+        make.height.mas_equalTo(60);
     }];
     [self.bottomLandscapeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self);

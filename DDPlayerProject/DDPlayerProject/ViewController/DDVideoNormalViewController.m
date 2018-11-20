@@ -88,7 +88,7 @@
     [self.view addSubview:self.playerView];
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view).mas_offset(DDPlayerTool.isiPhoneX ? 34 : 0);
+        make.top.equalTo(self.view).mas_offset(DDPlayerTool.isiPhoneX ? 44 : 0);
         make.height.mas_equalTo(DDPlayerTool.screenWidth * 9 /16);
     }];
 }

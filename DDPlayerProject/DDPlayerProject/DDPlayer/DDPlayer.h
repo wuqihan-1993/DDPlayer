@@ -11,8 +11,6 @@
 #import <AVKit/AVKit.h>
 #import "DDPlayerStatus.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface DDPlayer : NSObject
 
 @property(nonatomic, weak) id<DDPlayerDelegate> delegate;
@@ -65,4 +63,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END
