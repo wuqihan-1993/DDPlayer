@@ -129,9 +129,14 @@
 - (UIImageView *)loadingView {
     if (!_loadingView) {
         _loadingView = [[UIImageView alloc] init];
-        NSString *gifPath = [[NSBundle mainBundle] pathForResource:@"DDPlayer_Gif_Loading@2x" ofType:@"gif"];
-        NSData *gifData = [NSData dataWithContentsOfFile:gifPath];
-        _loadingView.image = [UIImage sd_animatedGIFWithData:gifData];
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSString *gifPath = [[NSBundle mainBundle] pathForResource:@"DDPlayer_Gif_Loading@2x" ofType:@"gif"];
+            NSData *gifData = [NSData dataWithContentsOfFile:gifPath];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.loadingView.image = [UIImage sd_animatedGIFWithData:gifData];
+            });
+        });
     }
     return _loadingView;
 }
@@ -172,7 +177,7 @@
     if (!_WWANWarnView) {
         _WWANWarnView = [[DDNetworkWWANWarnView alloc] init];
         __weak typeof(self) weakSelf = self;
-        
+
         _WWANWarnView.playButtonClickBlock = ^(UIButton * _Nonnull button) {
             //设置为流量可播放
             weakSelf.player.isCanPlayOnWWAN = YES;
@@ -201,9 +206,9 @@
                 }else {
                     [weakSelf.player play];
                 }
-                
+
             }
-            
+
         };
         _networkErrorView.backButtonClickBlock = ^(UIButton * _Nonnull button) {
             if ([weakSelf.delegate respondsToSelector:@selector(playerViewClickBackButton:)]) {
@@ -219,9 +224,9 @@
         _clarityChoiceView = [[DDPlayerClarityChoiceView alloc] init];
         __weak typeof(self) weakSelf = self;
         _clarityChoiceView.clarityButtonClickBlock = ^(DDPlayerClarity clarity, UIButton *button) {
-            
+
             //切流操作
-            
+
             if (weakSelf.clarityChoiceView.clarity == clarity) {
                 //如果点击s的是同样的清晰度。则直接返回
                 [(DDPlayerContainerView*)weakSelf.clarityChoiceView.superview dismiss];
@@ -229,22 +234,22 @@
             }
             //1.保存当前时间
             NSTimeInterval lastTime = weakSelf.player.currentTime;
-            
+
             //2.截取当前时间图片
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[DDPlayerManager thumbnailImageWithAsset:weakSelf.player.currentAsset currentTime:weakSelf.player.currentItem.currentTime]];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
             [weakSelf show:imageView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:NO dismissCompletion:nil];
             [weakSelf insertSubview:imageView belowSubview:weakSelf.playerControlView];
-            
+
             //3.截取汇总
             [weakSelf.clarityPromptLabel choose:clarity];
             [weakSelf show:weakSelf.clarityPromptLabel origin:DDPlayerShowOriginTop isDismissControl:YES isPause:NO dismissCompletion:nil];
-            
+
             if ([weakSelf.delegate respondsToSelector:@selector(playerViewChooseClarity:success:failure:)]) {
-                
+
                 //截取完成
                 [(DDPlayerContainerView*)weakSelf.clarityChoiceView.superview dismiss];
-            
+
                 [weakSelf.delegate playerViewChooseClarity:clarity success:^(NSString * _Nonnull url) {
                     //4.截取成功
                     [weakSelf.player playWithUrl:url];
@@ -381,8 +386,8 @@
     switch (networkStatus) {
         case NotReachable:
         {
-            if (self.WWANWarnView.superview) {
-                [self.WWANWarnView removeFromSuperview];
+            if (_WWANWarnView !=nil && _WWANWarnView.superview) {
+                [_WWANWarnView removeFromSuperview];
             }
             [self show:self.networkErrorView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
                 
@@ -391,8 +396,8 @@
             break;
         case ReachableViaWWAN:
         {
-            if (self.networkErrorView.superview) {
-                [self.networkErrorView removeFromSuperview];
+            if (_networkErrorView != nil && _networkErrorView.superview) {
+                [_networkErrorView removeFromSuperview];
             }
             if (self.player.isCanPlayOnWWAN == NO) {
                 [self show:self.WWANWarnView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
@@ -405,11 +410,11 @@
             break;
         case ReachableViaWiFi:
         {
-            if (self.networkErrorView.superview) {
-                [self.networkErrorView removeFromSuperview];
+            if (_networkErrorView != nil && _networkErrorView.superview) {
+                [_networkErrorView removeFromSuperview];
             }
-            if (self.WWANWarnView.superview) {
-                [self.WWANWarnView removeFromSuperview];
+            if (_WWANWarnView !=nil && _WWANWarnView.superview) {
+                [_WWANWarnView removeFromSuperview];
             }
             [self.player play];
 //            ;这里调用这个方法有时会无效，因为我内部写的是 应用处于活跃状态才能播放。但是wifi状态变更的时候，很有可能不是活跃装填s
