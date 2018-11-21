@@ -49,6 +49,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign, readonly) BOOL isLockScreen;
 
 
+/**
+ 是否可以自动转屏
+ 以下情况返回NO，不能转屏
+ - 锁屏时
+ - 截取图像完成后的分享页面时
+ - 截取视频时
+ */
+@property(nonatomic, assign, readonly) BOOL isAutorotate;
+
+
 
 
 @end

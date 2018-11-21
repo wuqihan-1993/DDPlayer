@@ -9,6 +9,7 @@
 #import "DDCaptureImageShareView.h"
 #import <Masonry.h>
 #import "DDPlayerTool.h"
+#import "DDPlayerUIFactory.h"
 
 @interface DDCaptureImageShareView()
 {
@@ -68,6 +69,21 @@
         make.top.equalTo(self.sharedImageView.mas_top);
     }];
     
+    NSArray *sharedItemTitleArray = @[@"微信好友",@"朋友圈",@"新浪微博",@"QQ"];
+    NSArray *sharedItemImageArray = @[@"DDPlayer_Btn_Wechat",@"DDPlayer_Btn_Friend",@"DDPlayer_Btn_Weibo",@"DDPlayer_Btn_QQ"];
+    UIStackView *stackView = [[UIStackView alloc] init];
+    [self addSubview:stackView];
+    stackView.axis = UILayoutConstraintAxisHorizontal;
+    stackView.spacing = 24;
+    for (NSInteger i = 0 ; i < 4; i++) {
+        UIButton *button = [DDPlayerUIFactory attributeButtonWithImage:[UIImage imageNamed:sharedItemImageArray[i]] title:sharedItemTitleArray[i] font:[DDPlayerTool PingFangSCRegularAndSize:15] titleColor:UIColor.whiteColor spacing:3.5];
+        [stackView addArrangedSubview:button];
+    }
+    [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.sharedImageView);
+        make.left.equalTo(self.promptLabel);
+    }];
+    
 }
 #pragma mark - action
 - (void)backButtonClick:(UIButton *)button {
@@ -97,7 +113,7 @@
     if (!_promptLabel) {
         _promptLabel = [[UILabel alloc] init];
         _promptLabel.textColor = UIColor.whiteColor;
-        _promptLabel.font = [UIFont systemFontOfSize:15];
+        _promptLabel.font = [DDPlayerTool PingFangSCRegularAndSize:15];
         _promptLabel.text = @"已保存到系统相册，可以分享给好友啦";
     }
     return _promptLabel;

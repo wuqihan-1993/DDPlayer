@@ -16,7 +16,6 @@
 #import "DDPlayerDragProgressPortraitView.h"
 #import "DDPlayerDragProgressLandscapeView.h"
 #import "DDPlayerManager.h"
-#import "DDCaptureImageShareSmallView.h"
 #import "DDCaptureImageShareView.h"
 #import "DDPlayerCoverView.h"
 #import "DDNetworkWWANWarnView.h"
@@ -25,6 +24,8 @@
 #import "DDPlayerClarityChoiceView.h"
 #import "DDPlayerClarityPromptLabel.h"
 #import "DDPlayerErrorView.h"
+#import "DDPlayerView+CaptureImage.h"
+
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
@@ -32,7 +33,6 @@
 @property(nonatomic, strong) UIImageView *loadingView;
 @property(nonatomic, strong) DDPlayerDragProgressPortraitView *dragProgressPortraitView;
 @property(nonatomic, strong) DDPlayerDragProgressLandscapeView *dragProgressLandscapeView;
-@property(nonatomic, strong) DDCaptureImageShareSmallView *captureImageShareSmallView;
 @property(nonatomic, strong) DDPlayerCoverView *coverView;//封面图
 @property(nonatomic, strong) DDPlayerClarityChoiceView *clarityChoiceView;//清晰度选择视图
 @property(nonatomic, strong) DDPlayerClarityPromptLabel *clarityPromptLabel;
@@ -298,6 +298,15 @@
 - (BOOL)isLockScreen {
     return self.playerControlView.isLockScreen;
 }
+- (BOOL)isAutorotate {
+    if (self.playerControlView.isLockScreen) {
+        return NO;
+    }
+    if (self.isShareingCaptureImage) {
+        return NO;
+    }
+    return YES;
+}
 
 #pragma mark - DDPlayerDelegate
 - (void)playerTimeChanged:(double)currentTime {
@@ -477,72 +486,7 @@
     if ([self.delegate respondsToSelector:@selector(playerControlView:clickCaptureImageButton:)]) {
         [self.delegate playerViewClickCaptureImageButton:button];
     }
-    //截图 一闪 的效果
-    UIView *whiteView = [[UIView alloc] initWithFrame:self.bounds];
-    whiteView.backgroundColor = UIColor.whiteColor;
-    [self addSubview:whiteView];
-    [UIView animateWithDuration:0.5 animations:^{
-        whiteView.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
-    } completion:^(BOOL finished) {
-        [whiteView removeFromSuperview];
-        //开始截取
-        UIImage *currentImage = [DDPlayerManager thumbnailImageWithAsset:self.player.currentAsset currentTime:self.player.currentItem.currentTime];
-        UIImageView *imageView = [[UIImageView alloc] init];
-        imageView.image = currentImage;
-        [self addSubview:imageView];
-        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).mas_offset(40);
-            make.right.equalTo(self).mas_offset(-100);
-            make.height.mas_equalTo((DDPlayerTool.screenHeight - 140)*9/16);
-            make.centerY.equalTo(self);
-        }];
-        [self layoutIfNeeded];
-        [imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(button);
-            make.width.height.mas_equalTo(0);
-        }];
-        [UIView animateWithDuration:0.5 animations:^{
-            [self layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            [self.playerControlView show];
-            if (self.captureImageShareSmallView != nil) {
-                [self.captureImageShareSmallView removeFromSuperview];
-                self.captureImageShareSmallView = nil;
-            }
-            self.captureImageShareSmallView = [[DDCaptureImageShareSmallView alloc] initWithImage:currentImage];
-            
-            BOOL lastStausIsPause = self.player.isPause;
-            
-            __weak typeof(self) weakSelf = self;
-            self.captureImageShareSmallView.toShareBlock = ^(UIImage * _Nonnull image) {
-                NSLog(@"去分享页面");
-                
-                if (image) {
-                    
-                    [weakSelf.player pause];
-                    [weakSelf.playerControlView dismiss];
-                    
-                    DDCaptureImageShareView *imageShareView = [[DDCaptureImageShareView alloc] initWithImage:image];
-                    imageShareView.dismissBlock = ^{
-                        if (!lastStausIsPause) {
-                            [weakSelf.player play];
-                        }
-                    };
-                    [weakSelf addSubview:imageShareView];
-                    [imageShareView mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.edges.equalTo(weakSelf);
-                    }];
-                }
-            };
-            [self addSubview:self.captureImageShareSmallView];
-            [self.captureImageShareSmallView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(button.mas_left).mas_offset(-20);
-                make.centerY.equalTo(button);
-            }];
-            [self layoutIfNeeded];
-        }];
-    }];
-    
+    [self captureImageButtonClick:button];
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView clickCaptureVideoButton:(UIButton *)button {
     
@@ -600,25 +544,10 @@
 - (void)playerControViewWillShow:(DDPlayerControlView *)controlView {
     
     
-    
 }
+
 - (void)playerControViewWillDismiss:(DDPlayerControlView *)controlView {
-    if (self.captureImageShareSmallView) {
-        
-        [self.captureImageShareSmallView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.playerControlView.captureImageButton.mas_left).mas_offset(250);
-        }];
-        
-        [UIView animateWithDuration:0.4 animations:^{
-            
-            [self layoutIfNeeded];
-            
-        } completion:^(BOOL finished) {
-            [self.captureImageShareSmallView removeFromSuperview];
-            self.captureImageShareSmallView = nil;
-        }];
-    
-    }
+    [self dismissCaptureImageShareSmallView];
 }
 
 

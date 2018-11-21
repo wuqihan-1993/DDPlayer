@@ -22,7 +22,7 @@
         [self._getPlayerControlView dismiss];
     }
     if (isPause) {
-        [self._getPlayer pause];
+        [self.player pause];
     }
     
     

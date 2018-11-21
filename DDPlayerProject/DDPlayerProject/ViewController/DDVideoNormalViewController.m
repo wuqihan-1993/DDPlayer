@@ -109,7 +109,7 @@
 #pragma mark - override method
 #pragma mark 控制屏幕旋转方法
 - (BOOL)shouldAutorotate {
-    return !self.playerView.isLockScreen;
+    return self.playerView.isAutorotate;
 }
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
