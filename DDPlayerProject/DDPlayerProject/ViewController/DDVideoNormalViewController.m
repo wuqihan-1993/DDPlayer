@@ -172,7 +172,7 @@
 }
 
 #pragma mark - DDPlayerViewDelegate
-- (void)playerViewClickBackTitleButton:(UIButton *)button {
+- (void)playerViewClickBackButton:(UIButton *)button {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)playerViewClickForwardButton:(UIButton *)button {

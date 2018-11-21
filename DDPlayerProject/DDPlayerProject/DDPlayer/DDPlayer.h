@@ -17,6 +17,9 @@
 @property(nonatomic, weak) id<DDPlayerDelegate> delegateController;
 @property(nonatomic, strong) AVURLAsset *currentAsset;
 @property(nonatomic, strong) AVPlayerItem *currentItem;
+
+@property(nonatomic, strong,readonly) Reachability *reachability;//网络检测器
+
 /**
  播放该视频总时长
  */
@@ -53,11 +56,13 @@
 @property(nonatomic, assign) CGFloat volume;
 
 - (void)bindToPlayerLayer:(AVPlayerLayer *)layer;
+
 - (void)replaceWithUrl:(NSString*)url;
+
 - (void)stop;
 - (void)play;
-- (void)playImmediatelyAtRate:(CGFloat)rate;
 - (void)pause;
+- (void)playImmediatelyAtRate:(CGFloat)rate;
 - (void)seekToTime:(NSTimeInterval)time completionHandler:(void(^)(BOOL))completionHandler;
 
 

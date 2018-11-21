@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDNetworkErrorView : DDPlayerContentView
 
+@property (nonatomic, copy) void (^backButtonClickBlock)(UIButton *);
 @property(nonatomic, copy) void(^retryBlock)(void);
 
 @end

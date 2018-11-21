@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param button 返回按钮
  */
-- (void)playerViewClickBackTitleButton:(UIButton *)button;
+- (void)playerViewClickBackButton:(UIButton *)button;
 
 
 /**

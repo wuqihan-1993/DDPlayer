@@ -26,7 +26,6 @@
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
-
 @property(nonatomic, strong) DDPlayerControlView *playerControlView;
 @property(nonatomic, strong) UIImageView *loadingView;
 @property(nonatomic, strong) DDPlayerDragProgressPortraitView *dragProgressPortraitView;
@@ -164,6 +163,11 @@
             weakSelf.player.isCanPlayOnWWAN = YES;
             [weakSelf.WWANWarnView removeFromSuperview];
         };
+        _WWANWarnView.backButtonClickBlock = ^(UIButton * _Nonnull button) {
+            if ([weakSelf.delegate respondsToSelector:@selector(playerViewClickBackButton:)]) {
+                [weakSelf.delegate playerViewClickBackButton:button];
+            }
+        };
     }
     return _WWANWarnView;
 }
@@ -171,6 +175,21 @@
 - (DDNetworkErrorView *)networkErrorView {
     if (!_networkErrorView) {
         _networkErrorView = [[DDNetworkErrorView alloc] init];
+        __weak typeof(self) weakSelf = self;
+        _networkErrorView.retryBlock = ^{
+            if (weakSelf.player.reachability.currentReachabilityStatus != NotReachable) {
+                if (weakSelf.networkErrorView.superview) {
+                    [weakSelf.networkErrorView removeFromSuperview];
+                }
+                [weakSelf.player play];
+            }
+            
+        };
+        _networkErrorView.backButtonClickBlock = ^(UIButton * _Nonnull button) {
+            if ([weakSelf.delegate respondsToSelector:@selector(playerViewClickBackButton:)]) {
+                [weakSelf.delegate playerViewClickBackButton:button];
+            }
+        };
     }
     return _networkErrorView;
 }
@@ -308,6 +327,9 @@
     switch (networkStatus) {
         case NotReachable:
         {
+            if (self.WWANWarnView.superview) {
+                [self.WWANWarnView removeFromSuperview];
+            }
             [self show:self.networkErrorView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
                 
             }];
@@ -315,9 +337,15 @@
             break;
         case ReachableViaWWAN:
         {
-            [self show:self.WWANWarnView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
-                
-            }];
+            if (self.networkErrorView.superview) {
+                [self.networkErrorView removeFromSuperview];
+            }
+            if (self.player.isCanPlayOnWWAN == NO) {
+                [self show:self.WWANWarnView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
+                    
+                }];
+            }
+            
             
         }
             break;
@@ -330,6 +358,7 @@
                 [self.WWANWarnView removeFromSuperview];
             }
             [self.player play];
+//            ;这里调用这个方法有时会无效，因为我内部写的是 应用处于活跃状态才能播放。但是wifi状态变更的时候，很有可能不是活跃装填s
         }
             break;
         default:
@@ -346,8 +375,8 @@
 
 #pragma mark - DDPlayerControlViewDelegate
 - (void)playerControlView:(DDPlayerControlView *)containerView clickBackTitleButton:(UIButton *)button {
-    if ([self.delegate respondsToSelector:@selector(playerViewClickBackTitleButton:)]) {
-        [self.delegate playerViewClickBackTitleButton:button];
+    if ([self.delegate respondsToSelector:@selector(playerViewClickBackButton:)]) {
+        [self.delegate playerViewClickBackButton:button];
     }
 }
 - (void)playerControlView:(DDPlayerControlView *)containerView clickPlayButton:(UIButton *)button {

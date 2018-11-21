@@ -18,6 +18,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     DDKVOManager* _playerItemKVO;
     NSString *_willPlayUrlString;
     DDPlayerStatus _willResignActiveStatus;//辞去活跃状态前 播放器的状态
+    NetworkStatus _willResignNetworkStatus;//辞去活跃状态前，网络状态
 }
 @property(nonatomic, assign) NSTimeInterval duration;
 @property(nonatomic, assign) NSTimeInterval currentTime;
@@ -27,7 +28,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 @property(nonatomic, strong) AVPlayer *player;
 @property(nonatomic, strong) id timeObserver;
 
-@property(nonatomic, strong) Reachability *reachability;//网络检测器
+@property(nonatomic, strong) Reachability *reachability;
 
 @end
 
@@ -103,6 +104,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     self.status = DDPlayerStatusUnknown;
 }
 - (void)play {
+    NSLog(@"playplayplayplayplay");
     if (![DDPlayerTool isLocationPath:self.currentAsset.URL.absoluteString]) {
         //不是本地视频。。网络是3g 不能立即播放
         if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
@@ -111,9 +113,11 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     }
     if (self.isBackgroundPlay == NO) {
         if (UIApplication.sharedApplication.applicationState == UIApplicationStateActive) {
+            NSLog(@"play-play-play-play-play");
             [self.player play];
         }
     }else {
+        NSLog(@"play-play-play-play-play");
         [self.player play];
     }
 
@@ -127,6 +131,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     }
 }
 - (void)pause {
+    NSLog(@"pause-pause-pause");
     [self.player pause];
 }
 
@@ -346,15 +351,30 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     }
 }
 - (void)applicationBecomeActive {
-    if (_willResignActiveStatus == DDPlayerStatusPaused) {
-        return;
+    
+    if (![DDPlayerTool isLocationPath:self.currentAsset.URL.absoluteString]) {
+        if (self.reachability.currentReachabilityStatus == NotReachable) {
+            [self pause];
+            return;
+        }
+        
+        if ((_willResignNetworkStatus == ReachableViaWWAN || _willResignNetworkStatus == NotReachable) && self.reachability.currentReachabilityStatus == ReachableViaWiFi) {
+            [self play];
+            return;
+        }
+        
+        if (_willResignActiveStatus == DDPlayerStatusPaused) {
+            return;
+        }
     }
+    
     if (self.status == DDPlayerStatusPaused) {
         [self play];
     }
 }
 - (void)applicationWillResignActive {
     _willResignActiveStatus = self.status;
+    _willResignNetworkStatus = self.reachability.currentReachabilityStatus;
     if (_willResignActiveStatus == DDPlayerStatusPlaying) {
         [self pause];
     }

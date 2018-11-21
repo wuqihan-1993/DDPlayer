@@ -31,6 +31,8 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     DDPlayerGestureType _gestureType;
 }
 
+@property(nonatomic, strong) UIButton *backButton;
+
 @property(nonatomic, strong) UIButton *lockScreenButton;
 
 @property(nonatomic, assign) BOOL isLockScreen;
@@ -77,6 +79,11 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 }
 
 #pragma mark - action
+- (void)backButtonClick:(UIButton *)button {
+    if ([self.delegate respondsToSelector:@selector(playerControlView:clickBackTitleButton:)]) {
+        [self.delegate playerControlView:self clickBackTitleButton:button];
+    }
+}
 - (void)playButtonClick:(UIButton *)button {
     [self addVisibleTimer];
     if ([self.delegate respondsToSelector:@selector(playerControlView:clickPlayButton:)]) {
@@ -181,6 +188,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(60);
     }];
+    self.backButton.hidden = NO;
     self.captureVideoButton.hidden = YES;
     self.captureImageButton.hidden = YES;
     self.lockScreenButton.hidden = YES;
@@ -192,6 +200,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(88);
     }];
+    self.backButton.hidden = YES;
     self.captureVideoButton.hidden = NO;
     self.captureImageButton.hidden = NO;
     self.lockScreenButton.hidden = NO;
@@ -251,6 +260,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     }
     
     NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
+    [views removeObject:self.backButton];
     [UIView animateWithDuration:0.4 animations:^{
         for (UIView *subView in views) {
             subView.alpha = 0;
@@ -306,12 +316,18 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 
 #pragma mark ui
 - (void)initUI{
+    [self addSubview:self.backButton];
     [self addSubview:self.topView];
     [self addSubview:self.captureVideoButton];
     [self addSubview:self.captureImageButton];
     [self addSubview:self.lockScreenButton];
     [self addSubview:self.bottomPortraitView];
     [self addSubview:self.bottomLandscapeView];
+    
+    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).mas_offset(20);
+        make.left.equalTo(self).mas_offset(20);
+    }];
     
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self);
@@ -451,6 +467,17 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 }
 - (BOOL)isDragingSlider {
     return self.bottomPortraitView.isDraging || self.bottomLandscapeView.isDraging;
+}
+
+-(UIButton *)backButton {
+    if (!_backButton) {
+        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Back"] forState:UIControlStateNormal];
+        _backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_backButton setTitle:@"\t\t" forState:UIControlStateNormal];
+        [_backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backButton;
 }
 
 - (UIButton *)lockScreenButton {

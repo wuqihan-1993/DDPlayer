@@ -7,6 +7,7 @@
 //
 
 #import "DDNetworkWWANWarnView.h"
+#import "DDPlayerTool.h"
 #import <Masonry.h>
 
 @interface DDNetworkWWANWarnView()
@@ -49,8 +50,12 @@
 }
 #pragma mark - action
 - (void)backButtonClick:(UIButton *)button {
-    if (self.backButtonClickBlock) {
-        self.backButtonClickBlock(button);
+    if (DDPlayerTool.isScreenLandscape) {
+        [DDPlayerTool forceRotatingScreen:UIInterfaceOrientationPortrait];
+    }else {
+        if (self.backButtonClickBlock) {
+            self.backButtonClickBlock(button);
+        }
     }
 }
 - (void)playButtonClick:(UIButton *)button {
@@ -64,6 +69,8 @@
     if (!_backButton) {
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        _backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_backButton setTitle:@"\t\t" forState:UIControlStateNormal];
         [_backButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Back"] forState:UIControlStateNormal];
     }
     return _backButton;

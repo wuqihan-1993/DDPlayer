@@ -54,10 +54,18 @@
 
 #pragma mark - action
 - (void)retryButtonClick:(UIButton *)button {
-    
+    if (self.retryBlock) {
+        self.retryBlock();
+    }
 }
 - (void)backButtonClick:(UIButton *)button {
-    
+    if (DDPlayerTool.isScreenLandscape) {
+        [DDPlayerTool forceRotatingScreen:UIInterfaceOrientationPortrait];
+    }else {
+        if (self.backButtonClickBlock) {
+            self.backButtonClickBlock(button);
+        }
+    }
 }
 
 #pragma makr - getter
@@ -79,6 +87,9 @@
 - (UIButton *)backButton {
     if (!_backButton) {
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        _backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_backButton setTitle:@"\t\t" forState:UIControlStateNormal];
         [_backButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Back"] forState:UIControlStateNormal];
     }
     return _backButton;
