@@ -15,6 +15,7 @@
 		E316C504219D6F250098194A /* DDPlayerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C503219D6F250098194A /* DDPlayerContentView.m */; };
 		E31F6C7521A4F92400F86655 /* DDPlaceHolder_Img_HorizontalImg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E31F6C7321A4F92300F86655 /* DDPlaceHolder_Img_HorizontalImg@3x.png */; };
 		E31F6C7621A4F92400F86655 /* DDPlaceHolder_Img_HorizontalImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E31F6C7421A4F92300F86655 /* DDPlaceHolder_Img_HorizontalImg@2x.png */; };
+		E31F6C7921A507DD00F86655 /* DDPlayerErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C7821A507DD00F86655 /* DDPlayerErrorView.m */; };
 		E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */; };
 		E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AD219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m */; };
 		E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */; };
@@ -142,6 +143,8 @@
 		E316C503219D6F250098194A /* DDPlayerContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerContentView.m; sourceTree = "<group>"; };
 		E31F6C7321A4F92300F86655 /* DDPlaceHolder_Img_HorizontalImg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlaceHolder_Img_HorizontalImg@3x.png"; sourceTree = "<group>"; };
 		E31F6C7421A4F92300F86655 /* DDPlaceHolder_Img_HorizontalImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DDPlaceHolder_Img_HorizontalImg@2x.png"; sourceTree = "<group>"; };
+		E31F6C7721A507DD00F86655 /* DDPlayerErrorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerErrorView.h; sourceTree = "<group>"; };
+		E31F6C7821A507DD00F86655 /* DDPlayerErrorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerErrorView.m; sourceTree = "<group>"; };
 		E35817A9219BB9D000BD3282 /* DDPlayerDragProgressBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressBaseView.h; sourceTree = "<group>"; };
 		E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerDragProgressBaseView.m; sourceTree = "<group>"; };
 		E35817AC219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressPortraitView.h; sourceTree = "<group>"; };
@@ -330,6 +333,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E31F6C7A21A507E600F86655 /* 播放器异常提示图 */ = {
+			isa = PBXGroup;
+			children = (
+				E31F6C7721A507DD00F86655 /* DDPlayerErrorView.h */,
+				E31F6C7821A507DD00F86655 /* DDPlayerErrorView.m */,
+			);
+			path = "播放器异常提示图";
+			sourceTree = "<group>";
+		};
 		E35817A8219BB98400BD3282 /* 拖拽进度视图 */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,6 +483,7 @@
 				E35817A8219BB98400BD3282 /* 拖拽进度视图 */,
 				E38A4645219911FA00944AC9 /* 亮度调试视图 */,
 				E3AB599F21957A2400CAEF38 /* 封面 */,
+				E31F6C7A21A507E600F86655 /* 播放器异常提示图 */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -927,6 +940,7 @@
 				E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */,
 				E3AB593E21955AC100CAEF38 /* DDBaseViewController.m in Sources */,
 				E316C501219D69BD0098194A /* DDPlayerView+Private.m in Sources */,
+				E31F6C7921A507DD00F86655 /* DDPlayerErrorView.m in Sources */,
 				E3AB595021955D3900CAEF38 /* DDPlayerTool.m in Sources */,
 				E3AB58FC2195596200CAEF38 /* AppDelegate.m in Sources */,
 				E3AB594C21955CB900CAEF38 /* DDPlayerLineModel.m in Sources */,

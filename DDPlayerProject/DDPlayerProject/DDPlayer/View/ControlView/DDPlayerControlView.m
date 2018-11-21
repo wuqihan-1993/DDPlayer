@@ -194,7 +194,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     self.lockScreenButton.hidden = YES;
     self.bottomLandscapeView.hidden = YES;
     self.bottomPortraitView.hidden = NO;
-    [self show];
 }
 - (void)updateUIWithLandscape {
     [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -206,7 +205,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     self.lockScreenButton.hidden = NO;
     self.bottomLandscapeView.hidden = NO;
     self.bottomPortraitView.hidden = YES;
-    [self show];
 }
 
 

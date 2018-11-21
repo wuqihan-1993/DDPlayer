@@ -23,6 +23,7 @@
 #import "DDPlayerView+ShowSubView.h"
 #import "DDPlayerClarityChoiceView.h"
 #import "DDPlayerClarityPromptLabel.h"
+#import "DDPlayerErrorView.h"
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
@@ -32,10 +33,11 @@
 @property(nonatomic, strong) DDPlayerDragProgressLandscapeView *dragProgressLandscapeView;
 @property(nonatomic, strong) DDCaptureImageShareSmallView *captureImageShareSmallView;
 @property(nonatomic, strong) DDPlayerCoverView *coverView;//封面图
-@property(nonatomic, strong) DDNetworkWWANWarnView *WWANWarnView;//流量警告视图
-@property(nonatomic, strong) DDNetworkErrorView *networkErrorView;//无网警告视图
 @property(nonatomic, strong) DDPlayerClarityChoiceView *clarityChoiceView;//清晰度选择视图
 @property(nonatomic, strong) DDPlayerClarityPromptLabel *clarityPromptLabel;
+@property(nonatomic, strong) DDNetworkWWANWarnView *WWANWarnView;//流量警告视图
+@property(nonatomic, strong) DDNetworkErrorView *networkErrorView;//无网警告视图
+@property(nonatomic, strong) DDPlayerErrorView *playerErrorView;
 
 @end
 
@@ -269,6 +271,24 @@
     return _clarityPromptLabel;
 }
 
+- (DDPlayerErrorView *)playerErrorView {
+    if (!_playerErrorView) {
+        _playerErrorView = [[DDPlayerErrorView alloc] init];
+        __weak typeof(self) weakSelf = self;
+        _playerErrorView.backButtonClickBlock = ^(UIButton * _Nonnull button) {
+            if ([weakSelf.delegate respondsToSelector:@selector(playerViewClickBackButton:)]) {
+                [weakSelf.delegate playerViewClickBackButton:button];
+            }
+        };
+        _playerErrorView.retryBlock = ^{
+            if ([weakSelf.delegate respondsToSelector:@selector(playerViewPlayerErrorRetry)]) {
+                [weakSelf.delegate playerViewPlayerErrorRetry];
+            }
+        };
+    }
+    return _playerErrorView;
+}
+
 - (BOOL)isLockScreen {
     return self.playerControlView.isLockScreen;
 }
@@ -299,6 +319,16 @@
     self.loadingView.hidden = (status != DDPlayerStatusBuffering);
 
     switch (status) {
+        case DDPlayerStatusUnknown:
+        {
+            // [DDPlayer stop]
+            [self playerTimeChanged:0];
+        }
+            break;
+        case DDPlayerStatusBuffering:
+        {
+        }
+            break;
         case DDPlayerStatusPlaying:
         {
             self.playerControlView.bottomPortraitView.playButton.selected = YES;
@@ -314,19 +344,15 @@
           
         }
             break;
-        case DDPlayerStatusBuffering:
-        {
-        }
-            break;
+        
         case DDPlayerStatusEnd:
         {
             
         }
             break;
-        case DDPlayerStatusUnknown:
+        case DDPlayerStatusError:
         {
-            // [DDPlayer stop]
-            [self playerTimeChanged:0];
+            [self show:self.playerErrorView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:nil];
         }
             break;
         default:
@@ -341,6 +367,9 @@
     }
     if (self.networkErrorView.superview) {
         [self.networkErrorView removeFromSuperview];
+    }
+    if (self.playerErrorView.superview) {
+        [self.playerErrorView removeFromSuperview];
     }
     if (self.coverView.hidden == NO) {
         self.coverView.hidden = YES;

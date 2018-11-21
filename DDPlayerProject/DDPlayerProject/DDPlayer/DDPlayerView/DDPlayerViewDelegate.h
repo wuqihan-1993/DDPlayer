@@ -81,6 +81,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)playerViewChooseClarity:(DDPlayerClarity)clarity success:(void(^)(NSString*))success failure:(void(^)(void))failure;
 
 
+/**
+ 播放器发生错误，点击重试按钮
+ */
+- (void)playerViewPlayerErrorRetry;
+
+
 
 @end
 
