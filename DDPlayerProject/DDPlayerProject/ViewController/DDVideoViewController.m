@@ -46,7 +46,7 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"******************开始点击时间：%@*******************",[NSDate date]);
+    NSLog(@"******************开始时间：%@*******************",[NSDate date]);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     DDVideoNormalViewController *vc = [DDVideoNormalViewController new];
     vc.hidesBottomBarWhenPushed = YES;
