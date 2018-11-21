@@ -72,9 +72,14 @@
 
 #pragma mark - action
 - (void)backButtonClick:(UIButton *)button {
-    if (self.backButtonClickBlock) {
-        self.backButtonClickBlock(button);
+    if (DDPlayerTool.isScreenLandscape) {
+        [DDPlayerTool forceRotatingScreen:UIInterfaceOrientationPortrait];
+    }else {
+        if (self.backButtonClickBlock) {
+            self.backButtonClickBlock(button);
+        }
     }
+    
 }
 - (void)playerButtonClick:(UIButton *)button {
     if (self.playButtonClickBlock) {
