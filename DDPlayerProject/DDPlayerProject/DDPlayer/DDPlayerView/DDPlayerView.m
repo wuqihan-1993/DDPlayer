@@ -11,6 +11,7 @@
 #import "DDPlayerControlView.h"
 #import <Masonry.h>
 #import <SDWebImage/UIImage+GIF.h>
+#import <UIImageView+WebCache.h>
 #import "DDPlayerContainerView.h"
 #import "DDPlayerDragProgressPortraitView.h"
 #import "DDPlayerDragProgressLandscapeView.h"
@@ -131,7 +132,7 @@
         _loadingView = [[UIImageView alloc] init];
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            NSString *gifPath = [[NSBundle mainBundle] pathForResource:@"DDPlayer_Gif_Loading@2x" ofType:@"gif"];
+            NSString *gifPath = [[NSBundle mainBundle] pathForResource:@"DDPlayer_Gif_Loading" ofType:@"gif"];
             NSData *gifData = [NSData dataWithContentsOfFile:gifPath];
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.loadingView.image = [UIImage sd_animatedGIFWithData:gifData];

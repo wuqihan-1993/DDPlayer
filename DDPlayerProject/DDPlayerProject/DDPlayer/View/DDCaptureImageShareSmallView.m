@@ -62,6 +62,13 @@
     [self addGestureRecognizer:tap];
 }
 
+- (void)updateUIWithPortrait {
+    self.hidden = YES;
+}
+- (void)updateUIWithLandscape {
+    self.hidden = NO;
+}
+
 - (void)tap:(UITapGestureRecognizer *)tap {
     if (self.toShareBlock) {
         self.toShareBlock(self.imageView.image);

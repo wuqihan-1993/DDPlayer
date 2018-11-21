@@ -6,11 +6,11 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DDPlayerComponentBaseView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDCaptureImageShareSmallView : UIView
+@interface DDCaptureImageShareSmallView : DDPlayerComponentBaseView
 
 @property(nonatomic, copy) void(^toShareBlock)(UIImage *);
 
