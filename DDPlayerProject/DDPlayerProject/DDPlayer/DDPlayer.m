@@ -62,7 +62,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 
 #pragma mark - public
-- (void)replaceWithUrl:(NSString *)url {
+- (void)playWithUrl:(NSString *)url {
     
     _willPlayUrlString = url;
 
@@ -191,7 +191,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     _isCanPlayOnWWAN = isCanPlayOnWWAN;
     if (_isCanPlayOnWWAN == YES) {
         if (self.status == DDPlayerStatusUnknown) {
-            [self replaceWithUrl:_willPlayUrlString];
+            [self playWithUrl:_willPlayUrlString];
         }else {
             [self play];
         }

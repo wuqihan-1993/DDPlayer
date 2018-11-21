@@ -61,11 +61,15 @@
     self.backgroundColor = UIColor.blackColor;
     
     [self addSubview:self.playerControlView];
+    [self addSubview:self.coverView];
     [self addSubview:self.loadingView];
     
     self.loadingView.hidden = YES;
     
     [self.playerControlView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
+    [self.coverView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
     [self.loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -85,6 +89,10 @@
 #pragma mark - setter
 - (void)setTitle:(NSString *)title {
     self.playerControlView.topView.title = title;
+}
+- (void)setCoverImageName:(NSString *)coverImageName {
+    self.coverView.coverImageName = coverImageName;
+    self.coverView.hidden = NO;
 }
 - (void)setIsHiddenCapture:(BOOL)isHiddenCapture {
     _isHiddenCapture = isHiddenCapture;
@@ -112,7 +120,6 @@
     if (!_playerControlView) {
         _playerControlView = [[DDPlayerControlView alloc] init];
         _playerControlView.delegate = self;
-        _playerControlView.hidden = YES;
     }
     return _playerControlView;
 }
@@ -143,11 +150,17 @@
 - (DDPlayerCoverView *)coverView {
     if (!_coverView) {
         _coverView = [[DDPlayerCoverView alloc] init];
-        _coverView.playButtonClickBlock = ^{
-            
+        _coverView.hidden = YES;
+        __weak typeof(self) weakSelf = self;
+        _coverView.playButtonClickBlock = ^(UIButton * _Nonnull button){
+            if ([weakSelf.delegate respondsToSelector:@selector(playerViewClickCoverPlayButton:)]) {
+                [weakSelf.delegate playerViewClickCoverPlayButton:button];
+            }
         };
-        _coverView.backButtonClickBlock = ^{
-            
+        _coverView.backButtonClickBlock = ^(UIButton * _Nonnull button){
+            if ([weakSelf.delegate respondsToSelector:@selector(playerViewClickBackButton:)]) {
+                [weakSelf.delegate playerViewClickBackButton:button];
+            }
         };
     }
     return _coverView;
@@ -227,7 +240,7 @@
             
                 [weakSelf.delegate playerViewChooseClarity:clarity success:^(NSString * _Nonnull url) {
                     //4.截取成功
-                    [weakSelf.player replaceWithUrl:url];
+                    [weakSelf.player playWithUrl:url];
                     [weakSelf.player seekToTime:lastTime completionHandler:^(BOOL isComplete) {
                         button.selected = YES;
                         [weakSelf.clarityPromptLabel performSelector:@selector(chooseSuccess) withObject:nil afterDelay:1];
@@ -317,8 +330,11 @@
 }
 
 - (void)playerReadyToPlay {
-    if (self.playerControlView.hidden) {
-        self.playerControlView.hidden = NO;
+//    if (self.playerControlView.hidden) {
+//        self.playerControlView.hidden = NO;
+//    }
+    if (self.coverView.hidden == NO) {
+        self.coverView.hidden = YES;
     }
     [self.playerControlView show];
 }

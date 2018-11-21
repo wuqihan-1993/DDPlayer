@@ -23,6 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
+ 点击封面上的播放按钮
+
+ @param button 播放按钮
+ */
+- (void)playerViewClickCoverPlayButton:(UIButton *)button;
+
+/**
  下一节按钮点击
 
  @param button 下一节按钮

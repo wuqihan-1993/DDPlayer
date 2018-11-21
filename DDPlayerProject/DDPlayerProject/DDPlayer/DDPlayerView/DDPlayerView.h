@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  封面图
  */
-@property(nonatomic, copy) NSString *coverImage;
+@property(nonatomic, copy) NSString *coverImageName;
 /**
  是否隐藏截取功能
  */

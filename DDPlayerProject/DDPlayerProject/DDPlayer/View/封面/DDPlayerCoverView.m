@@ -8,6 +8,9 @@
 
 #import "DDPlayerCoverView.h"
 #import <Masonry.h>
+#import <UIImageView+WebCache.h>
+#import "DDPlayerTool.h"
+
 @interface DDPlayerCoverView()
 
 @property(nonatomic, strong) UIButton *backButton;
@@ -17,14 +20,6 @@
 @end
 
 @implementation DDPlayerCoverView
-
-- (instancetype)initWitCoverImage:(UIImage *)image {
-    if (self = [super init]) {
-        _coverImage = image;
-        self.coverImageView.image = _coverImageView;
-    }
-    return self;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -46,6 +41,7 @@
     }];
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
+//        make.width.height.mas_equalTo(60);
     }];
 }
 
@@ -53,18 +49,37 @@
     _coverImage = coverImage;
     self.coverImageView.image = coverImage;
 }
+- (void)setCoverImageName:(NSString *)coverImageName {
+    if ([coverImageName hasPrefix:@"http"]) {
+        [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:coverImageName] placeholderImage:[UIImage imageNamed:@"DDPlaceHolder_Img_HorizontalImg"]];
+    }else {
+        self.coverImageView.image = [UIImage imageNamed:coverImageName];
+    }
+}
+
+#pragma mark - overrid method
+- (void)updateUIWithPortrait {
+    [self.backButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.left.equalTo(self).mas_offset(20);
+    }];
+}
+- (void)updateUIWithLandscape {
+    [self.backButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? 44: 20);
+        make.top.equalTo(self).mas_offset(33);
+    }];
+}
 
 #pragma mark - action
 - (void)backButtonClick:(UIButton *)button {
     if (self.backButtonClickBlock) {
-        self.backButtonClickBlock();
+        self.backButtonClickBlock(button);
     }
 }
 - (void)playerButtonClick:(UIButton *)button {
     if (self.playButtonClickBlock) {
-        self.playButtonClickBlock();
+        self.playButtonClickBlock(button);
     }
-    [self removeFromSuperview];
 }
 
 #pragma mark - getter
@@ -73,6 +88,8 @@
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [_backButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_Back"] forState:UIControlStateNormal];
+        [_backButton setTitle:@"\t\t" forState:UIControlStateNormal];
+        _backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     return _backButton;
 }

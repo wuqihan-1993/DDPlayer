@@ -91,6 +91,7 @@
         make.top.equalTo(self.view).mas_offset(DDPlayerTool.isiPhoneX ? 44 : 0);
         make.height.mas_equalTo(DDPlayerTool.screenWidth * 9 /16);
     }];
+    self.playerView.coverImageName = @"ronaldo";
 }
 - (void)initUI {
     [self.view addSubview:self.tableView];
@@ -108,9 +109,6 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
 }
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-//    return UIInterfaceOrientationLandscapeLeft;
-//}
 
 #pragma mark - getter
 - (UITableView *)tableView {
@@ -153,7 +151,7 @@
         url = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
     }
     
-    [self.playerView.player replaceWithUrl:url];
+    [self.playerView.player playWithUrl:url];
 //    [self.playerView.player play];
     
     //播放本地视频
@@ -174,6 +172,9 @@
 #pragma mark - DDPlayerViewDelegate
 - (void)playerViewClickBackButton:(UIButton *)button {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)playerViewClickCoverPlayButton:(UIButton *)button {
+    [self.playerView.player playWithUrl:@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"];
 }
 - (void)playerViewClickForwardButton:(UIButton *)button {
     

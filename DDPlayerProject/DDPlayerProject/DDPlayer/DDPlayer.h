@@ -57,7 +57,7 @@
 
 - (void)bindToPlayerLayer:(AVPlayerLayer *)layer;
 
-- (void)replaceWithUrl:(NSString*)url;
+- (void)playWithUrl:(NSString*)url;
 
 - (void)stop;
 - (void)play;
