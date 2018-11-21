@@ -17,6 +17,7 @@
 		E31F6C7F21A556B600F86655 /* DDPlayer_Gif_Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = E31F6C7E21A556B600F86655 /* DDPlayer_Gif_Loading.gif */; };
 		E31F6C8321A5583F00F86655 /* DDPlayerView+CaptureImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C8221A5583F00F86655 /* DDPlayerView+CaptureImage.m */; };
 		E31F6C8821A5624600F86655 /* DDPlayerUIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C8721A5624600F86655 /* DDPlayerUIFactory.m */; };
+		E31F6C8E21A56B9100F86655 /* DDPlayerView+CaptureVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C8D21A56B9100F86655 /* DDPlayerView+CaptureVideo.m */; };
 		E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */; };
 		E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AD219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m */; };
 		E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */; };
@@ -95,6 +96,8 @@
 		E31F6C8221A5583F00F86655 /* DDPlayerView+CaptureImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DDPlayerView+CaptureImage.m"; sourceTree = "<group>"; };
 		E31F6C8621A5624600F86655 /* DDPlayerUIFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerUIFactory.h; sourceTree = "<group>"; };
 		E31F6C8721A5624600F86655 /* DDPlayerUIFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerUIFactory.m; sourceTree = "<group>"; };
+		E31F6C8C21A56B9100F86655 /* DDPlayerView+CaptureVideo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDPlayerView+CaptureVideo.h"; sourceTree = "<group>"; };
+		E31F6C8D21A56B9100F86655 /* DDPlayerView+CaptureVideo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DDPlayerView+CaptureVideo.m"; sourceTree = "<group>"; };
 		E35817A9219BB9D000BD3282 /* DDPlayerDragProgressBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressBaseView.h; sourceTree = "<group>"; };
 		E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerDragProgressBaseView.m; sourceTree = "<group>"; };
 		E35817AC219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressPortraitView.h; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 		E31F6C8521A5608A00F86655 /* 视频截取 */ = {
 			isa = PBXGroup;
 			children = (
+				E31F6C8C21A56B9100F86655 /* DDPlayerView+CaptureVideo.h */,
+				E31F6C8D21A56B9100F86655 /* DDPlayerView+CaptureVideo.m */,
 			);
 			path = "视频截取";
 			sourceTree = "<group>";
@@ -740,6 +745,7 @@
 				E3AB595D21955DA100CAEF38 /* DDPlayerControlBottomBaseView.m in Sources */,
 				E3DE4C0D219D1F490073C733 /* DDNetworkWWANWarnView.m in Sources */,
 				E31F6C8821A5624600F86655 /* DDPlayerUIFactory.m in Sources */,
+				E31F6C8E21A56B9100F86655 /* DDPlayerView+CaptureVideo.m in Sources */,
 				E3AB595E21955DA100CAEF38 /* DDPlayerControlView.m in Sources */,
 				E3AB596021955DA100CAEF38 /* DDPlayerComponentBaseView.m in Sources */,
 				E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */,

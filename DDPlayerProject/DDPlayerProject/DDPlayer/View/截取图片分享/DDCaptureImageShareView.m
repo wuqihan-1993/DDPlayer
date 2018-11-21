@@ -77,6 +77,8 @@
     stackView.spacing = 24;
     for (NSInteger i = 0 ; i < 4; i++) {
         UIButton *button = [DDPlayerUIFactory attributeButtonWithImage:[UIImage imageNamed:sharedItemImageArray[i]] title:sharedItemTitleArray[i] font:[DDPlayerTool PingFangSCRegularAndSize:15] titleColor:UIColor.whiteColor spacing:3.5];
+        [button addTarget:self action:@selector(shareButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = 2000+i;
         [stackView addArrangedSubview:button];
     }
     [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,6 +93,11 @@
         self.dismissBlock();
     }
     [self removeFromSuperview];
+}
+- (void)shareButtonClick:(UIButton *)button {
+    if (self.shareButtonClickBlock) {
+        self.shareButtonClickBlock(button.tag - 2000);
+    }
 }
 
 #pragma mark - getter

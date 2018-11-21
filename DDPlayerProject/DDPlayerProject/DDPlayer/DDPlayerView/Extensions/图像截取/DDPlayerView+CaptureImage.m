@@ -80,6 +80,11 @@ static void *_isShareingCaptureImageKey = &_isShareingCaptureImageKey;
                     weakSelf.isShareingCaptureImage = YES;
                     
                     DDCaptureImageShareView *imageShareView = [[DDCaptureImageShareView alloc] initWithImage:image];
+                    imageShareView.shareButtonClickBlock = ^(DDShareType shareType) {
+                        if ([weakSelf.delegate respondsToSelector:@selector(playerViewShareCaptureImage:shareType:)]) {
+                            [weakSelf.delegate playerViewShareCaptureImage:image shareType:shareType];
+                        }
+                    };
                     [weakSelf show:imageShareView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
                         weakSelf.isShareingCaptureImage = NO;
                         if (lastStausIsPause == YES) {

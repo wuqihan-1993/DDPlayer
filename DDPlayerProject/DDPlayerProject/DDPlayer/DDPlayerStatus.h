@@ -18,6 +18,13 @@ typedef NS_ENUM(NSInteger,DDPlayerStatus) {
     DDPlayerStatusError
 };
 
+typedef NS_ENUM(NSInteger,DDShareType) {
+    DDShareTypeWechat,  //微信好友
+    DDShareTypeFriend,  //微信朋友圈
+    DDShareTypeWeibo,   //微博
+    DDShareTypeQQ,      //QQ
+};
+
 
 
 #endif /* DDPlayerStatus_h */

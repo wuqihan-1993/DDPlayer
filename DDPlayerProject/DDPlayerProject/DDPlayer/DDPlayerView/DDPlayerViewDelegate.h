@@ -87,6 +87,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)playerViewPlayerErrorRetry;
 
 
+/**
+ 点击分享截取图像
+
+ @param captureImage 图像
+ @param shareType DDShareType
+ */
+- (void)playerViewShareCaptureImage:(UIImage*)captureImage shareType:(DDShareType)shareType;
+
+
 
 @end
 

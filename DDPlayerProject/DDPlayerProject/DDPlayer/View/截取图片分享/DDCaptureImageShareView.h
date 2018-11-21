@@ -7,11 +7,11 @@
 //
 
 #import "DDPlayerContentView.h"
-
+#import "DDPlayerStatus.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DDCaptureImageShareView : DDPlayerContentView
-
+@property(nonatomic, copy) void(^shareButtonClickBlock)(DDShareType);
 - (instancetype)initWithImage:(UIImage *)image;
 @end
 
