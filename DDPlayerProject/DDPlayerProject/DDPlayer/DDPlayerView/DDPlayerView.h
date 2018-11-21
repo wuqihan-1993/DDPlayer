@@ -18,6 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) DDPlayer *player;
 @property(nonatomic, weak)   id<DDPlayerViewDelegate> delegate;
 
+
+/**
+ 能够截取视频的最大时长
+ */
+@property(nonatomic, assign) NSInteger captureMaxDuration;
+
 /**
  视频标题
  */

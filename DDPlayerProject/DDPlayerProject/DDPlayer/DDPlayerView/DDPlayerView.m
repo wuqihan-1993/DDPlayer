@@ -25,6 +25,7 @@
 #import "DDPlayerClarityPromptLabel.h"
 #import "DDPlayerErrorView.h"
 #import "DDPlayerView+CaptureImage.h"
+#import "DDPlayerView+CaptureVideo.h"
 
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
@@ -320,11 +321,10 @@
         self.playerControlView.bottomPortraitView.slider.value = progressValue;
     }
     
-    
-    
     NSString *timeStr = [NSString stringWithFormat:@"%@/%@",[DDPlayerTool translateTimeToString:currentTime],[DDPlayerTool translateTimeToString:self.player.duration]];
     self.playerControlView.bottomLandscapeView.timeLabel.text = timeStr;
     self.playerControlView.bottomPortraitView.timeLabel.text = timeStr;
+    
     
     
 }
@@ -489,7 +489,7 @@
     [self captureImageButtonClick:button];
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView clickCaptureVideoButton:(UIButton *)button {
-    
+    [self captureVideoButtonClick:button];
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView clickRateButton:(UIButton *)button {
     NSMutableString *buttonTitle = button.titleLabel.text.mutableCopy;

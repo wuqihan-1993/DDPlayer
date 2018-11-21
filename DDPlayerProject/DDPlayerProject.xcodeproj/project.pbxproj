@@ -18,6 +18,8 @@
 		E31F6C8321A5583F00F86655 /* DDPlayerView+CaptureImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C8221A5583F00F86655 /* DDPlayerView+CaptureImage.m */; };
 		E31F6C8821A5624600F86655 /* DDPlayerUIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C8721A5624600F86655 /* DDPlayerUIFactory.m */; };
 		E31F6C8E21A56B9100F86655 /* DDPlayerView+CaptureVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C8D21A56B9100F86655 /* DDPlayerView+CaptureVideo.m */; };
+		E31F6C9221A5735F00F86655 /* DDCaptureVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C9121A5735F00F86655 /* DDCaptureVideoView.m */; };
+		E31F6C9521A5751A00F86655 /* DDCaptureVideoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C9421A5751A00F86655 /* DDCaptureVideoProgressView.m */; };
 		E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */; };
 		E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AD219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m */; };
 		E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */; };
@@ -98,6 +100,10 @@
 		E31F6C8721A5624600F86655 /* DDPlayerUIFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerUIFactory.m; sourceTree = "<group>"; };
 		E31F6C8C21A56B9100F86655 /* DDPlayerView+CaptureVideo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDPlayerView+CaptureVideo.h"; sourceTree = "<group>"; };
 		E31F6C8D21A56B9100F86655 /* DDPlayerView+CaptureVideo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DDPlayerView+CaptureVideo.m"; sourceTree = "<group>"; };
+		E31F6C9021A5735F00F86655 /* DDCaptureVideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDCaptureVideoView.h; sourceTree = "<group>"; };
+		E31F6C9121A5735F00F86655 /* DDCaptureVideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDCaptureVideoView.m; sourceTree = "<group>"; };
+		E31F6C9321A5751A00F86655 /* DDCaptureVideoProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDCaptureVideoProgressView.h; sourceTree = "<group>"; };
+		E31F6C9421A5751A00F86655 /* DDCaptureVideoProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDCaptureVideoProgressView.m; sourceTree = "<group>"; };
 		E35817A9219BB9D000BD3282 /* DDPlayerDragProgressBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressBaseView.h; sourceTree = "<group>"; };
 		E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerDragProgressBaseView.m; sourceTree = "<group>"; };
 		E35817AC219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressPortraitView.h; sourceTree = "<group>"; };
@@ -280,6 +286,17 @@
 			path = "视频截取";
 			sourceTree = "<group>";
 		};
+		E31F6C8F21A5733800F86655 /* 截取视频分享 */ = {
+			isa = PBXGroup;
+			children = (
+				E31F6C9021A5735F00F86655 /* DDCaptureVideoView.h */,
+				E31F6C9121A5735F00F86655 /* DDCaptureVideoView.m */,
+				E31F6C9321A5751A00F86655 /* DDCaptureVideoProgressView.h */,
+				E31F6C9421A5751A00F86655 /* DDCaptureVideoProgressView.m */,
+			);
+			path = "截取视频分享";
+			sourceTree = "<group>";
+		};
 		E35817A8219BB98400BD3282 /* 拖拽进度视图 */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +434,7 @@
 				E36F3AFF21A24D0000DE5F38 /* 选择清晰度 */,
 				E3DE4C0A219D1EF10073C733 /* 网络监控提示图 */,
 				E35817B8219C18F000BD3282 /* 截取图片分享 */,
+				E31F6C8F21A5733800F86655 /* 截取视频分享 */,
 				E3B5D95F219AC8A700F9FC1D /* ContentView */,
 				E35817A8219BB98400BD3282 /* 拖拽进度视图 */,
 				E38A4645219911FA00944AC9 /* 亮度调试视图 */,
@@ -752,6 +770,7 @@
 				E3AB595F21955DA100CAEF38 /* DDPlayerControlTopView.m in Sources */,
 				E36F3BE821A2C88300DE5F38 /* DDPlayerClarityPromptLabel.m in Sources */,
 				E35817BB219C194100BD3282 /* DDCaptureImageShareSmallView.m in Sources */,
+				E31F6C9221A5735F00F86655 /* DDCaptureVideoView.m in Sources */,
 				E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */,
 				E38A46482199120A00944AC9 /* DDBrightView.m in Sources */,
 				E3AB593B21955AA100CAEF38 /* DDNavigationController.m in Sources */,
@@ -765,6 +784,7 @@
 				E31F6C7921A507DD00F86655 /* DDPlayerErrorView.m in Sources */,
 				E3AB595021955D3900CAEF38 /* DDPlayerTool.m in Sources */,
 				E3AB58FC2195596200CAEF38 /* AppDelegate.m in Sources */,
+				E31F6C9521A5751A00F86655 /* DDCaptureVideoProgressView.m in Sources */,
 				E3AB594C21955CB900CAEF38 /* DDPlayerLineModel.m in Sources */,
 				E3BCD014219E5A1A00455201 /* DDKVOManager.m in Sources */,
 				E3AB593721955A8900CAEF38 /* DDTabBarController.m in Sources */,
