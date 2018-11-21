@@ -110,6 +110,10 @@
     return UIInterfaceOrientationMaskAll;
 }
 
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+//    return UIInterfaceOrientationLandscapeLeft;
+//}
+
 #pragma mark - getter
 - (UITableView *)tableView {
     if (!_tableView) {

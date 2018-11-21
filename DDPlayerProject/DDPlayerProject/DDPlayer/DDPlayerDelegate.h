@@ -46,6 +46,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)playerWillPlayWithWWAN;
 
+
+/**
+ 播放器无网状态将要播放
+ */
+- (void)playerWillPlayWithNetworkError;
+
 #pragma mark 监听网络状态相关
 - (void)playerNetworkStatusChanged:(NetworkStatus)networkStatus;
 

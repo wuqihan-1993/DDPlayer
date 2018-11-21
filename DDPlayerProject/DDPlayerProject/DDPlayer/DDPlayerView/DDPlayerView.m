@@ -194,7 +194,12 @@
                 if (weakSelf.networkErrorView.superview) {
                     [weakSelf.networkErrorView removeFromSuperview];
                 }
-                [weakSelf.player play];
+                if (weakSelf.player.status == DDPlayerStatusUnknown) {
+                    [weakSelf.player playWithUrl:[weakSelf.player valueForKey:@"_willPlayUrlString"]];
+                }else {
+                    [weakSelf.player play];
+                }
+                
             }
             
         };
@@ -330,9 +335,13 @@
 }
 
 - (void)playerReadyToPlay {
-//    if (self.playerControlView.hidden) {
-//        self.playerControlView.hidden = NO;
-//    }
+
+    if (self.WWANWarnView.superview) {
+        [self.WWANWarnView removeFromSuperview];
+    }
+    if (self.networkErrorView.superview) {
+        [self.networkErrorView removeFromSuperview];
+    }
     if (self.coverView.hidden == NO) {
         self.coverView.hidden = YES;
     }
@@ -384,9 +393,11 @@
 
 - (void)playerWillPlayWithWWAN {
     [self.player stop];
-    [self show:self.WWANWarnView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
-        
-    }];
+    [self show:self.WWANWarnView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:nil];
+}
+- (void)playerWillPlayWithNetworkError {
+    [self.player stop];
+    [self show:self.networkErrorView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:nil];
 }
 
 #pragma mark - DDPlayerControlViewDelegate

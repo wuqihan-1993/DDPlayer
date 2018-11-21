@@ -67,6 +67,14 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     _willPlayUrlString = url;
 
     if (![DDPlayerTool isLocationPath:url]) {
+        
+        if (self.reachability.currentReachabilityStatus == NotReachable) {
+            if ([self.delegate respondsToSelector:@selector(playerWillPlayWithNetworkError)]) {
+                [self.delegate playerWillPlayWithNetworkError];
+            }
+            return;
+        }
+        
         //不是本地视频。。网络是3g 不能立即播放
         if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
             
