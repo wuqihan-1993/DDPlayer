@@ -186,6 +186,9 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
         if ([self.delegate respondsToSelector:@selector(playerStatusChanged:)]) {
             [self.delegate playerStatusChanged:status];
         }
+        if ([self.delegateController respondsToSelector:@selector(playerStatusChanged:)]) {
+            [self.delegateController playerStatusChanged:status];
+        }
     }
 }
 - (void)setCurrentTime:(NSTimeInterval)currentTime {

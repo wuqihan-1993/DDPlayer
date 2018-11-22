@@ -123,6 +123,7 @@
     if (!_playerControlView) {
         _playerControlView = [[DDPlayerControlView alloc] init];
         _playerControlView.delegate = self;
+        _playerControlView.hidden = YES;
     }
     return _playerControlView;
 }
@@ -393,6 +394,9 @@
     }
     if (self.coverView.hidden == NO) {
         self.coverView.hidden = YES;
+    }
+    if (self.playerControlView.hidden == YES) {
+        self.playerControlView.hidden = NO;
     }
     if (self.player.isLocationUrl) {
         self.isHiddenClarity = YES;

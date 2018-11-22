@@ -13,7 +13,8 @@
 typedef NS_ENUM(NSInteger,DDPlayerShowOrigin) {
     DDPlayerShowOriginCenter,
     DDPlayerShowOriginRight,
-    DDPlayerShowOriginTop
+    DDPlayerShowOriginTop,
+    DDPlayerShowOriginLeftBottom
 };
 
 @interface DDPlayerView (ShowSubView)

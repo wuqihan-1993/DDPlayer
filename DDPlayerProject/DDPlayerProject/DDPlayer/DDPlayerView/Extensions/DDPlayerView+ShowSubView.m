@@ -63,6 +63,15 @@
             make.centerX.equalTo(self);
         }];
         [self layoutIfNeeded];
+    }else if(origin == DDPlayerShowOriginLeftBottom) {
+        [self addSubview:view];
+        [self bringSubviewToFront:view];
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self).mas_offset(-80);
+            make.left.equalTo(self).mas_offset(20);
+        }];
+        [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:2];
+        [self layoutIfNeeded];
     }
 }
 

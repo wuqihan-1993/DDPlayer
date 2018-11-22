@@ -290,11 +290,11 @@
 		E31F6C8421A558D600F86655 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E31773AA21A6927D00854F40 /* 切换清晰度 */,
 				E316C4FF219D69BD0098194A /* DDPlayerView+Private.h */,
 				E316C500219D69BD0098194A /* DDPlayerView+Private.m */,
 				E316C4FC219D68CF0098194A /* DDPlayerView+ShowSubView.h */,
 				E316C4FD219D68CF0098194A /* DDPlayerView+ShowSubView.m */,
+				E31773AA21A6927D00854F40 /* 切换清晰度 */,
 				E31F6C8521A5608A00F86655 /* 视频截取 */,
 				E31F6C8021A5582800F86655 /* 图像截取 */,
 			);

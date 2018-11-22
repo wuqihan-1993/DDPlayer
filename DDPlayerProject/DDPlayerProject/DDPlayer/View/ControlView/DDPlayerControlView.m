@@ -216,7 +216,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         [self.delegate playerControViewWillShow:self];
     }
     
-    
     NSMutableArray *views = [NSMutableArray arrayWithArray:self.subviews];
     
     if (self.isLockScreen) {
@@ -224,26 +223,13 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         [views removeObject:self.captureImageButton];
         [views removeObject:self.topView];
         [views removeObject:self.bottomLandscapeView];
-  
     }
     
-    if (DDPlayerTool.isScreenPortrait) {
-        
-        [views removeObject:self.bottomLandscapeView];
-        [UIView animateWithDuration:0.4 animations:^{
-            for (UIView *subView in views) {
-                subView.alpha = 1;
-            }
-        }];
-        
-    }else {
-        [views removeObject:self.bottomPortraitView];
-        [UIView animateWithDuration:0.4 animations:^{
-            for (UIView *subView in views) {
-                subView.alpha = 1;
-            }
-        }];
-    }
+    [UIView animateWithDuration:0.4 animations:^{
+        for (UIView *subView in views) {
+            subView.alpha = 1;
+        }
+    }];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self addVisibleTimer];
