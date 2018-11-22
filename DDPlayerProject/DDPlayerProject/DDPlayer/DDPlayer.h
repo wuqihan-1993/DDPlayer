@@ -32,6 +32,11 @@
  播放器状态
  */
 @property(nonatomic, assign, readonly) DDPlayerStatus status;
+
+/**
+ 播放器当前速率
+ */
+@property(nonatomic, assign, readonly) CGFloat rate;
 /**
  是否可以后台播放
  */
@@ -41,6 +46,8 @@
  播放器是否是暂停状态
  */
 @property(nonatomic, assign, readonly) BOOL isPause;
+
+@property(nonatomic, assign, readonly) BOOL isPlaying;
 
 /**
  网络流量是否能播放
@@ -63,7 +70,8 @@
 - (void)play;
 - (void)pause;
 - (void)playImmediatelyAtRate:(CGFloat)rate;
-- (void)seekToTime:(NSTimeInterval)time completionHandler:(void(^)(BOOL))completionHandler;
+
+- (void)seekToTime:(NSTimeInterval)time isPlayImmediately:(BOOL)isPlayImmediately completionHandler:(void (^)(BOOL))completionHandler;
 
 
 @end

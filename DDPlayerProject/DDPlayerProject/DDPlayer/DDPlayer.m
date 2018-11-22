@@ -143,29 +143,38 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     [self.player pause];
 }
 
-- (BOOL)isPause {
-    return (self.player.rate == 0 && self.status == DDPlayerStatusPaused);
-}
-
-- (void)seekToTime:(NSTimeInterval)time completionHandler:(void (^)(BOOL))completionHandler {
+- (void)seekToTime:(NSTimeInterval)time isPlayImmediately:(BOOL)isPlayImmediately completionHandler:(void (^)(BOOL))completionHandler  {
     
     self.isSeekingToTime = YES;
     
-    BOOL beforeIsPause = (self.status == DDPlayerStatusPaused);
-    [self pause];
-    [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
+    [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC) toleranceBefore:CMTimeMake(1, 1000) toleranceAfter:CMTimeMake(1, 1000) completionHandler:^(BOOL finished) {
         self.isSeekingToTime = NO;
+        
+        if (isPlayImmediately) {
+            [self play];
+        }else {
+            [self pause];
+        }
         if (completionHandler) {
             completionHandler(finished);
         }
     }];
-    if (!beforeIsPause) {
-        [self play];
-    }
+    
 }
 
 - (void)bindToPlayerLayer:(AVPlayerLayer *)layer {
     layer.player = self.player;
+}
+
+#pragma mark - getter
+- (BOOL)isPause {
+    return (self.player.rate == 0 && self.status == DDPlayerStatusPaused);
+}
+- (BOOL)isPlaying {
+    return (self.player.rate != 0 && self.status == DDPlayerStatusPlaying);
+}
+- (CGFloat)rate {
+    return self.player.rate;
 }
 #pragma mark - setter
 - (void)setStatus:(DDPlayerStatus)status {
@@ -280,8 +289,8 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 - (void)addPlayerObservers {
     __weak typeof(self) weakSelf = self;//下面会造成循环引用
-    self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.1, NSEC_PER_SEC) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
-        
+    self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.5, NSEC_PER_SEC) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+      
         if (weakSelf.currentItem == nil) {
             return ;
         }
@@ -294,6 +303,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
         }
 //        NSLog(@"%lf &*&*& %lf",CMTimeGetSeconds(time),CMTimeGetSeconds(weakSelf.currentItem.duration));
         weakSelf.duration = CMTimeGetSeconds(weakSelf.currentItem.duration);
+        
         weakSelf.currentTime = CMTimeGetSeconds(time);
     }];
     [self.player addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionNew context:&observerContext];

@@ -9,15 +9,38 @@
 #import "DDPlayerView+CaptureVideo.h"
 #import "DDCaptureVideoView.h"
 #import "DDPlayerView+ShowSubView.h"
+#import <objc/runtime.h>
+
+static void *_isCapturingVideoKey = &_isCapturingVideoKey;
 
 @implementation DDPlayerView (CaptureVideo)
+
+- (BOOL)isCapturingVideo {
+    return [objc_getAssociatedObject(self, _isCapturingVideoKey) boolValue];
+}
+- (void)setIsCapturingVideo:(BOOL)isCapturingVideo {
+    objc_setAssociatedObject(self, _isCapturingVideoKey, [NSNumber numberWithBool:isCapturingVideo], OBJC_ASSOCIATION_RETAIN);
+}
 
 - (void)captureVideoButtonClick:(UIButton *)captureVideoButton {
     
     DDCaptureVideoView *captureVideoView = [[DDCaptureVideoView alloc] init];
+    
+    self.isCapturingVideo = YES;
+    
+    //记录截取前的播放器状态
+    BOOL lastPlayerIsPlaying = self.player.isPlaying;
+    CGFloat lastTime = self.player.currentTime;
+    
+    [self.player playImmediatelyAtRate:1.0];
+    
+    __weak typeof(self) weakSelf = self;
     [self show:captureVideoView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:NO dismissCompletion:^{
-        //稍后处理
+        //截取视频取消
+        weakSelf.isCapturingVideo = NO;
+        [self.player seekToTime:lastTime isPlayImmediately:lastPlayerIsPlaying completionHandler:nil];
     }];
+    
     
     
 //    if (self.isPoping) {

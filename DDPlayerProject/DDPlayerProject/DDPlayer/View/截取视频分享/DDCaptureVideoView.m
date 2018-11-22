@@ -22,6 +22,10 @@
 
 @implementation DDCaptureVideoView
 
+- (void)dealloc {
+    NSLog(@"%s",__FUNCTION__);
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self initialize];
@@ -75,11 +79,16 @@
 
 #pragma mark - action
 - (void)backButtonClick:(UIButton *)button {
-    
+    if (self.dismissBlock) {
+        self.dismissBlock();
+    }
+    [self removeFromSuperview];
 }
 - (void)captureButtonClick:(UIButton *)button {
     
 }
+
+#pragma mark - setter
 
 #pragma mark - getter
 - (UIButton *)backButton {

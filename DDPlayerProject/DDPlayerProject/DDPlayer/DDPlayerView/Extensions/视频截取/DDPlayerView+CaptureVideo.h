@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPlayerView (CaptureVideo)
 
+@property(nonatomic, assign) BOOL isCapturingVideo;
+
 - (void)captureVideoButtonClick:(UIButton *)captureVideoButton;
 
 @end

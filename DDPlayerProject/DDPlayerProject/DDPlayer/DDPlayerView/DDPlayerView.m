@@ -255,7 +255,7 @@
                 [weakSelf.delegate playerViewChooseClarity:clarity success:^(NSString * _Nonnull url) {
                     //4.截取成功
                     [weakSelf.player playWithUrl:url];
-                    [weakSelf.player seekToTime:lastTime completionHandler:^(BOOL isComplete) {
+                    [weakSelf.player seekToTime:lastTime isPlayImmediately:YES completionHandler:^(BOOL complete) {
                         button.selected = YES;
                         [weakSelf.clarityPromptLabel performSelector:@selector(chooseSuccess) withObject:nil afterDelay:1];
                         [imageView removeFromSuperview];
@@ -306,15 +306,23 @@
     if (self.isShareingCaptureImage) {
         return NO;
     }
+    if (self.isCapturingVideo) {
+        return NO;
+    }
     return YES;
 }
 
 #pragma mark - DDPlayerDelegate
 - (void)playerTimeChanged:(double)currentTime {
     
-    
-    if (self.playerControlView.isDragingSlider || self.player.isSeekingToTime) {
+    NSLog(@"赋值过来的时间：%lf",currentTime);
+    if (self.playerControlView.isDragingSlider) {
         return;
+    }
+    
+    
+    if (self.player.isSeekingToTime) {
+        
     }else {
         CGFloat progressValue = currentTime / self.player.duration;
         self.playerControlView.bottomLandscapeView.slider.value = progressValue;
@@ -522,7 +530,7 @@
     
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView DragingSlider:(UISlider *)slider {
-    
+    NSLog(@"拖拽时间 &&& ： -- ：%lf",self.player.duration * slider.value);
     [self.dragProgressPortraitView setProgress:slider.value duration:self.player.duration];
     [self.dragProgressLandscapeView setProgress:slider.value duration:self.player.duration];
 }
@@ -534,11 +542,12 @@
     }else {
         [self.dragProgressLandscapeView removeFromSuperview];
     }
-     [self.player seekToTime:self.player.duration * slider.value completionHandler:nil];
+    NSLog(@"拖拽结束时间 &&& ： -- ：%lf",self.player.duration * slider.value);
+    [self.player seekToTime:self.player.duration * slider.value isPlayImmediately:self.player.isPlaying completionHandler:nil];
 }
 
 - (void)playerControlView:(DDPlayerControlView *)controlView tapSlider:(UISlider *)slider {
-    [self.player seekToTime:(self.player.duration * slider.value) completionHandler:nil];
+    [self.player seekToTime:self.player.duration * slider.value isPlayImmediately:self.player.isPlaying completionHandler:nil];
 }
 
 - (void)playerControViewWillShow:(DDPlayerControlView *)controlView {
