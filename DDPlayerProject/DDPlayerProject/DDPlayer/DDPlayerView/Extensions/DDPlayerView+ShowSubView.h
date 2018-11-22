@@ -21,6 +21,8 @@ typedef NS_ENUM(NSInteger,DDPlayerShowOrigin) {
 
 - (void)show:(UIView*_Nullable)view origin:(DDPlayerShowOrigin)origin isDismissControl:(BOOL)isDismissControl isPause:(BOOL)isPause dismissCompletion:(void(^ __nullable)(void))dismiss;
 
+- (void)showLeftBottomRromptLabel:(NSString *)prompt;
+
 @end
 
 

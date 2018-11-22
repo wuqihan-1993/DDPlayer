@@ -12,6 +12,7 @@
 #import "DDPlayerContainerView.h"
 #import "DDPlayerControlView.h"
 #import "DDPlayerContentView.h"
+#import "DDLeftBottomPromptLabel.h"
 #import <Masonry.h>
 
 @implementation DDPlayerView (ShowSubView)
@@ -66,13 +67,26 @@
     }else if(origin == DDPlayerShowOriginLeftBottom) {
         [self addSubview:view];
         [self bringSubviewToFront:view];
-        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self).mas_offset(-80);
-            make.left.equalTo(self).mas_offset(20);
-        }];
+        if (DDPlayerTool.isScreenPortrait) {
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.equalTo(self).mas_offset(-60);
+                make.left.equalTo(self).mas_offset(20);
+            }];
+        }else {
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.equalTo(self).mas_offset(-88);
+                make.left.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? 44 : 20);
+            }];
+        }
         [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:2];
         [self layoutIfNeeded];
     }
+}
+
+- (void)showLeftBottomRromptLabel:(NSString *)prompt {
+    DDLeftBottomPromptLabel *label = [DDLeftBottomPromptLabel new];
+    label.text = prompt;
+    [self show:label origin:DDPlayerShowOriginLeftBottom isDismissControl:YES isPause:NO dismissCompletion:nil];
 }
 
 @end
