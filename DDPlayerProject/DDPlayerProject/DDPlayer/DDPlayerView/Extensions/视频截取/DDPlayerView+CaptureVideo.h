@@ -8,14 +8,18 @@
 
 #import "DDPlayerView.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@class DDCaptureVideoView;
+
+
 
 @interface DDPlayerView (CaptureVideo)
 
+@property(nonatomic, strong) DDCaptureVideoView *captureVideoView;
 @property(nonatomic, assign) BOOL isCapturingVideo;
+
 
 - (void)captureVideoButtonClick:(UIButton *)captureVideoButton;
 
 @end
 
-NS_ASSUME_NONNULL_END
+

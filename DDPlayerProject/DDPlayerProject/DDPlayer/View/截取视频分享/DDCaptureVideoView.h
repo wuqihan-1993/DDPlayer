@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDCaptureVideoView : DDPlayerContentView
 
+@property(nonatomic, assign) NSInteger captureMaxDuration;
+
+- (void)timeChanged:(NSTimeInterval)time;
 
 
 @end

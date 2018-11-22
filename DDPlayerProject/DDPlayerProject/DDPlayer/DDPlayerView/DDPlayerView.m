@@ -26,6 +26,7 @@
 #import "DDPlayerErrorView.h"
 #import "DDPlayerView+CaptureImage.h"
 #import "DDPlayerView+CaptureVideo.h"
+#import "DDCaptureVideoView.h"
 
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
@@ -332,8 +333,10 @@
     self.playerControlView.bottomLandscapeView.timeLabel.text = timeStr;
     self.playerControlView.bottomPortraitView.timeLabel.text = timeStr;
     
-    
-    
+    //截取视频时，把时间穿个DDCaptureVideoView
+    if (self.captureVideoView) {
+        [self.captureVideoView timeChanged:currentTime];
+    }
 }
 - (void)playerStatusChanged:(DDPlayerStatus)status {
     NSLog(@"status: - %ld",(long)status);

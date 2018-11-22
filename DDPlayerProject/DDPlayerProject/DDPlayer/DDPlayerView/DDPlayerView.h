@@ -19,10 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, weak)   id<DDPlayerViewDelegate> delegate;
 
 
-/**
- 能够截取视频的最大时长
- */
-@property(nonatomic, assign) NSInteger captureMaxDuration;
+
 
 /**
  视频标题
@@ -63,6 +60,11 @@ NS_ASSUME_NONNULL_BEGIN
  - 截取视频时
  */
 @property(nonatomic, assign, readonly) BOOL isAutorotate;
+
+/**
+ 能够截取视频的最大时长 默认为15s
+ */
+@property(nonatomic, assign) NSInteger captureMaxDuration;
 
 
 

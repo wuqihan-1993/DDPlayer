@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DDCaptureVideoProgressView : UIView
 
 @property(nonatomic, assign) CGFloat progress;
-@property(nonatomic, assign) NSInteger maxCaptureDuration;
+@property(nonatomic, assign) NSInteger captureMaxDuration;
 
 @end
 

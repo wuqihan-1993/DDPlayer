@@ -50,22 +50,22 @@
 
 - (void)setProgress:(CGFloat)progress {
     if (progress < 3) {
-        self.timeLabel.text = [NSString stringWithFormat:@"00:%02ld/00:%02ld 录制中，请稍后...",(long)progress,self.maxCaptureDuration];
+        self.timeLabel.text = [NSString stringWithFormat:@"00:%02ld/00:%02ld 录制中，请稍后...",(long)progress,self.captureMaxDuration];
     }else {
-        self.timeLabel.text = [NSString stringWithFormat:@"00:%02ld/00:%02ld 点击右侧按钮，完成录制...",(long)progress,self.maxCaptureDuration];
+        self.timeLabel.text = [NSString stringWithFormat:@"00:%02ld/00:%02ld 点击右侧按钮，完成录制...",(long)progress,self.captureMaxDuration];
     }
     
-    NSLog(@"progress:%lf - %lf",progress,progress/self.maxCaptureDuration);
-    self.slider.value = progress / self.maxCaptureDuration;
-    if (progress == self.maxCaptureDuration) {
+    NSLog(@"progress:%lf - %lf",progress,progress/self.captureMaxDuration);
+    self.slider.value = progress / self.captureMaxDuration;
+    if (progress == self.captureMaxDuration) {
         self.slider.value = 1;
     }
 }
 
 
-- (void)setMaxCaptureDuration:(NSInteger)maxCaptureDuration {
-    _maxCaptureDuration = maxCaptureDuration;
-    self.timeLabel.text = [NSString stringWithFormat:@"00:00/00:%02ld 录制中，请稍后...",self.maxCaptureDuration];
+- (void)setCaptureMaxDuration:(NSInteger)maxCaptureDuration {
+    _captureMaxDuration = maxCaptureDuration;
+    self.timeLabel.text = [NSString stringWithFormat:@"00:00/00:%02ld 录制中，请稍后...",self.captureMaxDuration];
 }
 
 #pragma mark - getter
@@ -74,7 +74,7 @@
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.textColor = UIColor.whiteColor;
         _timeLabel.font = [DDPlayerTool PingFangSCRegularAndSize:13];
-        _timeLabel.text =  @"00:00/00:15 录制中，请稍后...";
+        _timeLabel.text =  @"00:00/00:00 录制中，请稍后...";
     }
     return _timeLabel;
 }

@@ -11,11 +11,12 @@
 #import "DDCaptureVideoProgressView.h"
 @interface DDCaptureVideoView()
 
-@property(nonatomic, assign) NSInteger captureMaxDuration;
+
 
 @property(nonatomic, strong) UIButton *backButton;
 @property(nonatomic, strong) UIButton *captureButton;
 @property(nonatomic, strong) DDCaptureVideoProgressView *captureProgressView;
+@property(nonatomic, assign) NSTimeInterval currentTime;
 
 @end
 
@@ -72,6 +73,12 @@
     
 }
 
+#pragma mark - public
+- (void)timeChanged:(NSTimeInterval)time {
+    self.captureProgressView.progress = (self.currentTime++ * 0.5);
+    self.captureButton.enabled = (self.captureProgressView.progress >= 3);
+}
+
 #pragma mark - private
 - (void)startCapture {
     
@@ -89,6 +96,10 @@
 }
 
 #pragma mark - setter
+- (void)setCaptureMaxDuration:(NSInteger)captureMaxDuration {
+    _captureMaxDuration = captureMaxDuration;
+    self.captureProgressView.captureMaxDuration = captureMaxDuration;
+}
 
 #pragma mark - getter
 - (UIButton *)backButton {
@@ -108,8 +119,8 @@
     if (!_captureButton) {
         //截取按钮
         _captureButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_captureButton setImage:[UIImage imageNamed:@"WTCPlayer_Btn_VideoCapture_disabled"] forState:UIControlStateDisabled];
-        [_captureButton setImage:[UIImage imageNamed:@"WTCPlayer_Btn_VideoCapture_normal"] forState:UIControlStateNormal];
+        [_captureButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_VideoCapture_disabled"] forState:UIControlStateDisabled];
+        [_captureButton setImage:[UIImage imageNamed:@"DDPlayer_Btn_VideoCapture_normal"] forState:UIControlStateNormal];
         [_captureButton addTarget:self action:@selector(captureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _captureButton.enabled = NO;
     }
@@ -118,7 +129,7 @@
 - (DDCaptureVideoProgressView *)captureProgressView {
     if (!_captureProgressView) {
         _captureProgressView = [[DDCaptureVideoProgressView alloc] init];
-        _captureProgressView.maxCaptureDuration = self.captureMaxDuration;
+        
     }
     return _captureProgressView;
 }

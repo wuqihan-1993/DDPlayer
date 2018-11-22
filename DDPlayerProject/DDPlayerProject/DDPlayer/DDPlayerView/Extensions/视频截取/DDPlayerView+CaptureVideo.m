@@ -12,20 +12,29 @@
 #import <objc/runtime.h>
 
 static void *_isCapturingVideoKey = &_isCapturingVideoKey;
+static void *_captureViewViewKey = &_captureViewViewKey;
 
 @implementation DDPlayerView (CaptureVideo)
+
+- (DDCaptureVideoView *)captureVideoView {
+    return objc_getAssociatedObject(self, _captureViewViewKey);
+}
+- (void)setCaptureVideoView:(DDCaptureVideoView *)captureVideoView {
+    objc_setAssociatedObject(self, _captureViewViewKey, captureVideoView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 - (BOOL)isCapturingVideo {
     return [objc_getAssociatedObject(self, _isCapturingVideoKey) boolValue];
 }
 - (void)setIsCapturingVideo:(BOOL)isCapturingVideo {
-    objc_setAssociatedObject(self, _isCapturingVideoKey, [NSNumber numberWithBool:isCapturingVideo], OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, _isCapturingVideoKey, [NSNumber numberWithBool:isCapturingVideo], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)captureVideoButtonClick:(UIButton *)captureVideoButton {
     
-    DDCaptureVideoView *captureVideoView = [[DDCaptureVideoView alloc] init];
+    self.captureVideoView = [[DDCaptureVideoView alloc] init];
     
+    self.captureVideoView.captureMaxDuration = self.captureMaxDuration > 0 ? self.captureMaxDuration : 15;
     self.isCapturingVideo = YES;
     
     //记录截取前的播放器状态
@@ -35,10 +44,11 @@ static void *_isCapturingVideoKey = &_isCapturingVideoKey;
     [self.player playImmediatelyAtRate:1.0];
     
     __weak typeof(self) weakSelf = self;
-    [self show:captureVideoView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:NO dismissCompletion:^{
+    [self show:self.captureVideoView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:NO dismissCompletion:^{
         //截取视频取消
         weakSelf.isCapturingVideo = NO;
         [self.player seekToTime:lastTime isPlayImmediately:lastPlayerIsPlaying completionHandler:nil];
+        self.captureVideoView = nil;
     }];
     
     
