@@ -315,7 +315,6 @@
 #pragma mark - DDPlayerDelegate
 - (void)playerTimeChanged:(double)currentTime {
     
-    NSLog(@"赋值过来的时间：%lf",currentTime);
     if (self.playerControlView.isDragingSlider) {
         return;
     }

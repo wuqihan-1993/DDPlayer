@@ -41,7 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-    NSLog(@"******************开始时间：%@*******************",[NSDate date]);
+
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
