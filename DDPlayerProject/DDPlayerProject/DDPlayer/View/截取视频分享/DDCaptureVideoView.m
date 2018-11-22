@@ -74,14 +74,25 @@
 }
 
 #pragma mark - public
+// 该方法每0.5s调用一次 因为DDPlayer 监听时间变化的方法是每0.5s执行一次
 - (void)timeChanged:(NSTimeInterval)time {
-    self.captureProgressView.progress = (self.currentTime++ * 0.5);
-    self.captureButton.enabled = (self.captureProgressView.progress >= 3);
+    self.currentTime += 0.5;
+    self.captureProgressView.progress = self.currentTime;
+    self.captureButton.enabled = (self.currentTime >= 3);
+    if (self.currentTime > 15) {
+        //截取结束
+        [self finishCapture];
+    }
 }
 
 #pragma mark - private
-- (void)startCapture {
-    
+//- (void)startCapture {
+//
+//}
+- (void)finishCapture {
+    if (self.finishBlock) {
+        self.finishBlock();
+    }
 }
 
 #pragma mark - action
@@ -89,10 +100,9 @@
     if (self.dismissBlock) {
         self.dismissBlock();
     }
-    [self removeFromSuperview];
 }
 - (void)captureButtonClick:(UIButton *)button {
-    
+    [self finishCapture];
 }
 
 #pragma mark - setter
@@ -129,7 +139,6 @@
 - (DDCaptureVideoProgressView *)captureProgressView {
     if (!_captureProgressView) {
         _captureProgressView = [[DDCaptureVideoProgressView alloc] init];
-        
     }
     return _captureProgressView;
 }

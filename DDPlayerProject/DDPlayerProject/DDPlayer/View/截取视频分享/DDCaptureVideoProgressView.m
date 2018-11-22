@@ -49,6 +49,8 @@
 }
 
 - (void)setProgress:(CGFloat)progress {
+    _progress = progress;
+    
     if (progress < 3) {
         self.timeLabel.text = [NSString stringWithFormat:@"00:%02ld/00:%02ld 录制中，请稍后...",(long)progress,self.captureMaxDuration];
     }else {

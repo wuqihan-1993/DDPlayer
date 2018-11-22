@@ -32,7 +32,14 @@ static void *_captureViewViewKey = &_captureViewViewKey;
 
 - (void)captureVideoButtonClick:(UIButton *)captureVideoButton {
     
+    __weak typeof(self) weakSelf = self;
+    
     self.captureVideoView = [[DDCaptureVideoView alloc] init];
+    
+    self.captureVideoView.finishBlock = ^{
+        [weakSelf.captureVideoView removeFromSuperview];
+        weakSelf.captureVideoView = nil;
+    };
     
     self.captureVideoView.captureMaxDuration = self.captureMaxDuration > 0 ? self.captureMaxDuration : 15;
     self.isCapturingVideo = YES;
@@ -42,12 +49,12 @@ static void *_captureViewViewKey = &_captureViewViewKey;
     CGFloat lastTime = self.player.currentTime;
     
     [self.player playImmediatelyAtRate:1.0];
-    
-    __weak typeof(self) weakSelf = self;
+     
     [self show:self.captureVideoView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:NO dismissCompletion:^{
         //截取视频取消
         weakSelf.isCapturingVideo = NO;
         [self.player seekToTime:lastTime isPlayImmediately:lastPlayerIsPlaying completionHandler:nil];
+        [self.captureVideoView removeFromSuperview];
         self.captureVideoView = nil;
     }];
     
