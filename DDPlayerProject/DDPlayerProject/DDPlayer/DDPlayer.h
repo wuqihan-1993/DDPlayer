@@ -20,6 +20,8 @@
 
 @property(nonatomic, strong,readonly) Reachability *reachability;//网络检测器
 
+@property(nonatomic, assign, readonly) BOOL isLocationUrl;
+
 /**
  播放该视频总时长
  */

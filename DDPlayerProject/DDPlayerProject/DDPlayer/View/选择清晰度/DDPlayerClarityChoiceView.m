@@ -8,11 +8,11 @@
 
 #import "DDPlayerClarityChoiceView.h"
 #import "DDPlayerTool.h"
+#import "DDPlayerClarityTool.h"
 
 @interface DDPlayerClarityChoiceView()
 
 @property(nonatomic, strong) UIStackView *stackView;
-@property(nonatomic, strong) NSDictionary *clarityDict;
 
 @end
 
@@ -58,12 +58,10 @@
     [self.stackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
     }];
-    
-    self.clarityDict = @{@"标准":@(DDPlayerClarityDefault),@"流畅":@(DDPlayerClarityFluency)};
-    self.clarityArray = self.clarityDict.allKeys;
+
     
     _clarity = DDPlayerClarityDefault;
-    
+    [self setClarityArray:@[@(DDPlayerClarityDefault),@(DDPlayerClarityFluency)]];
 }
 
 - (void)setClarityArray:(NSArray *)clarityArray {
@@ -74,7 +72,7 @@
     
     for (NSInteger i = 0; i < clarityArray.count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setTitle:clarityArray[i] forState:UIControlStateNormal];
+        [button setTitle:[DDPlayerClarityTool clarityString:[clarityArray[i] integerValue]] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithRed:14/255.0 green:197/255.0 blue:131/255.0 alpha:1.0] forState:UIControlStateSelected];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button.titleLabel setFont:[DDPlayerTool PingFangSCRegularAndSize:15]];
@@ -91,7 +89,7 @@
 - (void)setClarity:(DDPlayerClarity)clarity {
     _clarity = clarity;
     for (UIButton *button in self.stackView.arrangedSubviews) {
-        if (button.tag + 1000 == clarity) {
+        if (button.tag - 1000 == clarity) {
             button.selected = YES;
         }else {
             button.selected = NO;

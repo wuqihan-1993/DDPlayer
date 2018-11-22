@@ -15,11 +15,30 @@
 #import "DDPlayerClarityPromptLabel.h"
 #import <objc/runtime.h>
 #import "DDPlayerControlView.h"
+#import "DDPlayerClarityTool.h"
 
 @implementation DDPlayerView (SwitchLine)
 
 static void * _clarityPromptLabelKey = &_clarityPromptLabelKey;
 static void * _clarityChoiceViewKey = &_clarityChoiceViewKey;
+static void * _clarityKey = &_clarityKey;
+static void * _clarityUrlKey = &_clarityUrlKey;
+- (DDPlayerClarity)clarity {
+    return [objc_getAssociatedObject(self, _clarityKey) integerValue];
+}
+- (void)setClarity:(DDPlayerClarity)clarity {
+    
+    [(UIButton*)[self._getPlayerControlView.bottomLandscapeView valueForKey:@"clarityButton"] setTitle:[DDPlayerClarityTool clarityString:clarity] forState:UIControlStateNormal];
+    self.clarityChoiceView.clarity = clarity;
+    
+    objc_setAssociatedObject(self, _clarityKey, [NSNumber numberWithInt:clarity], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (NSString *)clarityUrl {
+    return objc_getAssociatedObject(self, _clarityUrlKey);
+}
+- (void)setClarityUrl:(NSString *)clarityUrl {
+    objc_setAssociatedObject(self, _clarityUrlKey, clarityUrl, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
 
 - (DDPlayerClarityChoiceView *)clarityChoiceView {
     if (objc_getAssociatedObject(self, _clarityChoiceViewKey) != nil) {
@@ -84,8 +103,9 @@ static void * _clarityChoiceViewKey = &_clarityChoiceViewKey;
                 [weakSelf.clarityPromptLabel chooseSuccess];
                 [imageView removeFromSuperview];
             }];
-            [(UIButton*)[weakSelf._getPlayerControlView.bottomLandscapeView valueForKey:@"clarityButton"] setTitle:clarityButton.titleLabel.text forState:UIControlStateNormal];
             weakSelf.clarityChoiceView.clarity = clarity;
+            weakSelf.clarity = clarity;
+            weakSelf.clarityUrl = self.player.currentAsset.URL.absoluteString;
         } failure:^{
             [weakSelf.clarityPromptLabel chooseFail];
             [imageView removeFromSuperview];

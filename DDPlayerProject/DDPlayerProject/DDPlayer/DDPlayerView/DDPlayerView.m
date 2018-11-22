@@ -394,7 +394,20 @@
     if (self.coverView.hidden == NO) {
         self.coverView.hidden = YES;
     }
+    if (self.player.isLocationUrl) {
+        self.isHiddenClarity = YES;
+    }else {
+        self.isHiddenClarity = NO;
+    }
+    
+    //播放视频，重置清晰度。设置为标准
+    if (self.clarity == DDPlayerClarityFluency && ![self.clarityUrl isEqualToString:self.player.currentAsset.URL.absoluteString] ) {
+        self.clarity = DDPlayerClarityDefault;
+    }
+    
     [self.playerControlView show];
+    
+
 }
 
 - (void)playerNetworkStatusChanged:(NetworkStatus)networkStatus {

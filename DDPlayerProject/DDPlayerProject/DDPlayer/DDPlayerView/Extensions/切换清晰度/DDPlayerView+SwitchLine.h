@@ -13,6 +13,8 @@
 
 @interface DDPlayerView (SwitchLine)
 
+@property(nonatomic, assign) DDPlayerClarity clarity;//当前清晰度
+@property(nonatomic, copy) NSString *clarityUrl;//当前清晰度对应的地址
 @property(nonatomic, strong) DDPlayerClarityChoiceView *clarityChoiceView;
 @property(nonatomic, strong) DDPlayerClarityPromptLabel *clarityPromptLabel;
 

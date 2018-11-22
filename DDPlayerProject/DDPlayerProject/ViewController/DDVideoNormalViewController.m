@@ -11,6 +11,7 @@
 #import "DDPlayerView+ShowSubView.h"
 #import "Masonry.h"
 #import "DDPlayerContainerView.h"
+
 @interface DDVideoNormalViewController ()<UITableViewDataSource,UITableViewDelegate,DDPlayerViewDelegate,DDPlayerDelegate>
 
 @property(nonatomic, strong) DDPlayerView *playerView;

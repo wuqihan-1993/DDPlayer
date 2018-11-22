@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDPlayerClarity.h"
+#import "DDPlayerClarityTool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

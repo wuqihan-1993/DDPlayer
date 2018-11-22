@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DDPlayerStatus.h"
-#import "DDPlayerClarity.h"
+#import "DDPlayerClarityTool.h"
 NS_ASSUME_NONNULL_BEGIN
 
 

@@ -176,6 +176,9 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 - (CGFloat)rate {
     return self.player.rate;
 }
+- (BOOL)isLocationUrl {
+    return [DDPlayerTool isLocationPath:_willPlayUrlString];
+}
 #pragma mark - setter
 - (void)setStatus:(DDPlayerStatus)status {
     if (_status != status) {

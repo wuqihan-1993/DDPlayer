@@ -9,6 +9,7 @@
 #import "DDPlayerControlBottomLandscapeView.h"
 #import "Masonry.h"
 #import "DDPlayerTool.h"
+#import "DDPlayerClarityTool.h"
 
 @interface DDPlayerControlBottomLandscapeView()
 
@@ -146,7 +147,7 @@
     if (!_clarityButton) {
         _clarityButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _clarityButton.titleLabel.textAlignment = NSTextAlignmentRight;
-        [_clarityButton setTitle:@"标准" forState:UIControlStateNormal];
+        [_clarityButton setTitle:[DDPlayerClarityTool clarityString:DDPlayerClarityDefault] forState:UIControlStateNormal];
         _clarityButton.titleLabel.font = [DDPlayerTool pingfangSCSemiboldAndSize:15];
         [_clarityButton addTarget:self action:@selector(clarityButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _clarityButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
