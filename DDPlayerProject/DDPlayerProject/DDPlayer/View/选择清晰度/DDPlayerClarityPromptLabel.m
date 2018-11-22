@@ -21,7 +21,6 @@
     if (self = [super initWithFrame:frame]) {
         self.font = [DDPlayerTool PingFangSCRegularAndSize:14];
         self.textColor = UIColor.whiteColor;
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     }
     return self;
 }
@@ -49,7 +48,14 @@
     NSMutableAttributedString *attText = [[NSMutableAttributedString alloc]initWithString:text];
     [attText addAttribute:NSForegroundColorAttributeName value:[DDPlayerTool colorWithRGBHex:0x61d8bb] range:[text rangeOfString:self.clarityStr]];
     self.attributedText = attText;
-    [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
+    [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:2];
+}
+- (void)chooseFail {
+    NSString *text = [NSString stringWithFormat:@"切换到%@失败，请稍后再试...",self.clarityStr];
+    NSMutableAttributedString *attText = [[NSMutableAttributedString alloc]initWithString:text];
+    [attText addAttribute:NSForegroundColorAttributeName value:[DDPlayerTool colorWithRGBHex:0x61d8bb] range:[text rangeOfString:self.clarityStr]];
+    self.attributedText = attText;
+    [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:2];
 }
 
 @end

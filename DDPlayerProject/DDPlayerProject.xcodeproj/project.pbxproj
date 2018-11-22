@@ -16,6 +16,8 @@
 		E31770AC21A6537600854F40 /* DDCaptureVideoShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31770AB21A6537600854F40 /* DDCaptureVideoShareView.m */; };
 		E31770B221A6549D00854F40 /* DDCaptureVideoCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31770B121A6549D00854F40 /* DDCaptureVideoCommentView.m */; };
 		E31770B421A6550500854F40 /* DDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31770B321A6550400854F40 /* DDTextView.m */; };
+		E31773B021A6929800854F40 /* DDPlayerView+SwitchLine.m in Sources */ = {isa = PBXBuildFile; fileRef = E31773AF21A6929800854F40 /* DDPlayerView+SwitchLine.m */; };
+		E31773B321A693BE00854F40 /* DDCaptureImageShareSmallView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31773B121A693BD00854F40 /* DDCaptureImageShareSmallView.m */; };
 		E31F6C7921A507DD00F86655 /* DDPlayerErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C7821A507DD00F86655 /* DDPlayerErrorView.m */; };
 		E31F6C7F21A556B600F86655 /* DDPlayer_Gif_Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = E31F6C7E21A556B600F86655 /* DDPlayer_Gif_Loading.gif */; };
 		E31F6C8321A5583F00F86655 /* DDPlayerView+CaptureImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C8221A5583F00F86655 /* DDPlayerView+CaptureImage.m */; };
@@ -27,7 +29,6 @@
 		E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AD219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m */; };
 		E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */; };
 		E35817B7219C061800BD3282 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E35817B6219C061800BD3282 /* test.mp4 */; };
-		E35817BB219C194100BD3282 /* DDCaptureImageShareSmallView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817BA219C194100BD3282 /* DDCaptureImageShareSmallView.m */; };
 		E36F3B0221A24EB800DE5F38 /* DDPlayerClarityChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = E36F3B0121A24EB800DE5F38 /* DDPlayerClarityChoiceView.m */; };
 		E36F3BE821A2C88300DE5F38 /* DDPlayerClarityPromptLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E36F3BE721A2C88300DE5F38 /* DDPlayerClarityPromptLabel.m */; };
 		E36F931421A3E3D70097A094 /* DDTryWatchFinishView.m in Sources */ = {isa = PBXBuildFile; fileRef = E36F931321A3E3D70097A094 /* DDTryWatchFinishView.m */; };
@@ -100,6 +101,10 @@
 		E31770B021A6549D00854F40 /* DDCaptureVideoCommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDCaptureVideoCommentView.h; sourceTree = "<group>"; };
 		E31770B121A6549D00854F40 /* DDCaptureVideoCommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDCaptureVideoCommentView.m; sourceTree = "<group>"; };
 		E31770B321A6550400854F40 /* DDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTextView.m; sourceTree = "<group>"; };
+		E31773AE21A6929800854F40 /* DDPlayerView+SwitchLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDPlayerView+SwitchLine.h"; sourceTree = "<group>"; };
+		E31773AF21A6929800854F40 /* DDPlayerView+SwitchLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DDPlayerView+SwitchLine.m"; sourceTree = "<group>"; };
+		E31773B121A693BD00854F40 /* DDCaptureImageShareSmallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDCaptureImageShareSmallView.m; sourceTree = "<group>"; };
+		E31773B221A693BD00854F40 /* DDCaptureImageShareSmallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDCaptureImageShareSmallView.h; sourceTree = "<group>"; };
 		E31F6C7721A507DD00F86655 /* DDPlayerErrorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerErrorView.h; sourceTree = "<group>"; };
 		E31F6C7821A507DD00F86655 /* DDPlayerErrorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerErrorView.m; sourceTree = "<group>"; };
 		E31F6C7E21A556B600F86655 /* DDPlayer_Gif_Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = DDPlayer_Gif_Loading.gif; sourceTree = "<group>"; };
@@ -120,8 +125,6 @@
 		E35817AF219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressLandscapeView.h; sourceTree = "<group>"; };
 		E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerDragProgressLandscapeView.m; sourceTree = "<group>"; };
 		E35817B6219C061800BD3282 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
-		E35817B9219C194100BD3282 /* DDCaptureImageShareSmallView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DDCaptureImageShareSmallView.h; path = DDPlayerProject/DDPlayer/View/DDCaptureImageShareSmallView.h; sourceTree = SOURCE_ROOT; };
-		E35817BA219C194100BD3282 /* DDCaptureImageShareSmallView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DDCaptureImageShareSmallView.m; path = DDPlayerProject/DDPlayer/View/DDCaptureImageShareSmallView.m; sourceTree = SOURCE_ROOT; };
 		E36F3B0021A24EB800DE5F38 /* DDPlayerClarityChoiceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerClarityChoiceView.h; sourceTree = "<group>"; };
 		E36F3B0121A24EB800DE5F38 /* DDPlayerClarityChoiceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerClarityChoiceView.m; sourceTree = "<group>"; };
 		E36F3BE521A2C64000DE5F38 /* DDPlayerClarity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerClarity.h; sourceTree = "<group>"; };
@@ -247,6 +250,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E31773AA21A6927D00854F40 /* 切换清晰度 */ = {
+			isa = PBXGroup;
+			children = (
+				E31773AE21A6929800854F40 /* DDPlayerView+SwitchLine.h */,
+				E31773AF21A6929800854F40 /* DDPlayerView+SwitchLine.m */,
+			);
+			path = "切换清晰度";
+			sourceTree = "<group>";
+		};
 		E31F6C7A21A507E600F86655 /* 播放器异常提示图 */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +288,7 @@
 		E31F6C8421A558D600F86655 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E31773AA21A6927D00854F40 /* 切换清晰度 */,
 				E316C4FF219D69BD0098194A /* DDPlayerView+Private.h */,
 				E316C500219D69BD0098194A /* DDPlayerView+Private.m */,
 				E316C4FC219D68CF0098194A /* DDPlayerView+ShowSubView.h */,
@@ -328,8 +341,8 @@
 		E35817B8219C18F000BD3282 /* 截取图片分享 */ = {
 			isa = PBXGroup;
 			children = (
-				E35817B9219C194100BD3282 /* DDCaptureImageShareSmallView.h */,
-				E35817BA219C194100BD3282 /* DDCaptureImageShareSmallView.m */,
+				E31773B221A693BD00854F40 /* DDCaptureImageShareSmallView.h */,
+				E31773B121A693BD00854F40 /* DDCaptureImageShareSmallView.m */,
 				E3DE4C04219D04DA0073C733 /* DDCaptureImageShareView.h */,
 				E3DE4C05219D04DA0073C733 /* DDCaptureImageShareView.m */,
 			);
@@ -771,6 +784,7 @@
 				E3AB596621955DF000CAEF38 /* DDVideoNormalViewController.m in Sources */,
 				E3AB59A221957A3700CAEF38 /* DDPlayerCoverView.m in Sources */,
 				E3AB594921955C8E00CAEF38 /* DDPlayerView.m in Sources */,
+				E31773B321A693BE00854F40 /* DDCaptureImageShareSmallView.m in Sources */,
 				E3AB590A2195596400CAEF38 /* main.m in Sources */,
 				E3AB596221955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.m in Sources */,
 				E31770AC21A6537600854F40 /* DDCaptureVideoShareView.m in Sources */,
@@ -783,9 +797,9 @@
 				E3AB595E21955DA100CAEF38 /* DDPlayerControlView.m in Sources */,
 				E3AB596021955DA100CAEF38 /* DDPlayerComponentBaseView.m in Sources */,
 				E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */,
+				E31773B021A6929800854F40 /* DDPlayerView+SwitchLine.m in Sources */,
 				E3AB595F21955DA100CAEF38 /* DDPlayerControlTopView.m in Sources */,
 				E36F3BE821A2C88300DE5F38 /* DDPlayerClarityPromptLabel.m in Sources */,
-				E35817BB219C194100BD3282 /* DDCaptureImageShareSmallView.m in Sources */,
 				E31F6C9221A5735F00F86655 /* DDCaptureVideoView.m in Sources */,
 				E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */,
 				E38A46482199120A00944AC9 /* DDBrightView.m in Sources */,

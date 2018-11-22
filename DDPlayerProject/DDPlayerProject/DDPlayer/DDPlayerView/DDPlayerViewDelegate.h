@@ -64,6 +64,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)playerViewClickClarityButton:(UIButton *)button;
 
+/**
+ 切换清晰度
+ 
+ @param clarity DDPlayerClarity
+ */
+- (void)playerViewChooseClarity:(DDPlayerClarity)clarity success:(void(^)(NSString*))success failure:(void(^)(void))failure;
 
 /**
  章节列表按钮点击
@@ -71,15 +77,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param button 章节列表按钮
  */
 - (void)playerViewClickChapterButton:(UIButton *)button;
-
-
-/**
- 切换清晰度
-
- @param clarity DDPlayerClarity
- */
-- (void)playerViewChooseClarity:(DDPlayerClarity)clarity success:(void(^)(NSString*))success failure:(void(^)(void))failure;
-
 
 /**
  播放器发生错误，点击重试按钮

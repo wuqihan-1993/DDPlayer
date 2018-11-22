@@ -18,6 +18,10 @@
 
 @implementation DDPlayerClarityChoiceView
 
+- (void)dealloc {
+    NSLog(@"%s",__FUNCTION__);
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self initialize];

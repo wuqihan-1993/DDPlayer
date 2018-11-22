@@ -115,6 +115,10 @@
     return UIInterfaceOrientationMaskAll;
 }
 
+- (BOOL)prefersHomeIndicatorAutoHidden {
+    return YES;
+}
+
 //- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
 //    return UIInterfaceOrientationLandscapeLeft;
 //}

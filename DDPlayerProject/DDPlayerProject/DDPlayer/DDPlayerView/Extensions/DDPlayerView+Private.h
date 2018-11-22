@@ -8,13 +8,12 @@
 
 #import "DDPlayerView.h"
 @class DDPlayerControlView;
-@class DDCaptureImageShareSmallView;
+@class DDPlayerClarityChoiceView;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPlayerView (Private)
 
 - (DDPlayerControlView *)_getPlayerControlView;
-//- (DDPlayer *)_getPlayer;
 
 
 @end

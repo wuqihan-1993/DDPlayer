@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger,DDPlayerShowOrigin) {
 
 @interface DDPlayerView (ShowSubView)
 
-- (void)show:(UIView*)view origin:(DDPlayerShowOrigin)origin isDismissControl:(BOOL)isDismissControl isPause:(BOOL)isPause dismissCompletion:(void(^ __nullable)(void))dismiss;
+- (void)show:(UIView*_Nullable)view origin:(DDPlayerShowOrigin)origin isDismissControl:(BOOL)isDismissControl isPause:(BOOL)isPause dismissCompletion:(void(^ __nullable)(void))dismiss;
 
 @end
 

@@ -13,8 +13,6 @@
 - (DDPlayerControlView *)_getPlayerControlView {
     return (DDPlayerControlView *)[self valueForKey:@"playerControlView"];
 }
-//- (DDPlayer *)_getPlayer {
-//    return (DDPlayer *)[self valueForKey:@"player"];
-//}
+
 
 @end
