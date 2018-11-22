@@ -67,18 +67,7 @@
     CMTime time = CMTimeMakeWithSeconds(seconds, 600);
     
     NSString *timeStr = self.timeLabel.text;
-    NSLog(@"开始下载图片%@",timeStr);
-//    [self.imageGenerator generateCGImagesAsynchronouslyForTimes:@[[NSValue valueWithCMTime:time]] completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) {
-//        if (result == AVAssetImageGeneratorSucceeded) {
-//            UIImage *cImage = [UIImage imageWithCGImage:image scale:1 orientation:UIImageOrientationUp];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                if (weakSelf != nil && weakSelf.currentImageView != nil) {
-//                    NSLog(@"AVAssetImageGeneratorSucceeded :%@",self.timeLabel.text);
-//                    weakSelf.currentImageView.image = cImage;
-//                }
-//            });
-//        }
-//    }];
+    
     __weak typeof(self) weakSelf = self;
     [self.imageGenerator generateCGImagesAsynchronouslyForTimes:@[[NSValue valueWithCMTime:time]] completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) {
         if (result == AVAssetImageGeneratorSucceeded) {

@@ -532,7 +532,7 @@
     
 }
 - (void)playerControlView:(DDPlayerControlView *)controlView DragingSlider:(UISlider *)slider {
-    NSLog(@"拖拽时间 &&& ： -- ：%lf",self.player.duration * slider.value);
+  
     [self.dragProgressPortraitView setProgress:slider.value duration:self.player.duration];
     [self.dragProgressLandscapeView setProgress:slider.value duration:self.player.duration];
 }
@@ -544,7 +544,7 @@
     }else {
         [self.dragProgressLandscapeView removeFromSuperview];
     }
-    NSLog(@"拖拽结束时间 &&& ： -- ：%lf",self.player.duration * slider.value);
+ 
     [self.player seekToTime:self.player.duration * slider.value isPlayImmediately:self.player.isPlaying completionHandler:nil];
 }
 

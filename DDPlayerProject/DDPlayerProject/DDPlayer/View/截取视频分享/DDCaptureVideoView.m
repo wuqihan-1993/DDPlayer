@@ -16,7 +16,7 @@
 @property(nonatomic, strong) UIButton *backButton;
 @property(nonatomic, strong) UIButton *captureButton;
 @property(nonatomic, strong) DDCaptureVideoProgressView *captureProgressView;
-@property(nonatomic, assign) NSTimeInterval currentTime;
+
 
 @end
 

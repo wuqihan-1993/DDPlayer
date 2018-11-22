@@ -8,11 +8,13 @@
 
 #import "DDPlayerView+CaptureVideo.h"
 #import "DDCaptureVideoView.h"
+#import "DDCaptureVideoShareView.h"
 #import "DDPlayerView+ShowSubView.h"
 #import <objc/runtime.h>
 
 static void *_isCapturingVideoKey = &_isCapturingVideoKey;
 static void *_captureViewViewKey = &_captureViewViewKey;
+static void *_captureViewShareViewKey = &_captureViewShareViewKey;
 
 @implementation DDPlayerView (CaptureVideo)
 
@@ -22,6 +24,14 @@ static void *_captureViewViewKey = &_captureViewViewKey;
 - (void)setCaptureVideoView:(DDCaptureVideoView *)captureVideoView {
     objc_setAssociatedObject(self, _captureViewViewKey, captureVideoView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
+- (DDCaptureVideoShareView *)captureVideoShareView {
+    return objc_getAssociatedObject(self, _captureViewShareViewKey);
+}
+- (void)setCaptureVideoShareView:(DDCaptureVideoShareView *)captureVideoShareView {
+    objc_setAssociatedObject(self, _captureViewShareViewKey, captureVideoShareView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 
 - (BOOL)isCapturingVideo {
     return [objc_getAssociatedObject(self, _isCapturingVideoKey) boolValue];
@@ -34,19 +44,22 @@ static void *_captureViewViewKey = &_captureViewViewKey;
     
     __weak typeof(self) weakSelf = self;
     
+    //记录截取前的播放器状态
+    BOOL lastPlayerIsPlaying = self.player.isPlaying;
+    CGFloat lastTime = self.player.currentTime;
+    CMTime lastCMTime = self.player.currentItem.currentTime;
+    
     self.captureVideoView = [[DDCaptureVideoView alloc] init];
     
     self.captureVideoView.finishBlock = ^{
+        [weakSelf toCaptureAndUploadVideoWithStartTime:lastCMTime duration:weakSelf.captureVideoView.currentTime];
         [weakSelf.captureVideoView removeFromSuperview];
         weakSelf.captureVideoView = nil;
+        
     };
     
     self.captureVideoView.captureMaxDuration = self.captureMaxDuration > 0 ? self.captureMaxDuration : 15;
     self.isCapturingVideo = YES;
-    
-    //记录截取前的播放器状态
-    BOOL lastPlayerIsPlaying = self.player.isPlaying;
-    CGFloat lastTime = self.player.currentTime;
     
     [self.player playImmediatelyAtRate:1.0];
      
@@ -58,39 +71,26 @@ static void *_captureViewViewKey = &_captureViewViewKey;
         self.captureVideoView = nil;
     }];
     
-    
-    
-//    if (self.isPoping) {
-//        return;
-//    }
-//    if (!self.currentPlayerItem || self.currentPlayerItem.status != AVPlayerStatusReadyToPlay) {
-//        return;
-//    }
-//    //点击截频按钮。隐藏其他控件
-//    [self hideTheLandscapeUI:NO];
-//
-//    //添加截取视频视图到屏幕上
-//    if (self.videoCaptureView == nil) {
-//        WTCVideoCaptureView *videoCaptureView = [[WTCVideoCaptureView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.height, UIScreen.mainScreen.bounds.size.width)];
-//        self.videoCaptureView = videoCaptureView;
-//        self.videoCaptureView.delegate = self;
-//        [self addSubview:self.videoCaptureView];
-//    }
-//    //把代理传过来的 截取视频的标题 赋值给 captrueView（如果不传，默认标题为 ”截取视频片段“）
-//    if ([self.eventDelegate respondsToSelector:@selector(videoPlayerClickCaptureVideoBtn:)]) {
-//        [self.eventDelegate videoPlayerClickCaptureVideoBtn:^(NSString *captureTitle) {
-//            self.videoCaptureView.captureTitle = captureTitle;
-//        }];
-//    }
-//
-//    [self.videoCaptureView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(self);
-//    }];
-//
-//    // 获取视频当前播放时间点
-//    double currentPlayerTime = self.currentPlayerItem.currentTime.value / self.currentPlayerItem.currentTime.timescale;
-//    //开始视频截取
-//    [self.videoCaptureView startCapture:currentPlayerTime isPause:self.currentPlayer.rate==0];
+}
+- (void)toCaptureAndUploadVideoWithStartTime:(CMTime)startTime duration:(CGFloat)duration{
+    self.captureVideoShareView = [[DDCaptureVideoShareView alloc] init];
+    __weak typeof(self) weakSelf = self;
+    self.captureVideoShareView.confirmCommentBlock = ^(NSString * _Nonnull comment, void (^ _Nonnull success)(void), void (^ _Nonnull failure)(void)) {
+        if ([weakSelf.delegate respondsToSelector:@selector(playerViewCaptureVideoSendComment:success:failure:)]) {
+            [weakSelf.delegate playerViewCaptureVideoSendComment:comment success:^{
+                success();
+            } failure:^{
+                failure();
+            }];
+        }
+    };
+
+    [self show:self.captureVideoShareView origin:DDPlayerShowOriginCenter isDismissControl:NO isPause:YES dismissCompletion:^{
+        self.isCapturingVideo = NO;
+        [weakSelf.captureVideoShareView removeFromSuperview];
+        weakSelf.captureVideoShareView = nil;
+    }];
+    [self.captureVideoShareView captureVideoWithAsset:self.player.currentAsset startTime:startTime duration:duration];
 }
 
 @end

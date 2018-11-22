@@ -15,7 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy) void(^finishBlock)(void);
 
+
+/**
+ 最大截取时长
+ */
 @property(nonatomic, assign) NSInteger captureMaxDuration;
+
+@property(nonatomic, assign) NSTimeInterval currentTime;
 
 - (void)timeChanged:(NSTimeInterval)time;
 

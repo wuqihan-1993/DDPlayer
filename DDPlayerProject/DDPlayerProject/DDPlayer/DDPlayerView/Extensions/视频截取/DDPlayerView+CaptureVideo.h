@@ -9,12 +9,12 @@
 #import "DDPlayerView.h"
 
 @class DDCaptureVideoView;
-
-
+@class DDCaptureVideoShareView;
 
 @interface DDPlayerView (CaptureVideo)
 
 @property(nonatomic, strong) DDCaptureVideoView *captureVideoView;
+@property(nonatomic, strong) DDCaptureVideoShareView *captureVideoShareView;
 @property(nonatomic, assign) BOOL isCapturingVideo;
 
 

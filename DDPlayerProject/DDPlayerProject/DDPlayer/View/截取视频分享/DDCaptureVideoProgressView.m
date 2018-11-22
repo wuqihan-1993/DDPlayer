@@ -57,7 +57,6 @@
         self.timeLabel.text = [NSString stringWithFormat:@"00:%02ld/00:%02ld 点击右侧按钮，完成录制...",(long)progress,self.captureMaxDuration];
     }
     
-    NSLog(@"progress:%lf - %lf",progress,progress/self.captureMaxDuration);
     self.slider.value = progress / self.captureMaxDuration;
     if (progress == self.captureMaxDuration) {
         self.slider.value = 1;

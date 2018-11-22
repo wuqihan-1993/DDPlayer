@@ -112,7 +112,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     self.status = DDPlayerStatusUnknown;
 }
 - (void)play {
-    NSLog(@"playplayplayplayplay");
+
     if (![DDPlayerTool isLocationPath:self.currentAsset.URL.absoluteString]) {
         //不是本地视频。。网络是3g 不能立即播放
         if (self.reachability.currentReachabilityStatus == ReachableViaWWAN && self.isCanPlayOnWWAN == NO) {
@@ -121,11 +121,11 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     }
     if (self.isBackgroundPlay == NO) {
         if (UIApplication.sharedApplication.applicationState == UIApplicationStateActive) {
-            NSLog(@"play-play-play-play-play");
+      
             [self.player play];
         }
     }else {
-        NSLog(@"play-play-play-play-play");
+    
         [self.player play];
     }
 
@@ -139,7 +139,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     }
 }
 - (void)pause {
-    NSLog(@"pause-pause-pause");
+   
     [self.player pause];
 }
 

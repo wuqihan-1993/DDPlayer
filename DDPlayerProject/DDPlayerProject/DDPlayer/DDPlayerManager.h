@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIImage *)thumbnailImageWithAsset:(AVAsset*)asset currentTime:(CMTime)currentTime;
 
++ (AVAssetExportSession*)captureVideoWithAsset:(AVAsset*)asset startTime:(CMTime)startTime duration:(NSTimeInterval)duration progress:(void(^)(CGFloat))progress success:(void(^)(NSString *))success failure:(void(^)(void))failure;
+
 
 @end
 

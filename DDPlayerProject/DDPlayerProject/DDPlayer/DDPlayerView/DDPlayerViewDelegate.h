@@ -87,6 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)playerViewPlayerErrorRetry;
 
 
+#pragma mark - 截取相关
 /**
  点击分享截取图像
 
@@ -94,6 +95,17 @@ NS_ASSUME_NONNULL_BEGIN
  @param shareType DDShareType
  */
 - (void)playerViewShareCaptureImage:(UIImage*)captureImage shareType:(DDShareType)shareType;
+
+
+
+/**
+ 点击发送截取视频评论
+
+ @param commnet 评论
+ @param success 成功
+ @param failure 失败
+ */
+- (void)playerViewCaptureVideoSendComment:(NSString *)commnet success:(void(^)(void))success failure:(void(^)(void))failure;
 
 
 
