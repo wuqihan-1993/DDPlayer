@@ -65,7 +65,7 @@
 }
 
 #pragma mark - 截取 上传 等操作
-- (void)captureVideoWithAsset:(AVAsset *)asset startTime:(CMTime)startTime duration:(CGFloat)duration {
+- (void)captureVideoWithAsset:(AVAsset *)asset startTime:(CMTime)startTime duration:(CGFloat)duration success:(nonnull void (^)(NSString*))success failure:(nonnull void (^)(NSError * _Nonnull))failure {
     
     //截取当前视频的帧画面 并展示
     [self showCurrntVideoImage:[DDPlayerManager thumbnailImageWithAsset:asset currentTime:CMTimeMakeWithSeconds(CMTimeGetSeconds(startTime) + duration, NSEC_PER_SEC)]];
@@ -74,15 +74,18 @@
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         weakSelf.assetExportSession = [DDPlayerManager captureVideoWithAsset:asset startTime:startTime duration:duration progress:^(CGFloat progress) {
+            
             [weakSelf captureProgress:progress];
+            
         } success:^(NSString * _Nonnull caputreVideoPath) {
-            //上传成功
-            NSLog(@"截取成功了成功了成功了");
-            [weakSelf uploadCaptureVideoSuccess:[NSURL fileURLWithPath:caputreVideoPath]];
+            
+            success(caputreVideoPath);
+            
         } failure:^{
             
+            failure(weakSelf.assetExportSession.error);
+            
         }];
-        NSLog(@"_assetExportSession : %@",weakSelf.assetExportSession);
     });
     
 }
@@ -142,7 +145,27 @@
 }
 
 /**
- 截取后上传成功弄
+ 上传进度展示 50%~90%
+ 
+ @param progress （0-1）
+ */
+- (void)uploadCaptureVideoProgress:(CGFloat)progress {
+    
+    if (self.progressView.alpha != 1) {
+        return;
+    }
+    self.statusLabel.text = [NSString stringWithFormat:@"保存中: %d%%",(int)((progress)*100*0.4) + 50];
+    [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.playerBgView).mas_offset(self.playerBgView.bounds.size.width * (progress+0.5) / 2);
+    }];
+    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [self layoutIfNeeded];
+    } completion:nil];
+    
+}
+
+/**
+ 上传成功
 
  @param videoUrl 视频地址
  */
@@ -188,11 +211,13 @@
 #pragma mark - action
 - (void)backButtonClick:(UIButton *)button {
     NSLog(@"点击了返回按钮 正在截取中的时候");
-    [self.assetExportSession cancelExport];
     if (self.dismissBlock) {
         self.dismissBlock();
     }
-//    [self.assetExportSession cancelExport];
+    
+    [self.assetExportSession cancelExport];
+    
+    
 //    WTCVideoPlayerView *parentPlayer = (WTCVideoPlayerView *)self.superview;
 //    //点击返回按钮时 ，如果正在上传中，则要停止上传
 //    if ([parentPlayer.eventDelegate respondsToSelector:@selector(videoPlayerCancelUploadCapture)]) {

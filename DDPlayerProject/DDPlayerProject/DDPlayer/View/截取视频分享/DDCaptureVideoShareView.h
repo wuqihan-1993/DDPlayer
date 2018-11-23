@@ -26,7 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  截取视频
  */
-- (void)captureVideoWithAsset:(AVAsset*)asset startTime:(CMTime)startTime duration:(CGFloat)duration;
+- (void)captureVideoWithAsset:(AVAsset*)asset
+                    startTime:(CMTime)startTime
+                     duration:(CGFloat)duration
+                      success:(void(^)(NSString*))success
+                      failure:(void(^)(NSError*))failure;
+
+- (void)uploadCaptureVideoProgress:(CGFloat)progress;
+- (void)uploadCaptureVideoSuccess:(NSURL *)videoUrl;
 
 @end
 

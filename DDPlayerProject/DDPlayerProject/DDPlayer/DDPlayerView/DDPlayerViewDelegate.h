@@ -83,6 +83,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)playerViewPlayerErrorRetry;
 
+#pragma mark - 业务
+/**
+ 付费页面，点击去购买
+ */
+- (void)playerViewNeedToPay;
 
 #pragma mark - 截取相关
 /**
@@ -103,12 +108,27 @@ NS_ASSUME_NONNULL_BEGIN
  @param failure 失败
  */
 - (void)playerViewCaptureVideoSendComment:(NSString *)commnet success:(void(^)(void))success failure:(void(^)(void))failure;
+/*
+ func videoPlayerUploadCaptureVideo(_ captureVideoPath: URL!, startTime: Int, duration: Int, progress: ((CGFloat) -> Void)!, complete: ((Bool,Error?) -> Void)!) {
+ */
 
 
 /**
- 付费页面，点击去购买
+ 上传截取的视频
+
+ @param captureVideoPath 视频本地地址
+ @param startTime startTime
+ @param duration 时长
+ @param progress 进度
+ @param success 成功
+ @param failure 失败
  */
-- (void)playerViewNeedToPay;
+- (void)playerViewUploadCaptureVideo:(NSString *)captureVideoPath
+                           startTime:(CGFloat)startTime
+                            duration:(CGFloat)duration
+                            progress:(void(^)(CGFloat))progress
+                             success:(void(^)(void))success
+                             failure:(void(^)(NSError*))failure;
 
 @end
 

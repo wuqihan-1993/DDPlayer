@@ -31,7 +31,7 @@
 {
     [self addSubview:self.coverImageView];
     [self addSubview:self.backButton];
-    [self addSubview:self.playButton];
+//    [self addSubview:self.playButton];
     
     [self.coverImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
@@ -39,10 +39,10 @@
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self).mas_offset(20);
     }];
-    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
-//        make.width.height.mas_equalTo(60);
-    }];
+//    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.center.equalTo(self);
+////        make.width.height.mas_equalTo(60);
+//    }];
 }
 
 - (void)setCoverImage:(UIImage *)coverImage {
