@@ -8,7 +8,6 @@
 
 #import "DDPlayerView.h"
 @class DDNeedPayView;
-NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPlayerView (ToPay)
 
@@ -19,4 +18,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END

@@ -62,6 +62,15 @@
 @property(nonatomic, assign, readonly) BOOL isSeekingToTime;
 
 
+
+/**
+ 因为播放器 做了自动播放(比如无网恢复到有网，流量切换到wifi等)
+ 但是有些业务情况下不能让他自动播放
+ 所以有些业务出现时，把它设置为NO，业务处理完成 设置为YES
+ */
+@property(nonatomic, assign) BOOL isNeedCanPlay;
+
+
 @property(nonatomic, assign) CGFloat volume;
 
 - (void)bindToPlayerLayer:(AVPlayerLayer *)layer;

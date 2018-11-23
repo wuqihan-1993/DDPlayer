@@ -67,9 +67,9 @@
 - (void)initUI {
     self.backgroundColor = UIColor.blackColor;
     
-    [self addSubview:self.backButton];
     [self addSubview:self.playerControlView];
     [self addSubview:self.coverView];
+    [self addSubview:self.backButton];
     [self addSubview:self.loadingView];
     
     self.loadingView.hidden = YES;
@@ -249,11 +249,12 @@
 - (DDPlayerBackButton *)backButton {
     if (!_backButton) {
         _backButton = [[DDPlayerBackButton alloc] init];
+        __weak typeof(self) weakSelf = self;
         _backButton.backBlock = ^(UIButton * button) {
-            if ([self.delegate respondsToSelector:@selector(playerViewClickBackButton:)]) {
-                [self.delegate playerViewClickBackButton:button];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerViewClickBackButton:)]) {
+                [weakSelf.delegate playerViewClickBackButton:button];
             }
-        }
+        };
     }
     return _backButton;
 }
@@ -401,8 +402,6 @@
                     
                 }];
             }
-            
-            
         }
             break;
         case ReachableViaWiFi:
@@ -414,7 +413,6 @@
                 [_WWANWarnView removeFromSuperview];
             }
             [self.player play];
-//            ;这里调用这个方法有时会无效，因为我内部写的是 应用处于活跃状态才能播放。但是wifi状态变更的时候，很有可能不是活跃装填s
         }
             break;
         default:

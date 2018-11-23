@@ -6,11 +6,11 @@
 //  Copyright © 2018 wuqh. All rights reserved.
 //
 
-#import "DDPlayerComponentBaseView.h"
+#import "DDPlayerContentView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DDNeedPayView : DDPlayerComponentBaseView
+@interface DDNeedPayView : DDPlayerContentView
 
 @property(nonatomic,copy) void(^toPayBlock)(void);
 @property(nonatomic,copy) void(^backBlock)(UIButton *);

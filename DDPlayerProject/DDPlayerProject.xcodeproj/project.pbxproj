@@ -30,6 +30,8 @@
 		E3446CF321A7A7AC00520C71 /* DDNeedPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3446CF221A7A7AC00520C71 /* DDNeedPayView.m */; };
 		E3446CF721A7AB7E00520C71 /* DDPlayerView+ToPay.m in Sources */ = {isa = PBXBuildFile; fileRef = E3446CF621A7AB7E00520C71 /* DDPlayerView+ToPay.m */; };
 		E3446D0521A7C1DF00520C71 /* DDPlayerBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3446D0421A7C1DF00520C71 /* DDPlayerBackButton.m */; };
+		E3446D0821A7CD8900520C71 /* DDTryWatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3446D0721A7CD8900520C71 /* DDTryWatchView.m */; };
+		E3446D0B21A7D10100520C71 /* DDPlayerView+TryWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = E3446D0A21A7D10100520C71 /* DDPlayerView+TryWatch.m */; };
 		E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */; };
 		E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AD219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m */; };
 		E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */; };
@@ -133,6 +135,10 @@
 		E3446CF621A7AB7E00520C71 /* DDPlayerView+ToPay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DDPlayerView+ToPay.m"; sourceTree = "<group>"; };
 		E3446D0321A7C1DF00520C71 /* DDPlayerBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPlayerBackButton.h; sourceTree = "<group>"; };
 		E3446D0421A7C1DF00520C71 /* DDPlayerBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPlayerBackButton.m; sourceTree = "<group>"; };
+		E3446D0621A7CD8900520C71 /* DDTryWatchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDTryWatchView.h; sourceTree = "<group>"; };
+		E3446D0721A7CD8900520C71 /* DDTryWatchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDTryWatchView.m; sourceTree = "<group>"; };
+		E3446D0921A7D10100520C71 /* DDPlayerView+TryWatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDPlayerView+TryWatch.h"; sourceTree = "<group>"; };
+		E3446D0A21A7D10100520C71 /* DDPlayerView+TryWatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DDPlayerView+TryWatch.m"; sourceTree = "<group>"; };
 		E35817A9219BB9D000BD3282 /* DDPlayerDragProgressBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressBaseView.h; sourceTree = "<group>"; };
 		E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerDragProgressBaseView.m; sourceTree = "<group>"; };
 		E35817AC219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressPortraitView.h; sourceTree = "<group>"; };
@@ -306,7 +312,7 @@
 				E316C500219D69BD0098194A /* DDPlayerView+Private.m */,
 				E316C4FC219D68CF0098194A /* DDPlayerView+ShowSubView.h */,
 				E316C4FD219D68CF0098194A /* DDPlayerView+ShowSubView.m */,
-				E3446CF421A7AB6F00520C71 /* 显示付费 */,
+				E3446CF421A7AB6F00520C71 /* 显示付费和试看 */,
 				E31773AA21A6927D00854F40 /* 切换清晰度 */,
 				E31F6C8521A5608A00F86655 /* 视频截取 */,
 				E31F6C8021A5582800F86655 /* 图像截取 */,
@@ -345,17 +351,21 @@
 			children = (
 				E3446CF121A7A7AC00520C71 /* DDNeedPayView.h */,
 				E3446CF221A7A7AC00520C71 /* DDNeedPayView.m */,
+				E3446D0621A7CD8900520C71 /* DDTryWatchView.h */,
+				E3446D0721A7CD8900520C71 /* DDTryWatchView.m */,
 			);
 			path = "2c课程相关";
 			sourceTree = "<group>";
 		};
-		E3446CF421A7AB6F00520C71 /* 显示付费 */ = {
+		E3446CF421A7AB6F00520C71 /* 显示付费和试看 */ = {
 			isa = PBXGroup;
 			children = (
 				E3446CF521A7AB7E00520C71 /* DDPlayerView+ToPay.h */,
 				E3446CF621A7AB7E00520C71 /* DDPlayerView+ToPay.m */,
+				E3446D0921A7D10100520C71 /* DDPlayerView+TryWatch.h */,
+				E3446D0A21A7D10100520C71 /* DDPlayerView+TryWatch.m */,
 			);
-			path = "显示付费";
+			path = "显示付费和试看";
 			sourceTree = "<group>";
 		};
 		E35817A8219BB98400BD3282 /* 拖拽进度视图 */ = {
@@ -819,6 +829,7 @@
 				E3AB596121955DA100CAEF38 /* DDPlayerControlBottomPortraitView.m in Sources */,
 				E3B5D962219AC90000F9FC1D /* DDPlayerContainerView.m in Sources */,
 				E316C504219D6F250098194A /* DDPlayerContentView.m in Sources */,
+				E3446D0B21A7D10100520C71 /* DDPlayerView+TryWatch.m in Sources */,
 				E3446CF321A7A7AC00520C71 /* DDNeedPayView.m in Sources */,
 				E3AB594121955AD400CAEF38 /* DDVideoViewController.m in Sources */,
 				E3AB596621955DF000CAEF38 /* DDVideoNormalViewController.m in Sources */,
@@ -861,6 +872,7 @@
 				E31F6C9521A5751A00F86655 /* DDCaptureVideoProgressView.m in Sources */,
 				E3AB594C21955CB900CAEF38 /* DDPlayerLineModel.m in Sources */,
 				E31773B921A6A97400854F40 /* DDPlayerClarityTool.m in Sources */,
+				E3446D0821A7CD8900520C71 /* DDTryWatchView.m in Sources */,
 				E3BCD014219E5A1A00455201 /* DDKVOManager.m in Sources */,
 				E31773C421A6C60D00854F40 /* DDLeftBottomPromptLabel.m in Sources */,
 				E3AB593721955A8900CAEF38 /* DDTabBarController.m in Sources */,

@@ -40,11 +40,17 @@ static void* _needPayViewKey = &_needPayViewKey;
 }
 
 - (void)showNeedPayView {
-    [self show:self.needPayView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:nil];
+    self.player.isNeedCanPlay = NO;
+    __weak typeof(self) weakSelf = self;
+    [self show:self.needPayView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
+        weakSelf.player.isNeedCanPlay = YES;
+    }];
 }
 - (void)dismissNeedPayView {
     if (objc_getAssociatedObject(self, _needPayViewKey)) {
+        self.needPayView.dismissBlock();
         [self.needPayView removeFromSuperview];
+        self.needPayView = nil;
     }
 }
 

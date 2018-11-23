@@ -56,6 +56,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     
     self.player = [[AVPlayer alloc] init];
+    self.isNeedCanPlay = YES;
     [self addReachability];
     [self addPlayerObservers];
     [self addNotifications];
@@ -112,6 +113,10 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     self.status = DDPlayerStatusUnknown;
 }
 - (void)play {
+    
+    if (self.isNeedCanPlay == NO) {
+        return;
+    }
 
     if (![DDPlayerTool isLocationPath:self.currentAsset.URL.absoluteString]) {
         //不是本地视频。。网络是3g 不能立即播放
