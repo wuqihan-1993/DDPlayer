@@ -36,12 +36,18 @@
 }
 
 - (void)updateUIWithPortrait {
+    if (!self.superview) {
+        return;
+    }
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.superview).mas_offset(20);
-        make.bottom.equalTo(self.superview).mas_offset(-60);
+        make.bottom.equalTo(self.superview).mas_offset(-50);
     }];
 }
 - (void)updateUIWithLandscape {
+    if (!self.superview) {
+        return;
+    }
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.superview).mas_offset(DDPlayerTool.isiPhoneX ? 44 : 20);
         make.bottom.equalTo(self.superview).mas_offset(-88);

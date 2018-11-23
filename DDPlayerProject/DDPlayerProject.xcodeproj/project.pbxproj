@@ -27,6 +27,9 @@
 		E31F6C8E21A56B9100F86655 /* DDPlayerView+CaptureVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C8D21A56B9100F86655 /* DDPlayerView+CaptureVideo.m */; };
 		E31F6C9221A5735F00F86655 /* DDCaptureVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C9121A5735F00F86655 /* DDCaptureVideoView.m */; };
 		E31F6C9521A5751A00F86655 /* DDCaptureVideoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F6C9421A5751A00F86655 /* DDCaptureVideoProgressView.m */; };
+		E3446CF321A7A7AC00520C71 /* DDNeedPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3446CF221A7A7AC00520C71 /* DDNeedPayView.m */; };
+		E3446CF721A7AB7E00520C71 /* DDPlayerView+ToPay.m in Sources */ = {isa = PBXBuildFile; fileRef = E3446CF621A7AB7E00520C71 /* DDPlayerView+ToPay.m */; };
+		E3446D0521A7C1DF00520C71 /* DDPlayerBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3446D0421A7C1DF00520C71 /* DDPlayerBackButton.m */; };
 		E35817AB219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */; };
 		E35817AE219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817AD219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.m */; };
 		E35817B1219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35817B0219BBA0900BD3282 /* DDPlayerDragProgressLandscapeView.m */; };
@@ -124,6 +127,12 @@
 		E31F6C9121A5735F00F86655 /* DDCaptureVideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDCaptureVideoView.m; sourceTree = "<group>"; };
 		E31F6C9321A5751A00F86655 /* DDCaptureVideoProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDCaptureVideoProgressView.h; sourceTree = "<group>"; };
 		E31F6C9421A5751A00F86655 /* DDCaptureVideoProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDCaptureVideoProgressView.m; sourceTree = "<group>"; };
+		E3446CF121A7A7AC00520C71 /* DDNeedPayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDNeedPayView.h; sourceTree = "<group>"; };
+		E3446CF221A7A7AC00520C71 /* DDNeedPayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDNeedPayView.m; sourceTree = "<group>"; };
+		E3446CF521A7AB7E00520C71 /* DDPlayerView+ToPay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDPlayerView+ToPay.h"; sourceTree = "<group>"; };
+		E3446CF621A7AB7E00520C71 /* DDPlayerView+ToPay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DDPlayerView+ToPay.m"; sourceTree = "<group>"; };
+		E3446D0321A7C1DF00520C71 /* DDPlayerBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPlayerBackButton.h; sourceTree = "<group>"; };
+		E3446D0421A7C1DF00520C71 /* DDPlayerBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPlayerBackButton.m; sourceTree = "<group>"; };
 		E35817A9219BB9D000BD3282 /* DDPlayerDragProgressBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressBaseView.h; sourceTree = "<group>"; };
 		E35817AA219BB9D000BD3282 /* DDPlayerDragProgressBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPlayerDragProgressBaseView.m; sourceTree = "<group>"; };
 		E35817AC219BB9E400BD3282 /* DDPlayerDragProgressPortraitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPlayerDragProgressPortraitView.h; sourceTree = "<group>"; };
@@ -297,6 +306,7 @@
 				E316C500219D69BD0098194A /* DDPlayerView+Private.m */,
 				E316C4FC219D68CF0098194A /* DDPlayerView+ShowSubView.h */,
 				E316C4FD219D68CF0098194A /* DDPlayerView+ShowSubView.m */,
+				E3446CF421A7AB6F00520C71 /* 显示付费 */,
 				E31773AA21A6927D00854F40 /* 切换清晰度 */,
 				E31F6C8521A5608A00F86655 /* 视频截取 */,
 				E31F6C8021A5582800F86655 /* 图像截取 */,
@@ -328,6 +338,24 @@
 				E31F6C9421A5751A00F86655 /* DDCaptureVideoProgressView.m */,
 			);
 			path = "截取视频分享";
+			sourceTree = "<group>";
+		};
+		E3446CF021A7A76900520C71 /* 2c课程相关 */ = {
+			isa = PBXGroup;
+			children = (
+				E3446CF121A7A7AC00520C71 /* DDNeedPayView.h */,
+				E3446CF221A7A7AC00520C71 /* DDNeedPayView.m */,
+			);
+			path = "2c课程相关";
+			sourceTree = "<group>";
+		};
+		E3446CF421A7AB6F00520C71 /* 显示付费 */ = {
+			isa = PBXGroup;
+			children = (
+				E3446CF521A7AB7E00520C71 /* DDPlayerView+ToPay.h */,
+				E3446CF621A7AB7E00520C71 /* DDPlayerView+ToPay.m */,
+			);
+			path = "显示付费";
 			sourceTree = "<group>";
 		};
 		E35817A8219BB98400BD3282 /* 拖拽进度视图 */ = {
@@ -463,6 +491,9 @@
 		E3AB592D219559D100CAEF38 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E3446D0321A7C1DF00520C71 /* DDPlayerBackButton.h */,
+				E3446D0421A7C1DF00520C71 /* DDPlayerBackButton.m */,
+				E3446CF021A7A76900520C71 /* 2c课程相关 */,
 				E31773C221A6C60D00854F40 /* DDLeftBottomPromptLabel.h */,
 				E31773C321A6C60D00854F40 /* DDLeftBottomPromptLabel.m */,
 				E3AB596321955DAC00CAEF38 /* ControlView */,
@@ -788,10 +819,13 @@
 				E3AB596121955DA100CAEF38 /* DDPlayerControlBottomPortraitView.m in Sources */,
 				E3B5D962219AC90000F9FC1D /* DDPlayerContainerView.m in Sources */,
 				E316C504219D6F250098194A /* DDPlayerContentView.m in Sources */,
+				E3446CF321A7A7AC00520C71 /* DDNeedPayView.m in Sources */,
 				E3AB594121955AD400CAEF38 /* DDVideoViewController.m in Sources */,
 				E3AB596621955DF000CAEF38 /* DDVideoNormalViewController.m in Sources */,
 				E3AB59A221957A3700CAEF38 /* DDPlayerCoverView.m in Sources */,
 				E3AB594921955C8E00CAEF38 /* DDPlayerView.m in Sources */,
+				E3446CF721A7AB7E00520C71 /* DDPlayerView+ToPay.m in Sources */,
+				E3446D0521A7C1DF00520C71 /* DDPlayerBackButton.m in Sources */,
 				E31773B321A693BE00854F40 /* DDCaptureImageShareSmallView.m in Sources */,
 				E3AB590A2195596400CAEF38 /* main.m in Sources */,
 				E3AB596221955DA100CAEF38 /* DDPlayerControlBottomLandscapeView.m in Sources */,

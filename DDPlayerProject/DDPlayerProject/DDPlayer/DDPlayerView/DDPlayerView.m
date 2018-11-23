@@ -20,17 +20,21 @@
 #import "DDNetworkWWANWarnView.h"
 #import "DDNetworkErrorView.h"
 #import "DDPlayerView+ShowSubView.h"
+#import "DDPlayerClarityChoiceView.h"
 #import "DDPlayerErrorView.h"
 #import "DDPlayerView+CaptureImage.h"
 #import "DDPlayerView+CaptureVideo.h"
 #import "DDCaptureVideoView.h"
 #import "DDPlayerView+SwitchLine.h"
+#import "DDPlayerUIFactory.h"
+#import "DDPlayerBackButton.h"
 
 @class DDPlayerClarityChoiceView;
 
 
 @interface DDPlayerView()<DDPlayerDelegate,DDPlayerControlViewDelegate>
 
+@property(nonatomic, strong) DDPlayerBackButton *backButton;
 @property(nonatomic, strong) DDPlayerControlView *playerControlView;
 @property(nonatomic, strong) UIImageView *loadingView;
 @property(nonatomic, strong) DDPlayerDragProgressPortraitView *dragProgressPortraitView;
@@ -63,12 +67,16 @@
 - (void)initUI {
     self.backgroundColor = UIColor.blackColor;
     
+    [self addSubview:self.backButton];
     [self addSubview:self.playerControlView];
     [self addSubview:self.coverView];
     [self addSubview:self.loadingView];
     
     self.loadingView.hidden = YES;
     
+    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(self).mas_offset(20);
+    }];
     [self.playerControlView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
@@ -221,60 +229,6 @@
     return _networkErrorView;
 }
 
-//- (DDPlayerClarityChoiceView *)clarityChoiceView {
-//    if (!_clarityChoiceView) {
-//        _clarityChoiceView = [[DDPlayerClarityChoiceView alloc] init];
-//        __weak typeof(self) weakSelf = self;
-//        _clarityChoiceView.clarityButtonClickBlock = ^(DDPlayerClarity clarity, UIButton *button) {
-//
-//            //切流操作
-//
-//            if (weakSelf.clarityChoiceView.clarity == clarity) {
-//                //如果点击s的是同样的清晰度。则直接返回
-//                [(DDPlayerContainerView*)weakSelf.clarityChoiceView.superview dismiss];
-//                return ;
-//            }
-//            //1.保存当前时间
-//            NSTimeInterval lastTime = weakSelf.player.currentTime;
-//
-//            //2.截取当前时间图片
-//            UIImageView *imageView = [[UIImageView alloc] initWithImage:[DDPlayerManager thumbnailImageWithAsset:weakSelf.player.currentAsset currentTime:weakSelf.player.currentItem.currentTime]];
-//            imageView.contentMode = UIViewContentModeScaleAspectFit;
-//            [weakSelf show:imageView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:NO dismissCompletion:nil];
-//            [weakSelf insertSubview:imageView belowSubview:weakSelf.playerControlView];
-//
-//            //3.截取汇总
-//            [weakSelf.clarityPromptLabel choose:clarity];
-//            [weakSelf show:weakSelf.clarityPromptLabel origin:DDPlayerShowOriginTop isDismissControl:YES isPause:NO dismissCompletion:nil];
-//
-//            if ([weakSelf.delegate respondsToSelector:@selector(playerViewChooseClarity:success:failure:)]) {
-//
-//                //截取完成
-//                [(DDPlayerContainerView*)weakSelf.clarityChoiceView.superview dismiss];
-//
-//                [weakSelf.delegate playerViewChooseClarity:clarity success:^(NSString * _Nonnull url) {
-//                    //4.截取成功
-//                    [weakSelf.player playWithUrl:url];
-//                    [weakSelf.player seekToTime:lastTime isPlayImmediately:YES completionHandler:^(BOOL complete) {
-//                        button.selected = YES;
-//                        [weakSelf.clarityPromptLabel chooseSuccess];
-////                        [weakSelf.clarityPromptLabel performSelector:@selector(chooseSuccess) withObject:nil afterDelay:1];
-//                        [imageView removeFromSuperview];
-//                    }];
-//                    [(UIButton*)[weakSelf.playerControlView.bottomLandscapeView valueForKey:@"clarityButton"] setTitle:button.titleLabel.text forState:UIControlStateNormal];
-//                    weakSelf.clarityChoiceView.clarity = clarity;
-//                } failure:^{
-//                    [weakSelf.clarityPromptLabel chooseFail];
-//                    [imageView removeFromSuperview];
-//                }];
-//            }
-//        };
-//    }
-//    return _clarityChoiceView;
-//}
-
-
-
 - (DDPlayerErrorView *)playerErrorView {
     if (!_playerErrorView) {
         _playerErrorView = [[DDPlayerErrorView alloc] init];
@@ -291,6 +245,17 @@
         };
     }
     return _playerErrorView;
+}
+- (DDPlayerBackButton *)backButton {
+    if (!_backButton) {
+        _backButton = [[DDPlayerBackButton alloc] init];
+        _backButton.backBlock = ^(UIButton * button) {
+            if ([self.delegate respondsToSelector:@selector(playerViewClickBackButton:)]) {
+                [self.delegate playerViewClickBackButton:button];
+            }
+        }
+    }
+    return _backButton;
 }
 
 - (BOOL)isLockScreen {

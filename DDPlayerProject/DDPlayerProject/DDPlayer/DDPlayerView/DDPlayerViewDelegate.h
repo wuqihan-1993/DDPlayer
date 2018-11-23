@@ -105,6 +105,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)playerViewCaptureVideoSendComment:(NSString *)commnet success:(void(^)(void))success failure:(void(^)(void))failure;
 
 
+/**
+ 付费页面，点击去购买
+ */
+- (void)playerViewNeedToPay;
 
 @end
 

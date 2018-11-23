@@ -39,4 +39,14 @@
     [btn sizeToFit];
     return btn;
 }
+
++ (UIButton *)backButtonWithTarget:(id)target action:(SEL)selector {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[UIImage imageNamed:@"DDPlayer_Btn_Back"] forState:UIControlStateNormal];
+    [button setTitle:@"\t\t" forState:UIControlStateNormal];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    return button;
+}
+
 @end

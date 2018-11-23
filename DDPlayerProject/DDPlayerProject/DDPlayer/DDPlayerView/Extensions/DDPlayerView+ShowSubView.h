@@ -17,11 +17,15 @@ typedef NS_ENUM(NSInteger,DDPlayerShowOrigin) {
     DDPlayerShowOriginLeftBottom
 };
 
+@class DDLeftBottomPromptLabel;
+
 @interface DDPlayerView (ShowSubView)
+
+@property(nonatomic, strong) DDLeftBottomPromptLabel *leftBottomPromptLabel;
 
 - (void)show:(UIView*_Nullable)view origin:(DDPlayerShowOrigin)origin isDismissControl:(BOOL)isDismissControl isPause:(BOOL)isPause dismissCompletion:(void(^ __nullable)(void))dismiss;
 
-- (void)showLeftBottomRromptLabel:(NSString *)prompt;
+- (void)showLeftBottomRromptLabel:(NSString *_Nullable)prompt;
 
 @end
 

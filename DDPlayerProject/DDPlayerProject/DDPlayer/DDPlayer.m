@@ -337,12 +337,13 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
         if (self.currentItem == object && [keyPath isEqualToString:@"status"] && self.currentItem.status == AVPlayerItemStatusReadyToPlay) {
             
             NSLog(@"AVPlayerItemStatusReadyToPlay");
-            if ([self.delegateController respondsToSelector:@selector(playerReadyToPlay)]) {
-                [self.delegateController playerReadyToPlay];
-            }
             if ([self.delegate respondsToSelector:@selector(playerReadyToPlay)]) {
                 [self.delegate playerReadyToPlay];
             }
+            if ([self.delegateController respondsToSelector:@selector(playerReadyToPlay)]) {
+                [self.delegateController playerReadyToPlay];
+            }
+            
             return;
         }
         

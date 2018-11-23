@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
                            titleColor:(UIColor *)titleColor
                               spacing:(CGFloat)spacing;
 
++(UIButton *)backButtonWithTarget:(id)target action:(SEL)selector;
+
 @end
 
 NS_ASSUME_NONNULL_END

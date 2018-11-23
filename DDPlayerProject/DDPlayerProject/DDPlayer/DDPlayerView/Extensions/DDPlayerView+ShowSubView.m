@@ -13,9 +13,24 @@
 #import "DDPlayerControlView.h"
 #import "DDPlayerContentView.h"
 #import "DDLeftBottomPromptLabel.h"
-#import <Masonry.h>
+#import <objc/runtime.h>
+static void* _leftBottomPromptLabelKey = &_leftBottomPromptLabelKey;
 
 @implementation DDPlayerView (ShowSubView)
+
+- (DDLeftBottomPromptLabel *)leftBottomPromptLabel {
+    if (objc_getAssociatedObject(self, _leftBottomPromptLabelKey)) {
+        return objc_getAssociatedObject(self, _leftBottomPromptLabelKey);
+    }else {
+        DDLeftBottomPromptLabel *label = [[DDLeftBottomPromptLabel alloc] init];
+        self.leftBottomPromptLabel = label;
+        return label;
+    }
+}
+- (void)setLeftBottomPromptLabel:(DDLeftBottomPromptLabel *)leftBottomPromptLabel {
+    objc_setAssociatedObject(self, _leftBottomPromptLabelKey, leftBottomPromptLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 
 - (void)show:(UIView *)view origin:(DDPlayerShowOrigin)origin isDismissControl:(BOOL)isDismissControl isPause:(BOOL)isPause dismissCompletion:(void (^ __nullable)(void))dismiss{
     
@@ -60,7 +75,7 @@
         [self addSubview:view];
         [self bringSubviewToFront:view];
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).mas_offset(20);
+            make.top.equalTo(self).mas_offset(DDPlayerTool.isScreenPortrait ? 20 : 33);
             make.centerX.equalTo(self);
         }];
         [self layoutIfNeeded];
@@ -69,7 +84,7 @@
         [self bringSubviewToFront:view];
         if (DDPlayerTool.isScreenPortrait) {
             [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(self).mas_offset(-60);
+                make.bottom.equalTo(self).mas_offset(-50);
                 make.left.equalTo(self).mas_offset(20);
             }];
         }else {
@@ -84,9 +99,8 @@
 }
 
 - (void)showLeftBottomRromptLabel:(NSString *)prompt {
-    DDLeftBottomPromptLabel *label = [DDLeftBottomPromptLabel new];
-    label.text = prompt;
-    [self show:label origin:DDPlayerShowOriginLeftBottom isDismissControl:YES isPause:NO dismissCompletion:nil];
+    self.leftBottomPromptLabel.text = prompt;
+    [self show:self.leftBottomPromptLabel origin:DDPlayerShowOriginLeftBottom isDismissControl:NO isPause:NO dismissCompletion:nil];
 }
 
 @end
