@@ -128,6 +128,8 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 }
 - (void)stop {
     [self removeItemObservers];
+    [self.currentItem cancelPendingSeeks];
+    [self.currentItem.asset cancelLoading];
     self.currentItem = nil;
     self.currentAsset = nil;
     [self.player replaceCurrentItemWithPlayerItem:nil];
@@ -165,7 +167,6 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     }
 }
 - (void)pause {
-   
     [self.player pause];
 }
 
@@ -194,10 +195,10 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 
 #pragma mark - getter
 - (BOOL)isPause {
-    return (self.player.rate == 0 && self.status == DDPlayerStatusPaused);
+    return (self.player.rate == 0 || self.status == DDPlayerStatusPaused);
 }
 - (BOOL)isPlaying {
-    return (self.player.rate != 0 && self.status == DDPlayerStatusPlaying);
+    return (self.player.rate != 0 || self.status == DDPlayerStatusPlaying);
 }
 - (CGFloat)rate {
     return self.player.rate;
@@ -289,6 +290,19 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     });
 }
 
+/**
+ *  返回 当前 视频 缓存时长
+ */
+- (NSTimeInterval)availableCache{
+    NSArray *loadedTimeRanges = [self.currentItem loadedTimeRanges];
+    CMTimeRange timeRange = [loadedTimeRanges.firstObject CMTimeRangeValue];// 获取缓冲区域
+    float startSeconds = CMTimeGetSeconds(timeRange.start);
+    float durationSeconds = CMTimeGetSeconds(timeRange.duration);
+    NSTimeInterval result = startSeconds + durationSeconds;// 计算缓冲总进度
+    
+    return result;
+}
+
 #pragma mark - kvo
 - (void)addItemObservers {
     
@@ -309,9 +323,13 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
                               options:NSKeyValueObservingOptionNew
                               context:&observerContext];
     [_playerItemKVO safelyAddObserver:self
-                           forKeyPath:@"isPlaybackBufferFull"
+                           forKeyPath:@"playbackBufferFull"
                               options:NSKeyValueObservingOptionNew
                               context:&observerContext];
+//    [_playerItemKVO safelyAddObserver:self
+//                           forKeyPath:@"loadedTimeRanges"
+//                              options:NSKeyValueObservingOptionNew
+//                              context:&observerContext];
     
     
 }

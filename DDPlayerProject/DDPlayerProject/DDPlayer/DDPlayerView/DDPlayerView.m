@@ -447,7 +447,7 @@
     }
 }
 - (void)playerControlView:(DDPlayerControlView *)containerView clickPlayButton:(UIButton *)button {
-    if (button.isSelected) {
+    if (self.player.isPlaying) {
         [self.player pause];
     }else {
         [self.player play];

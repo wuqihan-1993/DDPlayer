@@ -303,15 +303,15 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         make.height.mas_equalTo(60);
     }];
     [self.captureImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? -50-34 : -40);
+        make.right.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? -50-34 : -20);
         make.centerY.equalTo(self).mas_offset(-28);
     }];
     [self.captureVideoButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? -50-34 : -40);
+        make.right.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? -50-34 : -20);
         make.centerY.equalTo(self).mas_offset(28);
     }];
     [self.lockScreenButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? 50+34 : 40);
+        make.left.equalTo(self).mas_offset(DDPlayerTool.isiPhoneX ? 50+34 : 20);
         make.centerY.equalTo(self);
     }];
     [self.bottomPortraitView mas_makeConstraints:^(MASConstraintMaker *make) {
