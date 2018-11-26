@@ -64,6 +64,7 @@
         _lastSecond = seconds;
         return;
     }else {
+        NSLog(@"取消下载---");
         [self.imageGenerator cancelAllCGImageGeneration];
         _lastSecond = seconds;
     }
@@ -72,12 +73,12 @@
     
     CMTime time = CMTimeMakeWithSeconds(seconds, 600);
     
-//    NSString *timeStr = self.timeLabel.text;
-    
+ 
+    NSLog(@"开始下载：%@",currentTimeStr);
     __weak typeof(self) weakSelf = self;
     [self.imageGenerator generateCGImagesAsynchronouslyForTimes:@[[NSValue valueWithCMTime:time]] completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) {
         if (result == AVAssetImageGeneratorSucceeded) {
-//            NSLog(@"下载完成：%@",timeStr);
+            NSLog(@"下载完成：%@",currentTimeStr);
             UIImage *thumbImg = [UIImage imageWithCGImage:image];
             [weakSelf performSelectorOnMainThread:@selector(movieImage:) withObject:thumbImg waitUntilDone:YES];
         }

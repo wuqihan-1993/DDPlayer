@@ -423,6 +423,9 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     if (press.state == UIGestureRecognizerStateBegan || UIGestureRecognizerStatePossible) {
         
         _currentProgressValue = self.bottomPortraitView.slider.value;
+        if ([self.delegate respondsToSelector:@selector(playerControlViewBeginDragProgress)]) {
+            [self.delegate playerControlViewBeginDragProgress];
+        }
       
     }else {
         
@@ -457,10 +460,8 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 #pragma mark UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
     if (touch.view == self) {
-        NSLog(@"YES%s",__FUNCTION__);
         return YES;
     }else{
-        NSLog(@"NO%s",__FUNCTION__);
         return NO;
     }
 }
