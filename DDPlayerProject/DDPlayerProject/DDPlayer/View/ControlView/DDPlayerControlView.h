@@ -97,10 +97,10 @@
  */
 - (void)playerControlView:(DDPlayerControlView*)controlView chagedVolume:(CGFloat)volume;
 
-- (void)playerControlView:(DDPlayerControlView *)controlView beginDragSlider:(UISlider *)slider;
-- (void)playerControlView:(DDPlayerControlView *)controlView DragingSlider:(UISlider *)slider;
-- (void)playerControlView:(DDPlayerControlView *)controlView endDragSlider:(UISlider *)slider;
-- (void)playerControlView:(DDPlayerControlView *)controlView tapSlider:(UISlider *)slider;
+- (void)playerControlViewBeginDragProgress;
+- (void)playerControlViewDragingProgress:(CGFloat)value;
+- (void)playerControlViewEndDragProgress:(CGFloat)value;
+- (void)playerControlViewTapProgress:(CGFloat)value;
 
 - (void)playerControViewWillShow:(DDPlayerControlView *)controlView;
 - (void)playerControViewWillDismiss:(DDPlayerControlView *)controlView;

@@ -12,7 +12,7 @@
 #import "DDBrightView.h"
 #import <MediaPlayer/MPVolumeView.h>
 #import "NSTimer+Block.h"
-
+#import "DDPlayerView.h"
 
 typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     DDPlayerGestureTypeNone,
@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 {
     CGFloat _currentLight;//当前亮度
     CGFloat _currentVolume;//当前音量
+    CGFloat _currentProgressValue;//当前进度 (上面三个属性和 手势相关)
     CGPoint _panBeginPoint;
     DDPlayerGestureType _gestureType;
 }
@@ -128,9 +129,9 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
     
     if (pan.state == UIGestureRecognizerStatePossible || pan.state == UIGestureRecognizerStateBegan) {
         _panBeginPoint = [pan locationInView:self];
-        
         [self lightNeedChangedWithGesture:pan];
         [self volumeNeedChangedWithGesture:pan];
+        [self progressChangedWithGesture:pan];
         
     }else if(pan.state == UIGestureRecognizerStateChanged){
         CGPoint changePoint = [pan locationInView:self];
@@ -150,7 +151,7 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
                     break;
                 case DDPlayerGestureTypeProgress:
                 {
-                    
+                    [self progressChangedWithGesture:pan];
                 }
                     break;
                 default:
@@ -413,14 +414,48 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         }
     }
 }
+-(void)progressChangedWithGesture:(UIPanGestureRecognizer *)press{
+    
+    if (press.state == UIGestureRecognizerStateBegan || UIGestureRecognizerStatePossible) {
+        
+        _currentProgressValue = self.bottomPortraitView.slider.value;
+        
+        if ([self.delegate respondsToSelector:@selector(playerControlViewBeginDragProgress)]) {
+            [self.delegate playerControlViewBeginDragProgress];
+        }
+    }else if (press.state == UIGestureRecognizerStateChanged){
+
+        CGPoint changePoint = [press locationInView:self];
+
+        CGFloat changeValue = (changePoint.x - _panBeginPoint.x) / (UIScreen.mainScreen.bounds.size.width);
+        CGFloat value = changeValue + _currentProgressValue;
+        if (value <= 0) {
+            value = 0;
+        }else if(value >= 1){
+            value = 1;
+        }
+        
+        if ([self.delegate respondsToSelector:@selector(playerControlViewDragingProgress:)]) {
+            [self.delegate playerControlViewDragingProgress:value];
+        }
+
+    }else if (press.state == UIGestureRecognizerStateEnded || press.state == UIGestureRecognizerStateFailed || press.state == UIGestureRecognizerStateCancelled){
+        CGPoint changePoint = [press locationInView:self];
+        if ([self.delegate respondsToSelector:@selector(playerControlViewEndDragProgress:)]) {
+            [self.delegate playerControlViewEndDragProgress: (changePoint.x - _panBeginPoint.x) / (UIScreen.mainScreen.bounds.size.width*0.6)];
+        }
+    }
+}
 -(CGFloat)coverPercentWithPoint:(CGPoint )point{
     return point.y / self.frame.size.height;
 }
 #pragma mark UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
     if (touch.view == self) {
+        NSLog(@"YES%s",__FUNCTION__);
         return YES;
     }else{
+        NSLog(@"NO%s",__FUNCTION__);
         return NO;
     }
 }
@@ -487,26 +522,26 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         
         _bottomPortraitView.sliderBeginDragingBlock = ^(UISlider * _Nonnull slider) {
             [weakSelf addVisibleTimer];
-            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:beginDragSlider:)]) {
-                [weakSelf.delegate playerControlView:weakSelf beginDragSlider:slider];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlViewBeginDragProgress)]) {
+                [weakSelf.delegate playerControlViewBeginDragProgress];
             }
         };
         _bottomPortraitView.sliderDragingBlock = ^(UISlider * _Nonnull slider) {
             [weakSelf addVisibleTimer];
-            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:DragingSlider:)]) {
-                [weakSelf.delegate playerControlView:weakSelf DragingSlider:slider];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlViewDragingProgress:)]) {
+                [weakSelf.delegate playerControlViewDragingProgress:slider.value];
             }
         };
         _bottomPortraitView.sliderEndDragingBlock = ^(UISlider * _Nonnull slider) {
             [weakSelf addVisibleTimer];
-            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:endDragSlider:)]) {
-                [weakSelf.delegate playerControlView:weakSelf endDragSlider:slider];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlViewEndDragProgress:)]) {
+                [weakSelf.delegate playerControlViewEndDragProgress:slider.value];
             }
         };
         _bottomPortraitView.sliderTapBlock = ^(UISlider * _Nonnull slider) {
             [weakSelf addVisibleTimer];
-            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:tapSlider:)]) {
-                [weakSelf.delegate playerControlView:weakSelf tapSlider:slider];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlViewTapProgress:)]) {
+                [weakSelf.delegate playerControlViewTapProgress:slider.value];
             }
         };
     }
@@ -552,26 +587,26 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         };
         _bottomLandscapeView.sliderBeginDragingBlock = ^(UISlider * _Nonnull slider) {
             [weakSelf addVisibleTimer];
-            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:beginDragSlider:)]) {
-                [weakSelf.delegate playerControlView:weakSelf beginDragSlider:slider];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlViewBeginDragProgress)]) {
+                [weakSelf.delegate playerControlViewBeginDragProgress];
             }
         };
         _bottomLandscapeView.sliderDragingBlock = ^(UISlider * _Nonnull slider) {
             [weakSelf addVisibleTimer];
-            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:DragingSlider:)]) {
-                [weakSelf.delegate playerControlView:weakSelf DragingSlider:slider];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlViewDragingProgress:)]) {
+                [weakSelf.delegate playerControlViewDragingProgress:slider.value];
             }
         };
         _bottomLandscapeView.sliderEndDragingBlock = ^(UISlider * _Nonnull slider) {
             [weakSelf addVisibleTimer];
-            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:endDragSlider:)]) {
-                [weakSelf.delegate playerControlView:weakSelf endDragSlider:slider];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlViewEndDragProgress:)]) {
+                [weakSelf.delegate playerControlViewEndDragProgress:slider.value];
             }
         };
         _bottomLandscapeView.sliderTapBlock = ^(UISlider * _Nonnull slider) {
             [weakSelf addVisibleTimer];
-            if ([weakSelf.delegate respondsToSelector:@selector(playerControlView:tapSlider:)]) {
-                [weakSelf.delegate playerControlView:weakSelf tapSlider:slider];
+            if ([weakSelf.delegate respondsToSelector:@selector(playerControlViewTapProgress:)]) {
+                [weakSelf.delegate playerControlViewTapProgress:slider.value];
             }
         };
     }

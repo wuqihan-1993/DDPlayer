@@ -495,8 +495,7 @@
     self.player.volume = volume;
 }
 
-- (void)playerControlView:(DDPlayerControlView *)controlView beginDragSlider:(UISlider *)slider {
-    
+- (void)playerControlViewBeginDragProgress {
     UIView *dragProgressView;
     if (DDPlayerTool.isScreenPortrait) {
         dragProgressView = self.dragProgressPortraitView;
@@ -512,32 +511,28 @@
         make.edges.equalTo(self);
     }];
     [self layoutIfNeeded];
-    
-    
 }
-- (void)playerControlView:(DDPlayerControlView *)controlView DragingSlider:(UISlider *)slider {
-  
-    [self.dragProgressPortraitView setProgress:slider.value duration:self.player.duration];
-    [self.dragProgressLandscapeView setProgress:slider.value duration:self.player.duration];
+- (void)playerControlViewDragingProgress:(CGFloat)value {
+    [self.dragProgressPortraitView setProgress:value duration:self.player.duration];
+    [self.dragProgressLandscapeView setProgress:value duration:self.player.duration];
 }
-- (void)playerControlView:(DDPlayerControlView *)controlView endDragSlider:(UISlider *)slider {
 
+-(void)playerControlViewEndDragProgress:(CGFloat)value {
     if (DDPlayerTool.isScreenPortrait) {
         [self.dragProgressPortraitView removeFromSuperview];
-       
+        
     }else {
         [self.dragProgressLandscapeView removeFromSuperview];
     }
- 
-    [self.player seekToTime:self.player.duration * slider.value isPlayImmediately:self.player.isPlaying completionHandler:nil];
-}
-
-- (void)playerControlView:(DDPlayerControlView *)controlView tapSlider:(UISlider *)slider {
-    [self.player seekToTime:self.player.duration * slider.value isPlayImmediately:self.player.isPlaying completionHandler:nil];
-}
-
-- (void)playerControViewWillShow:(DDPlayerControlView *)controlView {
     
+    [self.player seekToTime:self.player.duration * value isPlayImmediately:self.player.isPlaying completionHandler:nil];
+}
+
+- (void)playerControlViewTapProgress:(CGFloat)value {
+    [self.player seekToTime:self.player.duration * value isPlayImmediately:self.player.isPlaying completionHandler:nil];
+}
+
+- (void)playerControViewWillShow:(DDPlayerControlView *)controlView {    
     
 }
 
