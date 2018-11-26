@@ -43,7 +43,6 @@
 @property(nonatomic, strong) DDNetworkWWANWarnView *WWANWarnView;//流量警告视图
 @property(nonatomic, strong) DDNetworkErrorView *networkErrorView;//无网警告视图
 @property(nonatomic, strong) DDPlayerErrorView *playerErrorView;
-@property(nonatomic, strong) UIImageView *replaceUrlImageView;
 
 @end
 
@@ -260,14 +259,6 @@
     return _backButton;
 }
 
-- (UIImageView *)replaceUrlImageView {
-    if (!_replaceUrlImageView) {
-        _replaceUrlImageView = [[UIImageView alloc] init];
-        _replaceUrlImageView.contentMode = UIViewContentModeScaleAspectFit;
-    }
-    return _replaceUrlImageView;
-}
-
 - (BOOL)isLockScreen {
     return self.playerControlView.isLockScreen;
 }
@@ -364,10 +355,6 @@
 }
 
 - (void)playerReadyToPlay {
-    
-    if (self.replaceUrlImageView.superview) {
-        [self.replaceUrlImageView removeFromSuperview];
-    }
 
     if (self.WWANWarnView.superview) {
         [self.WWANWarnView removeFromSuperview];

@@ -113,6 +113,9 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     self.currentItem = [AVPlayerItem playerItemWithAsset:self.currentAsset];
     [self addItemObservers];
     
+//    if ([self.delegate respondsToSelector:@selector(playerWillPlayUrl:)]) {
+//        [self.delegate playerWillPlayUrl:_willPlayUrlString];
+//    }
     //如果报错 重新创建一个，可以解决问题
     if (self.player.error) {
         [self reInitPlayer];

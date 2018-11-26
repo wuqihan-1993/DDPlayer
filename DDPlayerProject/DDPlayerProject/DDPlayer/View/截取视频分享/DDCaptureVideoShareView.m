@@ -239,6 +239,9 @@
 
 - (void)shareItemBtnClick:(UIButton *)btn {
     DDShareType shareType = btn.tag - 3000;
+    if (self.shareBlock) {
+        self.shareBlock(shareType);
+    }
 //    WTCVideoPlayerView *parentPlayer = (WTCVideoPlayerView *)self.superview;
 //    if ([parentPlayer.eventDelegate respondsToSelector:@selector(videoPlayerClickCaptureShareTypeBtn:success:fail:)]) {
 //        [parentPlayer.eventDelegate videoPlayerClickCaptureShareTypeBtn:shareType success:^{
@@ -270,12 +273,12 @@
     
     if (endKeyboardFrame.origin.y == DDPlayerTool.screenWidth) {
         //键盘隐藏
-        [self.inputView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self).mas_offset(self.inputView.bounds.size.height);
+        [self.commentView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self).mas_offset(self.commentView.bounds.size.height);
         }];
     }else {
         //键盘弹出
-        [self.inputView mas_updateConstraints:^(MASConstraintMaker *make) {
+        [self.commentView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self).mas_offset(-endKeyboardFrame.size.height);
         }];
     }

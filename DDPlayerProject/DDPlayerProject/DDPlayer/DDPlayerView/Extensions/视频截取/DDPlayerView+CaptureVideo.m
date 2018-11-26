@@ -41,6 +41,11 @@ static void *_captureVideoShareViewKey = &_captureVideoShareViewKey;
                 }];
             }
         };
+        self.captureVideoShareView.shareBlock = ^(DDShareType shareType) {
+            if ([weakSelf.delegate respondsToSelector:@selector(playerViewShareCaptureVideoWithShareType:)]) {
+                [weakSelf.delegate playerViewShareCaptureVideoWithShareType:shareType];
+            }
+        };
         return captureVideoShareView;
     }
 }
@@ -65,6 +70,9 @@ static void *_captureVideoShareViewKey = &_captureVideoShareViewKey;
         [weakSelf.captureVideoShareView removeFromSuperview];
         weakSelf.captureVideoShareView = nil;
         [weakSelf.player play];
+        if ([weakSelf.delegate respondsToSelector:@selector(playerViewCancelUploadCaptureVideo)]) {
+            [weakSelf.delegate playerViewCancelUploadCaptureVideo];
+        }
     }];
 }
 - (void)dismissCaptureVideoShareView {

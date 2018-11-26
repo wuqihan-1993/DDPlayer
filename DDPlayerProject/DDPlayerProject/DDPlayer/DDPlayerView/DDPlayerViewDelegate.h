@@ -99,15 +99,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)playerViewShareCaptureImage:(UIImage*)captureImage shareType:(DDShareType)shareType;
 
 
-
 /**
  点击发送截取视频评论
 
- @param commnet 评论
+ @param comment 评论
  @param success 成功
  @param failure 失败
  */
-- (void)playerViewCaptureVideoSendComment:(NSString *)commnet success:(void(^)(void))success failure:(void(^)(void))failure;
+- (void)playerViewCaptureVideoSendComment:(NSString *)comment success:(void(^)(void))success failure:(void(^)(void))failure;
 /*
  func videoPlayerUploadCaptureVideo(_ captureVideoPath: URL!, startTime: Int, duration: Int, progress: ((CGFloat) -> Void)!, complete: ((Bool,Error?) -> Void)!) {
  */
@@ -129,6 +128,20 @@ NS_ASSUME_NONNULL_BEGIN
                             progress:(void(^)(CGFloat))progress
                              success:(void(^)(void))success
                              failure:(void(^)(NSError*))failure;
+
+
+/**
+ 取消上传
+ */
+- (void)playerViewCancelUploadCaptureVideo;
+
+
+/**
+ 点击分享截取视频
+
+ @param shareType DDShareType
+ */
+- (void)playerViewShareCaptureVideoWithShareType:(DDShareType)shareType;
 
 @end
 

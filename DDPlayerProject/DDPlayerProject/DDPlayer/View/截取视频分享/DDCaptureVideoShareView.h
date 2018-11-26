@@ -8,6 +8,7 @@
 
 #import "DDPlayerContentView.h"
 #import <CoreMedia/CMTime.h>
+#import "DDPlayerStatus.h"
 @class AVAsset;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  参数：评论String，成功block，失败block
  */
 @property(nonatomic, copy) void(^confirmCommentBlock)( NSString* , void(^)(void) ,void(^)(void) );
+@property(nonatomic, copy) void(^shareBlock)(DDShareType);
 
 @property(nonatomic, copy) NSString *title;
 

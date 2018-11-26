@@ -85,7 +85,9 @@ static void *_isShareingCaptureImageKey = &_isShareingCaptureImageKey;
                             [weakSelf.delegate playerViewShareCaptureImage:image shareType:shareType];
                         }
                     };
+                    weakSelf.player.isNeedCanPlay = NO;
                     [weakSelf show:imageShareView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:^{
+                        weakSelf.player.isNeedCanPlay = YES;
                         weakSelf.isShareingCaptureImage = NO;
                         if (lastStausIsPause == YES) {
                             [weakSelf.player pause];
