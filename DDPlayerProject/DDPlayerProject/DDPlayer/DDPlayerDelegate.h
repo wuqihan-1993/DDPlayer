@@ -31,6 +31,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)playerStatusChanged:(DDPlayerStatus)status;
 
+
+/**
+ 播放器将要播放url
+
+ @param willPlayUrl 将要播放的url
+ */
+- (void)playerWillPlayUrl:(NSString *)willPlayUrl;
 /**
  播放器已经准备好播放，即将播放
  */

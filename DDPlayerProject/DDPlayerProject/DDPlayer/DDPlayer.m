@@ -66,7 +66,7 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
 - (void)playWithUrl:(NSString *)url {
     
     _willPlayUrlString = url;
-
+    
     if (![DDPlayerTool isLocationPath:url]) {
         
         if (self.reachability.currentReachabilityStatus == NotReachable) {
@@ -98,6 +98,10 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     [self removeItemObservers];
     self.currentItem = [AVPlayerItem playerItemWithAsset:self.currentAsset];
     [self addItemObservers];
+    
+    if ([self.delegate respondsToSelector:@selector(playerWillPlayUrl:)]) {
+        [self.delegate playerWillPlayUrl:_willPlayUrlString];
+    }
     
     //这个会暂停 不会立马播放
     [self.player replaceCurrentItemWithPlayerItem:self.currentItem];
