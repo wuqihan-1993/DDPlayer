@@ -173,6 +173,8 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         }
     }else {
         _gestureType = DDPlayerGestureTypeNone;
+        [self lightNeedChangedWithGesture:pan];
+        [self progressChangedWithGesture:pan];
     }
     
 }
@@ -379,6 +381,8 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         newPercent = _currentLight - percent < 0 ? 0 : _currentLight - percent;
         [[UIScreen mainScreen] setBrightness:newPercent];
         self.brightView.bright = newPercent;
+    }else {
+        self.brightView.alpha = 0;
     }
 }
 //手势改变音量事件
@@ -423,10 +427,10 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         if ([self.delegate respondsToSelector:@selector(playerControlViewBeginDragProgress)]) {
             [self.delegate playerControlViewBeginDragProgress];
         }
-    }else if (press.state == UIGestureRecognizerStateChanged){
-
+    }else {
+        
         CGPoint changePoint = [press locationInView:self];
-
+        
         CGFloat changeValue = (changePoint.x - _panBeginPoint.x) / (UIScreen.mainScreen.bounds.size.width);
         CGFloat value = changeValue + _currentProgressValue;
         if (value <= 0) {
@@ -435,14 +439,14 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
             value = 1;
         }
         
-        if ([self.delegate respondsToSelector:@selector(playerControlViewDragingProgress:)]) {
-            [self.delegate playerControlViewDragingProgress:value];
-        }
-
-    }else if (press.state == UIGestureRecognizerStateEnded || press.state == UIGestureRecognizerStateFailed || press.state == UIGestureRecognizerStateCancelled){
-        CGPoint changePoint = [press locationInView:self];
-        if ([self.delegate respondsToSelector:@selector(playerControlViewEndDragProgress:)]) {
-            [self.delegate playerControlViewEndDragProgress: (changePoint.x - _panBeginPoint.x) / (UIScreen.mainScreen.bounds.size.width*0.6)];
+        if (press.state == UIGestureRecognizerStateChanged) {
+            if ([self.delegate respondsToSelector:@selector(playerControlViewDragingProgress:)]) {
+                [self.delegate playerControlViewDragingProgress:value];
+            }
+        }else {
+            if ([self.delegate respondsToSelector:@selector(playerControlViewEndDragProgress:)]) {
+                [self.delegate playerControlViewEndDragProgress:value];
+            }
         }
     }
 }
