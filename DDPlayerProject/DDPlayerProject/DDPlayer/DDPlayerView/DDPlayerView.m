@@ -513,15 +513,33 @@
     [self layoutIfNeeded];
 }
 - (void)playerControlViewDragingProgress:(CGFloat)value {
+    NSLog(@"%s",__FUNCTION__);
+    UIView *dragProgressView;
+    if (DDPlayerTool.isScreenPortrait) {
+        dragProgressView = self.dragProgressPortraitView;
+    }else {
+        self.dragProgressLandscapeView.asset = self.player.currentAsset;
+        [self.dragProgressLandscapeView clear];
+        dragProgressView = self.dragProgressLandscapeView;
+    }
+    if (!dragProgressView.superview) {
+        [self addSubview:dragProgressView];
+        [self insertSubview:dragProgressView belowSubview:self.playerControlView];
+        [dragProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+        [self layoutIfNeeded];
+    }
+    
     [self.dragProgressPortraitView setProgress:value duration:self.player.duration];
     [self.dragProgressLandscapeView setProgress:value duration:self.player.duration];
 }
 
 -(void)playerControlViewEndDragProgress:(CGFloat)value {
-    if (DDPlayerTool.isScreenPortrait) {
+    if (self.dragProgressPortraitView.superview) {
         [self.dragProgressPortraitView removeFromSuperview];
-        
-    }else {
+    }
+    if (self.dragProgressLandscapeView.superview) {
         [self.dragProgressLandscapeView removeFromSuperview];
     }
     

@@ -172,9 +172,9 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
             }
         }
     }else {
-        _gestureType = DDPlayerGestureTypeNone;
         [self lightNeedChangedWithGesture:pan];
         [self progressChangedWithGesture:pan];
+        _gestureType = DDPlayerGestureTypeNone;
     }
     
 }
@@ -381,8 +381,6 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
         newPercent = _currentLight - percent < 0 ? 0 : _currentLight - percent;
         [[UIScreen mainScreen] setBrightness:newPercent];
         self.brightView.bright = newPercent;
-    }else {
-        self.brightView.alpha = 0;
     }
 }
 //手势改变音量事件
@@ -420,14 +418,17 @@ typedef NS_ENUM(NSInteger,DDPlayerGestureType) {
 }
 -(void)progressChangedWithGesture:(UIPanGestureRecognizer *)press{
     
+   
+    
     if (press.state == UIGestureRecognizerStateBegan || UIGestureRecognizerStatePossible) {
         
         _currentProgressValue = self.bottomPortraitView.slider.value;
-        
-        if ([self.delegate respondsToSelector:@selector(playerControlViewBeginDragProgress)]) {
-            [self.delegate playerControlViewBeginDragProgress];
-        }
+      
     }else {
+        
+        if (_gestureType != DDPlayerGestureTypeProgress) {
+            return;
+        }
         
         CGPoint changePoint = [press locationInView:self];
         
