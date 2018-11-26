@@ -57,6 +57,41 @@
     }
 }
 
+#pragma mark - public
+- (void)setError:(NSError *)error url:(NSString *)url {
+    NSString *netOrLocal = [url hasPrefix:@"http"] ? @"网络视频" : @"本地视频";
+
+    if (error) {
+        if (error.code == -1100) {
+            
+            if ([url hasPrefix:@"http"]) {
+                self.promptLabel.text = [NSString stringWithFormat:@"抱歉，%@-播放出现错误,请点击重试\n或观看其他视频",netOrLocal];
+            }else {
+                self.promptLabel.text = [NSString stringWithFormat:@"抱歉，%@-下载的视频出现错误,请点击重试\n或删除下载的视频",netOrLocal];
+            }
+            
+        }else if (error.code == -11819) {
+            self.promptLabel.text = [NSString stringWithFormat:@"抱歉，%@-当前网络环境不好，播放器正在缓慢加载中，\n请退出本页面重新进入",netOrLocal];
+        }else {
+            
+            if ([url hasPrefix:@"http"]) {
+                self.promptLabel.text = [NSString stringWithFormat:@"抱歉，%@-播放出现错误,请点击重试\n或观看其他视频\n错误代码：%ld",netOrLocal,error.code];
+            }else {
+                self.promptLabel.text = [NSString stringWithFormat:@"抱歉，%@-下载的视频出现错误,请点击重试\n或删除下载的视频\n错误代码：%ld",netOrLocal,error.code];
+            }
+        }
+    }else {
+        if ([url hasPrefix:@"http"]) {
+            self.promptLabel.text = [NSString stringWithFormat:@"抱歉，%@-播放出现错误,请点击重试\n或观看其他视频",netOrLocal];
+        }else {
+            self.promptLabel.text = [NSString stringWithFormat:@"抱歉，%@-下载的视频出现错误,请点击重试\n或删除下载的视频",netOrLocal];
+        }
+    }
+    
+    
+    
+}
+
 #pragma mark - overrid method
 - (void)updateUIWithPortrait {
     [self.backButton mas_updateConstraints:^(MASConstraintMaker *make) {

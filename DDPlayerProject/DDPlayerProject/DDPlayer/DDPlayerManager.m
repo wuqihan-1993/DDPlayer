@@ -12,6 +12,10 @@
 
 + (UIImage *)thumbnailImageWithAsset:(AVAsset*)asset currentTime:(CMTime)currentTime {
     
+    NSLog(@"%s",__FUNCTION__);
+    NSLog(@"isReadable %d",[(AVURLAsset*)asset isReadable]);
+    NSLog(@"isExport %d",[(AVURLAsset*)asset isExportable]);
+    NSLog(@"isPlayable %d",[(AVURLAsset*)asset isPlayable]);
     AVAssetImageGenerator *imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
     CMTime expectedTime = currentTime;
     CGImageRef cgImage = NULL;

@@ -47,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)playerPlayFinish;
 
+- (void)playerReInitPlayer;
+
 
 /**
  播放器将以流量播放网络视频

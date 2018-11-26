@@ -348,20 +348,19 @@
             break;
         case DDPlayerStatusError:
         {
+            if ([self.player valueForKeyPath:@"player.error"]) {
+                 [self.playerErrorView setError:[self.player valueForKeyPath:@"player.error"] url:[self.player valueForKey:@"_willPlayUrlString"]];
+            }else if(self.player.currentItem.error != nil) {
+                [self.playerErrorView setError:self.player.currentItem.error url:[self.player valueForKey:@"_willPlayUrlString"]];
+            }else {
+                [self.playerErrorView setError:nil url:[self.player valueForKey:@"_willPlayUrlString"]];
+            }
             [self show:self.playerErrorView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:nil];
         }
             break;
         default:
             break;
     }
-}
-
-- (void)playerWillPlayUrl:(NSString *)willPlayUrl {
-    self.replaceUrlImageView.image = [DDPlayerManager thumbnailImageWithAsset:self.player.currentAsset currentTime:CMTimeMakeWithSeconds(0, NSEC_PER_SEC)];
-    self.replaceUrlImageView.frame = self.bounds;
-    [self addSubview:self.replaceUrlImageView];
-    [self insertSubview:self.replaceUrlImageView belowSubview:self.playerControlView];
-
 }
 
 - (void)playerReadyToPlay {
@@ -448,6 +447,10 @@
 - (void)playerWillPlayWithNetworkError {
     [self.player stop];
     [self show:self.networkErrorView origin:DDPlayerShowOriginCenter isDismissControl:YES isPause:YES dismissCompletion:nil];
+}
+
+- (void)playerReInitPlayer {
+    [self.player bindToPlayerLayer:(AVPlayerLayer *)self.layer];
 }
 
 #pragma mark - DDPlayerControlViewDelegate

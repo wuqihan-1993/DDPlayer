@@ -55,11 +55,25 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     
-    self.player = [[AVPlayer alloc] init];
     self.isNeedCanPlay = YES;
-    [self addReachability];
+    
+    self.player = [[AVPlayer alloc] init];
     [self addPlayerObservers];
+    
+    [self addReachability];
     [self addNotifications];
+}
+
+
+/**
+ 重新创建播放器
+ */
+- (void)reInitPlayer {
+    self.player = [[AVPlayer alloc] init];
+    [self addPlayerObservers];
+    if ([self.delegate respondsToSelector:@selector(playerReInitPlayer)]) {
+        [self.delegate playerReInitPlayer];
+    }
 }
 
 #pragma mark - public
@@ -99,10 +113,10 @@ static NSString *observerContext = @"DDPlayer.KVO.Contexxt";
     self.currentItem = [AVPlayerItem playerItemWithAsset:self.currentAsset];
     [self addItemObservers];
     
-    if ([self.delegate respondsToSelector:@selector(playerWillPlayUrl:)]) {
-        [self.delegate playerWillPlayUrl:_willPlayUrlString];
+    //如果报错 重新创建一个，可以解决问题
+    if (self.player.error) {
+        [self reInitPlayer];
     }
-    
     //这个会暂停 不会立马播放
     [self.player replaceCurrentItemWithPlayerItem:self.currentItem];
     //

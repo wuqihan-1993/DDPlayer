@@ -8,13 +8,14 @@
 
 #import "DDPlayerComponentBaseView.h"
 
-NS_ASSUME_NONNULL_BEGIN
+
 
 @interface DDPlayerErrorView : DDPlayerComponentBaseView
 
 @property (nonatomic, copy) void (^backButtonClickBlock)(UIButton *);
 @property(nonatomic, copy) void(^retryBlock)(void);
 
+- (void)setError:(NSError *)error url:(NSString *)url;
+
 @end
 
-NS_ASSUME_NONNULL_END
