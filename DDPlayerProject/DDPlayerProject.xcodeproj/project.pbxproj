@@ -501,12 +501,9 @@
 		E3AB592D219559D100CAEF38 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E3446D0321A7C1DF00520C71 /* DDPlayerBackButton.h */,
-				E3446D0421A7C1DF00520C71 /* DDPlayerBackButton.m */,
-				E3446CF021A7A76900520C71 /* 2c课程相关 */,
-				E31773C221A6C60D00854F40 /* DDLeftBottomPromptLabel.h */,
-				E31773C321A6C60D00854F40 /* DDLeftBottomPromptLabel.m */,
 				E3AB596321955DAC00CAEF38 /* ControlView */,
+				E3EF517C21AB792E00A92250 /* Common */,
+				E3446CF021A7A76900520C71 /* 2c课程相关 */,
 				E36F3BE921A2DE0700DE5F38 /* 付费视频视图 */,
 				E36F3AFF21A24D0000DE5F38 /* 选择清晰度 */,
 				E3DE4C0A219D1EF10073C733 /* 网络监控提示图 */,
@@ -628,6 +625,17 @@
 				E3DE4C17219D5B180073C733 /* DDNetworkErrorView.m */,
 			);
 			path = "网络监控提示图";
+			sourceTree = "<group>";
+		};
+		E3EF517C21AB792E00A92250 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E31773C221A6C60D00854F40 /* DDLeftBottomPromptLabel.h */,
+				E31773C321A6C60D00854F40 /* DDLeftBottomPromptLabel.m */,
+				E3446D0321A7C1DF00520C71 /* DDPlayerBackButton.h */,
+				E3446D0421A7C1DF00520C71 /* DDPlayerBackButton.m */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

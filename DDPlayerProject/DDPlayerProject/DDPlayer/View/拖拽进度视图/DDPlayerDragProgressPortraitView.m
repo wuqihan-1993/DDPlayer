@@ -43,7 +43,12 @@
 
 - (void)setProgress:(CGFloat)progress duration:(CGFloat)duration {
     self.slider.value = progress;
-    self.timeLabel.text = [DDPlayerTool translateTimeToString:duration*progress];
+    NSString *currentTimeStr = [DDPlayerTool translateTimeToString:duration*progress];
+    NSString *durationTimeStr = [DDPlayerTool translateTimeToString:duration];
+    NSString *timeStr = [NSString stringWithFormat:@"%@/%@",currentTimeStr,durationTimeStr];
+    NSMutableAttributedString *timeAttStr = [[NSMutableAttributedString alloc] initWithString:timeStr];
+    [timeAttStr addAttributes:@{NSForegroundColorAttributeName:[DDPlayerTool colorWithRGBHex:0x61d8bb],NSFontAttributeName:[UIFont boldSystemFontOfSize:28]} range:[timeStr rangeOfString:currentTimeStr]];
+    self.timeLabel.attributedText = timeAttStr;
 }
 
 

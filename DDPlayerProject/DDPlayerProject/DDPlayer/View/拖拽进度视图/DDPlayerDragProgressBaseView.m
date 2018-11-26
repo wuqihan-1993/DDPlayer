@@ -41,7 +41,8 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.textColor = UIColor.whiteColor;
-        _timeLabel.font = [UIFont systemFontOfSize:20];
+        _timeLabel.font = [UIFont boldSystemFontOfSize:16];
+        _timeLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _timeLabel;
 }

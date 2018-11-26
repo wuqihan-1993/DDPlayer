@@ -50,8 +50,14 @@
         return;
     }
     
-    self.timeLabel.text = [DDPlayerTool translateTimeToString:duration*progress];
-    self.timeLabel.textColor = [DDPlayerTool colorWithRGBHex:0x61d8bb];
+    NSString *currentTimeStr = [DDPlayerTool translateTimeToString:duration*progress];
+    NSString *durationTimeStr = [DDPlayerTool translateTimeToString:duration];
+    NSString *timeStr = [NSString stringWithFormat:@"%@ / %@",currentTimeStr,durationTimeStr];
+    NSMutableAttributedString *timeAttStr = [[NSMutableAttributedString alloc] initWithString:timeStr];
+    [timeAttStr addAttributes:@{NSForegroundColorAttributeName:[DDPlayerTool colorWithRGBHex:0x61d8bb],NSFontAttributeName:[UIFont boldSystemFontOfSize:40]} range:[timeStr rangeOfString:currentTimeStr]];
+    self.timeLabel.attributedText = timeAttStr;
+    
+    
     NSInteger seconds = progress*duration;
     //这里做个优化。 因为时间不是精确到秒，所以同一秒钟 比如12.1 12.2 12.3 秒 都会下载。
     if (ABS(seconds-_lastSecond) < 1) {
@@ -66,12 +72,12 @@
     
     CMTime time = CMTimeMakeWithSeconds(seconds, 600);
     
-    NSString *timeStr = self.timeLabel.text;
+//    NSString *timeStr = self.timeLabel.text;
     
     __weak typeof(self) weakSelf = self;
     [self.imageGenerator generateCGImagesAsynchronouslyForTimes:@[[NSValue valueWithCMTime:time]] completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) {
         if (result == AVAssetImageGeneratorSucceeded) {
-            NSLog(@"下载完成：%@",timeStr);
+//            NSLog(@"下载完成：%@",timeStr);
             UIImage *thumbImg = [UIImage imageWithCGImage:image];
             [weakSelf performSelectorOnMainThread:@selector(movieImage:) withObject:thumbImg waitUntilDone:YES];
         }
@@ -84,7 +90,7 @@
 
 - (void)initUI {
     
-    self.timeLabel.font = [UIFont boldSystemFontOfSize:32];
+    self.timeLabel.font = [UIFont boldSystemFontOfSize:20];
     
     [self addSubview:self.currentImageView];
     [self.currentImageView mas_makeConstraints:^(MASConstraintMaker *make) {
